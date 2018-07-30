@@ -19,8 +19,8 @@ use AmpforwpElementorPlus\Controls\Designs_Control;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-//define( 'ELEMENTOR_PLUS_DIR_PATH', plugin_dir_path(__FILE__) );
-//define( 'ELEMENTOR_ELEMENTOR_PLUS__FILE__', __FILE__ );
+define( 'ELEMENTOR_PLUS_DIR_PATH', plugin_dir_path(__FILE__) );
+define( 'ELEMENTOR_ELEMENTOR_PLUS__FILE__', __FILE__ );
 
 /**
  * Main Plugin Class
@@ -56,7 +56,7 @@ final class Ampforwp_Elementor_Plus {
 	 *
 	 * @var string Minimum PHP version required to run the plugin.
 	 */
-	const MINIMUM_PHP_VERSION = '7.0';
+	const MINIMUM_PHP_VERSION = '5.0';
 
 	/**
 	 * Instance
