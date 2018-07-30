@@ -177,7 +177,7 @@ final class Ampforwp_Elementor_Plus {
 	}
 
 	public function elementor_widget_enque_script(){
-		wp_register_script( 'ampforwp-call-to-action', plugins_url( 'widgets/assets/js/ampforwp-call-to-action.js', ELEMENTOR_AMPFORWP_ELEMENTOR_PLUS__FILE__ ), [ 'jquery' ], false, true );
+		wp_register_script( 'ampforwp-call-to-action', plugins_url( 'widgets/assets/js/ampforwp-call-to-action.js', ELEMENTOR_ELEMENTOR_PLUS__FILE__ ), [ 'jquery' ], false, true );
 		wp_enqueue_script( 'ampforwp-call-to-action' );
 	}
 	/**
