@@ -103,7 +103,27 @@ final class Ampforwp_Elementor_Plus {
 
 		add_action( 'init', [ $this, 'i18n' ] );
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
-		
+		//register_activation_hook( __FILE__, [ $this, 'ampforwp_elementor_plus_activate' ] );
+		add_action( 'admin_notices', [ $this, 'ampforwp_elementor_plus_admin_notice' ] );
+	}
+
+	public function ampforwp_elementor_plus_activate() {
+		/* Create transient data */
+   		set_transient( 'ampforwp-elementor-plus-admin-notice', true, 5 );
+		add_action( 'admin_notices', [ $this, 'ampforwp_elementor_plus_admin_notice' ] );
+	    
+	}
+	
+
+	public function ampforwp_elementor_plus_admin_notice(){
+	    global $pagenow;
+	    if ( $pagenow == 'plugins.php' ) {   ?>
+	    <div class="notice notice-info is-dismissible">
+	        <p>Click on <button type="button" value="sync" name="sync">Sync</button> to update design library.</p>
+	    </div>
+	    <?php
+		}
+	
 	}
 
 	/**

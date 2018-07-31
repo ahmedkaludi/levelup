@@ -1,5 +1,5 @@
 <?php
-$amp_css = '';
+$amp_css = '#amp-call-to-action-design1{background-color:green}';
 $amp_markup = array(
 				'amp_html'=> '<div id="amp-call-to-action-design1" class="design-layout-default" role="default" aria-label="default">
 						<h1>Design 1</h1>

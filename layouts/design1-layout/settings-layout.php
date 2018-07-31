@@ -100,7 +100,6 @@ $design_controls = array(
 						'label' =>'Choose Image',
 						'type' => 'media',
 						'default' => '',
-						
 					),
 					array(
 						'type'=>'section_end',

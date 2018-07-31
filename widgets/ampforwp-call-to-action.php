@@ -19,6 +19,27 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 	public $design_layout_markup = array();
 
 	public $design_controls = '';
+
+	public function __construct( $data = [], $args = null ) {
+		parent::__construct( $data, $args );
+
+		$is_type_instance = $this->is_type_instance();
+
+		if ( ! $is_type_instance && null === $args ) {
+			throw new \Exception( '`$args` argument is required when initializing a full widget instance' );
+		}
+
+		if ( $is_type_instance ) {
+			
+				
+		}
+	}
+	public  function elementor_plus_amp_design_styling(){
+		$design_markup = $this->get_design_layout_markup(); 
+		$designStyle = $design_markup['amp']['amp_css'];
+		echo $designStyle;
+	}
+
 	/**
 	 * Retrieve the widget name.
 	 *
@@ -92,7 +113,7 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 	}
 
 	public function get_design_layout_markup(){
-		//$settings = $this->get_settings();
+		
 		$dir = ELEMENTOR_PLUS_DIR_PATH.'/layouts/design1-layout/';
 
 		if (is_dir($dir)) {
@@ -102,7 +123,6 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 		        	
 		        	if(is_file($dir.$file) && strpos($file, '-layout.php') == true){
 		        		$this->design_layout_markup[str_replace("-layout.php", "", $file)] = include $dir.$file;
-		        		
 		        	}
 		        }
 		        closedir($dh);
@@ -247,71 +267,54 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 		$description_attr = $this->get_render_attribute_string( 'description' );
 		$content_attr = $this->get_render_attribute_string( 'content' );
 
-		$title = $settings['title'];
+		
 		$description = $settings['description'];
 		$content = $settings['content'];
 		
 		$image_url = $settings['image']['url'];
 
-		if($settings['designs_layout']) {?>
-			
-				<?php if($settings['designs_layout'] == 'design1'){ 
+			if($settings['designs_layout']) {
+				 //if($settings['designs_layout'] == 'design1'){ 
 					if(ampforwp_is_amp_endpoint()){
-						$design1_css = $design_markup['amp']['amp_css'];
-						echo $design1_css;
-						$design1_markup = str_replace('{{title}}', $title, $design_markup['amp']['amp_html']);
-						$design1_markup = str_replace('{{image}}', $image_url, $design1_markup);
+						add_action( 'amp_post_template_css', [ $this, 'elementor_plus_amp_design_styling'] );
+						$outputHtml = $design_markup['amp']['amp_html'];
 					}else{
-						$design1_css = $design_markup['non-amp']['non_amp_css'];
-						echo $design1_css;
-						$design1_markup = str_replace('{{title}}', $title, $design_markup['non-amp']['non_amp_html']);
-						$design1_markup = str_replace('{{image}}', $image_url, $design1_markup);
+						$outputStyle = $design_markup['non-amp']['non_amp_css'];
+						echo '<style>';
+						echo $outputStyle;
+						echo '</style>';
+						$outputHtml = $design_markup['non-amp']['non_amp_html'];
 					}
-					echo $design1_markup;
-					
-				}
-
-				if($settings['designs_layout'] == 'design2'){
-
-					if(ampforwp_is_amp_endpoint()){
-						$design2_css = $design_markup['amp']['amp_css'];
-						echo $design2_css;
-						$design2_markup = str_replace('{{description_attr}}', $description_attr, $design_markup['amp']['amp_html']);
-						$design2_markup = str_replace('{{content_attr}}', $content_attr, $design2_markup);
-
-						$design2_markup = str_replace('{{image}}', $image_url, $design2_markup);
-						$design2_markup = str_replace('{{description}}', $description, $design2_markup);
-						$design2_markup = str_replace('{{content}}', $content, $design2_markup);
 						
-					}else{
-						$design2_css = $design_markup['amp']['non_amp_css'];
-						echo $design2_css;
-						$design2_markup = str_replace('{{description_attr}}', $description_attr, $design_markup['non-amp']['non_amp_html']);
-						$design2_markup = str_replace('{{content_attr}}', $content_attr, $design2_markup);
-
-						$design2_markup = str_replace('{{image}}', $image_url, $design2_markup);
-						$design2_markup = str_replace('{{description}}', $description, $design2_markup);
-						$design2_markup = str_replace('{{content}}', $content, $design2_markup);
-
+					foreach( $design_markup['settings'] as $key => $val){
+						if( isset($val['id']) && isset($settings[$val['id']]) ){
+							if( isset($val['type']) && $val['type'] == 'media' ){
+							 	$settingsData = $settings[$val['id']]['url'];
+							}else{
+							 	$settingsData = $settings[$val['id']];
+							}
+							
+							$outputHtml = str_replace('{{'.$val['id'].'}}', $settingsData, $outputHtml);
+						}
+						
 					}
-					echo $design2_markup;
-					
-				}
+					echo $outputHtml;
+				
 			}else{ ?>
 
-			<div id="call-to-action-default" class="design-layout-default" role="default" aria-label="default">
-				<h1>Default</h1>
-				<div class="call-to-action-img-default"><img src="<?php echo $image_url;?>" /></div>
-				<h3 <?php echo $this->get_render_attribute_string( 'title' ); ?> >
-					<?php echo $settings['title'];?>
-				</h3>
-				<p <?php echo $this->get_render_attribute_string( 'description' ); ?> >
-					<?php echo $settings['description'];?>
-				</p>
-				<p <?php echo $this->get_render_attribute_string( 'content' ); ?> >
-					<?php echo $settings['content'];?>
-				</p>
-			</div>
+				<div id="call-to-action-default" class="design-layout-default" role="default" aria-label="default">
+					<h1>Default</h1>
+					<div class="call-to-action-img-default"><img src="<?php echo $image_url;?>" /></div>
+					<h3 <?php echo $this->get_render_attribute_string( 'title' ); ?> >
+						<?php echo $settings['title'];?>
+					</h3>
+					<p <?php echo $this->get_render_attribute_string( 'description' ); ?> >
+						<?php echo $settings['description'];?>
+					</p>
+					<p <?php echo $this->get_render_attribute_string( 'content' ); ?> >
+						<?php echo $settings['content'];?>
+					</p>
+				</div>
 			<?php
 			}
 		
@@ -339,10 +342,9 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 
 		?>
 		<#
-		if ( settings.designs_layout !== '' ) { 
+		if ( settings.designs_layout !== '' ) {
 		 	if( settings.designs_layout == 'design1' ){ #>
 				<?php
-					
 					$design1_markup = str_replace('{{title}}', '{{{ settings.title }}}', $design_markup['non-amp']['non_amp_html']);
 					$design1_markup = str_replace('{{image}}', '{{ settings.image.url }}', $design1_markup);
 					
@@ -354,12 +356,9 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 			if( settings.designs_layout == 'design2' ){	#>
 				<?php 
 					
-						$design2_markup = str_replace('{{description_attr}}', $description_attr, $design_markup['non-amp']['non_amp_html']);
-						$design2_markup = str_replace('{{content_attr}}', $content_attr, $design2_markup);
-
-						$design2_markup = str_replace('{{image}}', '{{ settings.image.url }}', $design2_markup);
-						$design2_markup = str_replace('{{description}}', '{{{ settings.description }}}', $design2_markup);
-						$design2_markup = str_replace('{{content}}', '{{{ settings.content }}}', $design2_markup);
+					$design2_markup = str_replace('{{image}}', '{{ settings.image.url }}', $design2_markup);
+					$design2_markup = str_replace('{{description}}', '{{{ settings.description }}}', $design2_markup);
+					$design2_markup = str_replace('{{content}}', '{{{ settings.content }}}', $design2_markup);
 
 					echo $design2_markup;
 				?>
