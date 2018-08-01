@@ -105,21 +105,53 @@ final class Ampforwp_Elementor_Plus {
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
 		//register_activation_hook( __FILE__, [ $this, 'ampforwp_elementor_plus_activate' ] );
 		add_action( 'admin_notices', [ $this, 'ampforwp_elementor_plus_admin_notice' ] );
+		add_action( "print_media_templates", [ $this, "ampforwp_new_template_dialog" ] );
+
+		add_action( 'admin_footer', [ $this, 'ampforwp_ajax_call_to_sync'] );
+		add_action( 'wp_ajax_elementor_plus_get_sync_data', [ $this, 'elementor_plus_get_sync_data'] );
+
+		add_action( 'admin_enqueue_scripts', [ $this,'ampforwp_wpajax_js']);
+
 	}
 
+	public function ampforwp_wpajax_js($hook) {
+	 //    if( 'index.php' != $hook ) {
+		// // Only applies to dashboard panel
+		// return;
+	 //    }
+	        
+		wp_enqueue_script( 'elementor-ajax-script', plugins_url( '/assets/js/ajax_sync.js', __FILE__ ), array('jquery') );
+
+		// in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
+		wp_localize_script( 'elementor-ajax-script', 'ajax_object',
+	            array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
+	}
+
+	// public function ampforwp_ajax_call_to_sync() {
+	// 	<script type="text/javascript" >
+		
+	// 	</script>
+	// <?php
+	// }
+	public function elementor_plus_get_sync_data(){
+		echo $_POST['whatever'];
+		wp_die();
+	}
 	public function ampforwp_elementor_plus_activate() {
 		/* Create transient data */
-   		set_transient( 'ampforwp-elementor-plus-admin-notice', true, 5 );
 		add_action( 'admin_notices', [ $this, 'ampforwp_elementor_plus_admin_notice' ] );
 	    
 	}
 	
+	public function ampforwp_new_template_dialog(){
+		require_once 'modal-templates.php';
+	}
 
 	public function ampforwp_elementor_plus_admin_notice(){
 	    global $pagenow;
 	    if ( $pagenow == 'plugins.php' ) {   ?>
 	    <div class="notice notice-info is-dismissible">
-	        <p>Click on <button type="button" value="sync" name="sync">Sync</button> to update design library.</p>
+	        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-sync" class="button-primary">Sync</button> to update Elementor Plus design library.</p>
 	    </div>
 	    <?php
 		}
@@ -197,7 +229,7 @@ final class Ampforwp_Elementor_Plus {
 	}
 
 	public function elementor_widget_enque_script(){
-		wp_register_script( 'ampforwp-call-to-action', plugins_url( 'widgets/assets/js/ampforwp-call-to-action.js', ELEMENTOR_ELEMENTOR_PLUS__FILE__ ), [ 'jquery' ], false, true );
+		wp_register_script( 'ampforwp-call-to-action', plugins_url( 'widgets/assets/js/ampforwp-call-to-action.js', ELEMENTOR_ELEMENTOR_PLUS__FILE__ ), [ 'jquery', 'backbone', 'backbone-marionette','backbone-radio' ], false, true );
 		wp_enqueue_script( 'ampforwp-call-to-action' );
 	}
 	/**
