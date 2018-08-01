@@ -247,7 +247,6 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-
 		$design_markup = $this->get_design_layout_markup(); 
 		$settings = $this->get_settings();
 		$this->add_render_attribute(
@@ -341,30 +340,14 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 		$this->add_inline_editing_attributes( 'content', 'basic' );
 
 		?>
-		<#
-		if ( settings.designs_layout !== '' ) {
-		 	if( settings.designs_layout == 'design1' ){ #>
-				<?php
-					$design1_markup = str_replace('{{title}}', '{{{ settings.title }}}', $design_markup['non-amp']['non_amp_html']);
-					$design1_markup = str_replace('{{image}}', '{{ settings.image.url }}', $design1_markup);
-					
-					echo $design1_markup;
-				?>
-			<#
-			}
-
-			if( settings.designs_layout == 'design2' ){	#>
-				<?php 
-					
-					$design2_markup = str_replace('{{image}}', '{{ settings.image.url }}', $design2_markup);
-					$design2_markup = str_replace('{{description}}', '{{{ settings.description }}}', $design2_markup);
-					$design2_markup = str_replace('{{content}}', '{{{ settings.content }}}', $design2_markup);
-
-					echo $design2_markup;
-				?>
-				<#
-			}
-		}else{	#>
+		<# if ( settings.designs_layout !== '' ) { 	#>
+			<?php
+				$outputHtml = str_replace('{{title}}', '{{{ settings.title }}}', $design_markup['non-amp']['non_amp_html']);
+				$outputHtml = str_replace('{{image}}', '{{ settings.image.url }}', $outputHtml);
+				
+				echo $outputHtml;
+			?>
+		<#	}else{	#>
 			<div id="call-to-action-default" class="design-layout-default" role="default" aria-label="default">
 				<h1>Default</h1>
 				<div class="call-to-action-img-default"><img src="{{ settings.image.url }}"></div>
