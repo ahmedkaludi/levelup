@@ -128,19 +128,10 @@ final class Ampforwp_Elementor_Plus {
 	            array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
 	}
 
-	// public function ampforwp_ajax_call_to_sync() {
-	// 	<script type="text/javascript" >
-		
-	// 	</script>
-	// <?php
-	// }
 	public function elementor_plus_sync_data_on_drag(){
-		
-		//echo json_encode($_POST['designs']);
-		
-		
+			$designs = get_option( 'ampforwp-call-to-action-layouts' );
 			if(isset($designs) && $designs!='' ){
-				echo json_encode(array("status"=>200,'designs'=>array('designs'=>$designs)));
+				echo json_encode(array("status"=>200,'designs'=>array('designs'=> $designs )));
 			}else{
 				echo json_encode(array("status"=>400));
 			}
@@ -148,7 +139,22 @@ final class Ampforwp_Elementor_Plus {
 		wp_die();
 	}
 	public function elementor_plus_get_sync_data(){
-		echo $_POST['whatever'];
+		$response = wp_remote_get( 'http://localhost/elementor-layouts/list.php',array('timeout'=> 120));
+		$option_name = 'ampforwp-call-to-action-layouts';
+		$status = '';
+		$responseData = '';
+		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
+			$responseData = $response['body'];
+			$responseData = json_decode($responseData);
+			if( is_array($responseData)){
+				$responseData = json_encode($responseData);
+				update_option( $option_name, $responseData );
+				$status = 200;
+			}else{
+				$status = 400;
+			}
+		}
+		echo $status;
 		wp_die();
 	}
 	public function ampforwp_elementor_plus_activate() {
@@ -164,8 +170,8 @@ final class Ampforwp_Elementor_Plus {
 	public function ampforwp_elementor_plus_admin_notice(){
 	    global $pagenow;
 	    if ( $pagenow == 'plugins.php' ) {   ?>
-	    <div class="notice notice-info is-dismissible">
-	        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-sync" class="button-primary">Sync</button> to update Elementor Plus design library.</p>
+	    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
+	        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-sync" class="button-primary">Sync</button> to update Elementor Plus design library.<span class="ampforwp-response-status"><img src="<?php echo admin_url('images/loading.gif');?>" class="jetpack-lazy-image ampforwp-lazy-image" data-lazy-loaded="1"></span></p>
 	    </div>
 	    <?php
 		}
@@ -243,37 +249,12 @@ final class Ampforwp_Elementor_Plus {
 	}
 
 	public function elementor_widget_enque_script(){
-		$designs = array(
-					array(
-						'id'=>'1',
-					'name'=> 'Design One',
-					'image'=> 'https://designmodo.com/startup/app/css/blocks/900/calls_to_actions/call_to_action_1_2x.jpg'
-					),
-					array(
-						'id'=>'2',
-					'name'=>'Design Two',
-					'image'=>'https://designmodo.com/startup/app/css/blocks/900/calls_to_actions/call_to_action_2_2x.jpg'
-					),
-					array(
-						'id'=>'3',
-					'name'=>'Design Three',
-					'image'=>'https://designmodo.com/startup/app/css/blocks/900/calls_to_actions/call_to_action_3_2x.jpg'
-				),
-					array(
-						'id'=>'4',
-					'name'=>'Design Four',
-					'image'=>'https://designmodo.com/startup/app/css/blocks/270/calls_to_actions/call_to_action_4_2x.jpg'
-				),
-					array('id'=>'5',
-					'name'=>'Design Five',
-					'image'=>'https://designmodo.com/startup/app/css/blocks/900/calls_to_actions/call_to_action_15_2x.jpg'
-					),
-
-					);
+		$designs = get_option( 'ampforwp-call-to-action-layouts');
+		$designs = json_decode( $designs );
 		wp_register_script( 'ampforwp-call-to-action', plugins_url( 'widgets/assets/js/ampforwp-call-to-action.js', ELEMENTOR_ELEMENTOR_PLUS__FILE__ ), [ 'jquery', 'backbone', 'backbone-marionette','backbone-radio' ], false, true );
 		wp_localize_script( 'ampforwp-call-to-action', 'ajax_object',
 	            array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
-	            	'widget_design'=>array("designs"=>$designs),
+	            	'widget_design'=>array("designs"=> $designs ),
 	            	'we_value' => 1234 ) );
 		wp_enqueue_script( 'ampforwp-call-to-action' );
 	}

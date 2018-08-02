@@ -17,7 +17,7 @@
 			<% if(designs) { %>
               
                 <% _(designs).each(function(data) { %>
-                <div class="column" style="background-color:#aaa;">
+                <div class="column">
 					<div class="img-content" style="background-image: url('<%= data.image%>');">
 						
 					</div>
@@ -46,9 +46,9 @@
 }
 .img-content{
 	height: 220px;
-	background-color:#aaa;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+	/*background-color:#aaa;*/
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .column:hover{
