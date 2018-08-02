@@ -5,34 +5,29 @@
     <div class="modal-header">
       <span class="close"></span>
       	<ul class="nav">
-		  	<li><a class="active" href="/">Home</a></li>
-		  	<li><a href="/about/">About</a></li>
-		  	<li><a href="/work/">Work</a></li>
+		  	<li><a class="active" href="/">Blocks</a></li>
+		  	<li><a href="/about/">Pages</a></li>
+		  	<li><a href="/work/">My Templates</a></li>
 		  	
 		</ul>
     </div>
     <div class="modal-body">
-		<div class="row">
-			
-			<div class="column" style="background-color:#aaa;">
-				<h2>Column 1</h2>
-				<p>Some text..</p>
-			</div>
-			
-			<div class="column" style="background-color:#aaa;">
-				<h2>Column 2</h2>
-				<p>Some text..</p>
-			</div>
-			
-			<div class="column" style="background-color:#aaa;">
-				<h2>Column 3</h2>
-				<p>Some text..</p>
-			</div>
-			
-			<div class="column" style="background-color:#aaa;">
-				<h2>Column 4</h2>
-				<p>Some text..</p>
-			</div>
+    	
+		<div class="row" id="designs-container">
+			<% if(designs) { %>
+              
+                <% _(designs).each(function(data) { %>
+                <div class="column" style="background-color:#aaa;">
+					<div class="img-content" style="background-image: url('<%= data.image%>');">
+						
+					</div>
+					<div class="img-name" >
+						<p><%= data.name %></p>
+					</div>
+				</div>
+                <% }) %>
+             
+            <% } %>
 			
 		</div>
     </div>
@@ -43,15 +38,29 @@
 
 <style>
 /* Create four equal columns that floats next to each other */
+.img-name{
+	height: 44px;
+	background-color:#ddd;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.img-content{
+	height: 220px;
+	background-color:#aaa;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
 
+.column:hover{
+	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .column {
     float: left;
     width: 220px;
-    padding: 10px;
     height: 270px; /* Should be removed. Only for demonstration */
     margin:15px;
     border-radius: 10px;
-    border-color: #ddd;
+    border: 5px solid #ddd;
 }
 
 /* Clear floats after the columns */
@@ -172,4 +181,29 @@
   border-bottom: 3px solid red;
 }
 </style>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$('.img-name').hover(function(){
+			$main_text = $(this).text();
+			$(this).html("<a href=''>&#8686; Insert</a>");
+		},function(){
+			$(this).html($main_text);
+		});
+	});
+</script>>
 </script>
+
+<script id="modal-view-template" type="text/html">
+  <div class="modal-header">
+    <h2>This is a modal!</h2>
+  </div>
+  <div class="modal-body">
+    <p>With some content in it!</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn">cancel</button>
+    <button class="btn-default">Ok</button>
+  </div>
+</script>
+
+<div id="modal"></div>

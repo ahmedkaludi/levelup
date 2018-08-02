@@ -109,6 +109,7 @@ final class Ampforwp_Elementor_Plus {
 
 		add_action( 'admin_footer', [ $this, 'ampforwp_ajax_call_to_sync'] );
 		add_action( 'wp_ajax_elementor_plus_get_sync_data', [ $this, 'elementor_plus_get_sync_data'] );
+		add_action( 'wp_ajax_elementor_plus_sync_data_on_drag', [ $this, 'elementor_plus_sync_data_on_drag'] );
 
 		add_action( 'admin_enqueue_scripts', [ $this,'ampforwp_wpajax_js']);
 
@@ -133,6 +134,19 @@ final class Ampforwp_Elementor_Plus {
 	// 	</script>
 	// <?php
 	// }
+	public function elementor_plus_sync_data_on_drag(){
+		
+		//echo json_encode($_POST['designs']);
+		
+		
+			if(isset($designs) && $designs!='' ){
+				echo json_encode(array("status"=>200,'designs'=>array('designs'=>$designs)));
+			}else{
+				echo json_encode(array("status"=>400));
+			}
+		
+		wp_die();
+	}
 	public function elementor_plus_get_sync_data(){
 		echo $_POST['whatever'];
 		wp_die();
@@ -229,7 +243,38 @@ final class Ampforwp_Elementor_Plus {
 	}
 
 	public function elementor_widget_enque_script(){
+		$designs = array(
+					array(
+						'id'=>'1',
+					'name'=> 'Design One',
+					'image'=> 'https://designmodo.com/startup/app/css/blocks/900/calls_to_actions/call_to_action_1_2x.jpg'
+					),
+					array(
+						'id'=>'2',
+					'name'=>'Design Two',
+					'image'=>'https://designmodo.com/startup/app/css/blocks/900/calls_to_actions/call_to_action_2_2x.jpg'
+					),
+					array(
+						'id'=>'3',
+					'name'=>'Design Three',
+					'image'=>'https://designmodo.com/startup/app/css/blocks/900/calls_to_actions/call_to_action_3_2x.jpg'
+				),
+					array(
+						'id'=>'4',
+					'name'=>'Design Four',
+					'image'=>'https://designmodo.com/startup/app/css/blocks/270/calls_to_actions/call_to_action_4_2x.jpg'
+				),
+					array('id'=>'5',
+					'name'=>'Design Five',
+					'image'=>'https://designmodo.com/startup/app/css/blocks/900/calls_to_actions/call_to_action_15_2x.jpg'
+					),
+
+					);
 		wp_register_script( 'ampforwp-call-to-action', plugins_url( 'widgets/assets/js/ampforwp-call-to-action.js', ELEMENTOR_ELEMENTOR_PLUS__FILE__ ), [ 'jquery', 'backbone', 'backbone-marionette','backbone-radio' ], false, true );
+		wp_localize_script( 'ampforwp-call-to-action', 'ajax_object',
+	            array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
+	            	'widget_design'=>array("designs"=>$designs),
+	            	'we_value' => 1234 ) );
 		wp_enqueue_script( 'ampforwp-call-to-action' );
 	}
 	/**

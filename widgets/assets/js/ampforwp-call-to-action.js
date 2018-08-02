@@ -342,7 +342,7 @@
 
 AddPersonView = ModalView.extend({
     name: "AddPersonView",
-    model: "PersonModel",
+    model: {},
     //template: '#tmpl-ampforwp-elementor-library-templates' ,
     initialize:function() {
       _.bindAll( this, "render");
@@ -353,13 +353,14 @@ AddPersonView = ModalView.extend({
    },
     addPerson: function() {
       this.hideModal();
-      _people.add( new PersonModel({name: $("#personName").val()}));
+      //_people.add( new PersonModel({name: $("#personName").val()}));
    },
     render: function() {
-		$(this.el).html( this.template(this.model.attributes));
+		$(this.el).html( this.template(this.model));
 		return this;
 	}
 });	
+
 	/**
  	 * @param $scope The Widget wrapper element as a jQuery element
 	 * @param $ The jQuery alias
@@ -392,8 +393,21 @@ AddPersonView = ModalView.extend({
 					// 	view.render().showModal({});
 					// });
 					if(model.attributes.widgetType == 'call-to-action'){
-						var view = new AddPersonView();
-						view.render().showModal({});
+							var view = new AddPersonView();
+						// var templateList = '';
+						// var data = {action: 'elementor_plus_sync_data_on_drag'};
+						// $.post(ajax_object.ajax_url, data, function(result) {
+						// 	//alert(response);
+						// 	var designData = '';
+						// 	designData = $.parseJSON(result);
+						// 	if(designData.status == 200){
+						// 		templateList = designData.designs;
+						// 	}
+						// 	console.log(templateList);
+						
+						// });
+							view.model = ajax_object.widget_design;
+							view.render().showModal({});
 
                 	}
 				}
