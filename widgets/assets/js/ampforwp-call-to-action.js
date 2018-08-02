@@ -349,11 +349,33 @@ AddPersonView = ModalView.extend({
       this.template = _.template($('#tmpl-ampforwp-elementor-library-templates').html());
    },
     events: {
-      "submit form": "addPerson"
+      "click .img-name": "elementGetData"
    },
-    addPerson: function() {
-      this.hideModal();
+    elementGetData: function() {
+        $('#ampforwp-designs-container').html("<div style='text-align:center'>Please Wait...</div>");
+        var templateId = $(this).attr("data-template-id");
+        var modalViewThis = this
+        $.ajax({
+            url: ajax_object.ajax_url,
+            data: {action: 'elementor_plus_insert_data', 'template-id': templateId},
+            dataType: 'json',
+            success:function(response){
+                if(response.status==200){
+                    //var data = response.data;// on live make it like this
+                    var data = response.data.data;
+                    elementor.getPreviewView().addChildModel( data.content, {} );
+
+                    modalViewThis.hideModal();   
+                   // this.hideModal();
+                }else{
+                    $('#ampforwp-designs-container').html("<div style='text-align:center'>Can't fetch template data try again.</div>");
+                }
+            }
+        });
+      return false;
       //_people.add( new PersonModel({name: $("#personName").val()}));
+   },
+   showLoadingView: function() {
    },
     render: function() {
 		$(this.el).html( this.template(this.model));
@@ -369,17 +391,6 @@ AddPersonView = ModalView.extend({
 		console.log( $scope );
 	};
 	
-	// Make sure you run this code under Elementor.
-	$( window ).on( 'elementor/frontend/init', function() {
-		elementorFrontend.hooks.addAction( 'frontend/element_ready/ampforwp-call-to-action.default', WidgetAmpforwpCallToActionHandler );
-	} );
-
-	// Make sure you run this code under Elementor.
-	$( window ).on( 'elementor-templates/models/template', function() {
-		elementor.templates.startModal( ampGetTemplatesModalOptions() );
-		elementorFrontend.hooks.addAction( 'frontend/element_ready/ampforwp-call-to-action.default', WidgetAmpforwpCallToActionHandler );
-		
-	} );
 
 	$ ( window ).on (
         'elementor:init',
@@ -388,30 +399,18 @@ AddPersonView = ModalView.extend({
             elementor.hooks.addAction(
                 'panel/open_editor/widget/call-to-action',
                 function( panel, model, view ) {
-     				//jQuery(document).on('click','.elementor-button', function( event ) {
-					// 	var view = new AddPersonView();
-					// 	view.render().showModal({});
-					// });
-					if(model.attributes.widgetType == 'call-to-action'){
-							var view = new AddPersonView();
-						// var templateList = '';
-						// var data = {action: 'elementor_plus_sync_data_on_drag'};
-						// $.post(ajax_object.ajax_url, data, function(result) {
-						// 	//alert(response);
-						// 	var designData = '';
-						// 	designData = $.parseJSON(result);
-						// 	if(designData.status == 200){
-						// 		templateList = designData.designs;
-						// 	}
-						// 	console.log(templateList);
-						
-						// });
-							view.model = ajax_object.widget_design;
-							view.render().showModal({});
-
+     				if(model.attributes.widgetType == 'call-to-action'){
+						openCallToActionDesignPopup();
                 	}
 				}
             );
         }
 	);
 } )( jQuery );
+
+var openCallToActionDesignPopup = function(){
+    var view = new AddPersonView();
+    view.model = ajax_object.widget_design;
+    view.render().showModal({});
+
+}

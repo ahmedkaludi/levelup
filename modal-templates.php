@@ -13,7 +13,7 @@
     </div>
     <div class="modal-body">
     	
-		<div class="row" id="designs-container">
+		<div class="row" id="ampforwp-designs-container">
 			<% if(designs) { %>
               
                 <% _(designs).each(function(data) { %>
@@ -21,7 +21,7 @@
 					<div class="img-content" style="background-image: url('<%= data.image%>');">
 						
 					</div>
-					<div class="img-name" >
+					<div class="img-name" data-template-id="<%= data.id %>">
 						<p><%= data.name %></p>
 					</div>
 				</div>
