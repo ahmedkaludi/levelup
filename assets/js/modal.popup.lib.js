@@ -1,25 +1,26 @@
+var ModalView;
 ( function( $ ) {
-	var ModalView =
+    ModalView =
     Backbone.View.extend(
     {
         name: "ModalView",
         modalBlanket: null,
         modalContainer: null,
         defaultOptions:
-		{
-			fadeInDuration:150,
-			fadeOutDuration:150,
-			showCloseButton:false,
-			bodyOverflowHidden:false,
+        {
+            fadeInDuration:150,
+            fadeOutDuration:150,
+            showCloseButton:false,
+            bodyOverflowHidden:false,
             setFocusOnFirstFormControl:true,
             targetContainer: document.body,
             slideFromAbove: false,
             slideFromBelow: false,
             slideDistance: 150,
-			closeImageUrl: "close-modal.png",
-			closeImageHoverUrl: "close-modal-hover.png",
-			showModalAtScrollPosition: true,
-			permanentlyVisible: false,
+            closeImageUrl: "close-modal.png",
+            closeImageHoverUrl: "close-modal-hover.png",
+            showModalAtScrollPosition: true,
+            permanentlyVisible: false,
             backgroundClickClosesModal: true,
             pressingEscapeClosesModal: true,
             css:
@@ -27,7 +28,7 @@
                 
                 "border-radius": "10px"
             }
-		},
+        },
 
         initialize: function(){ },
         events: {},
@@ -37,7 +38,7 @@
         hideModalBlanket: function() {
             return this.modalBlanket.fadeOut( this.options.fadeOutDuration);
         },
-		ensureModalContainer: function( target) {
+        ensureModalContainer: function( target) {
             if( target != null){
                 // A target is passed in, we need to re-render the modal container into the target.
                 if( this.modalContainer != null){
@@ -79,7 +80,7 @@
                             .appendTo( document.body)
                             .hide();
                 }
-				else
+                else
                 {
                     // Ensure the blanket spans the whole document, screen may have been updated.
                     this.modalBlanket.css(
@@ -146,11 +147,11 @@
                 }
             },
 
-		recenter: function() {
-				return this.recentre();
-			},
-		// Re-centre the modal dialog after it has been displayed. Useful if the height changes after initial rendering eg; jquery ui tabs will hide tab sections
-		recentre: function() {
+        recenter: function() {
+                return this.recentre();
+            },
+        // Re-centre the modal dialog after it has been displayed. Useful if the height changes after initial rendering eg; jquery ui tabs will hide tab sections
+        recentre: function() {
                 var $el = $(this.el);
                 var coords = {
                     top: this.getCoordinate( "top", this.options.css),
@@ -192,7 +193,7 @@
                 this.defaultOptions.targetContainer = document.body;
                 this.options = $.extend( true, {}, this.defaultOptions, options, this.options);
 
-				if( this.options.permanentlyVisible)
+                if( this.options.permanentlyVisible)
                 {
                     this.options.showCloseButton = false;
                     this.options.backgroundClickClosesModal = false;
@@ -202,11 +203,11 @@
                 //Set the center alignment padding + border see css style
                 var $el = $(this.el);
 
-				var centreY = $(window).height() / 2;
+                var centreY = $(window).height() / 2;
                 var centreX = $(window).width() / 2;
                 var modalContainer = this.ensureModalContainer( this.options.targetContainer).empty();
-		
-		        $el.addClass( "modal");
+        
+                $el.addClass( "modal");
 
                 var coords = {
                     top: this.getCoordinate( "top", this.options.css),
@@ -216,7 +217,7 @@
                     isEmpty: function(){return (this.top == null && this.left == null && this.right == null && this.bottom == null);}
                     };
 
-				$el.css( this.options.css);
+                $el.css( this.options.css);
 
                 this.showModalBlanket();
                 this.keyup = _.bind( this.keyup, this);
@@ -238,7 +239,7 @@
                         "position": "absolute",
                         "z-index": 999999});
 
-				var offsets = this.getOffsets();
+                var offsets = this.getOffsets();
 
                 // Only apply default centre coordinates if no css positions have been supplied
                 if( coords.isEmpty())
@@ -246,7 +247,7 @@
                     var positionY = centreY  - ($el.outerHeight() / 2);
                     if( positionY < 10) positionY = 10;
 
-					// Overriding the coordinates with explicit values if they are passed in
+                    // Overriding the coordinates with explicit values if they are passed in
                     if( typeof( this.options.y) !== "undefined")
                     {
                         positionY = this.options.y;
@@ -259,7 +260,7 @@
                     modalContainer.css({"top": positionY + "px"});
 
                     var positionX = centreX - ($el.outerWidth() / 2);
-					// Overriding the coordinates with explicit values if they are passed in
+                    // Overriding the coordinates with explicit values if they are passed in
                     if( typeof( this.options.x) !== "undefined")
                     {
                         positionX = this.options.x;
@@ -290,13 +291,13 @@
                     var image =
                         $("<a href='#' id='modalCloseButton'>&#160;</a>")
                             .css({
-									"position":"absolute",
-									"top":"-10px",
-									"right":"-10px",
-									"width":"32px",
-									"height":"32px",
-									"background":"transparent url(" + view.options.closeImageUrl + ") top left no-repeat",
-									"text-decoration":"none"})
+                                    "position":"absolute",
+                                    "top":"-10px",
+                                    "right":"-10px",
+                                    "width":"32px",
+                                    "height":"32px",
+                                    "background":"transparent url(" + view.options.closeImageUrl + ") top left no-repeat",
+                                    "text-decoration":"none"})
                             .appendTo( this.modalContainer)
                             .hover(
                                 function()
@@ -336,81 +337,8 @@
 
                 this.modalContainer.animate( animateProperties, this.options.fadeInDuration);
 
-				return this;
+                return this;
             }
     });
 
-AddPersonView = ModalView.extend({
-    name: "AddPersonView",
-    model: {},
-    //template: '#tmpl-ampforwp-elementor-library-templates' ,
-    initialize:function() {
-      _.bindAll( this, "render");
-      this.template = _.template($('#tmpl-ampforwp-elementor-library-templates').html());
-   },
-    events: {
-      "click .img-name": "elementGetData"
-   },
-    elementGetData: function() {
-        $('#ampforwp-designs-container').html("<div style='text-align:center'>Please Wait...</div>");
-        var templateId = $(this).attr("data-template-id");
-        var modalViewThis = this
-        $.ajax({
-            url: ajax_object.ajax_url,
-            data: {action: 'elementor_plus_insert_data', 'template-id': templateId},
-            dataType: 'json',
-            success:function(response){
-                if(response.status==200){
-                    var data = response.data;// on live make it like this
-                    //var data = response.data.data;
-                    elementor.getPreviewView().addChildModel( data.content, {} );
-
-                    modalViewThis.hideModal();   
-                   // this.hideModal();
-                }else{
-                    $('#ampforwp-designs-container').html("<div style='text-align:center'>Can't fetch template data try again.</div>");
-                }
-            }
-        });
-      return false;
-      //_people.add( new PersonModel({name: $("#personName").val()}));
-   },
-   showLoadingView: function() {
-   },
-    render: function() {
-		$(this.el).html( this.template(this.model));
-		return this;
-	}
-});	
-
-	/**
- 	 * @param $scope The Widget wrapper element as a jQuery element
-	 * @param $ The jQuery alias
-	 */ 
-	var WidgetAmpforwpCallToActionHandler = function( $scope, $ ) {
-		console.log( $scope );
-	};
-	
-
-	$ ( window ).on (
-        'elementor:init',
-        function () {
-        	
-            elementor.hooks.addAction(
-                'panel/open_editor/widget/call-to-action',
-                function( panel, model, view ) {
-     				if(model.attributes.widgetType == 'call-to-action'){
-						openCallToActionDesignPopup();
-                	}
-				}
-            );
-        }
-	);
 } )( jQuery );
-
-var openCallToActionDesignPopup = function(){
-    var view = new AddPersonView();
-    view.model = ajax_object.widget_design;
-    view.render().showModal({});
-
-}

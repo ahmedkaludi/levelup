@@ -6,13 +6,6 @@ use Elementor\Controls_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-/**
- * Elementor Hello World
- *
- * Elementor widget for hello world.
- *
- * @since 1.0.0
- */
 class Ampforwp_Call_To_Action extends Widget_Base {
 
 
@@ -34,7 +27,7 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 				
 		}
 	}
-	public  function elementor_plus_amp_design_styling(){
+	public function elementor_plus_amp_design_styling(){
 		$design_markup = $this->get_design_layout_markup(); 
 		$designStyle = $design_markup['amp']['amp_css'];
 		echo $designStyle;
@@ -87,8 +80,6 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 	 * Note that currently Elementor supports only one category.
 	 * When multiple categories passed, Elementor uses the first one.
 	 *
-	 * @since 1.0.0
-	 *
 	 * @access public
 	 *
 	 * @return array Widget categories.
@@ -102,8 +93,6 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 	 *
 	 * Used to set scripts dependencies required to run the widget.
 	 *
-	 * @since 1.0.0
-	 *
 	 * @access public
 	 *
 	 * @return array Widget scripts dependencies.
@@ -112,37 +101,16 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 		return [ 'ampforwp-call-to-action' ];
 	}
 
-	public function get_design_layout_markup(){
-		
-		$dir = ELEMENTOR_PLUS_DIR_PATH.'/layouts/design1-layout/';
-
-		if (is_dir($dir)) {
-		    if ($dh = opendir($dir)) {
-
-		        while (($file = readdir($dh)) !== false) {
-		        	
-		        	if(is_file($dir.$file) && strpos($file, '-layout.php') == true){
-		        		$this->design_layout_markup[str_replace("-layout.php", "", $file)] = include $dir.$file;
-		        	}
-		        }
-		        closedir($dh);
-		       	$this->design_layout_markup = apply_filters("ampforwp_pagebuilder_modules_filter", $this->design_layout_markup);
-		    }
-		}
-		return $this->design_layout_markup;
-	}
 	/**
 	 * Register the widget controls.
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
-	 *
-	 * @since 1.0.0
-	 *
 	 * @access protected
 	 */
 	protected function _register_controls() {
-		$design_controls = $this->get_design_layout_markup();
-		$this->start_controls_section(
+		//$design_controls = $this->get_design_layout_markup();
+		//$design_controls = array();
+		/*$this->start_controls_section(
 			'section_designs',
 			[
 				'label' => __( 'Designs', 'ampforwp-elementor-plus' ),
@@ -159,8 +127,8 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 			]
 		);
 		
-		$this->end_controls_section();
-		
+		$this->end_controls_section();*/
+		/*if(isset($design_controls['settings'] )){
 		foreach( $design_controls['settings'] as $valSettings){
 			
 				switch ($valSettings['type']) {
@@ -234,7 +202,8 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 						break;
 				}
 		}
-		
+	}
+	*/	
 	}
 
 	/**
@@ -247,7 +216,7 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 	 * @access protected
 	 */
 	protected function render() {
-		$design_markup = $this->get_design_layout_markup(); 
+		/*$design_markup = $this->get_design_layout_markup(); 
 		$settings = $this->get_settings();
 		$this->add_render_attribute(
 			'wrapper',
@@ -315,7 +284,7 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 					</p>
 				</div>
 			<?php
-			}
+			}*/
 		
 	}
 
@@ -328,8 +297,8 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 	 *
 	 * @access protected
 	 */
-	protected function _content_template() {
-		$design_markup = $this->get_design_layout_markup();
+	//protected function _content_template() {
+		/*$design_markup = $this->get_design_layout_markup();
 		
 		$title_attr = $this->get_render_attribute_string( 'wrapper' );
 		$description_attr = $this->get_render_attribute_string( 'description' );
@@ -356,6 +325,6 @@ class Ampforwp_Call_To_Action extends Widget_Base {
 				<p <?php echo $this->get_render_attribute_string( 'content' ); ?>>{{{ settings.content }}}</p>
 			</div>
 		<#	} #>
-		<?php
-	}
+		<?php */
+	//}
 }
