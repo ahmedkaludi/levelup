@@ -103,7 +103,9 @@ final class Ampforwp_Elementor_Plus {
 
 		add_action( 'init', [ $this, 'i18n' ] );
 		add_action( 'plugins_loaded', [ $this, 'init' ] );
-		//register_activation_hook( __FILE__, [ $this, 'ampforwp_elementor_plus_activate' ] );
+		
+		register_activation_hook( __FILE__, [ $this, 'ampforwp_elementor_plus_activate' ] );
+
 		add_action( 'admin_notices', [ $this, 'ampforwp_elementor_plus_admin_notice' ] );
 		add_action( "print_media_templates", [ $this, "ampforwp_new_template_dialog" ] );
 
@@ -137,7 +139,7 @@ final class Ampforwp_Elementor_Plus {
 	}
 	public function elementor_plus_get_sync_data(){
 		$response = wp_remote_get( 'http://localhost/elementor-layouts/list.php',array('timeout'=> 120));
-		$option_name = 'ampforwp-call-to-action-layouts';
+		$elementor_plus_json_option = 'ampforwp-call-to-action-layouts';
 		$status = '';
 		$responseData = '';
 		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
@@ -145,19 +147,29 @@ final class Ampforwp_Elementor_Plus {
 			$responseData = json_decode($responseData);
 			if( is_array($responseData)){
 				$responseData = json_encode($responseData);
-				update_option( $option_name, $responseData );
+				update_option( $elementor_plus_json_option, $responseData );
 				$status = 200;
 			}else{
 				$status = 400;
 			}
+		}else{
+			$status = 400;
 		}
 		echo $status;
 		wp_die();
 	}
 	public function ampforwp_elementor_plus_activate() {
 		/* Create transient data */
+		$responseData = '';
+		$response_version = wp_remote_get('http://localhost/elementor-layouts/version.php',array('timeout'=> 120));
+		$elementor_plus_version_option = 'ampforwp-elementor-plus-version';
+		
+		if ( is_array( $response_version ) && ! is_wp_error( $response_version ) ) {
+			$version = $response_version['body'];
+			update_option( $elementor_plus_version_option, $version );
+		}
+
 		add_action( 'admin_notices', [ $this, 'ampforwp_elementor_plus_admin_notice' ] );
-	    
 	}
 	
 	public function ampforwp_new_template_dialog(){
@@ -166,11 +178,15 @@ final class Ampforwp_Elementor_Plus {
 
 	public function ampforwp_elementor_plus_admin_notice(){
 	    global $pagenow;
-	    if ( $pagenow == 'plugins.php' ) {   ?>
+	    $current_version = get_option( 'ampforwp-elementor-plus-version');
+	    if ( $pagenow == 'plugins.php' ) {   
+	    	if( $current_version < 1.1 ){
+	    	?>
 	    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 	        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-sync" class="button-primary">Sync</button> to update Elementor Plus design library.<span class="ampforwp-response-status"><img src="<?php echo admin_url('images/loading.gif');?>" class="jetpack-lazy-image ampforwp-lazy-image" data-lazy-loaded="1"></span></p>
 	    </div>
 	    <?php
+			}	
 		}
 	
 	}
