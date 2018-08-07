@@ -14,7 +14,7 @@ namespace AmpforwpElementorPlus;
 use AmpforwpElementorPlus\Widgets\Ampforwp_Call_To_Action;
 use AmpforwpElementorPlus\Widgets\Ampforwp_Inline_Editing;
 
-//use AmpforwpElementorPlus\Controls\EmojiOneArea_Control;
+use AmpforwpElementorPlus\Controls\EmojiOneArea_Control;
 use AmpforwpElementorPlus\Controls\Designs_Control;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -109,7 +109,6 @@ final class Ampforwp_Elementor_Plus {
 		add_action( 'admin_notices', [ $this, 'ampforwp_elementor_plus_admin_notice' ] );
 		add_action( "print_media_templates", [ $this, "ampforwp_new_template_dialog" ] );
 
-		add_action( 'admin_footer', [ $this, 'ampforwp_ajax_call_to_sync'] );
 		add_action( 'wp_ajax_elementor_plus_get_sync_data', [ $this, 'elementor_plus_get_sync_data'] );
 
 		add_action( 'admin_enqueue_scripts', [ $this,'ampforwp_wpajax_js']);
@@ -390,7 +389,7 @@ final class Ampforwp_Elementor_Plus {
 	 * @access private
 	 */
 	private function controls_includes(){
-		//require_once( __DIR__ . '/controls/emojionearea-control.php' );
+		require_once( __DIR__ . '/controls/emojionearea-control.php' );
 		require_once( __DIR__ . '/controls/designs-control.php' );
 	}
 	 
@@ -411,6 +410,7 @@ final class Ampforwp_Elementor_Plus {
 	private function register_controls(){
 		$controls_manager = \Elementor\Plugin::$instance->controls_manager;
 		$controls_manager->register_control( 'designs', new Designs_Control() );
+		$controls_manager->register_control( 'emojionearea', new EmojiOneArea_Control() );
 	}
 	
 	private function register_widget() {
