@@ -14,7 +14,7 @@ namespace AmpforwpElementorPlus;
 use AmpforwpElementorPlus\Widgets\Ampforwp_Call_To_Action;
 use AmpforwpElementorPlus\Widgets\Ampforwp_Inline_Editing;
 
-use AmpforwpElementorPlus\Controls\EmojiOneArea_Control;
+//use AmpforwpElementorPlus\Controls\EmojiOneArea_Control;
 use AmpforwpElementorPlus\Controls\Designs_Control;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -110,17 +110,28 @@ final class Ampforwp_Elementor_Plus {
 		add_action( "print_media_templates", [ $this, "ampforwp_new_template_dialog" ] );
 
 		add_action( 'wp_ajax_elementor_plus_get_sync_data', [ $this, 'elementor_plus_get_sync_data'] );
-
+		add_action( 'wp_ajax_elementor_plus_update_design_library', [ $this, 'elementor_plus_update_design_library'] );
 		add_action( 'admin_enqueue_scripts', [ $this,'ampforwp_wpajax_js']);
 
+		add_action( 'plugins_loaded', [ $this, 'register_custom_post_type_elementor_plus' ] );
+
+	}
+	public function  register_custom_post_type_elementor_plus(){
+		if ( post_type_exists( 'design_library' ) ) {
+   			// echo "hello";
+   			// die;
+		}else{
+			// echo "bye";
+   			//die;
+			/*Create custom post type design library for elementor plus*/
+			add_action( 'init', [ $this, 'elementor_plus_custom_post_type'], 0 );
+			add_action( 'init', [ $this, 'create_elementor_plus_hierarchical_taxonomy'], 0 );
+			add_action('add_meta_boxes', [ $this, 'elementor_plus_add_custom_box']);
+			add_action('save_post', ['AmpforwpElementorPlus\Ampforwp_Elementor_Plus', 'elementor_plus_save_data']);
+		}
 	}
 
 	public function ampforwp_wpajax_js($hook) {
-	 //    if( 'index.php' != $hook ) {
-		// // Only applies to dashboard panel
-		// return;
-	 //    }
-	        
 		wp_enqueue_script( 'elementor-ajax-script', plugins_url( '/assets/js/ajax_sync.js', __FILE__ ), array('jquery') );
 
 		// in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
@@ -149,7 +160,53 @@ final class Ampforwp_Elementor_Plus {
 		echo $status;
 		wp_die();
 	}
+
+	public function elementor_plus_update_design_library(){
+		$response = wp_remote_get( 'http://localhost/elementor-layouts/',array('timeout'=> 120));
+		//$elementor_plus_json_option = 'ampforwp-call-to-action-layouts';
+		$status = '';
+		$responseData = '';
+		$metaData = '';
+		//print_r($response);
+		// if ( is_array( $response ) && ! is_wp_error( $response ) ) {
+		//  	$responseData = $response['body'];
+		//  	$responseData = json_decode($responseData);
+		//  	if( is_array($responseData)){
+		// 		$responseData = json_encode($responseData);
+		//  		//update_option( $elementor_plus_json_option, $responseData );
+		//  		$status = 200;
+		//  	}
+		// }else{
+		//  	$status = 400;
+		// }
+		//echo $responseData;
+		$responseData = json_decode($response['body']);
+		foreach( $responseData as $key => $valCat ){
+			$widgetType = $key;
+			foreach( $valCat as $key => $valDesigntype ){
+				$designType = $key;
+				$post_id = wp_insert_post(array('post_title'=> $widgetType.' '.$designType, 'post_type'=>'design_library', 'post_content'=>'Desgin Layouts with markup and css'));
+				wp_set_object_terms( $post_id, $widgetType, 'widget_type' );
+				$metaData = array();
+				// Check folder permission and define file location
+				foreach( $valDesigntype as $key => $valMarkups ){
+						$metaData[] = json_encode($valMarkups);
+					if( $key == 'image'){
+						update_post_meta( $post_id, '_design_image_url', $valMarkups );
+					}
+					update_post_meta( $post_id, '_amp_html_markup', $metaData[0] );
+					update_post_meta( $post_id, '_non_amp_html_markup', $metaData[1] );
+					update_post_meta( $post_id, '_design_markup_options', $metaData[2] );
+				}
+			}
+		}
+		echo '200';
+
+		wp_die();
+	}
+
 	public function ampforwp_elementor_plus_activate() {
+		
 		/* Create transient data */
 		$responseData = '';
 		$response_version = wp_remote_get('http://localhost/elementor-layouts/version.php',array('timeout'=> 120));
@@ -163,6 +220,172 @@ final class Ampforwp_Elementor_Plus {
 		add_action( 'admin_notices', [ $this, 'ampforwp_elementor_plus_admin_notice' ] );
 	}
 	
+	public function elementor_plus_add_custom_box()
+	{
+	    $screens = ['design_library'];
+	    foreach ($screens as $screen) {
+	        add_meta_box(
+	            'amp_html_markup',           // Unique ID
+	            'Amp Html Markup',  // Box title
+	            [self::class,'amp_markup_box_html'],  // Content callback, must be of type callable
+	            $screen                   // Post type
+	        );
+
+	        add_meta_box(
+	            'non_amp_html_markup',           // Unique ID
+	            'Non Amp Html Markup',  // Box title
+	            [self::class,'non_amp_markup_box_html'],  // Content callback, must be of type callable
+	            $screen                   // Post type
+	        );
+
+	        add_meta_box(
+	            'design_options',           // Unique ID
+	            'Design Layout Options',  // Box title
+	            [self::class,'elementor_plus_design_options_callback'],  // Content callback, must be of type callable
+	            $screen                   // Post type
+	        );
+
+	        add_meta_box(
+	            'design_image',           // Unique ID
+	            'Design Image Url',  // Box title
+	            [self::class,'elementor_plus_design_image_callback'],  // Content callback, must be of type callable
+	            $screen                   // Post type
+	        );
+
+	    }
+	}
+	
+	public static function elementor_plus_save_data($post_id){
+		if (array_key_exists('amp_html_markup', $_POST)) {
+            update_post_meta(  $post_id, '_amp_html_markup', $_POST['amp_html_markup'] );
+        }
+
+        if (array_key_exists('non_amp_html_markup', $_POST)) {
+            update_post_meta( $post_id, '_non_amp_html_markup', $_POST['non_amp_html_markup'] );
+        }
+
+        if (array_key_exists('design_markup_options', $_POST)) {
+            update_post_meta( $post_id, '_design_markup_options', $_POST['design_markup_options'] );
+        }
+
+        if (array_key_exists('design_markup_options', $_POST)) {
+            update_post_meta( $post_id, '_design_image_url', $_POST['design_image_url'] );
+        }
+	}
+
+	public static function amp_markup_box_html($post){
+		$amp_html_markup = get_post_meta($post->ID, '_amp_html_markup', true);
+        ?>
+        <!--<label for="wporg_field">Amp Html Markup </label>-->
+        <textarea  rows="10" cols="130" name="amp_html_markup" ><?php echo $amp_html_markup; ?></textarea>
+        <?php
+	}
+
+	public static function non_amp_markup_box_html($post){
+		$non_amp_html_markup = get_post_meta($post->ID, '_non_amp_html_markup', true);
+        ?>
+        <!--<label for="wporg_field">Non Amp Html Markup</label>-->
+        <textarea rows="10" cols="130" name="non_amp_html_markup" ><?php echo $non_amp_html_markup; ?></textarea>
+        <?php
+	}
+	
+	public static function elementor_plus_design_options_callback($post){
+		$design_markup_options = get_post_meta($post->ID, '_design_markup_options', true);
+        ?>
+        <!--<label for="wporg_field">Design Layout Options</label>-->
+        <textarea rows="10" cols="130" name="design_markup_options" ><?php echo $design_markup_options; ?></textarea>
+        <?php
+	}
+
+	public static function elementor_plus_design_image_callback($post){
+		$design_image_url = get_post_meta($post->ID, '_design_image_url', true);
+        ?>
+        <!--<label for="wporg_field">Design Layout Options</label>-->
+        <textarea rows="10" cols="130" name="design_image_url" ><?php echo $design_image_url; ?></textarea>
+        <?php
+	}
+	public  function  create_elementor_plus_hierarchical_taxonomy(){
+
+		$labels = array(
+				    'name' => _x( 'Widget Types', 'taxonomy general name' ),
+				    'singular_name' => _x( 'Widget Type', 'taxonomy singular name' ),
+				    'search_items' =>  __( 'Search Widget' ),
+				    'all_items' => __( 'All Widgets' ),
+				    'parent_item' => __( 'Parent Widget' ),
+				    'parent_item_colon' => __( 'Parent Widget:' ),
+				    'edit_item' => __( 'Edit Widget' ), 
+				    'update_item' => __( 'Update Widget' ),
+				    'add_new_item' => __( 'Add New Widget' ),
+				    'new_item_name' => __( 'New Widget Name' ),
+				    'menu_name' => __( 'Widget Types' ),
+				);    
+ 
+		// Now register the taxonomy
+		register_taxonomy('widget_type',array('design_library'), array(
+				'hierarchical' => true,
+				'labels' => $labels,
+				'show_ui' => true,
+				'show_admin_column' => true,
+				'query_var' => true,
+				'rewrite' => array( 'slug' => 'widget_type' ),
+				//REST API suport for Custom taxonomy
+				'show_in_rest'       => true,
+		  		'rest_base'          => 'widget_type',
+		  		'rest_controller_class' => 'WP_REST_Terms_Controller',
+			));
+
+	}
+
+	public function elementor_plus_custom_post_type(){
+
+	        $labels = array(
+		        'name'                => _x( 'Design Library', 'Post Type General Name', 'twentythirteen' ),
+		        'singular_name'       => _x( 'Design Library', 'Post Type Singular Name', 'twentythirteen' ),
+		        'menu_name'           => __( 'Design Library', 'twentythirteen' ),
+		        'parent_item_colon'   => __( 'Parent Design Library', 'twentythirteen' ),
+		        'all_items'           => __( 'All Design Library', 'twentythirteen' ),
+		        'view_item'           => __( 'View Design Library', 'twentythirteen' ),
+		        'add_new_item'        => __( 'Add New Design', 'twentythirteen' ),
+		        'add_new'             => __( 'Add New', 'twentythirteen' ),
+		        'edit_item'           => __( 'Edit Design Library', 'twentythirteen' ),
+		        'update_item'         => __( 'Update Design Library', 'twentythirteen' ),
+		        'search_items'        => __( 'Search Design Library', 'twentythirteen' ),
+		        'not_found'           => __( 'Not Found', 'twentythirteen' ),
+		        'not_found_in_trash'  => __( 'Not found in Trash', 'twentythirteen' )
+		    );
+
+		    $args = array(
+		        'label'               => __( 'Elementor Plus Designs', 'twentythirteen' ),
+		        'description'         => __( 'Elementor Plus Designs and Layouts Library', 'twentythirteen' ),
+		        'labels'              => $labels,
+		        // Features this CPT supports in Post Editor
+		        'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
+		        // You can associate this CPT with a taxonomy or custom taxonomy. 
+		        'taxonomies'          => array( 'widget_type' ),
+		        /* A hierarchical CPT is like Pages and can have
+		        * Parent and child items. A non-hierarchical CPT
+		        * is like Posts.
+		        */ 
+		        'hierarchical'        => true,
+		        'public'              => true,
+		        'show_ui'             => true,
+		        'show_in_menu'        => true,
+		        'show_in_nav_menus'   => true,
+		        'show_in_admin_bar'   => true,
+		        'menu_position'       => 5,
+		        'can_export'          => true,
+		        'has_archive'         => true,
+		        'exclude_from_search' => false,
+		        'publicly_queryable'  => true,
+		        'capability_type'     => 'page',
+		        //Rest API Support for custom post type
+		        'show_in_rest'       => true,
+		  		'rest_base'          => 'design_library-api',
+		  		'rest_controller_class' => 'WP_REST_Posts_Controller',
+	    	);
+	    register_post_type( 'design_library', $args );
+	}
+
 	public function ampforwp_new_template_dialog(){
 		require_once 'modal-templates.php';
 	}
@@ -170,8 +393,9 @@ final class Ampforwp_Elementor_Plus {
 	public function ampforwp_elementor_plus_admin_notice(){
 	    global $pagenow;
 	    $current_version = get_option( 'ampforwp-elementor-plus-version');
-	    if ( $pagenow == 'plugins.php' ) {   
-	    	if( $current_version < 1.1 ){
+	    if ( $pagenow == 'plugins.php' ){  
+	    	if( $current_version < 2.0 ){
+
 	    	?>
 	    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 	        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-sync" class="button-primary">Sync</button> to update Elementor Plus design library.<span class="ampforwp-response-status"><img src="<?php echo admin_url('images/loading.gif');?>" class="jetpack-lazy-image ampforwp-lazy-image" data-lazy-loaded="1"></span></p>
@@ -389,7 +613,7 @@ final class Ampforwp_Elementor_Plus {
 	 * @access private
 	 */
 	private function controls_includes(){
-		require_once( __DIR__ . '/controls/emojionearea-control.php' );
+		//require_once( __DIR__ . '/controls/emojionearea-control.php' );
 		require_once( __DIR__ . '/controls/designs-control.php' );
 	}
 	 
@@ -410,7 +634,7 @@ final class Ampforwp_Elementor_Plus {
 	private function register_controls(){
 		$controls_manager = \Elementor\Plugin::$instance->controls_manager;
 		$controls_manager->register_control( 'designs', new Designs_Control() );
-		$controls_manager->register_control( 'emojionearea', new EmojiOneArea_Control() );
+		//$controls_manager->register_control( 'emojionearea', new EmojiOneArea_Control() );
 	}
 	
 	private function register_widget() {
