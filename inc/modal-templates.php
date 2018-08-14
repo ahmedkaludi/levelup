@@ -14,15 +14,15 @@
     <div class="modal-body">
     	
 		<div class="row" id="ampforwp-designs-container">
-			<% if(designs) { %>
+			<% if(layouts) { %>
               
-                <% _(designs).each(function(data) { %>
+                <% _(layouts).each(function(data) { %>
                 <div class="column">
-					<div class="img-content" style="background-image: url('<%= data.image%>');">
+					<div class="img-content" style="background-image: url('<%= data.designImage%>');">
 						
 					</div>
-					<div class="img-name" data-template-id="<%= data.id %>">
-						<p><%= data.name %></p>
+					<div class="ampforwp-elementor-design" data-template-id="<%= data.designId %>">
+						<p><%= data.title %></p>
 					</div>
 				</div>
                 <% }) %>
