@@ -109,15 +109,17 @@ class AMPforWpElementor_design{
 		        */ 
 		        'hierarchical'        => true,
 		        'public'              => true,
-		        'show_ui'             => true,
 		        'show_in_menu'        => true,
-		        'show_in_nav_menus'   => true,
 		        'show_in_admin_bar'   => true,
 		        'menu_position'       => 5,
 		        'can_export'          => true,
 		        'has_archive'         => true,
-		        'exclude_from_search' => false,
-		        'publicly_queryable'  => true,
+
+		        'exclude_from_search' => true,
+		        'publicly_queryable'  => false,
+		        'show_in_nav_menus'   => false,
+		        'show_ui'             => False,//true,//
+
 		        'capability_type'     => 'page',
 		        //Rest API Support for custom post type
 		        'show_in_rest'       => true,

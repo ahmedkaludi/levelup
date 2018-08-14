@@ -381,6 +381,7 @@
  				if(model.attributes.widgetType == 'about'){
                     var self = this;
                     openCallToActionDesignPopup(model.attributes.widgetType);
+                    $('.elementor-control-layoutDesignSelected').hide();
             	}
 			}
         );

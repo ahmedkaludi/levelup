@@ -47,6 +47,11 @@ class Plugin {
 
 		} );
 
+		add_action('elementor/editor/before_enqueue_styles', function(){
+			wp_register_style( 'ampforwp-widget-options-css', plugins_url( '/assets/css/ampforwp-widget-options.css', ELEMENTOR_AMPFORWP__FILE__ ), array(), false, true );
+			wp_enqueue_style( 'ampforwp-widget-options-css' );
+		});
+
 	}
 	/**
 	 * On Widgets Registered
