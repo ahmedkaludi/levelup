@@ -4,7 +4,7 @@
  * Description: AMPforWp Elementor plugin.
  * Plugin URI:  
  * Version:     1.1.0
- * Author:      Author Name
+ * Author:      AMPforWP
  * Author URI:  
  * Text Domain: elementor-ampforwp
  */
@@ -13,6 +13,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 define( 'ELEMENTOR_AMPFORWP__FILE__', __FILE__ );
 define( 'ELEMENTOR_AMPFORWP__FILE__PATH', plugin_dir_path(__FILE__) );
+define('ELEMENTOR_AMPFORWP__FILE__URI', plugin_dir_url(__FILE__));
 define( 'ELEMENTOR_AMPFORWP__DIR__PATH', __DIR__ );
 define( 'ELEMENTOR_AMPFORWP_TEXT_DOMAIN', 'elementor-ampforwp' );
 /**
@@ -35,6 +36,7 @@ function ampforwp_elementor_load() {
 		return;
 	}
 	// Require the main plugin file
+	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/designlib/sync_page.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/designlib/ampforwp-register-post.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/plugin.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/common-functions.php' );
