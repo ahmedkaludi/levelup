@@ -378,7 +378,7 @@
             'panel/open_editor/widget',
             function( panel, model, view ) {
                 console.log(panel, model, view);
- 				if(model.attributes.widgetType == 'about'){
+ 				if(model.attributes.widgetType == 'category'){
                     var self = this;
                     openCallToActionDesignPopup(model.attributes.widgetType);
                     $('.elementor-control-layoutDesignSelected').hide();

@@ -18,7 +18,8 @@ if(!function_exists('getDesignListByCategory')){
 		$categories = array();
 		if(count($posts)>0){
 			foreach ($posts as $key => $post) {
-				$categories[$post->ID] = $post->post_title;
+				$design_unique_name = get_post_meta( $post->ID, 'design_unique_name', true );
+				$categories[$design_unique_name] = $post->post_title;
 			}
 		}
 		return $categories;

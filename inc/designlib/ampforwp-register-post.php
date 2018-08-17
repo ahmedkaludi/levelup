@@ -118,7 +118,7 @@ class AMPforWpElementor_design{
 		        'exclude_from_search' => true,
 		        'publicly_queryable'  => false,
 		        'show_in_nav_menus'   => false,
-		        'show_ui'             => False,//true,//
+		        'show_ui'             => true,//False
 
 		        'capability_type'     => 'page',
 		        //Rest API Support for custom post type

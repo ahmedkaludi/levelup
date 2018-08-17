@@ -1,6 +1,6 @@
 <?php
 //Sync Designs
-define( 'ELEMENTOR_AMPFORWP_sync_url', 'http://localhost/magzine/wordpress/wp-json/' );
+define( 'ELEMENTOR_AMPFORWP_sync_url', 'https://wordpress-amp.000webhostapp.com/wp-json/' );
 define( 'ELEMENTOR_AMPFORWP_sync_version_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-version' );
 define( 'ELEMENTOR_AMPFORWP_sync_design_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-designs' );
 add_action('admin_enqueue_scripts', 'ampforwp_elementor_plus_sync_script');
@@ -29,13 +29,29 @@ function elementor_plus_update_design_library(){
         $responseData = json_decode($response['body'],true);
 
         //Check current loaded Version 
-        $current_loaded_version = get_option( 'ampforwp-elementor-plus-loaded-version');
-        if($current_loaded_version==$responseData['current_version']['version_detail']){
+        $current_loaded_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
+        if(version_compare($current_loaded_version, $responseData['current_version']['version_detail'], '>=') ){
             echo json_encode(array("status"=>200, "message"=>'design already up to date'));
             wp_die();
+            /*************Ending point***********************/
+
         }
+
+
         $post_type = elem_ampforwp_basics('post_type');
         $taxonomy = elem_ampforwp_basics('taxonomy');
+            global $wpdb;
+            $result = $wpdb->query( 
+                    $wpdb->prepare("
+                        DELETE posts,pt,pm
+                        FROM wp_posts posts
+                        LEFT JOIN wp_term_relationships pt ON pt.object_id = posts.ID
+                        LEFT JOIN wp_postmeta pm ON pm.post_id = posts.ID
+                        WHERE posts.post_type = %s
+                        ", 
+                        $post_type
+                    ) 
+            );
         foreach( $responseData['designs'] as $widgetType => $valCategory ){
             foreach( $valCategory['layouts'] as $key => $valDesigntype ){
                 $designType = $key;
@@ -60,6 +76,36 @@ function elementor_plus_update_design_library(){
                                     );
                 update_post_meta( $post_id, 'amp_html_markup', $amp_html_markup );
                 update_post_meta( $post_id, 'non_amp_html_markup', $non_amp_html_markup );
+                update_post_meta( $post_id, 'design_unique_name', $valDesigntype['design_unique_name'] );
+
+
+                $media = media_sideload_image($valDesigntype['designImage'], $post_id);
+                if(!empty($media) && !is_wp_error($media)){
+                    $args = array(
+                        'post_type' => 'attachment',
+                        'posts_per_page' => -1,
+                        'post_status' => 'any',
+                        'post_parent' => $post_id
+                    );
+
+                    // reference new image to set as featured
+                    $attachments = get_posts($args);
+
+                    if(isset($attachments) && is_array($attachments)){
+                        foreach($attachments as $attachment){
+                            // grab source of full size images (so no 300x150 nonsense in path)
+                            $image = wp_get_attachment_image_src($attachment->ID, 'full');
+                            // determine if in the $media image we created, the string of the URL exists
+                            if(strpos($media, $image[0]) !== false){
+                                // if so, we found our image. set it as thumbnail
+                                set_post_thumbnail($post_id, $attachment->ID);
+                                // only want one image
+                                break;
+                            }
+                        }
+                    }
+                }
+
             }
         }
         $current_version = update_option( 'ampforwp-elementor-plus-loaded-version',$responseData['current_version']['version_detail']);
@@ -79,7 +125,8 @@ function ampforwp_elementor_plus_admin_notice(){
 	    global $pagenow;
     $server_version = get_option( 'ampforwp-elementor-plus-version');
     $current_version = get_option( 'ampforwp-elementor-plus-loaded-version');
-    if(version_compare($current_version, $server_version, '<=') ){
+    // echo $current_version.", ".$server_version;die;
+    if(version_compare($current_version, $server_version, '<') ){
     ?>
     <div class="notice notice-info is-dismissible" id="sync-status-notice" >
         <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-elementor-sync" class="button-primary">Sync</button> to update Elementor Plus design library.<span class="ampforwp-response-status"></span></p>
@@ -107,8 +154,8 @@ function elementor_plus_update_design_version(){
         $body = $response['body']; // use the content
         $actualResponse = json_decode($body,true);
         if($actualResponse['status']==200){
-            $current_version = get_option( 'ampforwp-elementor-plus-version');
-            if($current_version==$actualResponse['version']){
+            $current_version = get_option( 'ampforwp-elementor-plus-version',0);
+            if( version_compare($current_version, $actualResponse['version'], '>=') ){
                 $message = "current version is same";
             }else{
                 update_option( 'ampforwp-elementor-plus-version',$actualResponse['version']);

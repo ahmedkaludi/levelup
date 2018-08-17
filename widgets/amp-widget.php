@@ -11,7 +11,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @since 1.0.0
  */
 class AMPforWpWidgets extends Widget_Base {
-	public $slug = 'about';
 	/**
 	 * Retrieve the widget name.
 	 *
@@ -20,7 +19,7 @@ class AMPforWpWidgets extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'about';
+		return 'category';
 	}
 	/**
 	 * Retrieve the widget title.
@@ -30,7 +29,7 @@ class AMPforWpWidgets extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'About', 'about' );
+		return __( 'Category', 'category' );
 	}
 	/**
 	 * Retrieve the widget icon.
@@ -67,7 +66,7 @@ class AMPforWpWidgets extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
-		return [ 'about' ];
+		return [ 'amp-widget' ];
 	}
 	/**
 	 * Register the widget controls.
@@ -78,60 +77,54 @@ class AMPforWpWidgets extends Widget_Base {
 	 */
 	protected function _register_controls() {
 		
+		$design_controls['settings'] = array(
+								array(
+									'label'=>'Content',
+									'tab' => 'content'
+								)
 
+								);
 		
 		$this->start_controls_section(
 			'section_content',
 			[
-				'label' => __( 'Content', 'about' ),
+				'label' => __( 'Content', 'category' ),
 			]
 		);
-		$designs = getDesignListByCategory('about');
+		$designs = getDesignListByCategory('category');
 		$defaultDesign = '';
 		$defaultDesign = array_keys($designs);
-		$defaultDesign = $defaultDesign[0];
+		$defaultDesign = isset($defaultDesign[0])? $defaultDesign[0] : '';
 		$this->add_control(
 			'layoutDesignSelected',
 			[
-				'label' => __( 'design Selection', 'about' ),
+				'label' => __( 'design Selection', 'category' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default'=>$defaultDesign,
 				'options'=>$designs
 			]
 		);
+
+		 $categories = get_categories( array(		
+                   'orderby' => 'name',		
+                   'order'   => 'ASC'		
+               ) );		
+		 $categoriesArray = array('recent_option'=>'Recent Posts');		
+		 foreach($categories as $category){		
+		  $categoryName = htmlspecialchars($category->name, ENT_QUOTES);
+		 	$categoriesArray[$category->term_id] = $categoryName;			
+		 }		
 		$this->add_control(
-			'title',
+			'selected_category',
 			[
-				'label' => __( 'Title', 'about' ),
-				'type' => Controls_Manager::TEXT,
+				'label' => __( 'Select Category', 'category' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default'=>'recent_option',
+				'options'=>$categoriesArray
 			]
 		);
 		$this->end_controls_section();
-		$this->start_controls_section(
-			'section_style',
-			[
-				'label' => __( 'Style', 'about' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-		$this->add_control(
-			'text_transform',
-			[
-				'label' => __( 'Text Transform', 'about' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => '',
-				'options' => [
-					'' => __( 'None', 'hello-world' ),
-					'uppercase' => __( 'UPPERCASE', 'about' ),
-					'lowercase' => __( 'lowercase', 'about' ),
-					'capitalize' => __( 'Capitalize', 'about' ),
-				],
-				'selectors' => [
-					'{{WRAPPER}} .title' => 'text-transform: {{VALUE}};',
-				],
-			]
-		);
-		$this->end_controls_section();
+
 	}
 	/**
 	 * Render the widget output on the frontend.
@@ -145,25 +138,37 @@ class AMPforWpWidgets extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings();
 
-		$the_slug = $settings['layoutDesignSelected'];
+		$selected_design = $settings['layoutDesignSelected'];
 		$args = array(
-		  'post__in'        => array($the_slug),
-		  'post_type'   => elem_ampforwp_basics('post_type'),
-		  'post_status' => 'publish',
-		  'numberposts' => 1
+		  	//'post__in'        => array($the_slug),
+			'meta_query' => array(
+							      array(
+							         'key'     => 'design_unique_name',
+							         'value'   => $selected_design,
+							         'compare' => '='
+							      )
+							   ),
+			'post_type'   => elem_ampforwp_basics('post_type'),
+			'post_status' => 'publish',
+			'numberposts' => 1
 		);
 		$my_posts = get_posts($args);
 		if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
 			$ampMarkup = get_post_meta($my_posts[0]->ID, 'amp_html_markup',true);
 			if(!empty($ampMarkup)){
-				$ampMarkup = json_decode($ampMarkup,true);
+				if(!is_array($ampMarkup)){
+					$ampMarkup = json_decode($ampMarkup,true);
+				}
 				$markup = $nonAmpMarkup['amp_html'];
 				$non_amp_css = $nonAmpMarkup['amp_css'];
+				add_action( 'amp_post_template_css', array( $this, 'elementor_plus_amp_design_styling') );
 			}
 		}else{
 			$nonAmpMarkup = get_post_meta($my_posts[0]->ID, 'non_amp_html_markup',true);
 			if(!empty($nonAmpMarkup)){
-				$nonAmpMarkup = json_decode($nonAmpMarkup,true);
+				if(!is_array($nonAmpMarkup)){
+					$nonAmpMarkup = json_decode($nonAmpMarkup,true);
+				}
 				$markup = $nonAmpMarkup['non_amp_html'];
 				$non_amp_css = $nonAmpMarkup['non_amp_css'];
 				if($non_amp_css){
@@ -172,11 +177,33 @@ class AMPforWpWidgets extends Widget_Base {
 				
 
 			}
+
+
 		}
 		if($markup){
-			$markup = $this->replacements($settings,$markup);
+			$markup = $this->replacements_procees($settings,$markup);
 		}
 		echo $markup;
+	}
+	function elementor_plus_amp_design_styling(){
+		$settings = $this->get_settings();
+
+		$the_slug = $settings['layoutDesignSelected'];
+		$args = array(
+		  'post__in'        => array($the_slug),
+		  'post_type'   => elem_ampforwp_basics('post_type'),
+		  'post_status' => 'publish',
+		  'numberposts' => 1
+		);
+		$my_posts = get_posts($args);
+		$ampMarkup = get_post_meta($my_posts[0]->ID, 'amp_html_markup',true);
+		if(!empty($ampMarkup)){
+			if(!is_array($ampMarkup)){
+				$ampMarkup = json_decode($ampMarkup,true);
+			}
+				$non_amp_css = $nonAmpMarkup['amp_css'];
+				echo $non_amp_css;
+		}
 	}
 	/**
 	 * Render the widget output in the editor.
@@ -191,9 +218,124 @@ class AMPforWpWidgets extends Widget_Base {
 		</div>
 		<?php
 	}*/
+	private function query_data($rawhtml, $settings){
+		//check is contain loop
+		$allPostsMarkup = '';
+		$loopPositionMarkup = array();
+		$isSinglulerPost = false;
+		if(strpos($rawhtml,'{{loop_html')!==false){
+			//Case Studies
+			/**
+			* All Loop Design is Similar
+			**/
+			if(strpos($rawhtml,'{{loop_html_start}}')!==false){
+				 preg_match("/({{loop_html_start}})(.*?)({{loop_html_end}})/s", $rawhtml, $matches);
+				if(isset($matches[2])){
+					$allPostsMarkup = $matches[2];
+				}
+			}
+			/**
+			* Multi Design Loop Familiar with position
+			**/
+			preg_match_All("/{{loop_html_start_(.*?)}}/s", $rawhtml, $positionmatches, PREG_OFFSET_CAPTURE);
+			if(count(array_filter($positionmatches))>0){
+				if(isset($positionmatches[1])){
+					foreach ($positionmatches[1] as $positionArrayVal) {
+						$loopPosition = $positionArrayVal[0];
+						preg_match("/({{loop_html_start_".$loopPosition."}})(.*?)({{loop_html_end_".$loopPosition."}})/s", $rawhtml, $matchesPosHtml);
+						if(isset($matchesPosHtml[2])){
+							$loopPositionMarkup[$loopPosition] = $matchesPosHtml[2];
+						}
+					}
+				}
+
+			}
+			//if(strpos($rawhtml,'{{loop_html_start}}')!==false)
+
+		}else{
+			//Normal single loop markup 
+			$isSinglulerPost = true; 
+			$replaceHtml = $rawhtml;
+		}
+		
 
 
-	private function replacements( $settingArray, $markup ){
+
+		$args = array(
+				'cat' => $settings['selected_category'],//$fieldValues['category_selection'],
+				'has_password' => false,
+				'post_status'=> 'publish'
+			);
+		if($isSinglulerPost){
+			$args['posts_per_page'] = 1;
+		}else{
+			$args['posts_per_page'] = -1;
+		}
+		$loopReplacedHtmls = '';
+		$loopPositionReplacedMarkup = array();
+		//The Query
+		$the_query = new \WP_Query( $args );
+		if ( $the_query->have_posts() ) {
+			$key = 1;
+			while ( $the_query->have_posts() ) {
+				$the_query->the_post();		
+				$postid = get_the_ID();
+				$trakCurrentMarkup = array();
+				if($isSinglulerPost){
+					$replaceHtmls = $replaceHtml;
+					$replaceHtmls = eval('?>'.$replaceHtmls.'<?php');
+				}else{
+					if( isset($loopPositionMarkup[$key]) ){
+						$replaceHtmls = $loopPositionMarkup[$key];
+						$loopPositionReplacedMarkup[$key] = eval('?>'.$replaceHtmls.'<?php');
+					}else{
+						$loopReplacedHtmls .= eval('?>'.$allPostsMarkup.'<?php');
+					}
+				}
+
+
+				$key++;
+			}//While Loop Closed
+
+		}
+		  wp_reset_postdata();
+		  wp_reset_query();
+		if($isSinglulerPost){
+			return $replaceHtmls;
+		}
+		if(strpos($rawhtml,'{{loop_html')!==false){
+			//Case Studies
+			/**
+			* All Loop Design is Similar
+			**/
+			if(strpos($rawhtml,'{{loop_html_start}}')!==false){
+				$rawhtml = preg_replace("/({{loop_html_start}})(.*?)({{loop_html_end}})/s",$loopReplacedHtmls, $rawhtml);
+			}
+			/**
+			* Multi Design Loop Familiar with position
+			**/
+			preg_match_All("/{{loop_html_start_(.*?)}}/s", $rawhtml, $positionmatches, PREG_OFFSET_CAPTURE);
+			if(count(array_filter($positionmatches))>0){
+				if(isset($positionmatches[1])){
+					foreach ($positionmatches[1] as $positionArrayVal) {
+						$loopPosition = $positionArrayVal[0];
+						$rawhtml = preg_replace("/({{loop_html_start_".$loopPosition."}})(.*?)({{loop_html_end_".$loopPosition."}})/s", $loopPositionReplacedMarkup[$loopPosition],$rawhtml);
+						
+					}
+				}
+
+			}
+			//if(strpos($rawhtml,'{{loop_html_start}}')!==false)
+
+		}
+
+		return $rawhtml;
+	}
+
+	private function replacements_procees( $settingArray, $markup ){
+		//Start Replacement Process
+
+
 		preg_match_all("/{{(.*?)}}/", $markup,$matches);
 		if(isset($matches[1])){
 			foreach ($matches[1] as $key => $fieldName) {
@@ -212,6 +354,36 @@ class AMPforWpWidgets extends Widget_Base {
 
 			}//Closed Foreach $matches[1];
 		}// closed isset($matches[1])
+		$markup = $this->query_data($markup, $settingArray);
 		return $markup;
 	}
-}
+
+	private function replaceIfContentConditional($byReplace, $replaceWith, $string){
+		preg_match_all("{{if_condition_".$byReplace."==(.*?)}}", $string,$matches);
+		if(isset($matches[1]) && count($matches[1])>0){
+			$matches[1] = array_unique($matches[1]);
+			foreach ($matches[1] as $key => $matchValue) {
+				if(trim($matchValue) != trim($replaceWith)){
+					$string = str_replace(array("{{if_condition_".$byReplace."==".$matchValue."}}","{{ifend_condition_".$byReplace."_".$matchValue."}}"), array("<amp-condition>","</amp-condition>"), $string);
+					
+					$string = preg_replace_callback('/(<amp-condition>)(.*?)(<\/amp-condition>)/s', function($match){
+						return "";
+					}, $string);
+				}else{
+					$string = str_replace(array("{{if_condition_".$byReplace."==".$matchValue."}}","{{ifend_condition_".$byReplace."_".$matchValue."}}"), array("",""), $string);
+				}
+			}//FOreach Closed
+		}//If Closed
+
+		if(strpos($string,'{{if_'.$byReplace.'}}')!==false){
+			$string = str_replace(array('{{if_'.$byReplace.'}}','{{ifend_'.$byReplace.'}}',), array("<amp-condition>","</amp-condition>"), $string);
+			if($replaceWith=="" && trim($replaceWith)==""){
+				$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/i", "", $string);
+				$string = preg_replace("/<amp-condition>(.*)<\/amp-condition>/s", "", $string);
+			}
+			$string = str_replace(array('<amp-condition>','</amp-condition>'), array("",""), $string);
+		}
+		return $string;
+	}
+
+}//Class Closed
