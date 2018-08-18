@@ -18,7 +18,7 @@
               
                 <% _(layouts).each(function(data) { %>
                 <div class="column">
-					<div class="img-content" style="background-image: url('<%= data.designImage%>');">
+					<div class="img-content" style="background-image: url('<%= data.designImage%>');background-size: contain;">
 						
 					</div>
 					<div class="ampforwp-elementor-design" data-template-id="<%= data.designId %>">

@@ -66,6 +66,7 @@ class AMPforWpWidgets extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
+		add_action( 'amp_post_template_css', array( $this, 'elementor_plus_amp_design_styling') );
 		return [ 'amp-widget' ];
 	}
 	/**
@@ -125,7 +126,7 @@ class AMPforWpWidgets extends Widget_Base {
 		);
 		$this->end_controls_section();
 
-	}
+	}//Control settings are closed
 	/**
 	 * Render the widget output on the frontend.
 	 *
@@ -159,9 +160,8 @@ class AMPforWpWidgets extends Widget_Base {
 				if(!is_array($ampMarkup)){
 					$ampMarkup = json_decode($ampMarkup,true);
 				}
-				$markup = $nonAmpMarkup['amp_html'];
-				$non_amp_css = $nonAmpMarkup['amp_css'];
-				add_action( 'amp_post_template_css', array( $this, 'elementor_plus_amp_design_styling') );
+				$markup = $ampMarkup['amp_html'];
+				$non_amp_css = $ampMarkup['amp_css'];
 			}
 		}else{
 			$nonAmpMarkup = get_post_meta($my_posts[0]->ID, 'non_amp_html_markup',true);
@@ -187,10 +187,16 @@ class AMPforWpWidgets extends Widget_Base {
 	}
 	function elementor_plus_amp_design_styling(){
 		$settings = $this->get_settings();
-
 		$the_slug = $settings['layoutDesignSelected'];
 		$args = array(
-		  'post__in'        => array($the_slug),
+		  //'post__in'        => array($the_slug),
+			'meta_query' => array(
+							      array(
+							         'key'     => 'design_unique_name',
+							         'value'   => $the_slug,
+							         'compare' => '='
+							      )
+							   ),
 		  'post_type'   => elem_ampforwp_basics('post_type'),
 		  'post_status' => 'publish',
 		  'numberposts' => 1
@@ -201,7 +207,7 @@ class AMPforWpWidgets extends Widget_Base {
 			if(!is_array($ampMarkup)){
 				$ampMarkup = json_decode($ampMarkup,true);
 			}
-				$non_amp_css = $nonAmpMarkup['amp_css'];
+				$non_amp_css = $ampMarkup['amp_css'];
 				echo $non_amp_css;
 		}
 	}
