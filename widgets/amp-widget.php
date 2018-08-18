@@ -283,13 +283,28 @@ class AMPforWpWidgets extends Widget_Base {
 				$trakCurrentMarkup = array();
 				if($isSinglulerPost){
 					$replaceHtmls = $replaceHtml;
-					$replaceHtmls = eval('?>'.$replaceHtmls.'<?php');
+					$content = '';
+					ob_start();
+					eval('?>'.$replaceHtmls.'<?php');
+					$content = ob_get_contents();
+					ob_end_clean();
+					$replaceHtmls = $content;
 				}else{
 					if( isset($loopPositionMarkup[$key]) ){
 						$replaceHtmls = $loopPositionMarkup[$key];
-						$loopPositionReplacedMarkup[$key] = eval('?>'.$replaceHtmls.'<?php');
+						$content = '';
+						ob_start();
+						eval('?>'.$replaceHtmls.'<?php');
+						$content = ob_get_contents();
+						ob_end_clean();
+						$loopPositionReplacedMarkup[$key] = $content;
 					}else{
-						$loopReplacedHtmls .= eval('?>'.$allPostsMarkup.'<?php');
+						$content = '';
+						ob_start();
+						eval("?>".$allPostsMarkup);
+						$content = ob_get_contents();
+						ob_end_clean();
+						$loopReplacedHtmls .= $content;
 					}
 				}
 
