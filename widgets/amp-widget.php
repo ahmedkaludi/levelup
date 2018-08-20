@@ -88,9 +88,9 @@ class AMPforWpWidgets extends Widget_Base {
 		
 		$this->start_controls_section(
 			'section_content',
-			[
+			array(
 				'label' => __( 'Content', 'category' ),
-			]
+			)
 		);
 		$designs = getDesignListByCategory('category');
 		$defaultDesign = '';
@@ -98,12 +98,30 @@ class AMPforWpWidgets extends Widget_Base {
 		$defaultDesign = isset($defaultDesign[0])? $defaultDesign[0] : '';
 		$this->add_control(
 			'layoutDesignSelected',
-			[
+			array(
 				'label' => __( 'design Selection', 'category' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default'=>$defaultDesign,
-				'options'=>$designs
-			]
+				'options'=>$designs,
+				'show_label'=>false,
+				'conditions'=> array(
+							'terms'=> array(
+									array(
+										'name' => 'layoutDesignSelectionpoup',
+										'value' => 'no',
+									)
+								)
+							)
+			)
+		);
+
+		$this->add_control(
+			'layoutDesignSelectionpoup',
+			array(
+				'label' => __( 'Is first drop', 'category' ),
+				'type' => \Elementor\Controls_Manager::HIDDEN,
+				'default'=>'no',
+			)
 		);
 
 		 $categories = get_categories( array(		
@@ -117,12 +135,12 @@ class AMPforWpWidgets extends Widget_Base {
 		 }		
 		$this->add_control(
 			'selected_category',
-			[
+			array(
 				'label' => __( 'Select Category', 'category' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default'=>'recent_option',
 				'options'=>$categoriesArray
-			]
+			)
 		);
 		$this->end_controls_section();
 

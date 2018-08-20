@@ -180,6 +180,13 @@
 .nav a.active {
   border-bottom: 3px solid red;
 }
+.ampforwp-elementor-design > p{
+    text-align: center;
+    cursor: pointer;
+    padding-top: 13px;
+    font-weight: 600;
+    font-size: 16px;
+}
 </style>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {

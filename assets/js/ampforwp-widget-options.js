@@ -356,11 +356,11 @@
                          e.preventDefault();
                         var modalViewThis = e.currentTarget;
                        
-                        console.log($(modalViewThis));
                         var templateId = $(modalViewThis).attr("data-template-id");
-                        console.log(templateId);
+                       
                         //$('#ampforwp-designs-container').html("<div style='text-align:center'>Please Wait...</div>");
                         jQuery("[data-setting=layoutDesignSelected]").val(templateId).trigger("change");
+                        //model.attributes.settings.attributes.layoutDesignSelected = templateId
                       this.hideModal();
                    },
                    showLoadingView: function() {
@@ -380,14 +380,33 @@
                 console.log(panel, model, view);
  				if(model.attributes.widgetType == 'category'){
                     var self = this;
-                    openCallToActionDesignPopup(model.attributes.widgetType);
+                    var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
+                    if(currentStatus!='yes'){
+                        openCallToActionDesignPopup(model.attributes.widgetType);
+                        //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
+                        model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
+                        
+                    }
                     $('.elementor-control-layoutDesignSelected').hide();
             	}
 			}
         );
 
-     });
+         // elementor.hooks.addFilter( 'controls/base/behaviors',function( behaviors, all){
+         //                        alert("csll");
+         //                        //console.log(behaviors, all);
+         //                        if(all.options.elementSettingsModel.attributes.widgetType=="category"){
+         //                        //    all.options.elementSettingsModel.attributes.layoutDesignSelectionpoup = 'yes';
+         //                        }
+         //                        // console.log(all.elementSettingsModel.get('widgetType'));
+                                
+         //                    } );
 
+     });
+     $(document).on("click",'.elementor-control-type-section', function(){
+            alert("hello");
+            $(this).parents('#elementor-controls').find('.elementor-control-layoutDesignSelected').hide();
+        });
     var openCallToActionDesignPopup = function(designElement){
 	    var view = new AddPersonView();
 	    view.model = ampforwp_elem_object.widget_design.designs[designElement];
