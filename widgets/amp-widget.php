@@ -66,7 +66,6 @@ class AMPforWpWidgets extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
-		add_action( 'amp_post_template_css', array( $this, 'elementor_plus_amp_design_styling') );
 		return [ 'amp-widget' ];
 	}
 	/**
@@ -77,7 +76,7 @@ class AMPforWpWidgets extends Widget_Base {
 	 * @access protected
 	 */
 	protected function _register_controls() {
-		
+		add_action( 'amp_post_template_css', array( $this, 'elementor_plus_amp_design_styling') );
 		$design_controls['settings'] = array(
 								array(
 									'label'=>'Content',
