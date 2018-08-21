@@ -142,6 +142,14 @@ class AMPforWpWidgets extends Widget_Base {
 				'options'=>$categoriesArray
 			)
 		);
+		$this->add_control(
+			'listShowNumbers',
+			array(
+				'label' => __( 'No of Post to show', 'category' ),
+				'type' => 'number',
+				'default'=>get_option( 'posts_per_page' ),
+			)
+		);
 		$this->end_controls_section();
 
 	}//Control settings are closed
@@ -293,8 +301,9 @@ class AMPforWpWidgets extends Widget_Base {
 		if($isSinglulerPost){
 			$args['posts_per_page'] = 1;
 		}else{
-			$args['posts_per_page'] = -1;
+			$args['posts_per_page'] = ( $settings['listShowNumbers']? $settings['listShowNumbers'] : get_option( 'posts_per_page' ) );
 		}
+		//print_r($args);die;
 		$loopReplacedHtmls = '';
 		$loopPositionReplacedMarkup = array();
 		//The Query
@@ -309,7 +318,7 @@ class AMPforWpWidgets extends Widget_Base {
 					$replaceHtmls = $replaceHtml;
 					$content = '';
 					ob_start();
-					eval('?>'.$replaceHtmls.'<?php');
+					eval('?>'.$replaceHtmls);
 					$content = ob_get_contents();
 					ob_end_clean();
 					$replaceHtmls = $content;
@@ -318,7 +327,7 @@ class AMPforWpWidgets extends Widget_Base {
 						$replaceHtmls = $loopPositionMarkup[$key];
 						$content = '';
 						ob_start();
-						eval('?>'.$replaceHtmls.'<?php');
+						eval('?>'.$replaceHtmls);
 						$content = ob_get_contents();
 						ob_end_clean();
 						$loopPositionReplacedMarkup[$key] = $content;

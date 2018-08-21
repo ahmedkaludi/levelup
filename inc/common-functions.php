@@ -57,7 +57,7 @@ if(!function_exists('getDesignListData')){
 
 				foreach ($query as $post) {
 					$currentDesigns[] = array('title' => $post->post_title,
-											'designId' => $post->ID,
+											'designId' => get_post_meta( $post->ID, 'design_unique_name', true ),
 											'designImage' => get_the_post_thumbnail_url($post->ID),
 										);
 				}
