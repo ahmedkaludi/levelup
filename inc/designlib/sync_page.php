@@ -1,14 +1,18 @@
 <?php
 //Sync Designs
+
+//Sync Constants
 define( 'ELEMENTOR_AMPFORWP_sync_url', 'https://wordpress-amp.000webhostapp.com/wp-json/' );
 define( 'ELEMENTOR_AMPFORWP_sync_version_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-version' );
 define( 'ELEMENTOR_AMPFORWP_sync_design_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-designs' );
+
+
 add_action('admin_enqueue_scripts', 'ampforwp_elementor_plus_sync_script');
 
 function ampforwp_elementor_plus_sync_script($hook){
-   /* if ('edit.php' == $hook) {
+    if ('elementor_page_ampforwp_elementor_themes_settings' != $hook) {
         return;
-    }*/
+    }
     wp_register_script('ampforwp_elementor_plus_sync_script', ELEMENTOR_AMPFORWP__FILE__URI . '/assets/js/ampforwp-sync.js', [ 'jquery' ], false, true );
 
     wp_localize_script( 'ampforwp_elementor_plus_sync_script', 'ampforwp_elem_sync_object',
@@ -120,30 +124,6 @@ function elementor_plus_update_design_library(){
 
 
 
-
-function ampforwp_elementor_plus_admin_notice(){
-	    global $pagenow;
-    $server_version = get_option( 'ampforwp-elementor-plus-version');
-    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version');
-    // echo $current_version.", ".$server_version;die;
-    if(version_compare($current_version, $server_version, '<') ){
-    ?>
-    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
-        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-elementor-sync" class="button-primary">Sync</button> to update Elementor Plus design library.<span class="ampforwp-response-status"></span></p>
-    </div>
-    <?php
-    	//<img src="<?php echo admin_url('images/loading.gif');" class="jetpack-lazy-image ampforwp-lazy-image" data-lazy-loaded="1">
-		}
-	//}
-
-
-    //Check Version
-        echo '<div class="notice notice-info is-dismissible" id="sync-status-notice" >
-        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-elementor-sync-versions" class="button-primary">Check Version</button>.<span class="ampforwp-response-status"></span></p>
-        </div>';
-
-}
- add_action( 'admin_notices',  'ampforwp_elementor_plus_admin_notice' );
 
 add_action( 'wp_ajax_elementor_plus_update_design_version',  'elementor_plus_update_design_version' );
 function elementor_plus_update_design_version(){

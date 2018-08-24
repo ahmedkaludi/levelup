@@ -76,7 +76,6 @@ class AMPforWpWidgets extends Widget_Base {
 	 * @access protected
 	 */
 	protected function _register_controls() {
-		add_action( 'amp_post_template_css', array( $this, 'elementor_plus_amp_design_styling') );
 		$design_controls['settings'] = array(
 								array(
 									'label'=>'Content',
@@ -178,6 +177,7 @@ class AMPforWpWidgets extends Widget_Base {
 			'post_status' => 'publish',
 			'numberposts' => 1
 		);
+		global $elementor_plus_ampCss;
 		$my_posts = get_posts($args);
 		if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
 			$ampMarkup = get_post_meta($my_posts[0]->ID, 'amp_html_markup',true);
@@ -186,7 +186,10 @@ class AMPforWpWidgets extends Widget_Base {
 					$ampMarkup = json_decode($ampMarkup,true);
 				}
 				$markup = $ampMarkup['amp_html'];
-				$non_amp_css = $ampMarkup['amp_css'];
+				$amp_css = $ampMarkup['amp_css'];
+				if(!empty($amp_css)){
+					$elementor_plus_ampCss[$selected_design] = $amp_css;
+				}
 			}
 		}else{
 			$nonAmpMarkup = get_post_meta($my_posts[0]->ID, 'non_amp_html_markup',true);
@@ -196,7 +199,8 @@ class AMPforWpWidgets extends Widget_Base {
 				}
 				$markup = $nonAmpMarkup['non_amp_html'];
 				$non_amp_css = $nonAmpMarkup['non_amp_css'];
-				if($non_amp_css){
+				if($non_amp_css && !isset($elementor_plus_ampCss[$selected_design])){
+					$elementor_plus_ampCss[$selected_design] = 'added';//$non_amp_css;
 					echo '<Style>'.$non_amp_css.'</style>';
 				}
 				
@@ -212,13 +216,14 @@ class AMPforWpWidgets extends Widget_Base {
 	}
 	function elementor_plus_amp_design_styling(){
 		$settings = $this->get_settings();
-		$the_slug = $settings['layoutDesignSelected'];
+		$selected_design = $settings['layoutDesignSelected'];
+		echo $selected_design."\r called\n";
 		$args = array(
 		  //'post__in'        => array($the_slug),
 			'meta_query' => array(
 							      array(
 							         'key'     => 'design_unique_name',
-							         'value'   => $the_slug,
+							         'value'   => $selected_design,
 							         'compare' => '='
 							      )
 							   ),
@@ -227,6 +232,7 @@ class AMPforWpWidgets extends Widget_Base {
 		  'numberposts' => 1
 		);
 		$my_posts = get_posts($args);
+		$ampMarkup = get_post_meta($my_posts[0]->ID, 'amp_html_markup',true);
 		$ampMarkup = get_post_meta($my_posts[0]->ID, 'amp_html_markup',true);
 		if(!empty($ampMarkup)){
 			if(!is_array($ampMarkup)){

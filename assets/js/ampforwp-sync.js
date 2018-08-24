@@ -1,4 +1,28 @@
+function ampforwpElementorGetParamByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 jQuery(document).ready(function($) {
+	$(".ampforwp-elementor-tabs a").click(function(e){
+		var href = $(this).attr("href");
+		var currentTab = ampforwpElementorGetParamByName("tab",href);
+		if(!currentTab){
+			currentTab = "dashboard";
+		}
+		$(this).siblings().removeClass("nav-tab-active");
+		$(this).addClass("nav-tab-active");
+		$(".ampforwp-elementor-settings-form").find(".ampforwp-elementor-"+currentTab).siblings().hide();
+		$(".ampforwp-elementor-settings-form .ampforwp-elementor-"+currentTab).show();
+		window.history.pushState("", "", href);
+		return false;
+	});
+
+	
 	$( "#ampforwp-elementor-sync" ).click(function() {
 		var data = {
 				'action': 'elementor_plus_update_design_library'

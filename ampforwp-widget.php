@@ -36,10 +36,14 @@ function ampforwp_elementor_load() {
 		return;
 	}
 	// Require the main plugin file
+	global $elementor_plus_ampCss;
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/designlib/sync_page.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/designlib/ampforwp-register-post.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/plugin.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/common-functions.php' );
+	if(is_admin()){
+		require( ELEMENTOR_AMPFORWP__DIR__PATH . '/admin/admin-settings.php' );
+	}
 }
 add_action( 'plugins_loaded', 'ampforwp_elementor_load' );
 

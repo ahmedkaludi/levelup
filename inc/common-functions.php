@@ -82,3 +82,27 @@ function elem_ampforwp_basics($get){
 	$config['taxonomy'] = 'widget_type';
 	return (isset($config[$get]) ? $config[$get]: '');
 }
+
+add_action( 'amp_post_template_css', 'elementor_plus_amp_design_styling' );
+function elementor_plus_amp_design_styling(){
+	$allCss = '';
+	global $elementor_plus_ampCss;
+	if(!empty($elementor_plus_ampCss)){
+		if(is_array($elementor_plus_ampCss)){
+			$elementor_plus_ampCss = array_unique($elementor_plus_ampCss);
+			if(count($elementor_plus_ampCss)>0){
+				foreach ($elementor_plus_ampCss as $key => $cssValue) {
+
+					$allCss .= $key."called \n".$cssValue;
+				}
+			}
+		}else{
+			$allCss .= $elementor_plus_ampCss;
+		}
+	}
+	if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
+		echo $allCss;
+	}/*else{// For non amp
+		echo "<style>".$allCss."</style>";
+	}*/
+}
