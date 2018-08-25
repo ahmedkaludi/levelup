@@ -73,8 +73,8 @@ jQuery(document).ready(function($) {
 					success: function(response) {
 
 						if( response.status == 200 ){
+							alert(response.message);
 							location.reload();
-							//alert(response.message);
 							/*$("#sync-status-notice .ampforwp-response-status").remove();
 							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes ampforwp-response-status"></span>' );*/
 						}else{
