@@ -74,6 +74,17 @@ Class AFWP__Admin_settings{
 	}
 
 	public function ampforwp_elementor_themes_settings(){
+		if ( isset( $_GET['settings-updated'] ) ) {
+			if(!elementor_plus_call_api_registerd()){
+				add_settings_error(
+					    'ampforwp_elementor_theme_settings', // whatever you registered in `register_setting
+					    'API_key_error', // doesn't really mater
+					    __('API Key not valid. Please insert valid key', ELEMENTOR_AMPFORWP_TEXT_DOMAIN),
+					    'error' // error or notice works to make things pretty
+					);
+			}
+			settings_errors();
+		}
 		?>
 		<div class="wrap">
 			<h1>Elementor Theme Settings</h1>
@@ -114,14 +125,26 @@ Class AFWP__Admin_settings{
 		register_setting( 'ampforwp_elementor_theme_setting_group', 'ampforwp_elementor_theme_settings' );
 
 		add_settings_section('dashboard_menu_section', esc_html__('Sync Themes',ELEMENTOR_AMPFORWP_TEXT_DOMAIN), '__return_false', 'dashboard_menu_section');
-		// Manifest status
+		
+		// Sync status
 		add_settings_field(
-			'ampforwp_elementor_dashboard_sync',								// ID
-			esc_html__('Theme Library Status',ELEMENTOR_AMPFORWP_TEXT_DOMAIN),			// Title
-			array($this, 'ampforwp_elementor_sync_callback'),					// Callback
+			'ampforwp_elementor_dashboard_api_key',								// ID
+			esc_html__('Enter API key',ELEMENTOR_AMPFORWP_TEXT_DOMAIN),			// Title
+			array($this, 'ampforwp_elementor_api_key_callback'),					// Callback
 			'dashboard_menu_section',							// Page slug
 			'dashboard_menu_section'							// Settings Section ID
 		);
+		$settings = get_option('ampforwp_elementor_theme_settings');
+		if(isset($settings['api_status']) && $settings['api_status']){
+			// Sync status
+			add_settings_field(
+				'ampforwp_elementor_dashboard_sync',								// ID
+				esc_html__('Theme Library Status',ELEMENTOR_AMPFORWP_TEXT_DOMAIN),			// Title
+				array($this, 'ampforwp_elementor_sync_callback'),					// Callback
+				'dashboard_menu_section',							// Page slug
+				'dashboard_menu_section'							// Settings Section ID
+			);
+		}
 
 	}
 
@@ -145,25 +168,45 @@ Class AFWP__Admin_settings{
 
 	}
 
+	function ampforwp_elementor_api_key_callback(){
+		$settings = get_option('ampforwp_elementor_theme_settings');
+
+		
+		if(isset($settings['api_status']) && $settings['api_status']=='valid'){
+			echo '<input type="text" name="ampforwp_elementor_theme_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text" readonly>';
+			echo '<span class="dashicons dashicons-yes" style="color: #46b450;"></span>';
+		}else{
+			echo '<input type="text" name="ampforwp_elementor_theme_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
+		}
+
+	}
+
 	function notice_for_new_theme_version_available(){
-		$server_version = get_option( 'ampforwp-elementor-plus-version');
-	    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version');
-	    // echo $current_version.", ".$server_version;die;
+		$server_version = get_option( 'ampforwp-elementor-plus-version',0);
+	    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
+
+	    if($current_version==0 && $server_version==0){
+	    	echo '<div class="notice notice-info" id="sync-status-notice" >
+	        <p>Congratulations on installing Elementor Plus. You have one last step remaining to finish the installation. <a href="'. esc_url('admin.php?page=ampforwp_elementor_themes_settings') .'" class=button button-secondary button-hero">Finish Installation</a></p>
+	        </div>';
+	    }
+
 	    if(version_compare($current_version, $server_version, '<') ){
 	    ?>
-	    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
-	    	<p>
-	        	New Version of themes <?php echo $server_version; ?> is available
-	        	<a href="<?php echo esc_url('admin.php?page=ampforwp_elementor_themes_settings&tab=dashboard'); ?>" class="">Click to update Elementor Plus design library</a> .<span class="ampforwp-response-status"></span>
-	        </p>
-	    </div>
+		    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
+		    	<p>
+		        	New Version of themes <?php echo $server_version; ?> is available
+		        	<a href="<?php echo esc_url('admin.php?page=ampforwp_elementor_themes_settings'); ?>" class="">Click to update Elementor Plus design library</a> .<span class="ampforwp-response-status"></span>
+		        </p>
+		    </div>
 	    <?php
-	    	//<img src="<?php echo admin_url('images/loading.gif');" class="jetpack-lazy-image ampforwp-lazy-image" data-lazy-loaded="1">
 			}
-		//Check Version
-	    echo '<div class="notice notice-info is-dismissible" id="sync-status-notice" >
+		if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT){
+			//Check Version
+	    	echo '<div class="notice notice-info is-dismissible" id="sync-status-notice" >
 	        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-elementor-sync-versions" class="button-primary">Check Version</button>.<span class="ampforwp-response-status"></span></p>
 	        </div>';
+	    }
 	}
 
 	//Common functions

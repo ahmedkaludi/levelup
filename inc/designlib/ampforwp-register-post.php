@@ -11,29 +11,6 @@ class AMPforWpElementor_design{
 		add_action( 'wp_ajax_elementor_plus_update_design_library', array( $this, 'elementor_plus_update_design_library') );
 	}
 
-
-	/*public function elementor_plus_get_sync_data(){
-		$response = wp_remote_get( 'http://localhost/elementor-layouts/list.php',array('timeout'=> 120));
-		$elementor_plus_json_option = 'ampforwp-call-to-action-layouts';
-		$status = '';
-		$responseData = '';
-		if ( is_array( $response ) && ! is_wp_error( $response ) ) {
-			$responseData = $response['body'];
-			$responseData = json_decode($responseData);
-			if( is_array($responseData)){
-				$responseData = json_encode($responseData);
-				update_option( $elementor_plus_json_option, $responseData );
-				$status = 200;
-			}else{
-				$status = 400;
-			}
-		}else{
-			$status = 400;
-		}
-		echo $status;
-		wp_die();
-	}*/
-
 	public function elementor_plus_update_design_library(){
 		$response = wp_remote_get( 'http://localhost/elementor-layouts/',array('timeout'=> 120));
 		//$elementor_plus_json_option = 'ampforwp-call-to-action-layouts';

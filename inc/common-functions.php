@@ -93,7 +93,7 @@ function elementor_plus_amp_design_styling(){
 			if(count($elementor_plus_ampCss)>0){
 				foreach ($elementor_plus_ampCss as $key => $cssValue) {
 
-					$allCss .= $key."called \n".$cssValue;
+					$allCss .= $cssValue;
 				}
 			}
 		}else{
@@ -102,7 +102,5 @@ function elementor_plus_amp_design_styling(){
 	}
 	if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
 		echo $allCss;
-	}/*else{// For non amp
-		echo "<style>".$allCss."</style>";
-	}*/
+	}
 }

@@ -24,6 +24,7 @@ jQuery(document).ready(function($) {
 
 	
 	$( "#ampforwp-elementor-sync" ).click(function() {
+		var syncButton = $(this);
 		var data = {
 				'action': 'elementor_plus_update_design_library'
 			};
@@ -34,13 +35,18 @@ jQuery(document).ready(function($) {
 					url:  ampforwp_elem_sync_object.ajax_url,
 					data: data,
 					dataType:'json',
+					beforeSend: function(){
+						syncButton.html("Please Wait...");
+					},
 					success: function(response) {
 
 						if( response.status == 200 ){
 							alert(response.message);
+							location.reload();
 							//$("#sync-status-notice .ampforwp-response-status").remove();
-							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes ampforwp-response-status"></span>' );
+							//$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes ampforwp-response-status"></span>' );
 						}else{
+							syncButton.html("sync");
 							alert(response.message);
 							//$("#sync-status-notice .ampforwp-response-status").remove();
 							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-no-alt ampforwp-response-status"></span>' );
@@ -48,8 +54,9 @@ jQuery(document).ready(function($) {
 					}
 		}) ;
 	}) ;
-
+	//Only with development version
 	$( "#ampforwp-elementor-sync-versions" ).click(function() {
+		var syncButton = $(this);
 		var data = {
 				'action': 'elementor_plus_update_design_version'
 			};
@@ -60,13 +67,18 @@ jQuery(document).ready(function($) {
 					url:  ampforwp_elem_sync_object.ajax_url,
 					data: data,
 					dataType:'json',
+					beforeSend: function(){
+						syncButton.html("Please Wait...");
+					},
 					success: function(response) {
 
 						if( response.status == 200 ){
-							alert(response.message);
+							location.reload();
+							//alert(response.message);
 							/*$("#sync-status-notice .ampforwp-response-status").remove();
 							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes ampforwp-response-status"></span>' );*/
 						}else{
+							syncButton.html("Check version");
 							/*$("#sync-status-notice .ampforwp-response-status").remove();
 							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-no-alt ampforwp-response-status"></span>' );*/
 						}

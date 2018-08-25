@@ -5,6 +5,7 @@
 define( 'ELEMENTOR_AMPFORWP_sync_url', 'https://wordpress-amp.000webhostapp.com/wp-json/' );
 define( 'ELEMENTOR_AMPFORWP_sync_version_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-version' );
 define( 'ELEMENTOR_AMPFORWP_sync_design_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-designs' );
+define( 'ELEMENTOR_AMPFORWP_API_VALIDATE', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/api_key' );
 
 
 add_action('admin_enqueue_scripts', 'ampforwp_elementor_plus_sync_script');
@@ -22,24 +23,30 @@ function ampforwp_elementor_plus_sync_script($hook){
 }
 
 add_action( 'wp_ajax_elementor_plus_update_design_library',  'elementor_plus_update_design_library' );
-function elementor_plus_update_design_library(){
-        $response = wp_remote_get( ELEMENTOR_AMPFORWP_sync_design_url,array('timeout'=> 120));
-        if ( !is_array( $response ) ) {
-            echo json_encode(array("status"=>400, "message"=>'cannot connect to server'));
-            wp_die();
-        }
+function elementor_plus_update_design_library($is_first_install=false){
+    $settings = get_option('ampforwp_elementor_theme_settings');
+    $response = wp_remote_get( ELEMENTOR_AMPFORWP_sync_design_url,array(
+                                    'timeout'=> 120,
+                                    'body'=>array(
+                                        'api_key'   =>  $settings['api_key']
+                                    )
+                                )
+                            );
+    if ( !is_array( $response ) ) {
+        if($is_first_install){ return ; }
+        echo json_encode(array("status"=>400, "message"=>'cannot connect to server'));
+        wp_die();
+    }
 
-        $status = $responseData = $metaData = '';
-        $responseData = json_decode($response['body'],true);
+    $status = $responseData = $metaData = '';
+    $responseData = json_decode($response['body'],true);
 
-        //Check current loaded Version 
-        $current_loaded_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
-        if(version_compare($current_loaded_version, $responseData['current_version']['version_detail'], '>=') ){
-            echo json_encode(array("status"=>200, "message"=>'design already up to date'));
-            wp_die();
-            /*************Ending point***********************/
-
-        }
+    //Check current loaded Version 
+    $current_loaded_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
+    if(version_compare($current_loaded_version, $responseData['current_version']['version_detail'], '>=') ){
+        echo json_encode(array("status"=>200, "message"=>'design already up to date'));
+        wp_die();
+    }
 
 
         $post_type = elem_ampforwp_basics('post_type');
@@ -111,24 +118,41 @@ function elementor_plus_update_design_library(){
                 }
 
             }
-        }
+        }//Foreach closed
         $current_version = update_option( 'ampforwp-elementor-plus-loaded-version',$responseData['current_version']['version_detail']);
-        echo json_encode(array("status"=>200, "message"=>'Design inserted Successfully'));
+        if($is_first_install){
+            update_option( 'ampforwp-elementor-plus-loaded-version', $responseData['current_version']['version_detail']);
+            return true; //If first installation called 
+        }else{
+            echo json_encode(array("status"=>200, "message"=>'Design inserted Successfully'));
             wp_die();
+        }
+}
 
-        wp_die();
+
+
+
+//
+if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT){
+     add_action( 'wp_ajax_elementor_plus_update_design_version',  'elementor_plus_update_design_version' );
+}
+
+function elementore_plus_activation() {
+    if (! wp_next_scheduled ( 'elementore_plus_daily_event' )) {
+    wp_schedule_event(time(), 'daily', 'elementore_plus_daily_event');
     }
-
-
-
-
-
-
-
-add_action( 'wp_ajax_elementor_plus_update_design_version',  'elementor_plus_update_design_version' );
+}
+ add_action('elementore_plus_daily_event', 'elementor_plus_update_design_version');
 function elementor_plus_update_design_version(){
+    $settings = get_option('ampforwp_elementor_theme_settings');
      $message = "cannot connect to server";
-    $response = wp_remote_get( ELEMENTOR_AMPFORWP_sync_version_url, array('timeout'=> 120));
+    $response = wp_remote_post( ELEMENTOR_AMPFORWP_sync_version_url, array(
+                                    'timeout'=> 120,
+                                    'body'=>array(
+                                                'api_key'   =>  $settings['api_key']
+                                            )
+                                    )
+                                );
     if ( is_array( $response ) ) {
         $header = $response['headers']; // array of http header lines
         $body = $response['body']; // use the content
@@ -143,6 +167,41 @@ function elementor_plus_update_design_version(){
             }
         }
     }
-    echo json_encode(array("status"=>200,"message"=>$message));
-    wp_die();
+    if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT){
+        echo json_encode(array("status"=>200,"message"=>$message));
+        wp_die();
+    }
+}
+
+
+
+
+//API KEY CHECK Before post
+function elementor_plus_call_api_registerd(){
+    $settings = get_option('ampforwp_elementor_theme_settings');
+    if(isset( $settings['api_status']) &&  $settings['api_status']= 'valid'){ return ;  }
+    $url    = ELEMENTOR_AMPFORWP_API_VALIDATE;
+    $data   = array(
+                   'body'=>array(
+                                'site_url'  => site_url(),
+                                'api_key'   =>  $settings['api_key']
+                        )
+                );
+    $response = wp_remote_post( $url,$data);
+    if(is_array($response)){
+        $header = $response['headers']; // array of http header lines
+        $body = $response['body']; // use the content
+        $actualResponse = json_decode($body,true);
+        if($actualResponse['status']==200){
+            $settings['api_status'] = 'valid';
+            update_option('ampforwp_elementor_theme_settings',$settings);
+            //On First Installation Sync all Designs
+            elementor_plus_update_design_library(true);
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
 }

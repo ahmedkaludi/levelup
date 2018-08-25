@@ -16,12 +16,13 @@ define( 'ELEMENTOR_AMPFORWP__FILE__PATH', plugin_dir_path(__FILE__) );
 define('ELEMENTOR_AMPFORWP__FILE__URI', plugin_dir_url(__FILE__));
 define( 'ELEMENTOR_AMPFORWP__DIR__PATH', __DIR__ );
 define( 'ELEMENTOR_AMPFORWP_TEXT_DOMAIN', 'elementor-ampforwp' );
+define( 'ELEMENTOR_AMPFORWP_ENVIRONEMT', 'production' );//development
 /**
  *
  * Load the plugin after Elementor (and other plugins) are loaded.
  *
  */
-function ampforwp_elementor_load() {
+function elementor_plus_load() {
 	// Load localization file
 	load_plugin_textdomain( ELEMENTOR_AMPFORWP_TEXT_DOMAIN );
 	// Notice if the Elementor is not active
@@ -32,7 +33,7 @@ function ampforwp_elementor_load() {
 	// Check required version
 	$elementor_version_required = '1.8.0';
 	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_required, '>=' ) ) {
-		add_action( 'admin_notices', 'hello_world_fail_load_out_of_date' );
+		add_action( 'admin_notices', 'elementor_plus_fail_load_out_of_date' );
 		return;
 	}
 	// Require the main plugin file
@@ -45,11 +46,17 @@ function ampforwp_elementor_load() {
 		require( ELEMENTOR_AMPFORWP__DIR__PATH . '/admin/admin-settings.php' );
 	}
 }
-add_action( 'plugins_loaded', 'ampforwp_elementor_load' );
+add_action( 'plugins_loaded', 'elementor_plus_load' );
+register_activation_hook(__FILE__, 'elementore_plus_activation_hook');
+
+function elementore_plus_activation_hook(){
+	if('development'!=ELEMENTOR_AMPFORWP_ENVIRONEMT){ //on production 
+		elementore_plus_activation();
+	}
+}
 
 
-
-function hello_world_fail_load_out_of_date() {
+function elementor_plus_fail_load_out_of_date() {
 	if ( ! current_user_can( 'update_plugins' ) ) {
 		return;
 	}
