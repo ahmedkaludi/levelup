@@ -22,10 +22,11 @@ function ampforwp_elementor_plus_sync_script($hook){
     wp_enqueue_script('ampforwp_elementor_plus_sync_script');
 }
 
+
 add_action( 'wp_ajax_elementor_plus_update_design_library',  'elementor_plus_update_design_library' );
 function elementor_plus_update_design_library($is_first_install=false){
     $settings = get_option('ampforwp_elementor_theme_settings');
-    $response = wp_remote_get( ELEMENTOR_AMPFORWP_sync_design_url,array(
+    $response = wp_remote_post( ELEMENTOR_AMPFORWP_sync_design_url,array(
                                     'timeout'=> 120,
                                     'body'=>array(
                                         'api_key'   =>  $settings['api_key']
@@ -33,17 +34,24 @@ function elementor_plus_update_design_library($is_first_install=false){
                                 )
                             );
     if ( !is_array( $response ) ) {
-        if($is_first_install){ return ; }
+        if($is_first_install){ return true; }
+        echo json_encode(array("status"=>400, "message"=>'cannot connect to server'));
+        wp_die();
+    }
+  
+    $status = $responseData = $metaData = '';
+    $responseData = json_decode($response['body'],true);
+    if($responseData['status']!='200'){
+        print_r($responseData);die;
+        if($is_first_install){ return true; }
         echo json_encode(array("status"=>400, "message"=>'cannot connect to server'));
         wp_die();
     }
 
-    $status = $responseData = $metaData = '';
-    $responseData = json_decode($response['body'],true);
-
     //Check current loaded Version 
     $current_loaded_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
-    if(version_compare($current_loaded_version, $responseData['current_version']['version_detail'], '>=') ){
+    if($current_loaded_version != 0&& version_compare($current_loaded_version, $responseData['current_version']['version_detail'], '>=') ){
+        if($is_first_install){ return true; }
         echo json_encode(array("status"=>200, "message"=>'design already up to date'));
         wp_die();
     }
@@ -63,6 +71,7 @@ function elementor_plus_update_design_library($is_first_install=false){
                         $post_type
                     ) 
             );
+
         foreach( $responseData['designs'] as $widgetType => $valCategory ){
             foreach( $valCategory['layouts'] as $key => $valDesigntype ){
                 $designType = $key;
@@ -131,12 +140,13 @@ function elementor_plus_update_design_library($is_first_install=false){
 
 
 
-
 //
 if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT){
      add_action( 'wp_ajax_elementor_plus_update_design_version',  'elementor_plus_update_design_version' );
 }
 
+
+//update Version
 function elementore_plus_activation() {
     if (! wp_next_scheduled ( 'elementore_plus_daily_event' )) {
     wp_schedule_event(time(), 'daily', 'elementore_plus_daily_event');
@@ -172,8 +182,6 @@ function elementor_plus_update_design_version(){
         wp_die();
     }
 }
-
-
 
 
 //API KEY CHECK Before post
