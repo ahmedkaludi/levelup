@@ -2,7 +2,7 @@
 //Sync Designs
 
 //Sync Constants
-define( 'ELEMENTOR_AMPFORWP_sync_url', 'https://wordpress-amp.000webhostapp.com/wp-json/' );
+define( 'ELEMENTOR_AMPFORWP_sync_url', 'http://elementor-plus.com/wp-json/' );
 define( 'ELEMENTOR_AMPFORWP_sync_version_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-version' );
 define( 'ELEMENTOR_AMPFORWP_sync_design_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-designs' );
 define( 'ELEMENTOR_AMPFORWP_API_VALIDATE', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/api_key' );
