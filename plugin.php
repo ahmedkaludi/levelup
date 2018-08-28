@@ -86,7 +86,7 @@ class Plugin {
 		$elements_manager->add_category(
 			'ampforwp-widgets',
 			[
-				'title' => __( 'Ampforwp Elementor Plus', 'ampforwp-elementor-plus' ),
+				'title' => __( 'Elementor Plus', 'ampforwp-elementor-plus' ),
 				'icon' => 'fa fa-plug',
 			]
 		);
