@@ -5,9 +5,7 @@
     <div class="modal-header">
       <span class="close"></span>
       	<ul class="nav">
-		  	<li><a class="active" href="/">Blocks</a></li>
-		  	<li><a href="/about/">Pages</a></li>
-		  	<li><a href="/work/">My Templates</a></li>
+		  	<li><a class="active" href="/">Category Module (7 Designs)</a></li>
 		  	
 		</ul>
     </div>
@@ -32,7 +30,7 @@
 		</div>
     </div>
     <div class="modal-footer">
-      <h3>Modal Footer</h3>
+      
     </div>
   </div>
 
@@ -74,7 +72,7 @@
     
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 15px; /* Location of the box */
+    padding: 15px 0px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -139,8 +137,8 @@
 }
 
 .modal-body {
-	height: 520px;
-    max-height: 85vh;
+	// height: 520px;
+    max-height: 90vh;
     overflow: auto;
     padding: 25px 30px 30px;
 }
