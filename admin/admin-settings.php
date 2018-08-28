@@ -3,16 +3,11 @@ namespace AMPElementoreThemeSettings;
 Class AFWP__Admin_settings{
 	const PAGE_ID = 'elementor';
 	const MENU_PRIORITY_AMP_THEMES = 503;
-	public $allTabs = array('dashboard','general','help');
+	public $allTabs = array('dashboard','help');
 	public $tabsdata = array('dashboard'=>array(
 											'label_name'=>'dashboard',
 											'icon_class'=> 'dashicons-dashboard',
 											'section_slug'=>'dashboard_menu_section',
-											),
-							'general' =>	array(
-											'label_name'=>'General',
-											'icon_class'=> 'dashicons-welcome-view-site',
-											'section_slug'=>'general_menu_section',
 											),
 							'help'	=>	array(
 										'label_name'=>'Help',
@@ -178,6 +173,7 @@ Class AFWP__Admin_settings{
 		}else{
 			echo '<input type="text" name="ampforwp_elementor_theme_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
 		}
+		echo '<p>Please enter the API key above. <a target="_blank" href="http://elementor-plus.com/user-register/" style="text-decoration:none;">Get your FREE key here <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
 
 	}
 
