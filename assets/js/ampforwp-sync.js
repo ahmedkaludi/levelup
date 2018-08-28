@@ -8,11 +8,24 @@ function ampforwpElementorGetParamByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 jQuery(document).ready(function($) {
+	var href = $(this).attr("href");
+	var currentTab = ampforwpElementorGetParamByName("tab",href);
+	if(!currentTab){
+		currentTab = "dashboard";
+	}
+	if(currentTab == "help"){
+		$('p.submit').hide();
+	}
 	$(".ampforwp-elementor-tabs a").click(function(e){
 		var href = $(this).attr("href");
 		var currentTab = ampforwpElementorGetParamByName("tab",href);
 		if(!currentTab){
 			currentTab = "dashboard";
+		}
+		if(currentTab == "help"){
+			$('p.submit').hide();
+		}else{
+			$('p.submit').show();
 		}
 		$(this).siblings().removeClass("nav-tab-active");
 		$(this).addClass("nav-tab-active");

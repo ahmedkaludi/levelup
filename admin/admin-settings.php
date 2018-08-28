@@ -140,6 +140,10 @@ Class AFWP__Admin_settings{
 				'dashboard_menu_section'							// Settings Section ID
 			);
 		}
+		
+
+		add_settings_section('help_menu_section', "<strong>Feel free to email us </strong>: <a class='link' href='mailto:team@magazine3.com' target='_blank'>Click here</a>", '__return_false', 'help_menu_section');
+		
 
 	}
 

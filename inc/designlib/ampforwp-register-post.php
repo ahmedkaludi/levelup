@@ -4,55 +4,6 @@ class AMPforWpElementor_design{
 	public function __construct(){
 		add_action('init',array($this, 'registerPostType'));
 		add_action('init',array($this, 'registerTaxonomy'));
-
-
-		add_action( 'wp_ajax_elementor_plus_get_sync_data', array( $this, 'elementor_plus_get_sync_data') );
-		add_action( 'wp_ajax_elementor_plus_get_sync_data', array( $this, 'elementor_plus_get_sync_data') );
-		add_action( 'wp_ajax_elementor_plus_update_design_library', array( $this, 'elementor_plus_update_design_library') );
-	}
-
-	public function elementor_plus_update_design_library(){
-		$response = wp_remote_get( 'http://localhost/elementor-layouts/',array('timeout'=> 120));
-		//$elementor_plus_json_option = 'ampforwp-call-to-action-layouts';
-		$status = '';
-		$responseData = '';
-		$metaData = '';
-		//print_r($response);
-		// if ( is_array( $response ) && ! is_wp_error( $response ) ) {
-		//  	$responseData = $response['body'];
-		//  	$responseData = json_decode($responseData);
-		//  	if( is_array($responseData)){
-		// 		$responseData = json_encode($responseData);
-		//  		//update_option( $elementor_plus_json_option, $responseData );
-		//  		$status = 200;
-		//  	}
-		// }else{
-		//  	$status = 400;
-		// }
-		//echo $responseData;
-		$responseData = json_decode($response['body']);
-		foreach( $responseData as $key => $valCat ){
-			$widgetType = $key;
-			foreach( $valCat as $key => $valDesigntype ){
-				$designType = $key;
-				$post_id = wp_insert_post(array('post_title'=> $widgetType.' '.$designType, 'post_type'=>'design_library', 'post_content'=>'Desgin Layouts with markup and css'));
-				wp_set_object_terms( $post_id, $widgetType, 'widget_type' );
-				$metaData = array();
-				// Check folder permission and define file location
-				foreach( $valDesigntype as $key => $valMarkups ){
-						$metaData[] = json_encode($valMarkups);
-					if( $key == 'image'){
-						update_post_meta( $post_id, '_design_image_url', $valMarkups );
-					}
-					update_post_meta( $post_id, '_amp_html_markup', $metaData[0] );
-					update_post_meta( $post_id, '_non_amp_html_markup', $metaData[1] );
-					update_post_meta( $post_id, '_design_markup_options', $metaData[2] );
-				}
-			}
-		}
-		echo '200';
-
-		wp_die();
 	}
 
 	function registerPostType(){
@@ -95,7 +46,7 @@ class AMPforWpElementor_design{
 		        'exclude_from_search' => true,
 		        'publicly_queryable'  => false,
 		        'show_in_nav_menus'   => false,
-		        'show_ui'             => False,
+		        'show_ui'             => true,//False
 
 		        'capability_type'     => 'page',
 		        //Rest API Support for custom post type
