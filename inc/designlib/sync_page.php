@@ -155,27 +155,32 @@ function elementore_plus_activation() {
  add_action('elementore_plus_daily_event', 'elementor_plus_update_design_version');
 function elementor_plus_update_design_version(){
     $settings = get_option('ampforwp_elementor_theme_settings');
-     $message = "cannot connect to server";
-    $response = wp_remote_post( ELEMENTOR_AMPFORWP_sync_version_url, array(
-                                    'timeout'=> 120,
-                                    'body'=>array(
-                                                'api_key'   =>  $settings['api_key']
-                                            )
-                                    )
-                                );
-    if ( is_array( $response ) ) {
-        $header = $response['headers']; // array of http header lines
-        $body = $response['body']; // use the content
-        $actualResponse = json_decode($body,true);
-        if($actualResponse['status']==200){
-            $current_version = get_option( 'ampforwp-elementor-plus-version',0);
-            if( version_compare($current_version, $actualResponse['version'], '>=') ){
-                $message = "current version is same";
-            }else{
-                update_option( 'ampforwp-elementor-plus-version',$actualResponse['version']);
-                $message = "Version Updated Successfully";
+    $message = "cannot connect to server";
+    if(empty($settings['api_key'])){
+        $message = "API key cannot be blank";
+    }else{
+        $response = wp_remote_post( ELEMENTOR_AMPFORWP_sync_version_url, array(
+                                        'timeout'=> 120,
+                                        'body'=>array(
+                                                    'api_key'   =>  $settings['api_key']
+                                                )
+                                        )
+                                    );
+        if ( is_array( $response ) ) {
+            $header = $response['headers']; // array of http header lines
+            $body = $response['body']; // use the content
+            $actualResponse = json_decode($body,true);
+            if($actualResponse['status']==200){
+                $current_version = get_option( 'ampforwp-elementor-plus-version',0);
+                if( version_compare($current_version, $actualResponse['version'], '>=') ){
+                    $message = "current version is same";
+                }else{
+                    update_option( 'ampforwp-elementor-plus-version',$actualResponse['version']);
+                    $message = "Version Updated Successfully";
+                }
             }
         }
+
     }
     if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT){
         echo json_encode(array("status"=>200,"message"=>$message));

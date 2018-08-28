@@ -40,14 +40,16 @@ function elementor_plus_load() {
 	global $elementor_plus_ampCss;
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/designlib/sync_page.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/designlib/ampforwp-register-post.php' );
+	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/image-aqua.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/plugin.php' );
 	require( ELEMENTOR_AMPFORWP__DIR__PATH . '/inc/common-functions.php' );
 	if(is_admin()){
 		require( ELEMENTOR_AMPFORWP__DIR__PATH . '/admin/admin-settings.php' );
 	}
+	register_activation_hook(__FILE__, 'elementore_plus_activation_hook');
 }
 add_action( 'plugins_loaded', 'elementor_plus_load' );
-register_activation_hook(__FILE__, 'elementore_plus_activation_hook');
+
 
 function elementore_plus_activation_hook(){
 	if('development'!=ELEMENTOR_AMPFORWP_ENVIRONEMT){ //on production 

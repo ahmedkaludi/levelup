@@ -182,12 +182,13 @@ Class AFWP__Admin_settings{
 	}
 
 	function notice_for_new_theme_version_available(){
+		global $pagenow;
 		$server_version = get_option( 'ampforwp-elementor-plus-version',0);
 	    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
 
-	    if($current_version==0 && $server_version==0){
-	    	echo '<div class="notice notice-info" id="sync-status-notice" >
-	        <p>Congratulations on installing Elementor Plus. You have one last step remaining to finish the installation. <a href="'. esc_url('admin.php?page=ampforwp_elementor_themes_settings') .'" class=button button-secondary button-hero">Finish Installation</a></p>
+	    if($current_version==0 && $server_version==0 && ( ('admin.php' != $pagenow ) && ( 'ampforwp_elementor_themes_settings' != $_GET['page'] ) )  ){
+	    	echo '<div class="notice notice-warning" id="sync-status-notice" >
+	        <p>Congratulations on installing <strong>Elementor Plus</strong>.<br/> You have one last step remaining to finish the installation. <a href="'. esc_url('admin.php?page=ampforwp_elementor_themes_settings') .'" class=button button-secondary button-hero">Finish Installation</a></p>
 	        </div>';
 	    }
 
@@ -201,7 +202,8 @@ Class AFWP__Admin_settings{
 		    </div>
 	    <?php
 			}
-		if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT){
+			
+		if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT && ( 'admin.php' === $pagenow ) && ( 'ampforwp_elementor_themes_settings' === $_GET['page'] ) ){
 			//Check Version
 	    	echo '<div class="notice notice-info is-dismissible" id="sync-status-notice" >
 	        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-elementor-sync-versions" class="button-primary">Check Version</button>.<span class="ampforwp-response-status"></span></p>
