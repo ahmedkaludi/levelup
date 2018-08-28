@@ -373,24 +373,35 @@
 
 
     $( window ).on( 'elementor:init', function(require,module,exports) {
-    	
-    	elementor.hooks.addAction(
-            'panel/open_editor/widget',
-            function( panel, model, view ) {
-                console.log(panel, model, view);
- 				if(model.attributes.widgetType == 'category'){
-                    var self = this;
-                    var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
-                    if(currentStatus!='yes'){
-                        openCallToActionDesignPopup(model.attributes.widgetType);
-                        //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
-                        model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
-                        
-                    }
-                    $('.elementor-control-layoutDesignSelected').hide();
-            	}
-			}
-        );
+    	if(ampforwp_elem_object.widget_design.designs.length==0){
+            elementor.hooks.addFilter('elements/widget/contextMenuGroups', function(){
+                $("#elementor-panel-category-ampforwp-widgets").find(".elementor-panel-category-items").find('.elementor-element-wrapper:first').hide();
+                var message = "<div style='padding:5px;text-align:center'>Elementor Plus Installation: <a href='"+ampforwp_elem_object.elementor_theme_settings+"' class='elementor-button elementor-button-success' style='border-radius:3px 0 0 3px;padding: 4px;'>Finish Setup</a></div>";
+                $("#elementor-panel-category-ampforwp-widgets").find(".elementor-panel-category-items").prepend(message);
+                $("#elementor-panel-elements-search-area").after(message);
+            })
+            
+        }else{
+        
+        	elementor.hooks.addAction(
+                'panel/open_editor/widget',
+                function( panel, model, view ) {
+                    console.log(panel, model, view);
+     				if(model.attributes.widgetType == 'category'){
+                        var self = this;
+                        var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
+                        if(currentStatus!='yes'){
+                            openCallToActionDesignPopup(model.attributes.widgetType);
+                            //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
+                            model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
+                            
+                        }
+                        $('.elementor-control-layoutDesignSelected').hide();
+                	}
+    			}
+            );
+
+        }
 
          // elementor.hooks.addFilter( 'controls/base/behaviors',function( behaviors, all){
          //                        alert("csll");

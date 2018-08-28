@@ -35,11 +35,17 @@ class Plugin {
 		add_action( "print_media_templates", [ $this, "ampforwp_new_template_dialog" ] );
 
 		add_action( 'elementor/editor/before_enqueue_scripts', function() {
-			$designList = getDesignListData();
+			$settings = get_option('ampforwp_elementor_theme_settings');
+			$designList = array();
+			if( isset($settings['api_key']) && !empty($settings['api_key']) && isset($settings['api_status']) && $settings['api_status']=='valid' ){
+				$designList = getDesignListData();
+			}
+
 			wp_register_script( 'ampforwp-widget-options', plugins_url( '/assets/js/ampforwp-widget-options.js', ELEMENTOR_AMPFORWP__FILE__ ), [ 'jquery' ], false, true );
 
 			wp_localize_script( 'ampforwp-widget-options', 'ampforwp_elem_object',
 	            array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
+	            	'elementor_theme_settings'=>esc_url('admin.php?page=ampforwp_elementor_themes_settings'),
 	            	'widget_design'=>array("designs"=> $designList )
 	            ) );
 			
@@ -70,6 +76,7 @@ class Plugin {
 	 * @access private
 	 */
 	private function includes() {
+		require __DIR__ . '/inc/functional.php';
 		require __DIR__ . '/widgets/amp-widget.php';
 	}
 	/**

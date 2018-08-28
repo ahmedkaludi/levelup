@@ -186,7 +186,7 @@ Class AFWP__Admin_settings{
 		$server_version = get_option( 'ampforwp-elementor-plus-version',0);
 	    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
 
-	    if($current_version==0 && $server_version==0 && ( ('admin.php' != $pagenow ) && ( 'ampforwp_elementor_themes_settings' != $_GET['page'] ) )  ){
+	    if($current_version==0 && $server_version==0 && ( ('admin.php' != $pagenow ) && (!isset($_GET['page']) || 'ampforwp_elementor_themes_settings' != $_GET['page'] ) )  ){
 	    	echo '<div class="notice notice-warning" id="sync-status-notice" >
 	        <p>Congratulations on installing <strong>Elementor Plus</strong>.<br/> You have one last step remaining to finish the installation. <a href="'. esc_url('admin.php?page=ampforwp_elementor_themes_settings') .'" class=button button-secondary button-hero">Finish Installation</a></p>
 	        </div>';
