@@ -99,4 +99,29 @@ jQuery(document).ready(function($) {
 			});
 		});
 
+	$('.elementor_plus_remove').click(function(){
+		var syncButton = $(this);
+		var data = {
+			'action': 'elementor_plus_remove_key'
+		};
+		if(confirm("You want to remove the Elementor Plus Key?")){
+			$.ajax({
+				type: 'post',
+				url:  ampforwp_elem_sync_object.ajax_url,
+				data: data,
+				dataType:'json',
+				beforeSend: function(){
+					syncButton.html("Please Wait...");
+				},
+				success: function(response) {
+					if( response.status == 200 ){
+						alert(response.message);
+						location.reload();
+					}
+				}
+			});
+
+		}
+	})
+
 });
