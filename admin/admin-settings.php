@@ -82,7 +82,7 @@ Class AFWP__Admin_settings{
 		}
 		?>
 		<div class="wrap">
-			<h1>Elementor Theme Settings</h1>
+			<h1>Elementor Plus Settings</h1>
 			<h2 class="nav-tab-wrapper ampforwp-elementor-tabs">
 
 				<?php
@@ -142,7 +142,7 @@ Class AFWP__Admin_settings{
 		}
 		
 
-		add_settings_section('help_menu_section', "<strong>Feel free to email us </strong>: <a class='link' href='mailto:team@magazine3.com' target='_blank'>Click here</a>", '__return_false', 'help_menu_section');
+		add_settings_section('help_menu_section', "<strong>Need Support?</strong>: <span style='font-weight:normal'>Our world class technical team is always available to help you with your issues. <a class='link' href='mailto:team@magazine3.com' target='_blank' style='font-weight:bold;display:inline-block'>Just send us an email</a></span>.", '__return_false', 'help_menu_section');
 		
 
 	}

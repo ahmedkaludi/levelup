@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: AMPforWP Elementor plus 
- * Description: AMPforWp Elementor plugin.
- * Plugin URI:  
- * Version:     1.1.0
- * Author:      AMPforWP
- * Author URI:  
+ * Plugin Name: Elementor Plus 
+ * Description: Elementor Plus takes your Elementor to the next level.
+ * Plugin URI: http://elementor-plus.com/
+ * Version: 1.0
+ * Author: mohammed_kaludi, ahmedkaludi, ampforwp
+ * Author URI:  http://elementor-plus.com/
  * Text Domain: elementor-ampforwp
  */
 
