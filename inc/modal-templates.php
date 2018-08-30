@@ -5,7 +5,7 @@
     <div class="modal-header">
       <span class="eplus-close eicon-close close"></span>
       	<ul class="nav">
-		  	<li><a class="active" href="/">Category Module (7 Designs)</a></li>
+		  	<li><a class="active" href="/">Category Module (<%= layouts.length %> Designs)</a></li>
 		  	
 		</ul>
     </div>

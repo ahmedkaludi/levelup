@@ -129,9 +129,9 @@ function elementor_plus_update_design_library($is_first_install=false){
 
             }
         }//Foreach closed
-        $current_version = update_option( 'ampforwp-elementor-plus-loaded-version',$responseData['current_version']['version_detail']);
+        $current_version = update_option( 'elementor-plus-library-loaded-version',$responseData['current_version']['version_detail']);
         if($is_first_install){
-            update_option( 'ampforwp-elementor-plus-loaded-version', $responseData['current_version']['version_detail']);
+            update_option( 'elementor-plus-library-loaded-version', $responseData['current_version']['version_detail']);
             return true; //If first installation called 
         }else{
             echo json_encode(array("status"=>200, "message"=>'Design inserted Successfully'));
