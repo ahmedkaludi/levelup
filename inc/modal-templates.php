@@ -192,15 +192,19 @@
 }
 .ampforwp-elementor-design-btn, .ampforwp-elementor-design-preview{
     margin: 5px;
-    padding: 8px 20px;
     background: #fff;
     border-radius: 40px;
     position: relative;
     top: 50%;
     font-size: 16px;
 }
+.ampforwp-elementor-design-btn{
+    padding:8px 15px;
+}
 .ampforwp-elementor-design-preview a{
-    color:#6d7882
+    color:#6d7882;
+    padding:8px 15px;    background: #fff;
+    border-radius: 40px;
 }
 .ampforwp-elementor-design {
     text-align: center;
