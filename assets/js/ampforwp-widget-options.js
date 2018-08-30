@@ -347,7 +347,7 @@
                     //template: '#tmpl-ampforwp-elementor-library-templates' ,
                     initialize:function() {
                       _.bindAll( this, "render");
-                      this.template = _.template($('#tmpl-ampforwp-elementor-library-templates').html());
+                      this.template = _.template($('#tmpl-elementor-plus-library-templates').html());
                     },
                     events: {
                       "click .ampforwp-elementor-design": "elementGetData"
@@ -358,9 +358,8 @@
                        
                         var templateId = $(modalViewThis).attr("data-template-id");
                        
-                        //$('#ampforwp-designs-container').html("<div style='text-align:center'>Please Wait...</div>");
                         jQuery("[data-setting=layoutDesignSelected]").val(templateId).trigger("change");
-                        //model.attributes.settings.attributes.layoutDesignSelected = templateId
+                        
                       this.hideModal();
                    },
                    showLoadingView: function() {

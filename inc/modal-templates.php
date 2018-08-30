@@ -1,9 +1,9 @@
-<script id="tmpl-ampforwp-elementor-library-templates" type="text/html">
+<script id="tmpl-elementor-plus-library-templates" type="text/html">
 
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
-      <span class="eplus-close eicon-close"></span>
+      <span class="eplus-close eicon-close close"></span>
       	<ul class="nav">
 		  	<li><a class="active" href="/">Category Module (7 Designs)</a></li>
 		  	
@@ -11,19 +11,19 @@
     </div>
     <div class="modal-body">
     	
-		<div class="row" id="ampforwp-designs-container">
+		<div class="row" id="elementor-plus-designs-container">
 			<% if(layouts) { %>
               
                 <% _(layouts).each(function(data) { %>
                 <div class="column">
 					<div class="img-content">
-                    <div class="ampforwp-elementor-design-wrapper">
-                        <span class="ampforwp-elementor-design-btn">Insert</span>
+                    <div class="elementor-plus-design-wrapper">
+                        <span class="ampforwp-elementor-design-btn ampforwp-elementor-design" data-template-id="<%= data.designId %>">Insert</span>
                         <span class="ampforwp-elementor-design-preview"><a href="#">Preview</a></span>
                     </div>
 						<img src="<%= data.designImage%>" />
 					</div>
-					<div class="ampforwp-elementor-design" data-template-id="<%= data.designId %>">
+					<div class="" >
 						<p><%= data.title %></p>
 					</div>
 				</div>
@@ -178,7 +178,7 @@
     background-image: linear-gradient(to bottom, #f3f3f3, #fff);
     border-bottom: 3px solid #9b0a46;
     }
-.ampforwp-elementor-design-wrapper{
+.elementor-plus-design-wrapper{
     position: absolute;
     width: 100%;
     text-align: center;
@@ -187,7 +187,7 @@
     display:none;
     background: #0000007d; 
 }
-.column:hover .ampforwp-elementor-design-wrapper{
+.column:hover .elementor-plus-design-wrapper{
     display:block
 }
 .ampforwp-elementor-design-btn, .ampforwp-elementor-design-preview{
