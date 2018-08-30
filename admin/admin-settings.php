@@ -30,11 +30,11 @@ Class AFWP__Admin_settings{
 		}
 		add_submenu_page(
 				self::PAGE_ID,
-				__( 'Elementor Plus '.$AvailableUpdateHtml, ELEMENTOR_AMPFORWP_TEXT_DOMAIN ),
-				__( 'Elementor Plus '.$AvailableUpdateHtml, ELEMENTOR_AMPFORWP_TEXT_DOMAIN ),
+				__( 'Elementor Plus '.$AvailableUpdateHtml, ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				__( 'Elementor Plus '.$AvailableUpdateHtml, ELEMENTOR_PLUS_TEXT_DOMAIN ),
 				'manage_options',
-				'ampforwp_elementor_themes_settings',
-				[ $this, 'ampforwp_elementor_themes_settings' ]
+				'elementor_plus_settings',
+				[ $this, 'elementor_plus_settings' ]
 			);
 	}
 
@@ -47,7 +47,7 @@ Class AFWP__Admin_settings{
 		return $tab;
 	}
 	protected function pwaforwp_admin_link($tab = '', $args = array()){	
-		$page = 'ampforwp_elementor_themes_settings';
+		$page = 'elementor_plus_settings';
 
 		if ( ! is_multisite() ) {
 			$link = admin_url( 'admin.php?page=' . $page );
@@ -68,13 +68,13 @@ Class AFWP__Admin_settings{
 		return esc_url($link);
 	}
 
-	public function ampforwp_elementor_themes_settings(){
+	public function elementor_plus_settings(){
 		if ( isset( $_GET['settings-updated'] ) ) {
 			if(!elementor_plus_call_api_registerd()){
 				add_settings_error(
-					    'ampforwp_elementor_theme_settings', // whatever you registered in `register_setting
+					    'elementor_plus_library_settings', // whatever you registered in `register_setting
 					    'API_key_error', // doesn't really mater
-					    __('API Key not valid. Please insert valid key', ELEMENTOR_AMPFORWP_TEXT_DOMAIN),
+					    __('API Key not valid. Please insert valid key', ELEMENTOR_PLUS_TEXT_DOMAIN),
 					    'error' // error or notice works to make things pretty
 					);
 			}
@@ -88,7 +88,7 @@ Class AFWP__Admin_settings{
 				<?php
 				$tab = $this->pwaforwp_get_tab($this->allTabs[0]);
 				foreach ($this->allTabs as $key => $value) {
-					echo '<a href="' . esc_url($this->pwaforwp_admin_link($value)) . '" class="nav-tab ' . esc_attr( $tab == $value ? 'nav-tab-active' : '') . '"><span class="dashicons '.$this->tabsdata[$value]['icon_class'].'"></span> ' . esc_html__(ucfirst($this->tabsdata[$value]['label_name']), ELEMENTOR_AMPFORWP_TEXT_DOMAIN) . '</a>';
+					echo '<a href="' . esc_url($this->pwaforwp_admin_link($value)) . '" class="nav-tab ' . esc_attr( $tab == $value ? 'nav-tab-active' : '') . '"><span class="dashicons '.$this->tabsdata[$value]['icon_class'].'"></span> ' . esc_html__(ucfirst($this->tabsdata[$value]['label_name']), ELEMENTOR_PLUS_TEXT_DOMAIN) . '</a>';
 				}
 				?>
 			</h2>
@@ -117,19 +117,19 @@ Class AFWP__Admin_settings{
 		<?php
 	}
 	function ampforwp_tabs_settings_init(){
-		register_setting( 'ampforwp_elementor_theme_setting_group', 'ampforwp_elementor_theme_settings' );
+		register_setting( 'ampforwp_elementor_theme_setting_group', 'elementor_plus_library_settings' );
 
-		add_settings_section('dashboard_menu_section', esc_html__('Sync Themes',ELEMENTOR_AMPFORWP_TEXT_DOMAIN), '__return_false', 'dashboard_menu_section');
+		add_settings_section('dashboard_menu_section', esc_html__('Sync Themes',ELEMENTOR_PLUS_TEXT_DOMAIN), '__return_false', 'dashboard_menu_section');
 		
 		// Sync status
 		add_settings_field(
 			'ampforwp_elementor_dashboard_api_key',								// ID
-			esc_html__('Enter API key',ELEMENTOR_AMPFORWP_TEXT_DOMAIN),			// Title
+			esc_html__('Enter API key',ELEMENTOR_PLUS_TEXT_DOMAIN),			// Title
 			array($this, 'ampforwp_elementor_api_key_callback'),					// Callback
 			'dashboard_menu_section',							// Page slug
 			'dashboard_menu_section'							// Settings Section ID
 		);
-		$settings = get_option('ampforwp_elementor_theme_settings');
+		$settings = get_option('elementor_plus_library_settings');
 		if(isset($settings['api_status']) && $settings['api_status']){
 			// Sync status
 			add_settings_field(
@@ -150,8 +150,8 @@ Class AFWP__Admin_settings{
 	function ampforwp_elementor_sync_callback(){
 		
 	    global $pagenow;
-	    $server_version = get_option( 'ampforwp-elementor-plus-version');
-	    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version');
+	    $server_version = get_option( 'elementor-plus-library-version');
+	    $current_version = get_option( 'elementor-plus-library-loaded-version');
 	     //echo $current_version.", ".$server_version;die;
 
 	    ?>	
@@ -175,29 +175,29 @@ Class AFWP__Admin_settings{
 	}
 
 	function ampforwp_elementor_api_key_callback(){
-		$settings = get_option('ampforwp_elementor_theme_settings');
+		$settings = get_option('elementor_plus_library_settings');
 
 		
 		if(isset($settings['api_status']) && $settings['api_status']=='valid'){
-			echo '<input type="text" name="ampforwp_elementor_theme_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text" readonly>';
+			echo '<input type="text" name="elementor_plus_library_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text" readonly>';
 			echo '<span class="dashicons dashicons-yes" style="color: #46b450;"></span>';
 			echo '<span class="button right elementor_plus_remove" ><i class="dashicons dashicons-no" style="color: #e6132f;"></i> Remove Key</span>';
 		}else{
-			echo '<input type="text" name="ampforwp_elementor_theme_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
+			echo '<input type="text" name="elementor_plus_library_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
 		}
-		echo '<p>Please enter the API key above. <a target="_blank" href="'.ELEMENTOR_AMPFORWP_URL.'/user-register/" style="text-decoration:none;">Get your FREE key here <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
+		echo '<p>Please enter the API key above. <a target="_blank" href="'.ELEMENTOR_PLUS_SERVER_URL.'/user-register/" style="text-decoration:none;">Get your FREE key here <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
 
 	}
 
 	function notice_for_new_theme_version_available(){
 		global $pagenow;
-		$server_version = get_option( 'ampforwp-elementor-plus-version',0);
-	    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
-	    $settings = get_option( 'ampforwp_elementor_theme_settings',0);
+		$server_version = get_option( 'elementor-plus-library-version',0);
+	    $current_version = get_option( 'elementor-plus-library-loaded-version',0);
+	    $settings = get_option( 'elementor_plus_library_settings',0);
 
-	    if((($current_version==0 && $server_version==0) || $settings['api_key']=='') && ( ('admin.php' != $pagenow ) && (!isset($_GET['page']) || 'ampforwp_elementor_themes_settings' != $_GET['page'] ) )  ){
+	    if((($current_version==0 && $server_version==0) || $settings['api_key']=='') && ( ('admin.php' != $pagenow ) && (!isset($_GET['page']) || 'elementor_plus_settings' != $_GET['page'] ) )  ){
 	    	echo '<div class="notice notice-warning" id="sync-status-notice" >
-	        <p>Congratulations on installing <strong>Elementor Plus</strong>.<br/> You have one last step remaining to finish the installation. <a href="'. esc_url('admin.php?page=ampforwp_elementor_themes_settings') .'" class=button button-secondary button-hero">Finish Installation</a></p>
+	        <p>Congratulations on installing <strong>Elementor Plus</strong>.<br/> You have one last step remaining to finish the installation. <a href="'. esc_url('admin.php?page=elementor_plus_settings') .'" class=button button-secondary button-hero">Finish Installation</a></p>
 	        </div>';
 	    }
 
@@ -206,13 +206,13 @@ Class AFWP__Admin_settings{
 		    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 		    	<p>
 		        	New Version of Elementor Plus <?php echo $server_version; ?> is available
-		        	<a href="<?php echo esc_url('admin.php?page=ampforwp_elementor_themes_settings'); ?>" class="">Click to update Elementor Plus design library</a> .<span class="ampforwp-response-status"></span>
+		        	<a href="<?php echo esc_url('admin.php?page=elementor_plus_settings'); ?>" class="">Click to update Elementor Plus design library</a> .<span class="ampforwp-response-status"></span>
 		        </p>
 		    </div>
 	    <?php
 			}
 			
-		if('development'==ELEMENTOR_PLUS_ENVIRONEMT && ( 'admin.php' === $pagenow ) && ( 'ampforwp_elementor_themes_settings' === $_GET['page'] ) ){
+		if('development'==ELEMENTOR_PLUS_ENVIRONEMT && ( 'admin.php' === $pagenow ) && ( 'elementor_plus_settings' === $_GET['page'] ) ){
 			//Check Version
 	    	/*echo '<div class="notice notice-info is-dismissible" id="sync-status-notice" >
 	        <p>Click on <button type="button" value="sync" name="sync" id="elementor-plus-sync-versions" class="button-primary">Check Version</button>.<span class="ampforwp-response-status"></span></p>
@@ -222,8 +222,8 @@ Class AFWP__Admin_settings{
 
 	//Common functions
 	private function check_update_available(){
-		$server_version = get_option( 'ampforwp-elementor-plus-version');
-	    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version');
+		$server_version = get_option( 'elementor-plus-library-version');
+	    $current_version = get_option( 'elementor-plus-library-loaded-version');
 	    // echo $current_version.", ".$server_version;die;
 	    if(version_compare($current_version, $server_version, '<') ){
 	    	return $server_version;

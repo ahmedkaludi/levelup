@@ -12,7 +12,7 @@ function render($settings){
 						         'compare' => '='
 						      )
 						   ),
-		'post_type'   => elem_ampforwp_basics('post_type'),
+		'post_type'   => elementor_plus_basics_config('post_type'),
 		'post_status' => 'publish',
 		'numberposts' => 1
 	);
@@ -61,7 +61,7 @@ namespace ElementorePlusDesignCount;
 
 function abvailableDesignCount(){
 	$args = array(
-	  	'post_type'   => elem_ampforwp_basics('post_type'),
+	  	'post_type'   => elementor_plus_basics_config('post_type'),
 		'post_status' => 'publish',
 		'numberposts' => 1
 	);

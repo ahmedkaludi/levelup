@@ -1,5 +1,5 @@
 <?php
-namespace AMPforWpElementorWidgets\Widgets;
+namespace ElementorPlusWidgets\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  * @since 1.0.0
  */
-class AMPforWpWidgets extends Widget_Base {
+class CategoryWidgets extends Widget_Base {
 	/**
 	 * Retrieve the widget name.
 	 *
@@ -173,7 +173,7 @@ class AMPforWpWidgets extends Widget_Base {
 							         'compare' => '='
 							      )
 							   ),
-			'post_type'   => elem_ampforwp_basics('post_type'),
+			'post_type'   => elementor_plus_basics_config('post_type'),
 			'post_status' => 'publish',
 			'numberposts' => 1
 		);
@@ -227,7 +227,7 @@ class AMPforWpWidgets extends Widget_Base {
 							         'compare' => '='
 							      )
 							   ),
-		  'post_type'   => elem_ampforwp_basics('post_type'),
+		  'post_type'   => elementor_plus_basics_config('post_type'),
 		  'post_status' => 'publish',
 		  'numberposts' => 1
 		);

@@ -4,10 +4,10 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     die;
 }
 
-$option_name = 'ampforwp_elementor_theme_settings';
+$option_name = 'elementor_plus_library_settings';
  
-delete_option('ampforwp-elementor-plus-version');
-delete_option('ampforwp-elementor-plus-loaded-version');
+delete_option('elementor-plus-library-version');
+delete_option('elementor-plus-library-loaded-version');
 delete_option($option_name);
 
 
@@ -19,7 +19,7 @@ function elementor_plus_go_delete_now() {
 
     $posts = get_posts( array(
         'numberposts' => -1,
-        'post_type' => elem_ampforwp_basics('post_type'),
+        'post_type' => elementor_plus_basics_config('post_type'),
         'post_status' => 'any' ) );
 
     foreach ( $posts as $post ){
@@ -41,9 +41,9 @@ $wpdb->query( "
         FROM {$wpdb->terms}
         JOIN {$wpdb->term_taxonomy}
         ON {$wpdb->term_taxonomy}.term_id = {$wpdb->terms}.term_id
-        WHERE taxonomy = '".elem_ampforwp_basics('taxonomy')."'
+        WHERE taxonomy = '".elementor_plus_basics_config('taxonomy')."'
     ) as T
     );
 ");
 // Delete taxonomies
-$wpdb->query( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = ".elem_ampforwp_basics('taxonomy') );
+$wpdb->query( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = ".elementor_plus_basics_config('taxonomy') );

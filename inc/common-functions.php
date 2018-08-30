@@ -1,8 +1,8 @@
 <?php
 if(!function_exists('getDesignListByCategory')){
 	function getDesignListByCategory($categoryslug){
-		$taxonomy = elem_ampforwp_basics('taxonomy');
-		$post_type = elem_ampforwp_basics('post_type');
+		$taxonomy = elementor_plus_basics_config('taxonomy');
+		$post_type = elementor_plus_basics_config('post_type');
 		if($categoryslug==''){ return array(); }
 
 		$posts = get_posts( array(
@@ -26,10 +26,10 @@ if(!function_exists('getDesignListByCategory')){
 
 	}
 }
-if(!function_exists('getDesignListData')){
-	function getDesignListData($type = ''){
-		$taxonomy = elem_ampforwp_basics('taxonomy');
-		$post_type = elem_ampforwp_basics('post_type');
+if(!function_exists('elementorPlusGetDesignListData')){
+	function elementorPlusGetDesignListData($type = ''){
+		$taxonomy = elementor_plus_basics_config('taxonomy');
+		$post_type = elementor_plus_basics_config('post_type');
 		$cat_args = array(
 		    'orderby'       => 'term_id', 
 		    'order'         => 'ASC',
@@ -77,9 +77,9 @@ if(!function_exists('getDesignListData')){
 	}
 }
 
-function elem_ampforwp_basics($get){
-	$config['post_type'] = 'design_library';
-	$config['taxonomy'] = 'widget_type';
+function elementor_plus_basics_config($get){
+	$config['post_type'] = 'ep_design_library';
+	$config['taxonomy'] = 'ep_widget_type';
 	return (isset($config[$get]) ? $config[$get]: '');
 }
 
