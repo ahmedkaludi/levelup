@@ -3,7 +3,7 @@
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
-      <span class="close"></span>
+      <span class="eplus-close eicon-close"></span>
       	<ul class="nav">
 		  	<li><a class="active" href="/">Category Module (7 Designs)</a></li>
 		  	
@@ -16,8 +16,12 @@
               
                 <% _(layouts).each(function(data) { %>
                 <div class="column">
-					<div class="img-content" style="background-image: url('<%= data.designImage%>');background-size: contain;">
-						
+					<div class="img-content">
+                    <div class="ampforwp-elementor-design-wrapper">
+                        <span class="ampforwp-elementor-design-btn">Insert</span>
+                        <span class="ampforwp-elementor-design-preview"><a href="#">Preview</a></span>
+                    </div>
+						<img src="<%= data.designImage%>" />
 					</div>
 					<div class="ampforwp-elementor-design" data-template-id="<%= data.designId %>">
 						<p><%= data.title %></p>
@@ -43,22 +47,20 @@
 	border-bottom-right-radius: 10px;
 }
 .img-content{
-	height: 220px;
-	/*background-color:#aaa;*/
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+    position: relative;
 }
+.img-content img{width:100%;height:auto}
 
 .column:hover{
-	 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	 box-shadow: 0 3px 18px 0 rgba(0, 0, 0, 0.07), 0 5px 20px 0 rgba(0, 0, 0, 0.1);
 }
 .column {
+    transition: .15s;
     float: left;
-    width: 220px;
-    height: 270px; /* Should be removed. Only for demonstration */
-    margin:15px;
-    border-radius: 10px;
-    border: 5px solid #ddd;
+    width: 31%;
+    margin: 1.16%;
+    margin-bottom:1%;
+    border: 3px solid #ddd;
 }
 
 /* Clear floats after the columns */
@@ -85,17 +87,19 @@
 /* Modal Content */
 .modal-content {
     position: relative;
-    background-color: #fefefe;
+    background-color: #f1f3f5;
+    height: 96vh;
     margin: auto;
     padding: 0;
+    overflow: hidden;
     border: 1px solid #888;
     border-radius: 6px;
     width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
 }
 
 /* Add Animation */
@@ -110,47 +114,40 @@
 }
 
 /* The Close Button */
-.close:before{ content: '\2716'; }
-.close {
-    color: white;
-    float: right;
+.eplus-close {
+    position: absolute;
+    right: 0;
+    padding: 16px;
     font-size: 18px;
-    font-weight: bold;
-    padding: 5px;
+    color: #a4afb7;
+    cursor:pointer
 }
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
+ 
 
 /* The Modal Header, Footer and Body*/
 .modal-header {
-    padding: 10px 10px;
-    background-color: #5cb85c;
-    color: white;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
     height: 50px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal-body {
-	// height: 520px;
     max-height: 90vh;
-    overflow: auto;
-    padding: 25px 30px 30px;
-}
+    height: auto;
+    overflow: scroll;
+    padding: 15px;
+    }
 
 .modal-footer {
     padding: 10px 10px;
-    background-color: #5cb85c;
     color: white;
     border-bottom-right-radius: 6px;
     border-bottom-left-radius: 6px;
     height: 50px;
-}
+    width: 100%;
+    bottom: 0;
+    position: absolute;}
 
 /* Navigation Menu Css*/
 .nav{
@@ -165,26 +162,52 @@
     display:inline;
 }
 .nav a{
-    display:inline-block;
-    padding:12px;
+    display: inline-block;
+    padding: 17px 30px;
     border-bottom: 3px solid transparent;
-    color:#000;
-    font-weight:900;
+    font-weight: 500;
+    color: #6d7882;
+    font-size: 13px;
 }
 .nav a:hover {
-  border-bottom: 3px solid red;
-  color:#ddd;
 }
 .nav a.active {
-  border-bottom: 3px solid red;
-}
-.ampforwp-elementor-design > p{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#fff));
+    background-image: -webkit-linear-gradient(top, #f3f3f3, #fff);
+    background-image: -o-linear-gradient(top, #f3f3f3, #fff);
+    background-image: linear-gradient(to bottom, #f3f3f3, #fff);
+    border-bottom: 3px solid #9b0a46;
+    }
+.ampforwp-elementor-design-wrapper{
+    position: absolute;
+    width: 100%;
     text-align: center;
-    cursor: pointer;
-    padding-top: 13px;
-    font-weight: 600;
+    padding: 10px;
+    height:100%;
+    display:none;
+    background: #0000007d; 
+}
+.column:hover .ampforwp-elementor-design-wrapper{
+    display:block
+}
+.ampforwp-elementor-design-btn, .ampforwp-elementor-design-preview{
+    margin: 5px;
+    padding: 8px 20px;
+    background: #fff;
+    border-radius: 40px;
+    position: relative;
+    top: 50%;
     font-size: 16px;
 }
+.ampforwp-elementor-design-preview a{
+    color:#6d7882
+}
+.ampforwp-elementor-design {
+    text-align: center;
+    padding: 8px;
+    background: #fff;
+}
+
 </style>
 <script type="text/javascript">
 	jQuery(document).ready(function($) {

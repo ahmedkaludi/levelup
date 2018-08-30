@@ -39,7 +39,7 @@ class AMPforWpWidgets extends Widget_Base {
 	 * @return string Widget icon.
 	 */
 	public function get_icon() {
-		return 'eicon-posts-ticker';
+		return 'eicon-post-list';
 	}
 	/**
 	 * Retrieve the list of categories the widget belongs to.
