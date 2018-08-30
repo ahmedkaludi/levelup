@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 	});
 
 	
-	$( "#ampforwp-elementor-sync" ).click(function() {
+	$( "#elementor-plus-sync-lib" ).click(function() {
 		var syncButton = $(this);
 		var data = {
 				'action': 'elementor_plus_update_design_library'
@@ -68,7 +68,7 @@ jQuery(document).ready(function($) {
 		}) ;
 	}) ;
 	//Only with development version
-	$( "#ampforwp-elementor-sync-versions" ).click(function() {
+	$( "#elementor-plus-sync-versions" ).click(function() {
 		var syncButton = $(this);
 		var data = {
 				'action': 'elementor_plus_update_design_version'
