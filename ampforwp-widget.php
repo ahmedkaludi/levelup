@@ -16,7 +16,7 @@ define( 'ELEMENTOR_AMPFORWP__FILE__PATH', plugin_dir_path(__FILE__) );
 define('ELEMENTOR_AMPFORWP__FILE__URI', plugin_dir_url(__FILE__));
 define( 'ELEMENTOR_AMPFORWP__DIR__PATH', __DIR__ );
 define( 'ELEMENTOR_AMPFORWP_TEXT_DOMAIN', 'elementor-ampforwp' );
-define( 'ELEMENTOR_AMPFORWP_ENVIRONEMT', 'production' );//development
+define( 'ELEMENTOR_PLUS_ENVIRONEMT', 'production' );//development
 /**
  *
  * Load the plugin after Elementor (and other plugins) are loaded.

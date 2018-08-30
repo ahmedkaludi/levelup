@@ -174,10 +174,11 @@ Class AFWP__Admin_settings{
 		if(isset($settings['api_status']) && $settings['api_status']=='valid'){
 			echo '<input type="text" name="ampforwp_elementor_theme_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text" readonly>';
 			echo '<span class="dashicons dashicons-yes" style="color: #46b450;"></span>';
+			echo '<span class="button right elementor_plus_remove" ><i class="dashicons dashicons-no" style="color: #e6132f;"></i> Remove Key</span>';
 		}else{
 			echo '<input type="text" name="ampforwp_elementor_theme_settings[api_key]" value="'.(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
 		}
-		echo '<p>Please enter the API key above. <a target="_blank" href="http://elementor-plus.com/user-register/" style="text-decoration:none;">Get your FREE key here <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
+		echo '<p>Please enter the API key above. <a target="_blank" href="'.ELEMENTOR_AMPFORWP_URL.'/user-register/" style="text-decoration:none;">Get your FREE key here <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
 
 	}
 
@@ -185,8 +186,9 @@ Class AFWP__Admin_settings{
 		global $pagenow;
 		$server_version = get_option( 'ampforwp-elementor-plus-version',0);
 	    $current_version = get_option( 'ampforwp-elementor-plus-loaded-version',0);
+	    $settings = get_option( 'ampforwp_elementor_theme_settings',0);
 
-	    if($current_version==0 && $server_version==0 && ( ('admin.php' != $pagenow ) && (!isset($_GET['page']) || 'ampforwp_elementor_themes_settings' != $_GET['page'] ) )  ){
+	    if((($current_version==0 && $server_version==0) || $settings['api_key']=='') && ( ('admin.php' != $pagenow ) && (!isset($_GET['page']) || 'ampforwp_elementor_themes_settings' != $_GET['page'] ) )  ){
 	    	echo '<div class="notice notice-warning" id="sync-status-notice" >
 	        <p>Congratulations on installing <strong>Elementor Plus</strong>.<br/> You have one last step remaining to finish the installation. <a href="'. esc_url('admin.php?page=ampforwp_elementor_themes_settings') .'" class=button button-secondary button-hero">Finish Installation</a></p>
 	        </div>';
@@ -203,7 +205,7 @@ Class AFWP__Admin_settings{
 	    <?php
 			}
 			
-		if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT && ( 'admin.php' === $pagenow ) && ( 'ampforwp_elementor_themes_settings' === $_GET['page'] ) ){
+		if('development'==ELEMENTOR_PLUS_ENVIRONEMT && ( 'admin.php' === $pagenow ) && ( 'ampforwp_elementor_themes_settings' === $_GET['page'] ) ){
 			//Check Version
 	    	echo '<div class="notice notice-info is-dismissible" id="sync-status-notice" >
 	        <p>Click on <button type="button" value="sync" name="sync" id="ampforwp-elementor-sync-versions" class="button-primary">Check Version</button>.<span class="ampforwp-response-status"></span></p>

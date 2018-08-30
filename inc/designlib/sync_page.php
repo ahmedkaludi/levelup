@@ -2,7 +2,8 @@
 //Sync Designs
 
 //Sync Constants
-define( 'ELEMENTOR_AMPFORWP_sync_url', 'http://elementor-plus.com/wp-json/' );
+define( 'ELEMENTOR_AMPFORWP_URL', 'http://elementor-plus.com' );
+define( 'ELEMENTOR_AMPFORWP_sync_url', ELEMENTOR_AMPFORWP_URL.'/wp-json/' );
 define( 'ELEMENTOR_AMPFORWP_sync_version_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-version' );
 define( 'ELEMENTOR_AMPFORWP_sync_design_url', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/get-elementor-designs' );
 define( 'ELEMENTOR_AMPFORWP_API_VALIDATE', ELEMENTOR_AMPFORWP_sync_url.'elementor_design_layout/v1/api_key' );
@@ -141,7 +142,7 @@ function elementor_plus_update_design_library($is_first_install=false){
 
 
 //
-if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT){
+if('development'==ELEMENTOR_PLUS_ENVIRONEMT){
      add_action( 'wp_ajax_elementor_plus_update_design_version',  'elementor_plus_update_design_version' );
 }
 
@@ -182,7 +183,7 @@ function elementor_plus_update_design_version(){
         }
 
     }
-    if('development'==ELEMENTOR_AMPFORWP_ENVIRONEMT){
+    if('development'==ELEMENTOR_PLUS_ENVIRONEMT){
         echo json_encode(array("status"=>200,"message"=>$message));
         wp_die();
     }
@@ -210,11 +211,19 @@ function elementor_plus_call_api_registerd(){
             update_option('ampforwp_elementor_theme_settings',$settings);
             //On First Installation Sync all Designs
             elementor_plus_update_design_library(true);
-            return true;
+            return $actualResponse['message'];
         }else{
             return false;
         }
     }else{
         return false;
     }
+}
+
+
+add_action( 'wp_ajax_elementor_plus_remove_key',  'elementor_plus_remove_key' );
+function elementor_plus_remove_key(){
+    delete_option('ampforwp_elementor_theme_settings');
+    echo json_encode(array("status"=>200, "message" => "Successfully removed."));
+    wp_die();
 }
