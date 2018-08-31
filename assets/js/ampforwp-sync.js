@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
 	if(currentTab == "help"){
 		$('p.submit').hide();
 	}
-	$(".ampforwp-elementor-tabs a").click(function(e){
+	$(".elementor-plus-tabs a").click(function(e){
 		var href = $(this).attr("href");
 		var currentTab = ampforwpElementorGetParamByName("tab",href);
 		if(!currentTab){
@@ -29,8 +29,8 @@ jQuery(document).ready(function($) {
 		}
 		$(this).siblings().removeClass("nav-tab-active");
 		$(this).addClass("nav-tab-active");
-		$(".ampforwp-elementor-settings-form").find(".ampforwp-elementor-"+currentTab).siblings().hide();
-		$(".ampforwp-elementor-settings-form .ampforwp-elementor-"+currentTab).show();
+		$(".elementor-plus-settings-form").find(".elementor-plus-field-"+currentTab).siblings().hide();
+		$(".elementor-plus-settings-form .elementor-plus-field-"+currentTab).show();
 		window.history.pushState("", "", href);
 		return false;
 	});
