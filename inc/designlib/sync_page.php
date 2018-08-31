@@ -222,6 +222,8 @@ function elementor_plus_call_api_registerd(){
 add_action( 'wp_ajax_elementor_plus_remove_key',  'elementor_plus_remove_key' );
 function elementor_plus_remove_key(){
     delete_option('elementor_plus_library_settings');
+    delete_option('elementor-plus-library-loaded-version');
+    delete_option('elementor-plus-library-version');
     echo json_encode(array("status"=>200, "message" => "Successfully removed."));
     wp_die();
 }
