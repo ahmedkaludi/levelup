@@ -98,7 +98,7 @@ Class AFWP__Admin_settings{
 				// Output nonce, action, and option_page fields for a settings page.
 				settings_fields( 'elementor_plus_theme_setting_group' );	
 				foreach ($this->allTabs as $key => $value) {
-					echo "<div class='elementor-plus-field-".esc_attr($value)."' style='".esc_attr( $tab != $value ? '"display:none;"' : '')."'>";
+					echo "<div class='elementor-plus-field-".esc_attr($value)."' style='".esc_attr( $tab != $value ? 'display:none;' : '')."'>";
 					// Status
 					do_settings_sections( $this->tabsdata[$value]['section_slug'] );	// Page slug
 					echo "</div>";
@@ -205,7 +205,7 @@ Class AFWP__Admin_settings{
 		    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 		    	<p>
 		        	New Version of Elementor Plus <?php echo esc_html($server_version); ?> is available
-		        	<a href="<?php echo esc_url('admin.php?page=elementor_plus_settings'); ?>" class="">Click to update Elementor Plus design library</a> .<span class="ampforwp-response-status"></span>
+		        	<a href="<?php echo esc_url('admin.php?page=elementor_plus_settings'); ?>" class="">Click to update Elementor Plus design library</a> .<span class="ep-response-status"></span>
 		        </p>
 		    </div>
 	    <?php

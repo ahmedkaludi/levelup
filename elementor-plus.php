@@ -6,7 +6,8 @@
  * Version: 1.0
  * Author: mohammed_kaludi, ahmedkaludi, ampforwp
  * Author URI:  http://elementor-plus.com/
- * Text Domain: elementor-ampforwp
+ * Text Domain: elementor-plus
+ * Domain Path: /languages/
  */
 
 
@@ -24,7 +25,7 @@ define( 'ELEMENTOR_PLUS_ENVIRONEMT', 'production' );//development
  */
 function elementor_plus_load() {
 	// Load localization file
-	load_plugin_textdomain( ELEMENTOR_PLUS_TEXT_DOMAIN );
+	load_plugin_textdomain( ELEMENTOR_PLUS_ENVIRONEMT, false, trailingslashit(ELEMENTOR_PLUS__FILE__PATH) . 'languages' );
 	// Notice if the Elementor is not active
 	if ( ! did_action( 'elementor/loaded' ) ) {
 		add_action( 'admin_notices', 'elementor_plus_fail_load' );
@@ -41,7 +42,7 @@ function elementor_plus_load() {
 	require( ELEMENTOR_PLUS__DIR__PATH . '/inc/designlib/sync_page.php' );
 	require( ELEMENTOR_PLUS__DIR__PATH . '/inc/designlib/register-post.php' );
 	require( ELEMENTOR_PLUS__DIR__PATH . '/inc/image-aqua.php' );
-	require( ELEMENTOR_PLUS__DIR__PATH . '/elementor-plus-plugin.php' );
+	require( ELEMENTOR_PLUS__DIR__PATH . '/elementor-plus-widgets.php' );
 	require( ELEMENTOR_PLUS__DIR__PATH . '/inc/common-functions.php' );
 	if(is_admin()){
 		require( ELEMENTOR_PLUS__DIR__PATH . '/admin/admin-settings.php' );
@@ -72,5 +73,5 @@ function elementor_plus_fail_load() {
 	if ( ! current_user_can( 'update_plugins' ) ) {
 		return;
 	}
-	echo '<div class="error">' . esc_html(__( 'Elementor Not loaded', ELEMENTOR_PLUS_TEXT_DOMAIN ) ) . '</div>';
+	echo '<div class="error">' . esc_html__( 'Elementor Not loaded', ELEMENTOR_PLUS_TEXT_DOMAIN )  . '</div>';
 }

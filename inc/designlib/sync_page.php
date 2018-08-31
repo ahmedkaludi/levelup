@@ -9,18 +9,18 @@ define( 'ELEMENTOR_PLUS_SYNC_DESIGN_URL', ELEMENTOR_PLUS_API_url.'elementor_desi
 define( 'ELEMENTOR_PLUS_API_VALIDATE', ELEMENTOR_PLUS_API_url.'elementor_design_layout/v1/api_key' );
 
 
-add_action('admin_enqueue_scripts', 'ampforwp_elementor_plus_sync_script');
+add_action('admin_enqueue_scripts', 'elementor_plus_sync_script');
 
-function ampforwp_elementor_plus_sync_script($hook){
+function elementor_plus_sync_script($hook){
     if ('elementor_page_elementor_plus_settings' != $hook) {
         return;
     }
-    wp_register_script('ampforwp_elementor_plus_sync_script', ELEMENTOR_PLUS__FILE__URI . '/assets/js/ampforwp-sync.js', [ 'jquery' ], false, true );
+    wp_register_script('elementor_plus_sync_script', ELEMENTOR_PLUS__FILE__URI . '/assets/js/elementor-plus-sync.js', [ 'jquery' ], false, true );
 
-    wp_localize_script( 'ampforwp_elementor_plus_sync_script', 'ampforwp_elem_sync_object',
+    wp_localize_script( 'elementor_plus_sync_script', 'elementor_plus_sync_object',
                 array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
                 ) );
-    wp_enqueue_script('ampforwp_elementor_plus_sync_script');
+    wp_enqueue_script('elementor_plus_sync_script');
 }
 
 
@@ -221,7 +221,7 @@ function elementor_plus_call_api_registerd(){
 
 add_action( 'wp_ajax_elementor_plus_remove_key',  'elementor_plus_remove_key' );
 function elementor_plus_remove_key(){
-    delete_option('elementor_plus_settings');
+    delete_option('elementor_plus_library_settings');
     echo json_encode(array("status"=>200, "message" => "Successfully removed."));
     wp_die();
 }

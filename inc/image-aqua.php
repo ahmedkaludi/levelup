@@ -245,13 +245,3 @@
             return $aq_resize->process( $url, $width, $height, $crop, $single, $upscale );
         }
     }
-
-
-
-
-
-
-
-
-/*$image = 'https://wordpress-amp.000webhostapp.com/wp-content/uploads/2018/08/Elementor-Plus-Design-1.png';
-\ElementorImageAqResized\ampforwp_aq_resize($image,150,150);*/

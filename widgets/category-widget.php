@@ -4,9 +4,9 @@ use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
- * Elementor Hello World
+ * Elementor Category widget
  *
- * Elementor widget for hello world.
+ * Elementor widget for Category widget.
  *
  * @since 1.0.0
  */
@@ -54,7 +54,7 @@ class CategoryWidgets extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'ampforwp-widgets' ];
+		return [ 'elementor-plus-widgets' ];
 	}
 	/**
 	 * Retrieve the list of scripts the widget depended on.
@@ -66,7 +66,7 @@ class CategoryWidgets extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
-		return [ 'amp-widget' ];
+		return [ 'category-widget' ];
 	}
 	/**
 	 * Register the widget controls.

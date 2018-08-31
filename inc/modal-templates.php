@@ -18,8 +18,8 @@
                 <div class="column">
 					<div class="img-content">
                     <div class="elementor-plus-design-wrapper">
-                        <span class="ampforwp-elementor-design-btn ampforwp-elementor-design" data-template-id="<%= data.designId %>">Insert</span>
-                        <span class="ampforwp-elementor-design-preview"><a href="#">Preview</a></span>
+                        <span class="ep-elementor-design-btn ep-elementor-design" data-template-id="<%= data.designId %>">Insert</span>
+                        <span class="ep-elementor-design-preview"><a href="#">Preview</a></span>
                     </div>
 						<img src="<%= data.designImage%>" />
 					</div>
@@ -190,7 +190,7 @@
 .column:hover .elementor-plus-design-wrapper{
     display:block
 }
-.ampforwp-elementor-design-btn, .ampforwp-elementor-design-preview{
+.ep-elementor-design-btn, .ep-elementor-design-preview{
     margin: 5px;
     background: #fff;
     border-radius: 40px;
@@ -198,15 +198,15 @@
     top: 50%;
     font-size: 16px;
 }
-.ampforwp-elementor-design-btn{
+.ep-elementor-design-btn{
     padding:8px 15px;
 }
-.ampforwp-elementor-design-preview a{
+.ep-elementor-design-preview a{
     color:#6d7882;
     padding:8px 15px;    background: #fff;
     border-radius: 40px;
 }
-.ampforwp-elementor-design {
+.ep-elementor-design {
     text-align: center;
     padding: 8px;
     background: #fff;

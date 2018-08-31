@@ -1,4 +1,4 @@
-function ampforwpElementorGetParamByName(name, url) {
+function elementorGetParamByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -9,7 +9,7 @@ function ampforwpElementorGetParamByName(name, url) {
 }
 jQuery(document).ready(function($) {
 	var href = $(this).attr("href");
-	var currentTab = ampforwpElementorGetParamByName("tab",href);
+	var currentTab = elementorGetParamByName("tab",href);
 	if(!currentTab){
 		currentTab = "dashboard";
 	}
@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
 	}
 	$(".elementor-plus-tabs a").click(function(e){
 		var href = $(this).attr("href");
-		var currentTab = ampforwpElementorGetParamByName("tab",href);
+		var currentTab = elementorGetParamByName("tab",href);
 		if(!currentTab){
 			currentTab = "dashboard";
 		}
@@ -45,7 +45,7 @@ jQuery(document).ready(function($) {
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			$.ajax({
 					type: 'post',
-					url:  ampforwp_elem_sync_object.ajax_url,
+					url:  elementor_plus_sync_object.ajax_url,
 					data: data,
 					dataType:'json',
 					beforeSend: function(){
@@ -56,13 +56,13 @@ jQuery(document).ready(function($) {
 						if( response.status == 200 ){
 							alert(response.message);
 							location.reload();
-							//$("#sync-status-notice .ampforwp-response-status").remove();
-							//$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes ampforwp-response-status"></span>' );
+							//$("#sync-status-notice .ep-response-status").remove();
+							//$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes ep-response-status"></span>' );
 						}else{
 							syncButton.html("sync");
 							alert(response.message);
-							//$("#sync-status-notice .ampforwp-response-status").remove();
-							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-no-alt ampforwp-response-status"></span>' );
+							//$("#sync-status-notice .ep-response-status").remove();
+							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-no-alt ep-response-status"></span>' );
 						}
 					}
 		}) ;
@@ -77,7 +77,7 @@ jQuery(document).ready(function($) {
 			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 			$.ajax({
 					type: 'post',
-					url:  ampforwp_elem_sync_object.ajax_url,
+					url:  elementor_plus_sync_object.ajax_url,
 					data: data,
 					dataType:'json',
 					beforeSend: function(){
@@ -88,12 +88,12 @@ jQuery(document).ready(function($) {
 						if( response.status == 200 ){
 							alert(response.message);
 							location.reload();
-							/*$("#sync-status-notice .ampforwp-response-status").remove();
-							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes ampforwp-response-status"></span>' );*/
+							/*$("#sync-status-notice .ep-response-status").remove();
+							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes ep-response-status"></span>' );*/
 						}else{
 							syncButton.html("Check version");
-							/*$("#sync-status-notice .ampforwp-response-status").remove();
-							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-no-alt ampforwp-response-status"></span>' );*/
+							/*$("#sync-status-notice .ep-response-status").remove();
+							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-no-alt ep-response-status"></span>' );*/
 						}
 					}
 			});
@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
 		if(confirm("You want to remove the Elementor Plus Key?")){
 			$.ajax({
 				type: 'post',
-				url:  ampforwp_elem_sync_object.ajax_url,
+				url:  elementor_plus_sync_object.ajax_url,
 				data: data,
 				dataType:'json',
 				beforeSend: function(){

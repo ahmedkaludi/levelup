@@ -344,13 +344,13 @@
     var AddPersonView = ModalView.extend({
                     name: "AddPersonView",
                     model: {},
-                    //template: '#tmpl-ampforwp-elementor-library-templates' ,
+                    //template: '#tmpl-elementor-plus-library-templates' ,
                     initialize:function() {
                       _.bindAll( this, "render");
                       this.template = _.template($('#tmpl-elementor-plus-library-templates').html());
                     },
                     events: {
-                      "click .ampforwp-elementor-design": "elementGetData"
+                      "click .ep-elementor-design": "elementGetData"
                     },
                     elementGetData: function(e) {
                          e.preventDefault();
@@ -370,13 +370,14 @@
                     }
                 }); 
 
-
+    var setMeassageStaticPointer = 0;
     $( window ).on( 'elementor:init', function(require,module,exports) {
-    	if(ampforwp_elem_object.widget_design.designs.length==0){
+        if(elementor_plus_object.widget_design.designs.length==0){
+           
             elementor.hooks.addFilter('elements/widget/contextMenuGroups', function(){
-                $("#elementor-panel-category-ampforwp-widgets").find(".elementor-panel-category-items").find('.elementor-element-wrapper:first').hide();
-                var message = "<div style='padding:5px;text-align:center'>Elementor Plus Installation: <a href='"+ampforwp_elem_object.elementor_theme_settings+"' class='elementor-button elementor-button-success' style='border-radius:3px 0 0 3px;padding: 4px;'>Finish Setup</a></div>";
-                $("#elementor-panel-category-ampforwp-widgets").find(".elementor-panel-category-items").prepend(message);
+                 $("#elementor-panel-category-elementor-plus-widgets").find(".elementor-panel-category-items").find('.elementor-element-wrapper:first').hide();
+                var message = "<div style='padding:5px;text-align:center'>Elementor Plus Installation: <a href='"+elementor_plus_object.elementor_theme_settings+"' class='elementor-button elementor-button-success' style='border-radius:3px 0 0 3px;padding: 4px;'>Finish Setup</a></div>";
+                $("#elementor-panel-category-elementor-plus-widgets").find(".elementor-panel-category-items").prepend(message);
                 $("#elementor-panel-elements-search-area").after(message);
             })
             
@@ -402,24 +403,13 @@
 
         }
 
-         // elementor.hooks.addFilter( 'controls/base/behaviors',function( behaviors, all){
-         //                        alert("csll");
-         //                        //console.log(behaviors, all);
-         //                        if(all.options.elementSettingsModel.attributes.widgetType=="category"){
-         //                        //    all.options.elementSettingsModel.attributes.layoutDesignSelectionpoup = 'yes';
-         //                        }
-         //                        // console.log(all.elementSettingsModel.get('widgetType'));
-                                
-         //                    } );
-
      });
      $(document).on("click",'.elementor-control-type-section', function(){
-            alert("hello");
             $(this).parents('#elementor-controls').find('.elementor-control-layoutDesignSelected').hide();
         });
     var openCallToActionDesignPopup = function(designElement){
 	    var view = new AddPersonView();
-	    view.model = ampforwp_elem_object.widget_design.designs[designElement];
+	    view.model = elementor_plus_object.widget_design.designs[designElement];
 	    view.render().showModal({});
 	}
 }( jQuery ) );
