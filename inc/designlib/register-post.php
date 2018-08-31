@@ -8,24 +8,24 @@ class ElementorPlusDesign{
 
 	function registerPostType(){
 		$labels = array(
-		        'name'                => _x( 'Design Library', 'Post Type General Name', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'singular_name'       => _x( 'Design Library', 'Post Type Singular Name', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'menu_name'           => __( 'Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'parent_item_colon'   => __( 'Parent Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'all_items'           => __( 'All Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'view_item'           => __( 'View Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'add_new_item'        => __( 'Add New Design', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'add_new'             => __( 'Add New', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'edit_item'           => __( 'Edit Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'update_item'         => __( 'Update Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'search_items'        => __( 'Search Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'not_found'           => __( 'Not Found', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'not_found_in_trash'  => __( 'Not found in Trash', ELEMENTOR_PLUS_TEXT_DOMAIN )
+		        'name'                => esc_html__( 'Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'singular_name'       => esc_html__( 'Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'menu_name'           => esc_html__( 'Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'parent_item_colon'   => esc_html__( 'Parent Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'all_items'           => esc_html__( 'All Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'view_item'           => esc_html__( 'View Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'add_new_item'        => esc_html__( 'Add New Design', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'add_new'             => esc_html__( 'Add New', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'edit_item'           => esc_html__( 'Edit Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'update_item'         => esc_html__( 'Update Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'search_items'        => esc_html__( 'Search Design Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'not_found'           => esc_html__( 'Not Found', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'not_found_in_trash'  => esc_html__( 'Not found in Trash', ELEMENTOR_PLUS_TEXT_DOMAIN )
 		    );
 
 		    $args = array(
-		        'label'               => __( 'Elementor Plus Designs', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-		        'description'         => __( 'Elementor Plus Designs and Layouts Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'label'               => esc_html__( 'Elementor Plus Designs', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+		        'description'         => esc_html__( 'Elementor Plus Designs and Layouts Library', ELEMENTOR_PLUS_TEXT_DOMAIN ),
 		        'labels'              => $labels,
 		        // Features this CPT supports in Post Editor
 		        'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
@@ -61,17 +61,17 @@ class ElementorPlusDesign{
 		$taxonomy = elementor_plus_basics_config('taxonomy'); 
 		$post_type = elementor_plus_basics_config('post_type'); 
 		$labels = array(
-				    'name' => _x( 'Design Widget', 'taxonomy general name', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-				    'singular_name' => _x( 'Widget Type', 'taxonomy singular name', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-				    'search_items' =>  __( 'Search Widget', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				    'all_items' => __( 'All Widgets', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				    'parent_item' => __( 'Parent Widget', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				    'parent_item_colon' => __( 'Parent Widget:', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				    'edit_item' => __( 'Edit Widget', ELEMENTOR_PLUS_TEXT_DOMAIN), 
-				    'update_item' => __( 'Update Widget', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				    'add_new_item' => __( 'Add New Widget', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				    'new_item_name' => __( 'New Widget Name', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				    'menu_name' => __( 'Widget Types', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				    'name' => esc_html__( 'Design Widget', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				    'singular_name' => esc_html__( 'Widget Type', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				    'search_items' =>  esc_html__( 'Search Widget', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				    'all_items' => esc_html__( 'All Widgets', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				    'parent_item' => esc_html__( 'Parent Widget', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				    'parent_item_colon' => esc_html__( 'Parent Widget:', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				    'edit_item' => esc_html__( 'Edit Widget', ELEMENTOR_PLUS_TEXT_DOMAIN), 
+				    'update_item' => esc_html__( 'Update Widget', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				    'add_new_item' => esc_html__( 'Add New Widget', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				    'new_item_name' => esc_html__( 'New Widget Name', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				    'menu_name' => esc_html__( 'Widget Types', ELEMENTOR_PLUS_TEXT_DOMAIN),
 				);    
  
 		// Now register the taxonomy

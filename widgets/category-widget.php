@@ -29,7 +29,7 @@ class CategoryWidgets extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Category', 'category' );
+		return esc_html__( 'Category', ELEMENTOR_PLUS_TEXT_DOMAIN );
 	}
 	/**
 	 * Retrieve the widget icon.
@@ -87,7 +87,7 @@ class CategoryWidgets extends Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => __( 'Content', 'category' ),
+				'label' => esc_html__( 'Content', ELEMENTOR_PLUS_TEXT_DOMAIN ),
 			)
 		);
 		$designs = getDesignListByCategory('category');
@@ -97,7 +97,7 @@ class CategoryWidgets extends Widget_Base {
 		$this->add_control(
 			'layoutDesignSelected',
 			array(
-				'label' => __( 'design Selection', 'category' ),
+				'label' => esc_html__( 'design Selection', ELEMENTOR_PLUS_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default'=>$defaultDesign,
 				'options'=>$designs,
@@ -116,7 +116,7 @@ class CategoryWidgets extends Widget_Base {
 		$this->add_control(
 			'layoutDesignSelectionpoup',
 			array(
-				'label' => __( 'Is first drop', 'category' ),
+				'label' => esc_html__( 'Is first drop', ELEMENTOR_PLUS_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::HIDDEN,
 				'default'=>'no',
 			)
@@ -134,7 +134,7 @@ class CategoryWidgets extends Widget_Base {
 		$this->add_control(
 			'selected_category',
 			array(
-				'label' => __( 'Select Category', 'category' ),
+				'label' => esc_html__( 'Select Category', ELEMENTOR_PLUS_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default'=>'recent_option',
 				'options'=>$categoriesArray
@@ -143,7 +143,7 @@ class CategoryWidgets extends Widget_Base {
 		$this->add_control(
 			'listShowNumbers',
 			array(
-				'label' => __( 'No of Post to show', 'category' ),
+				'label' => esc_html__( 'No of Post to show', ELEMENTOR_PLUS_TEXT_DOMAIN ),
 				'type' => 'number',
 				'default'=>get_option( 'posts_per_page' ),
 			)

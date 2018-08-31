@@ -34,7 +34,18 @@ class ElementorPlusPlugin {
 
 		add_action( "print_media_templates", array( $this, "elementor_plus_new_template_dialog" ) );
 
-		add_action( 'elementor/editor/before_enqueue_scripts', function() {
+		add_action( 'elementor/editor/before_enqueue_scripts', array($this, 'elementor_plus_before_enqueue_scripts'));
+
+		add_action('elementor/editor/after_enqueue_styles', array($this, 'elementor_plus_before_enqueue_style') );
+
+	}
+
+	function elementor_plus_before_enqueue_style(){
+		wp_register_style( 'elementor-plus-widget-options', plugins_url( '/assets/css/elementor-plus-widget-options.css', ELEMENTOR_PLUS__FILE__ ), array('elementor-editor'), false, true );
+			wp_enqueue_style( 'elementor-plus-widget-options' );
+	}
+
+	function elementor_plus_before_enqueue_scripts() {
 				$settings = get_option('elementor_plus_library_settings');
 				$designList = array();
 				if( elementorPlusGetDesignListData() ){
@@ -51,14 +62,9 @@ class ElementorPlusPlugin {
 				
 				wp_enqueue_script( 'elementor-plus-widget-options' );
 
-		} );
+				
 
-		add_action('elementor/editor/before_enqueue_styles', function(){
-			wp_register_style( 'elementor-plus-widget-options-css', plugins_url( '/assets/css/elementor-plus-widget-options.css', ELEMENTOR_PLUS__FILE__ ), array(), false, true );
-			wp_enqueue_style( 'elementor-plus-widget-options-css' );
-		});
-
-	}
+		} 
 	/**
 	 * On Widgets Registered
 	 *
@@ -93,7 +99,7 @@ class ElementorPlusPlugin {
 		$elements_manager->add_category(
 			'elementor-plus-widgets',
 			[
-				'title' => __( 'Elementor Plus', ELEMENTOR_PLUS_ENVIRONEMT ),
+				'title' => esc_html__( 'Elementor Plus', ELEMENTOR_PLUS_ENVIRONEMT ),
 				'icon' => 'fa fa-plug',
 			]
 		);

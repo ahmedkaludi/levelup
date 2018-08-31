@@ -30,8 +30,8 @@ Class AFWP__Admin_settings{
 		}
 		add_submenu_page(
 				self::PAGE_ID,
-				__( 'Elementor Plus '.$AvailableUpdateHtml, ELEMENTOR_PLUS_TEXT_DOMAIN ),
-				__( 'Elementor Plus '.$AvailableUpdateHtml, ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				esc_html__( 'Elementor Plus '.$AvailableUpdateHtml, ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				esc_html__( 'Elementor Plus '.$AvailableUpdateHtml, ELEMENTOR_PLUS_TEXT_DOMAIN ),
 				'manage_options',
 				'elementor_plus_settings',
 				[ $this, 'elementor_plus_settings' ]
@@ -74,7 +74,7 @@ Class AFWP__Admin_settings{
 				add_settings_error(
 					    'elementor_plus_library_settings', // whatever you registered in `register_setting
 					    'API_key_error', // doesn't really mater
-					    __('API Key not valid. Please insert valid key', ELEMENTOR_PLUS_TEXT_DOMAIN),
+					    esc_html__('API Key not valid. Please insert valid key', ELEMENTOR_PLUS_TEXT_DOMAIN),
 					    'error' // error or notice works to make things pretty
 					);
 			}
@@ -82,7 +82,7 @@ Class AFWP__Admin_settings{
 		}
 		?>
 		<div class="wrap">
-			<h1>Elementor Plus Settings</h1>
+			<h1><?php esc_html__('Elementor Plus Settings', ELEMENTOR_PLUS_TEXT_DOMAIN); ?></h1>
 			<h2 class="nav-tab-wrapper elementor-plus-tabs">
 
 				<?php
@@ -140,7 +140,7 @@ Class AFWP__Admin_settings{
 			);
 		}
 		
-		$desciption = "<strong>".__('Need Support',ELEMENTOR_PLUS_TEXT_DOMAIN)."?</strong>: <span style='font-weight:normal'>".__('Our world class technical team is always available to help you with your issues',ELEMENTOR_PLUS_TEXT_DOMAIN).". <a class='link' href='mailto:team@magazine3.com' target='_blank' style='font-weight:bold;display:inline-block'>".__('Just send us an email',ELEMENTOR_PLUS_TEXT_DOMAIN)."</a></span>.";
+		$desciption = "<strong>".esc_html__('Need Support',ELEMENTOR_PLUS_TEXT_DOMAIN)."?</strong>: <span style='font-weight:normal'>".esc_html__('Our world class technical team is always available to help you with your issues',ELEMENTOR_PLUS_TEXT_DOMAIN).". <a class='link' href='mailto:team@magazine3.com' target='_blank' style='font-weight:bold;display:inline-block'>".esc_html__('Just send us an email',ELEMENTOR_PLUS_TEXT_DOMAIN)."</a></span>.";
 
 		add_settings_section('help_menu_section',
 								 $desciption, 
@@ -160,18 +160,18 @@ Class AFWP__Admin_settings{
 
 	    ?>	
 	    	<div class="elementor-plus-sync-wrapper">
-				<h3>You now have full access to Elementor Plus</h3>
-				<p>Current version <?php echo esc_html($current_version); ?></p>
+				<h3><?php echo esc_html__('You now have full access to Elementor Plus',ELEMENTOR_PLUS_TEXT_DOMAIN); ?></h3>
+				<p><?php echo esc_html__('Current version', ELEMENTOR_PLUS_TEXT_DOMAIN);?> <?php echo esc_html($current_version); ?></p>
 				<br>
 				<?php
 			    if(version_compare($current_version, $server_version, '<') ){
 			    ?>
-			    	<p>New Version Available <?php echo esc_html($server_version); ?></p>
+			    	<p><?php echo esc_html__('New Version Available', ELEMENTOR_PLUS_TEXT_DOMAIN); echo " ".esc_html($server_version); ?></p>
 			    	<br>
-			    	<button type="button" value="sync" name="sync" id="elementor-plus-sync-lib" class="button"><i class="dashicons dashicons-download"></i> Update the Library to <?php echo esc_html($server_version); ?></button>
+			    	<button type="button" value="sync" name="sync" id="elementor-plus-sync-lib" class="button"><i class="dashicons dashicons-download"></i> <?php echo esc_html__('Update the Library to', ELEMENTOR_PLUS_TEXT_DOMAIN);?> <?php echo esc_html($server_version); ?></button>
 					
 				<?php }else{ ?>
-					<button type="button" id="elementor-plus-sync-versions" class="button"><i class="dashicons dashicons-download"></i> Sync Library</button>
+					<button type="button" id="elementor-plus-sync-versions" class="button"><i class="dashicons dashicons-download"></i> <?php echo esc_html__('Sync Library', ELEMENTOR_PLUS_TEXT_DOMAIN); ?> </button>
 				<?php } ?>
 			</div>
 	    <?php
