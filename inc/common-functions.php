@@ -101,6 +101,6 @@ function elementor_plus_amp_design_styling(){
 		}
 	}
 	if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
-		echo $allCss;
+		echo esc_html($allCss);
 	}
 }

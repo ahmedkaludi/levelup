@@ -66,7 +66,7 @@ function elementor_plus_fail_load_out_of_date() {
 	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
 	$message = '<p>' . __( 'Elementor Plus is not working because you are using an old version of Elementor.', ELEMENTOR_PLUS_TEXT_DOMAIN ) . '</p>';
 	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, __( 'Update Elementor Now', ELEMENTOR_PLUS_TEXT_DOMAIN ) ) . '</p>';
-	echo '<div class="error">' . $message . '</div>';
+	echo '<div class="error">' . wp_kses_post($message) . '</div>';
 }
 function elementor_plus_fail_load() {
 	if ( ! current_user_can( 'update_plugins' ) ) {
