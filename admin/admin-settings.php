@@ -140,8 +140,13 @@ Class AFWP__Admin_settings{
 			);
 		}
 		
+		$desciption = "<strong>".__('Need Support',ELEMENTOR_PLUS_TEXT_DOMAIN)."?</strong>: <span style='font-weight:normal'>".__('Our world class technical team is always available to help you with your issues',ELEMENTOR_PLUS_TEXT_DOMAIN).". <a class='link' href='mailto:team@magazine3.com' target='_blank' style='font-weight:bold;display:inline-block'>".__('Just send us an email',ELEMENTOR_PLUS_TEXT_DOMAIN)."</a></span>.";
 
-		add_settings_section('help_menu_section', "<strong>Need Support?</strong>: <span style='font-weight:normal'>Our world class technical team is always available to help you with your issues. <a class='link' href='mailto:team@magazine3.com' target='_blank' style='font-weight:bold;display:inline-block'>Just send us an email</a></span>.", '__return_false', 'help_menu_section');
+		add_settings_section('help_menu_section',
+								 $desciption, 
+								 '__return_false',
+								 'help_menu_section'
+								);
 		
 
 	}
