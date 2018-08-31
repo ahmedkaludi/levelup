@@ -46,11 +46,11 @@ function elementor_plus_load() {
 	if(is_admin()){
 		require( ELEMENTOR_PLUS__DIR__PATH . '/admin/admin-settings.php' );
 	}
-	register_activation_hook(__FILE__, 'elementore_plus_activation_hook');
 }
 add_action( 'plugins_loaded', 'elementor_plus_load' );
 
 
+register_activation_hook(__FILE__, 'elementore_plus_activation_hook');
 function elementore_plus_activation_hook(){
 	if('development'!=ELEMENTOR_PLUS_ENVIRONEMT){ //on production 
 		elementore_plus_activation();
