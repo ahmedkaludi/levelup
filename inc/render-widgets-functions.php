@@ -1,5 +1,5 @@
 <?php
-namespace ElementorePlus;
+namespace ElementorPlusDesign;
 
 function render($settings){
 	$selected_design = $settings['layoutDesignSelected'];
