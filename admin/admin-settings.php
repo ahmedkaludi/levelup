@@ -210,7 +210,7 @@ Class AFWP__Admin_settings{
 		    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 		    	<p>
 		        	New Version of Elementor Plus <?php echo esc_html($server_version); ?> is available
-		        	<a href="<?php echo esc_url('admin.php?page=elementor_plus_settings'); ?>" class=""><?php esc_html__('Click to update Elementor Plus design library',ELEMENTOR_PLUS_TEXT_DOMAIN); ?></a> .<span class="ep-response-status"></span>
+		        	<a href="<?php echo esc_url('admin.php?page=elementor_plus_settings'); ?>" class=""><?php echo esc_html__('Click to update Elementor Plus design library',ELEMENTOR_PLUS_TEXT_DOMAIN); ?></a> .<span class="ep-response-status"></span>
 		        </p>
 		    </div>
 	    <?php

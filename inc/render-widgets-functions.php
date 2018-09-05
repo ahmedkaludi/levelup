@@ -43,7 +43,7 @@ function render($settings){
 			$non_amp_css = $nonAmpMarkup['non_amp_css'];
 			if($non_amp_css && !isset($elementor_plus_ampCss[$selected_design])){
 				$elementor_plus_ampCss[$selected_design] = 'added';//$non_amp_css;
-				echo '<Style>'.esc_html($non_amp_css).'</style>';
+				echo '<style>'.esc_html($non_amp_css).'</style>';
 			}
 			
 

@@ -126,7 +126,7 @@ class CategoryWidgets extends Widget_Base {
                    'orderby' => 'name',		
                    'order'   => 'ASC'		
                ) );		
-		 $categoriesArray = array('recent_option'=>'Recent Posts');		
+		 $categoriesArray = array('recent_option'=>esc_html__( 'Recent Posts', ELEMENTOR_PLUS_TEXT_DOMAIN ));		
 		 foreach($categories as $category){		
 		  $categoryName = htmlspecialchars($category->name, ENT_QUOTES);
 		 	$categoriesArray[$category->term_id] = $categoryName;			
