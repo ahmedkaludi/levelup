@@ -37,7 +37,7 @@ class ElementorPlusPlugin {
 
 	}
 	function category_widget_scripts() {
-			wp_register_script( 'category-widget', plugins_url( '/assets/js/category-widget.js', ELEMENTOR_PLUS__FILE__ ), array( 'jquery' ), false, true );
+			wp_register_script( 'elementor-plus-category-widget', plugins_url( '/assets/js/category-widget.js', ELEMENTOR_PLUS__FILE__ ), array( 'jquery' ), false, true );
 		} 
 	function elementor_plus_before_enqueue_style(){
 		echo  include ELEMENTOR_PLUS__FILE__PATH.'/assets/css/elementor-plus-widget-options.php';
