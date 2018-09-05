@@ -5,17 +5,17 @@ Class AFWP__Admin_settings{
 	const MENU_PRIORITY_AMP_THEMES = 503;
 	public $allTabs = array('dashboard','help');
 	public $tabsdata = array(
-			'dashboard'	=> array(
-				'label_name'	=>	esc_html__('dashboard', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				'icon_class'	=> 	'dashicons-dashboard',
-				'section_slug'	=>	'dashboard_menu_section',
-			),
-			'help'		=>	array(
-				'label_name'	=> esc_html__('Help', ELEMENTOR_PLUS_TEXT_DOMAIN),
-				'icon_class'	=> 'dashicons-editor-help',
-				'section_slug'	=>'help_menu_section',
-			),
-		);
+				'dashboard'	=> array(
+									'label_name'	=>	'dashboard',
+									'icon_class'	=> 	'dashicons-dashboard',
+									'section_slug'	=>	'dashboard_menu_section',
+								),
+								'help'		=>	array(
+									'label_name'	=> 'Help',
+									'icon_class'	=> 'dashicons-editor-help',
+									'section_slug'	=>'help_menu_section',
+								),
+						);
 	function __construct(){
 		add_action( 'admin_menu', array( $this, 'elementor_plus_settings_menu' ), self::MENU_PRIORITY_AMP_THEMES );
 		add_action( 'admin_notices',  array($this,'elementor_plus_notice_new_version_available' ));
