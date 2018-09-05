@@ -4,17 +4,18 @@ Class AFWP__Admin_settings{
 	const PAGE_ID = 'elementor';
 	const MENU_PRIORITY_AMP_THEMES = 503;
 	public $allTabs = array('dashboard','help');
-	public $tabsdata = array('dashboard'=>array(
-											'label_name'=>'dashboard',
-											'icon_class'=> 'dashicons-dashboard',
-											'section_slug'=>'dashboard_menu_section',
-											),
-							'help'	=>	array(
-										'label_name'=>'Help',
-										'icon_class'=> 'dashicons-editor-help',
-										'section_slug'=>'help_menu_section',
-										),
-						);
+	public $tabsdata = array(
+			'dashboard'	=> array(
+				'label_name'	=>	esc_html__('dashboard', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				'icon_class'	=> 	'dashicons-dashboard',
+				'section_slug'	=>	'dashboard_menu_section',
+			),
+			'help'		=>	array(
+				'label_name'	=> esc_html__('Help', ELEMENTOR_PLUS_TEXT_DOMAIN),
+				'icon_class'	=> 'dashicons-editor-help',
+				'section_slug'	=>'help_menu_section',
+			),
+		);
 	function __construct(){
 		add_action( 'admin_menu', array( $this, 'elementor_plus_settings_menu' ), self::MENU_PRIORITY_AMP_THEMES );
 		add_action( 'admin_notices',  array($this,'elementor_plus_notice_new_version_available' ));
@@ -23,6 +24,7 @@ Class AFWP__Admin_settings{
 		*/
 		add_action('admin_init', array( $this, 'elementor_plus_tabs_settings_init'));
 	}
+
 	public function elementor_plus_settings_menu(){
 		$AvailableUpdateHtml = '';
 		if($this->check_update_available()){
@@ -46,6 +48,7 @@ Class AFWP__Admin_settings{
 		}
 		return $tab;
 	}
+
 	protected function elementor_plus_admin_link($tab = '', $args = array()){	
 		$page = 'elementor_plus_settings';
 
@@ -79,8 +82,7 @@ Class AFWP__Admin_settings{
 					);
 			}
 			settings_errors();
-		}
-		?>
+		}?>
 		<div class="wrap">
 			<h1><?php esc_html__('Elementor Plus Settings', ELEMENTOR_PLUS_TEXT_DOMAIN); ?></h1>
 			<h2 class="nav-tab-wrapper elementor-plus-tabs">
@@ -115,6 +117,7 @@ Class AFWP__Admin_settings{
 		</div><!-- /.wrap -->
 		<?php
 	}
+
 	public function elementor_plus_tabs_settings_init(){
 		register_setting( 'elementor_plus_theme_setting_group', 'elementor_plus_library_settings' );
 
@@ -209,7 +212,7 @@ Class AFWP__Admin_settings{
 	    ?>
 		    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 		    	<p>
-		        	New Version of Elementor Plus <?php echo esc_html($server_version); ?> is available
+		        	<?php echo esc_html__('New Version of Elementor Plus',ELEMENTOR_PLUS_TEXT_DOMAIN); ?> <?php echo esc_html($server_version); ?> <?php echo esc_html__('is available',ELEMENTOR_PLUS_TEXT_DOMAIN); ?>
 		        	<a href="<?php echo esc_url('admin.php?page=elementor_plus_settings'); ?>" class=""><?php echo esc_html__('Click to update Elementor Plus design library',ELEMENTOR_PLUS_TEXT_DOMAIN); ?></a> .<span class="ep-response-status"></span>
 		        </p>
 		    </div>
