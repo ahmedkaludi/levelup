@@ -51,10 +51,10 @@ function elementor_plus_load() {
 add_action( 'plugins_loaded', 'elementor_plus_load' );
 
 
-register_activation_hook(__FILE__, 'elementore_plus_activation_hook');
-function elementore_plus_activation_hook(){
+register_activation_hook(__FILE__, 'elementor_plus_activation_hook');
+function elementor_plus_activation_hook(){
 	if('development'!=ELEMENTOR_PLUS_ENVIRONEMT){ //on production 
-		elementore_plus_activation();
+		elementor_plus_activation();
 	}
 }
 

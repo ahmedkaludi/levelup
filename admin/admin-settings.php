@@ -1,5 +1,5 @@
 <?php
-namespace AMPElementoreThemeSettings;	
+namespace AMPElementorThemeSettings;	
 Class AFWP__Admin_settings{
 	const PAGE_ID = 'elementor';
 	const MENU_PRIORITY_AMP_THEMES = 503;
@@ -230,4 +230,4 @@ Class AFWP__Admin_settings{
 	}
 }
 
-new \AMPElementoreThemeSettings\AFWP__Admin_settings();
+new \AMPElementorThemeSettings\AFWP__Admin_settings();

@@ -57,7 +57,7 @@ function render($settings){
 
 
 
-namespace ElementorePlusDesignCount;
+namespace ElementorPlusDesignCount;
 
 function abvailableDesignCount(){
 	$args = array(

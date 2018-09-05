@@ -147,7 +147,7 @@ add_action( 'wp_ajax_elementor_plus_update_design_version',  'elementor_plus_upd
 
 
 //update Version
-function elementore_plus_activation() {
+function elementor_plus_activation() {
     if (! wp_next_scheduled ( 'elementor_plus_daily_event' )) {
     wp_schedule_event(time(), 'daily', 'elementor_plus_daily_event');
     }
