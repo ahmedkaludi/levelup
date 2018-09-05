@@ -77,12 +77,11 @@ class CategoryWidgets extends Widget_Base {
 	 */
 	protected function _register_controls() {
 		$design_controls['settings'] = array(
-								array(
-									'label'=>'Content',
-									'tab' => 'content'
-								)
-
-								);
+			array(
+				'label'	=>	esc_html__( 'Content', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				'tab' 	=> 	'content'
+			)
+		);
 		
 		$this->start_controls_section(
 			'section_content',
@@ -97,19 +96,19 @@ class CategoryWidgets extends Widget_Base {
 		$this->add_control(
 			'layoutDesignSelected',
 			array(
-				'label' => esc_html__( 'design Selection', ELEMENTOR_PLUS_TEXT_DOMAIN ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'default'=>$defaultDesign,
-				'options'=>$designs,
+				'label' 	=> esc_html__( 'design Selection', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				'type' 		=> \Elementor\Controls_Manager::SELECT,
+				'default'	=>$defaultDesign,
+				'options'	=>$designs,
 				'show_label'=>false,
 				'conditions'=> array(
-							'terms'=> array(
-									array(
-										'name' => 'layoutDesignSelectionpoup',
-										'value' => 'no',
-									)
-								)
-							)
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelectionpoup',
+							'value' => 'no',
+						)
+					)
+				)
 			)
 		);
 
@@ -221,9 +220,6 @@ class CategoryWidgets extends Widget_Base {
 			$isSinglulerPost = true; 
 			$replaceHtml = $rawhtml;
 		}
-		
-
-
 
 		$args = array(
 				'cat' => $settings['selected_category'],//$fieldValues['category_selection'],
