@@ -46,8 +46,9 @@ class ElementorPlusPlugin {
 	function elementor_plus_before_enqueue_scripts() {
 			$settings = get_option('elementor_plus_library_settings');
 			$designList = array();
-			if( elementorPlusGetDesignListData() ){
-				$designList = elementorPlusGetDesignListData();
+			$designArray = elementorPlusGetDesignListData();
+			if( $designArray ){
+				$designList = $designArray;
 			}
 
 			wp_register_script( 'elementor-plus-widget-options', plugins_url( '/assets/js/elementor-plus-widget-options.js', ELEMENTOR_PLUS__FILE__ ), [ 'jquery' ], false, true );

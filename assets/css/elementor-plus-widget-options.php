@@ -155,6 +155,7 @@
     position: relative;
     top: 50%;
     font-size: 16px;
+    cursor:pointer;
 }
 #modalContainer .ep-elementor-design-btn{
     padding:8px 15px;

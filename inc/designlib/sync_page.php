@@ -98,6 +98,7 @@ function elementor_plus_update_design_library($is_first_install=false){
                 update_post_meta( $post_id, 'amp_html_markup', $amp_html_markup );
                 update_post_meta( $post_id, 'non_amp_html_markup', $non_amp_html_markup );
                 update_post_meta( $post_id, 'design_unique_name', $valDesigntype['design_unique_name'] );
+                update_post_meta( $post_id, 'design_preview_url', (isset($valDesigntype['design_preview_url'])? $valDesigntype['design_preview_url']: '') );
 
 
                 $media = media_sideload_image($valDesigntype['designImage'], $post_id);

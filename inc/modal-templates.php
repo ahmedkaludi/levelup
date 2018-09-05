@@ -18,7 +18,7 @@
 					<div class="img-content">
                     <div class="elementor-plus-design-wrapper">
                         <span class="ep-elementor-design-btn ep-elementor-design" data-template-id="<%= data.designId %>">Insert</span>
-                        <span class="ep-elementor-design-preview"><a href="#"> <?php echo esc_html__('Preview',ELEMENTOR_PLUS_TEXT_DOMAIN) ?></a></span>
+                        <span class="ep-elementor-design-preview"><a href="<% if (typeof(data.designPreview) !== 'undefined') { %><%= data.designPreview %><% }else{ %><%= '#' %><% } %>"> <?php echo esc_html__('Preview',ELEMENTOR_PLUS_TEXT_DOMAIN) ?></a></span>
                     </div>
 						<img src="<%= data.designImage%>" />
 					</div>

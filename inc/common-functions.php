@@ -58,6 +58,7 @@ if(!function_exists('elementorPlusGetDesignListData')){
 				foreach ($query as $post) {
 					$currentDesigns[] = array('title' => $post->post_title,
 											'designId' => get_post_meta( $post->ID, 'design_unique_name', true ),
+											'designPreview' =>  ( !empty( get_post_meta( $post->ID, 'design_preview_url', true ) ) ? get_post_meta( $post->ID, 'design_preview_url', true ) : '#' ),
 											'designImage' => get_the_post_thumbnail_url($post->ID),
 										);
 				}
