@@ -26,7 +26,7 @@ Class AFWP__Admin_settings{
 	public function elementor_plus_settings_menu(){
 		$AvailableUpdateHtml = '';
 		if($this->check_update_available()){
-			$AvailableUpdateHtml = '<span class="update-plugins count-2"><span class="plugin-count">1</span></span>';
+			$AvailableUpdateHtml = '<span class="update-plugins count-2"><span class="plugin-count">'.esc_html__( '1', ELEMENTOR_PLUS_TEXT_DOMAIN ).'</span></span>';
 		}
 		add_submenu_page(
 				self::PAGE_ID,
@@ -185,11 +185,11 @@ Class AFWP__Admin_settings{
 		if(isset($settings['api_status']) && $settings['api_status']=='valid'){
 			echo '<input type="text" name="elementor_plus_library_settings[api_key]" value="'.esc_attr(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text" readonly>';
 			echo '<span class="dashicons dashicons-yes" style="color: #46b450;"></span>';
-			echo '<span class="button right elementor_plus_remove" ><i class="dashicons dashicons-no" style="color: #e6132f;"></i> Remove Key</span>';
+			echo '<span class="button right elementor_plus_remove" ><i class="dashicons dashicons-no" style="color: #e6132f;"></i> '.esc_html__( 'Remove Key', ELEMENTOR_PLUS_TEXT_DOMAIN ).'</span>';
 		}else{
 			echo '<input type="text" name="elementor_plus_library_settings[api_key]" value="'.esc_attr(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
 		}
-		echo '<p>Please enter the API key above. <a target="_blank" href="'.esc_url(ELEMENTOR_PLUS_SERVER_URL.'/user-register/').'" style="text-decoration:none;">Get your FREE key here <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
+		echo '<p>'.esc_html__(' Please enter the API key above',ELEMENTOR_PLUS_TEXT_DOMAIN ). '<a target="_blank" href="'.esc_url(ELEMENTOR_PLUS_SERVER_URL.'/user-register/').'" style="text-decoration:none;">'.esc_html__( 'Get your FREE key here', ELEMENTOR_PLUS_TEXT_DOMAIN ).' <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
 
 	}
 
@@ -201,7 +201,7 @@ Class AFWP__Admin_settings{
 
 	    if((($current_version==0 && $server_version==0) || $settings['api_key']=='') && ( ('admin.php' != $pagenow ) && (!isset($_GET['page']) || 'elementor_plus_settings' != $_GET['page'] ) )  ){
 	    	echo '<div class="notice notice-warning" id="sync-status-notice" >
-	        <p>Congratulations on installing <strong>Elementor Plus</strong>.<br/> You have one last step remaining to finish the installation. <a href="'. esc_url('admin.php?page=elementor_plus_settings') .'" class=button button-secondary button-hero">Finish Installation</a></p>
+	        <p>'.esc_html__('Congratulations on installing',ELEMENTOR_PLUS_TEXT_DOMAIN).' <strong>'.esc_html__('Elementor Plus',ELEMENTOR_PLUS_TEXT_DOMAIN).'</strong>.<br/> '.('You have one last step remaining to finish the installation').'. <a href="'. esc_url('admin.php?page=elementor_plus_settings',ELEMENTOR_PLUS_TEXT_DOMAIN) .'" class=button button-secondary button-hero">'.esc_html__('Finish Installation',ELEMENTOR_PLUS_TEXT_DOMAIN).'</a></p>
 	        </div>';
 	    }
 
@@ -210,7 +210,7 @@ Class AFWP__Admin_settings{
 		    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 		    	<p>
 		        	New Version of Elementor Plus <?php echo esc_html($server_version); ?> is available
-		        	<a href="<?php echo esc_url('admin.php?page=elementor_plus_settings'); ?>" class="">Click to update Elementor Plus design library</a> .<span class="ep-response-status"></span>
+		        	<a href="<?php echo esc_url('admin.php?page=elementor_plus_settings'); ?>" class=""><?php esc_html__('Click to update Elementor Plus design library',ELEMENTOR_PLUS_TEXT_DOMAIN); ?></a> .<span class="ep-response-status"></span>
 		        </p>
 		    </div>
 	    <?php
