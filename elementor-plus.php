@@ -23,6 +23,7 @@ define( 'ELEMENTOR_PLUS_ENVIRONEMT', 'production' );//development
  * Load the plugin after Elementor (and other plugins) are loaded.
  *
  */
+require( ELEMENTOR_PLUS__DIR__PATH . '/inc/designlib/sync_page.php' );
 function elementor_plus_load() {
 	// Load localization file
 	load_plugin_textdomain( ELEMENTOR_PLUS_ENVIRONEMT, false, trailingslashit(ELEMENTOR_PLUS__FILE__PATH) . 'languages' );
@@ -39,7 +40,6 @@ function elementor_plus_load() {
 	}
 	// Require the main plugin file
 	global $elementor_plus_ampCss;
-	require( ELEMENTOR_PLUS__DIR__PATH . '/inc/designlib/sync_page.php' );
 	require( ELEMENTOR_PLUS__DIR__PATH . '/inc/designlib/register-post.php' );
 	require( ELEMENTOR_PLUS__DIR__PATH . '/inc/image-aqua.php' );
 	require( ELEMENTOR_PLUS__DIR__PATH . '/elementor-plus-widgets.php' );
