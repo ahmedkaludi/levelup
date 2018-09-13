@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Main Plugin Class
  *
- * Register new elementor plus widget.
+ * Register new LevelUP widget.
  *
  */
 class LevelupPlugin {

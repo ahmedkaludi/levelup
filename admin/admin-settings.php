@@ -1,6 +1,6 @@
 <?php
-namespace AMPElementorThemeSettings;	
-Class AFWP__Admin_settings{
+namespace LevelUPElementorThemeSettings;	
+Class LEVELUP__Admin_settings{
 	const PAGE_ID = 'elementor';
 	const MENU_PRIORITY_AMP_THEMES = 503;
 	public $allTabs = array('dashboard','help');
@@ -31,14 +31,15 @@ Class AFWP__Admin_settings{
 	}
 
 	public function levelup_settings_menu(){
-		$AvailableUpdateHtml = '';
+		$availableUpdateHtml = '';
 		if($this->check_update_available()){
-			$AvailableUpdateHtml = '<span class="update-plugins count-2"><span class="plugin-count">'.esc_html__( '1', LEVELUP_TEXT_DOMAIN ).'</span></span>';
+			$availableUpdateHtml = '<span class="update-plugins count-1"><span class="update-count" title="">'.esc_html__( '1', LEVELUP_TEXT_DOMAIN ).'</span></span>';
 		}
+			$menu_label = sprintf( esc_html__( 'LevelUp ', LEVELUP_TEXT_DOMAIN)." %s",  $availableUpdateHtml);
 		add_submenu_page(
 				self::PAGE_ID,
-				esc_html__( 'LevelUp '.$AvailableUpdateHtml, LEVELUP_TEXT_DOMAIN ),
-				esc_html__( 'LevelUp '.$AvailableUpdateHtml, LEVELUP_TEXT_DOMAIN ),
+				esc_html__('LevelUp Settings', LEVELUP_TEXT_DOMAIN),
+				$menu_label,
 				'manage_options',
 				'levelup_settings',
 				[ $this, 'levelup_settings' ]
@@ -129,12 +130,7 @@ Class AFWP__Admin_settings{
 		$desciption2 = "<strong style='font-size: 13px;text-transform: uppercase'>".esc_html__('Welcome to LevelUP:',LEVELUP_TEXT_DOMAIN)."</strong> <span style='font-weight:normal; font-size: 14px;'>".esc_html__('Get Ready take your WP to the next level with the below features.',LEVELUP_TEXT_DOMAIN).
         "   </span>    
          <br />
-<strong style='font-size: 24px;margin-top: 50px;position: relative;display: block;line-height: 8px;'>Design Library for Elementor</strong><br/><span style='font-weight:normal;font-size: 14px;'>".esc_html__('Its a free service which requires API key to be installed so that we can deliver the design elements on constant basis.',LEVELUP_TEXT_DOMAIN).
-        "   
-
-        
-
-      ";
+<strong style='font-size: 24px;margin-top: 50px;position: relative;display: block;line-height: 8px;'>".esc_html__('Design Library for Elementor',LEVELUP_TEXT_DOMAIN)."</strong><br/><span style='font-weight:normal;font-size: 14px;'>".esc_html__('Its a free service which requires API key to be installed so that we can deliver the design elements on constant basis.',LEVELUP_TEXT_DOMAIN);
 
 		add_settings_section('dashboard_menu_section', $desciption2, '__return_false', 'dashboard_menu_section');
 		
@@ -207,7 +203,7 @@ Class AFWP__Admin_settings{
 		}else{
 			echo '<input type="text" name="levelup_library_settings[api_key]" value="'.esc_attr(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
 		}
-		echo '<p>'.esc_html__('Enter the LevelUP API key to get unlimited design elements.  ',LEVELUP_TEXT_DOMAIN ). '<a target="_blank" href="'.esc_url(ELEMENTOR_PLUS_SERVER_URL.'/user-register/').'" style="text-decoration:none;">'.esc_html__( ' Get your FREE key in 20 seconds', LEVELUP_TEXT_DOMAIN ).' <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
+		echo '<p>'.esc_html__('Enter the LevelUP API key to get unlimited design elements.  ',LEVELUP_TEXT_DOMAIN ). '<a target="_blank" href="'.esc_url(LEVELUP_SERVER_URL.'/user-register/').'" style="text-decoration:none;">'.esc_html__( ' Get your FREE key in 20 seconds', LEVELUP_TEXT_DOMAIN ).' <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
 
 	}
 
@@ -248,4 +244,4 @@ Class AFWP__Admin_settings{
 	}
 }
 
-new \AMPElementorThemeSettings\AFWP__Admin_settings();
+new \LevelUPElementorThemeSettings\LEVELUP__Admin_settings();
