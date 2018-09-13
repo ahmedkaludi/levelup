@@ -22,7 +22,7 @@
 					<div class="img-content">
                     <div class="levelup-design-wrapper">
                         <span class="levelup-elementor-design-btn levelup-elementor-design" data-template-id="<%= data.designId %>">Insert</span>
-                        <span class="levelup-elementor-design-preview"><a href="<% if (typeof(data.designPreview) !== 'undefined') { %><%= data.designPreview %><% }else{ %><%= '#' %><% } %>"> <?php echo esc_html__('Preview',LEVELUP_TEXT_DOMAIN) ?></a></span>
+                        <span class="levelup-elementor-design-preview"><a href="<% if (typeof(data.designPreview) !== 'undefined') { %><%= data.designPreview %><% }else{ %><%= '#' %><% } %>" <% if (typeof(data.designPreview) !== 'undefined') { %><%= 'target="_blank"' %><% } %>> <?php echo esc_html__('Preview',LEVELUP_TEXT_DOMAIN) ?></a></span>
                     </div>
 						<img src="<%= data.designImage%>" />
 					</div>
