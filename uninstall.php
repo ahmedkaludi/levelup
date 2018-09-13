@@ -4,6 +4,8 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     die;
 }
 
+$post_type = 'lu_design_library';
+$taxonomy = 'lu_widget_type';
 $option_name = 'levelup_library_settings';
  
 delete_option('levelup-library-version');
@@ -20,7 +22,7 @@ function levelup_go_delete_now() {
 
     $posts = get_posts( array(
         'numberposts' => -1,
-        'post_type' => levelup_basics_config('post_type'),
+        'post_type' => $post_type,
         'post_status' => 'any' ) );
 
     foreach ( $posts as $post ){
@@ -46,7 +48,7 @@ levelup_go_delete_now();
             ) as T
             );
         ",
-        array(levelup_basics_config('taxonomy')) 
+        array($taxonomy) 
     );
 // Delete taxonomies
-$wpdb->prepare( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = %s", array(levelup_basics_config('taxonomy')) );
+$wpdb->prepare( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = %s", array($taxonomy) );

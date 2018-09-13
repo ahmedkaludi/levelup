@@ -73,8 +73,8 @@ function levelup_update_design_library($is_first_install=false){
 }
 
 function levelup_default_designs($responseData){
-    $post_type = (function_exists('levelup_basics_config')? levelup_basics_config('post_type') : 'ep_design_library');
-    $taxonomy = (function_exists('levelup_basics_config')? levelup_basics_config('taxonomy') : 'ep_widget_type');
+    $post_type = levelup_basics_config('post_type');
+    $taxonomy = levelup_basics_config('taxonomy');
     global $wpdb;
     $result = $wpdb->query( 
             $wpdb->prepare("

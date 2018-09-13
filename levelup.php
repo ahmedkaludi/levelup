@@ -23,6 +23,8 @@ define( 'LEVELUP_ENVIRONEMT', 'production' );//development
  * Load the plugin after Elementor (and other plugins) are loaded.
  *
  */
+require( LEVELUP__DIR__PATH . '/inc/common-functions.php' );
+require( LEVELUP__DIR__PATH . '/inc/designlib/register-post.php' );
 require( LEVELUP__DIR__PATH . '/inc/designlib/sync_page.php' );
 function levelup_load() {
 	// Load localization file
@@ -39,10 +41,8 @@ function levelup_load() {
 	}
 	// Require the main plugin file
 	global $levelup_ampCss;
-	require( LEVELUP__DIR__PATH . '/inc/designlib/register-post.php' );
 	require( LEVELUP__DIR__PATH . '/inc/image-aqua.php' );
 	require( LEVELUP__DIR__PATH . '/levelup-widgets.php' );
-	require( LEVELUP__DIR__PATH . '/inc/common-functions.php' );
 	if(is_admin()){
 		require( LEVELUP__DIR__PATH . '/admin/admin-settings.php' );
 	}

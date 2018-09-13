@@ -79,8 +79,8 @@ if(!function_exists('levelupGetDesignListData')){
 }
 
 function levelup_basics_config($get){
-	$config['post_type'] = 'ep_design_library';
-	$config['taxonomy'] = 'ep_widget_type';
+	$config['post_type'] = 'lu_design_library';
+	$config['taxonomy'] = 'lu_widget_type';
 	return (isset($config[$get]) ? $config[$get]: '');
 }
 
