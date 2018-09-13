@@ -90,4 +90,4 @@ class LevelupDesign{
 	}
 }
 
-new ElementorPlusDesign();
+new LevelupDesign();

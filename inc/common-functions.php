@@ -26,8 +26,8 @@ if(!function_exists('levelup_getDesignListByCategory')){
 
 	}
 }
-if(!function_exists('elementorPlusGetDesignListData')){
-	function elementorPlusGetDesignListData($type = ''){
+if(!function_exists('levelupGetDesignListData')){
+	function levelupGetDesignListData($type = ''){
 		$taxonomy = levelup_basics_config('taxonomy');
 		$post_type = levelup_basics_config('post_type');
 		$cat_args = array(

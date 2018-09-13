@@ -46,7 +46,7 @@ class LevelupPlugin {
 	function levelup_before_enqueue_scripts() {
 			$settings = get_option('levelup_library_settings');
 			$designList = array();
-			$designArray = elementorPlusGetDesignListData();
+			$designArray = levelupGetDesignListData();
 			if( $designArray ){
 				$designList = $designArray;
 			}

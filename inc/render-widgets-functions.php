@@ -1,5 +1,5 @@
 <?php
-namespace ElementorPlusDesign;
+namespace LevelupDesign;
 
 function render($settings){
 	$selected_design = $settings['layoutDesignSelected'];
@@ -57,7 +57,7 @@ function render($settings){
 
 
 
-namespace ElementorPlusDesignCount;
+namespace LevelupDesignCount;
 
 function abvailableDesignCount(){
 	$args = array(

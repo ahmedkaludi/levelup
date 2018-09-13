@@ -17,12 +17,17 @@ Class AFWP__Admin_settings{
 								),
 						);
 	function __construct(){
+		add_action( 'plugin_action_links_' . plugin_basename( LEVELUP__FILE__ ), array( $this, 'levelup_plugin_action_links') );
 		add_action( 'admin_menu', array( $this, 'levelup_settings_menu' ), self::MENU_PRIORITY_AMP_THEMES );
 		add_action( 'admin_notices',  array($this,'levelup_notice_new_version_available' ));
 		/*
 			WP Settings API
 		*/
 		add_action('admin_init', array( $this, 'levelup_tabs_settings_init'));
+	}
+	function levelup_plugin_action_links( $links ) {
+		$links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=levelup_settings' ) ) . '">' . esc_html__( 'Settings', LEVELUP_TEXT_DOMAIN ) . '</a>';
+		return $links;
 	}
 
 	public function levelup_settings_menu(){
