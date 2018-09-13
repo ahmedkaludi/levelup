@@ -5,7 +5,7 @@
  * Plugin URI: http://levelup.magazine3.company/
  * Version: 1.0
  * Author: mohammed_kaludi, ahmedkaludi, ampforwp
- * Author URI: http://levelup.magazine3.company/
+ * Author URI: http://magazine3.company/
  * Text Domain: levelup
  * Domain Path: /languages/
  */
