@@ -1,7 +1,7 @@
 <?php
-    class Elementor_Plus_Aq_Exception extends Exception {}
+    class Levelup_Aq_Exception extends Exception {}
 
-    class Elementor_Plus_Aq_Resize
+    class Levelup_Aq_Resize
     {
         /**
          * The singleton instance
@@ -9,7 +9,7 @@
         static private $instance = null;
 
         /**
-         * Should an Elementor_Plus_Aq_Exception be thrown on error?
+         * Should an Levelup_Aq_Exception be thrown on error?
          * If false (default), then the error will just be logged.
          */
         public $throwOnError = false;
@@ -42,9 +42,9 @@
             try {
                 // Validate inputs.
                 if (!$url)
-                    throw new Elementor_Plus_Aq_Exception('$url parameter is required');
+                    throw new Levelup_Aq_Exception('$url parameter is required');
                 if (!$width)
-                    throw new Elementor_Plus_Aq_Exception('$width parameter is required');
+                    throw new Levelup_Aq_Exception('$width parameter is required');
 
                 // Caipt'n, ready to hook.
                 if ( true === $upscale ) add_filter( 'image_resize_dimensions', array($this, 'aq_upscale'), 10, 6 );
@@ -79,7 +79,7 @@
                         1 => $width,
                         2 => $height
                     );
-                    //throw new Elementor_Plus_Aq_Exception('Image must be local: ' . $url);
+                    //throw new Levelup_Aq_Exception('Image must be local: ' . $url);
                 }
                 // Define path of image.
                 $rel_path = str_replace( $upload_url, '', $url );
@@ -87,7 +87,7 @@
 
                 // Check if img path exists, and is an image indeed.
                 if ( ! file_exists( $img_path ) or ! getimagesize( $img_path ) )
-                    throw new Elementor_Plus_Aq_Exception('Image file does not exist (or is not an image): ' . $img_path);
+                    throw new Levelup_Aq_Exception('Image file does not exist (or is not an image): ' . $img_path);
 
                 // Get image info.
                 $info = pathinfo( $img_path );
@@ -112,7 +112,7 @@
 
                     if ( ! $dims || ( true == $crop && false == $upscale && ( $dst_w < $width || $dst_h < $height ) ) ) {
                         // Can't resize, so return false saying that the action to do could not be processed as planned.
-                        throw new Elementor_Plus_Aq_Exception('Unable to resize image because image_resize_dimensions() failed');
+                        throw new Levelup_Aq_Exception('Unable to resize image because image_resize_dimensions() failed');
                     }
                     // Else check if cache exists.
                     elseif ( file_exists( $destfilename ) && getimagesize( $destfilename ) ) {
@@ -131,7 +131,7 @@
                                         1 => $width,
                                         2 => $height
                                     );
-                           /* throw new Elementor_Plus_Aq_Exception('Unable to get WP_Image_Editor: ' . 
+                           /* throw new Levelup_Aq_Exception('Unable to get WP_Image_Editor: ' . 
                                                    $editor->get_error_message() . ' (is GD or ImageMagick installed?)');*/
                         }
 
@@ -141,7 +141,7 @@
                             $resized_rel_path = str_replace( $upload_dir, '', $resized_file['path'] );
                             $img_url = $upload_url . $resized_rel_path;
                         } else {
-                            throw new Elementor_Plus_Aq_Exception('Unable to save resized image file: ' . $resized_file->get_error_message());
+                            throw new Levelup_Aq_Exception('Unable to save resized image file: ' . $resized_file->get_error_message());
                         }
 
                     }
@@ -165,7 +165,7 @@
 
                 return $image;
             }
-            catch (Elementor_Plus_Aq_Exception $ex) {
+            catch (Levelup_Aq_Exception $ex) {
                 // Throwing errors for the images stored on CDN #2285
                 /*error_log('Aq_Resize.process() error: ' . $ex->getMessage());
 */
@@ -221,7 +221,7 @@
      * This is just a tiny wrapper function for the class above so that there is no
      * need to change any code in your own WP themes. Usage is still the same :)
      */
-    function elementor_plus_thubnail( $url, $width = null, $height = null, $crop = null, $single = true, $upscale = false ) {
+    function levelup_thubnail( $url, $width = null, $height = null, $crop = null, $single = true, $upscale = false ) {
         /* WPML Fix */
         if ( defined( 'ICL_SITEPRESS_VERSION' ) ){
             global $sitepress;
@@ -241,7 +241,7 @@
             //print_r(jetpack_photon_url( $url, $args ));die;
             return $image;
         } else {
-            $aq_resize = Elementor_Plus_Aq_Resize::getInstance();
+            $aq_resize = Levelup_Aq_Resize::getInstance();
             return $aq_resize->process( $url, $width, $height, $crop, $single, $upscale );
         }
     }

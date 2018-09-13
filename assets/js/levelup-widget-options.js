@@ -344,13 +344,13 @@
     var AddPersonView = ModalView.extend({
                     name: "AddPersonView",
                     model: {},
-                    //template: '#tmpl-elementor-plus-library-templates' ,
+                    //template: '#tmpl-levelup-library-templates' ,
                     initialize:function() {
                       _.bindAll( this, "render");
-                      this.template = _.template($('#tmpl-elementor-plus-library-templates').html());
+                      this.template = _.template($('#tmpl-levelup-library-templates').html());
                     },
                     events: {
-                      "click .ep-elementor-design": "elementGetData"
+                      "click .levelup-elementor-design": "elementGetData"
                     },
                     elementGetData: function(e) {
                          e.preventDefault();
@@ -372,12 +372,12 @@
 
     var setMeassageStaticPointer = 0;
     $( window ).on( 'elementor:init', function(require,module,exports) {
-        if(elementor_plus_object.widget_design.designs.length==0){
+        if(levelup_object.widget_design.designs.length==0){
            
             elementor.hooks.addFilter('elements/base-section-container/behaviors', function(behaviors, model){
-                 $("#elementor-panel-category-elementor-plus-widgets").find(".elementor-panel-category-items").find('.elementor-element-wrapper:first').hide();
-                var message = "<div style='padding:5px;text-align:center'>Elementor Plus Installation: <a href='"+elementor_plus_object.elementor_theme_settings+"' class='elementor-button elementor-button-success' style='border-radius:3px 0 0 3px;padding: 4px;'>Finish Setup</a></div>";
-                $("#elementor-panel-category-elementor-plus-widgets").find(".elementor-panel-category-items").prepend(message);
+                 $("#elementor-panel-category-levelup-widgets").find(".elementor-panel-category-items").find('.elementor-element-wrapper:first').hide();
+                var message = "<div style='padding:5px;text-align:center'>LevelUp Installation: <a href='"+levelup_object.elementor_theme_settings+"' class='elementor-button elementor-button-success' style='border-radius:3px 0 0 3px;padding: 4px;'>Finish Setup</a></div>";
+                $("#elementor-panel-category-levelup-widgets").find(".elementor-panel-category-items").prepend(message);
                 $("#elementor-panel-elements-search-area").after(message);
                 return behaviors;
             })
@@ -410,7 +410,7 @@
         });
     var openCallToActionDesignPopup = function(designElement){
 	    var view = new AddPersonView();
-	    view.model = elementor_plus_object.widget_design.designs[designElement];
+	    view.model = levelup_object.widget_design.designs[designElement];
 	    view.render().showModal({});
 	}
 }( jQuery ) );

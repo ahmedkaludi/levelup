@@ -4,22 +4,22 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
     die;
 }
 
-$option_name = 'elementor_plus_library_settings';
+$option_name = 'levelup_library_settings';
  
-delete_option('elementor-plus-library-version');
-delete_option('elementor-plus-library-loaded-version');
+delete_option('levelup-library-version');
+delete_option('levelup-library-loaded-version');
 delete_option($option_name);
 
 
 
 
 //
-function elementor_plus_go_delete_now() {
+function levelup_go_delete_now() {
     global $wpdb;
 
     $posts = get_posts( array(
         'numberposts' => -1,
-        'post_type' => elementor_plus_basics_config('post_type'),
+        'post_type' => levelup_basics_config('post_type'),
         'post_status' => 'any' ) );
 
     foreach ( $posts as $post ){
@@ -27,7 +27,7 @@ function elementor_plus_go_delete_now() {
     }
 }
 
-elementor_plus_go_delete_now();
+levelup_go_delete_now();
 
     // Set global
     global $wpdb;
@@ -45,7 +45,7 @@ elementor_plus_go_delete_now();
             ) as T
             );
         ",
-        array(elementor_plus_basics_config('taxonomy')) 
+        array(levelup_basics_config('taxonomy')) 
     );
 // Delete taxonomies
-$wpdb->prepare( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = %s", array(elementor_plus_basics_config('taxonomy')) );
+$wpdb->prepare( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = %s", array(levelup_basics_config('taxonomy')) );

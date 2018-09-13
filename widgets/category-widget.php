@@ -1,5 +1,5 @@
 <?php
-namespace ElementorPlusWidgets\Widgets;
+namespace LevelupWidgets\Widgets;
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -29,7 +29,7 @@ class CategoryWidgets extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Category', ELEMENTOR_PLUS_TEXT_DOMAIN );
+		return esc_html__( 'Category', LEVELUP_TEXT_DOMAIN );
 	}
 	/**
 	 * Retrieve the widget icon.
@@ -54,7 +54,7 @@ class CategoryWidgets extends Widget_Base {
 	 * @return array Widget categories.
 	 */
 	public function get_categories() {
-		return [ 'elementor-plus-widgets' ];
+		return [ 'levelup-widgets' ];
 	}
 	/**
 	 * Retrieve the list of scripts the widget depended on.
@@ -78,7 +78,7 @@ class CategoryWidgets extends Widget_Base {
 	protected function _register_controls() {
 		$design_controls['settings'] = array(
 			array(
-				'label'	=>	esc_html__( 'Content', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				'label'	=>	esc_html__( 'Content', LEVELUP_TEXT_DOMAIN ),
 				'tab' 	=> 	'content'
 			)
 		);
@@ -86,17 +86,17 @@ class CategoryWidgets extends Widget_Base {
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => esc_html__( 'Content', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				'label' => esc_html__( 'Content', LEVELUP_TEXT_DOMAIN ),
 			)
 		);
-		$designs = getDesignListByCategory('category');
+		$designs = levelup_getDesignListByCategory('category');
 		$defaultDesign = '';
 		$defaultDesign = array_keys($designs);
 		$defaultDesign = isset($defaultDesign[0])? $defaultDesign[0] : '';
 		$this->add_control(
 			'layoutDesignSelected',
 			array(
-				'label' 	=> esc_html__( 'design Selection', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				'label' 	=> esc_html__( 'design Selection', LEVELUP_TEXT_DOMAIN ),
 				'type' 		=> \Elementor\Controls_Manager::SELECT,
 				'default'	=>$defaultDesign,
 				'options'	=>$designs,
@@ -115,7 +115,7 @@ class CategoryWidgets extends Widget_Base {
 		$this->add_control(
 			'layoutDesignSelectionpoup',
 			array(
-				'label' => esc_html__( 'Is first drop', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				'label' => esc_html__( 'Is first drop', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::HIDDEN,
 				'default'=>'no',
 			)
@@ -125,7 +125,7 @@ class CategoryWidgets extends Widget_Base {
                    'orderby' => 'name',		
                    'order'   => 'ASC'		
                ) );		
-		 $categoriesArray = array('recent_option'=>esc_html__( 'Recent Posts', ELEMENTOR_PLUS_TEXT_DOMAIN ));		
+		 $categoriesArray = array('recent_option'=>esc_html__( 'Recent Posts', LEVELUP_TEXT_DOMAIN ));		
 		 foreach($categories as $category){		
 		  $categoryName = htmlspecialchars($category->name, ENT_QUOTES);
 		 	$categoriesArray[$category->term_id] = $categoryName;			
@@ -133,7 +133,7 @@ class CategoryWidgets extends Widget_Base {
 		$this->add_control(
 			'selected_category',
 			array(
-				'label' => esc_html__( 'Select Category', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				'label' => esc_html__( 'Select Category', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default'=>'recent_option',
 				'options'=>$categoriesArray
@@ -142,7 +142,7 @@ class CategoryWidgets extends Widget_Base {
 		$this->add_control(
 			'listShowNumbers',
 			array(
-				'label' => esc_html__( 'No of Post to show', ELEMENTOR_PLUS_TEXT_DOMAIN ),
+				'label' => esc_html__( 'No of Post to show', LEVELUP_TEXT_DOMAIN ),
 				'type' => 'number',
 				'default'=>get_option( 'posts_per_page' ),
 			)
@@ -162,7 +162,7 @@ class CategoryWidgets extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings();
 
-		$markup = \ElementorPlusDesign\render($settings);
+		$markup = \LevelupDesign\render($settings);
 		if($markup){
 			$markup = $this->replacements_procees($settings,$markup);
 		}

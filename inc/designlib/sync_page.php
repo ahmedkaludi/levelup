@@ -2,32 +2,32 @@
 //Sync Designs
 
 //Sync Constants
-define( 'ELEMENTOR_PLUS_SERVER_URL', 'http://elementor-plus.com' );
-define( 'ELEMENTOR_PLUS_API_url', ELEMENTOR_PLUS_SERVER_URL.'/wp-json/' );
-define( 'ELEMENTOR_PLUS_SYNC_VERSION_URL', ELEMENTOR_PLUS_API_url.'elementor_design_layout/v1/get-elementor-version' );
-define( 'ELEMENTOR_PLUS_SYNC_DESIGN_URL', ELEMENTOR_PLUS_API_url.'elementor_design_layout/v1/get-elementor-designs' );
-define( 'ELEMENTOR_PLUS_API_VALIDATE', ELEMENTOR_PLUS_API_url.'elementor_design_layout/v1/api_key' );
+define( 'LEVELUP_SERVER_URL', 'http://elementor-plus.com' );
+define( 'LEVELUP_API_url', LEVELUP_SERVER_URL.'/wp-json/' );
+define( 'LEVELUP_SYNC_VERSION_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-version' );
+define( 'LEVELUP_SYNC_DESIGN_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-designs' );
+define( 'LEVELUP_API_VALIDATE', LEVELUP_API_url.'elementor_design_layout/v1/api_key' );
 
 
-add_action('admin_enqueue_scripts', 'elementor_plus_sync_script');
+add_action('admin_enqueue_scripts', 'levelup_sync_script');
 
-function elementor_plus_sync_script($hook){
-    if ('elementor_page_elementor_plus_settings' != $hook) {
+function levelup_sync_script($hook){
+    if ('elementor_page_levelup_settings' != $hook) {
         return;
     }
-    wp_register_script('elementor_plus_sync_script', ELEMENTOR_PLUS__FILE__URI . '/assets/js/elementor-plus-sync.js', [ 'jquery' ], false, true );
+    wp_register_script('levelup_sync_script', LEVELUP__FILE__URI . '/assets/js/levelup-sync.js', [ 'jquery' ], false, true );
 
-    wp_localize_script( 'elementor_plus_sync_script', 'elementor_plus_sync_object',
+    wp_localize_script( 'levelup_sync_script', 'levelup_sync_object',
                 array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
                 ) );
-    wp_enqueue_script('elementor_plus_sync_script');
+    wp_enqueue_script('levelup_sync_script');
 }
 
 
-add_action( 'wp_ajax_elementor_plus_update_design_library',  'elementor_plus_update_design_library' );
-function elementor_plus_update_design_library($is_first_install=false){
-    $settings = get_option('elementor_plus_library_settings');
-    $response = wp_remote_post( ELEMENTOR_PLUS_SYNC_DESIGN_URL,array(
+add_action( 'wp_ajax_levelup_update_design_library',  'levelup_update_design_library' );
+function levelup_update_design_library($is_first_install=false){
+    $settings = get_option('levelup_library_settings');
+    $response = wp_remote_post( LEVELUP_SYNC_DESIGN_URL,array(
                                     'timeout'=> 120,
                                     'body'=>array(
                                         'api_key'   =>  $settings['api_key']
@@ -50,7 +50,7 @@ function elementor_plus_update_design_library($is_first_install=false){
     }
 
     //Check current loaded Version 
-    $current_loaded_version = get_option( 'elementor-plus-library-loaded-version',0);
+    $current_loaded_version = get_option( 'levelup-library-loaded-version',0);
     if($current_loaded_version != 0&& version_compare($current_loaded_version, $responseData['current_version']['version_detail'], '>=') ){
         if($is_first_install){ return true; }
         echo json_encode(array("status"=>200, "message"=>'design already up to date'));
@@ -58,8 +58,8 @@ function elementor_plus_update_design_library($is_first_install=false){
     }
 
 
-        $post_type = elementor_plus_basics_config('post_type');
-        $taxonomy = elementor_plus_basics_config('taxonomy');
+        $post_type = levelup_basics_config('post_type');
+        $taxonomy = levelup_basics_config('taxonomy');
             global $wpdb;
             $result = $wpdb->query( 
                     $wpdb->prepare("
@@ -130,9 +130,9 @@ function elementor_plus_update_design_library($is_first_install=false){
 
             }
         }//Foreach closed
-        $current_version = update_option( 'elementor-plus-library-loaded-version',$responseData['current_version']['version_detail']);
+        $current_version = update_option( 'levelup-library-loaded-version',$responseData['current_version']['version_detail']);
         if($is_first_install){
-            update_option( 'elementor-plus-library-loaded-version', $responseData['current_version']['version_detail']);
+            update_option( 'levelup-library-loaded-version', $responseData['current_version']['version_detail']);
             return true; //If first installation called 
         }else{
             echo json_encode(array("status"=>200, "message"=>'Design inserted Successfully'));
@@ -142,24 +142,24 @@ function elementor_plus_update_design_library($is_first_install=false){
 
 
 
-add_action( 'wp_ajax_elementor_plus_update_design_version',  'elementor_plus_update_design_version' );
+add_action( 'wp_ajax_levelup_update_design_version',  'levelup_update_design_version' );
 
 
 
 //update Version
-function elementor_plus_activation() {
-    if (! wp_next_scheduled ( 'elementor_plus_daily_event' )) {
-    wp_schedule_event(time(), 'daily', 'elementor_plus_daily_event');
+function levelup_activation() {
+    if (! wp_next_scheduled ( 'levelup_daily_event' )) {
+    wp_schedule_event(time(), 'daily', 'levelup_daily_event');
     }
 }
- add_action('elementor_plus_daily_event', 'elementor_plus_update_design_version');
-function elementor_plus_update_design_version(){
-    $settings = get_option('elementor_plus_library_settings');
+ add_action('levelup_daily_event', 'levelup_update_design_version');
+function levelup_update_design_version(){
+    $settings = get_option('levelup_library_settings');
     $message = "cannot connect to server";
     if(empty($settings['api_key'])){
         $message = "API key cannot be blank";
     }else{
-        $response = wp_remote_post( ELEMENTOR_PLUS_SYNC_VERSION_URL, array(
+        $response = wp_remote_post( LEVELUP_SYNC_VERSION_URL, array(
                                         'timeout'=> 120,
                                         'body'=>array(
                                                     'api_key'   =>  $settings['api_key']
@@ -171,18 +171,18 @@ function elementor_plus_update_design_version(){
             $body = $response['body']; // use the content
             $actualResponse = json_decode($body,true);
             if($actualResponse['status']==200){
-                $current_version = get_option( 'elementor-plus-library-version',0);
+                $current_version = get_option( 'levelup-library-version',0);
                 if( version_compare($current_version, $actualResponse['version'], '>=') ){
                     $message = "current version is same";
                 }else{
-                    update_option( 'elementor-plus-library-version',$actualResponse['version']);
+                    update_option( 'levelup-library-version',$actualResponse['version']);
                     $message = "Version Updated Successfully";
                 }
             }
         }
 
     }
-    if('development'==ELEMENTOR_PLUS_ENVIRONEMT){
+    if('development'==LEVELUP_ENVIRONEMT){
         echo json_encode(array("status"=>200,"message"=>$message));
         wp_die();
     }
@@ -190,10 +190,10 @@ function elementor_plus_update_design_version(){
 
 
 //API KEY CHECK Before post
-function elementor_plus_call_api_registerd(){
-    $settings = get_option('elementor_plus_library_settings');
+function levelup_call_api_registerd(){
+    $settings = get_option('levelup_library_settings');
     if(isset( $settings['api_status']) &&  $settings['api_status']= 'valid'){ return '';  }
-    $url    = ELEMENTOR_PLUS_API_VALIDATE;
+    $url    = LEVELUP_API_VALIDATE;
     $data   = array(
                    'body'=>array(
                                 'site_url'  => site_url(),
@@ -207,9 +207,9 @@ function elementor_plus_call_api_registerd(){
         $actualResponse = json_decode($body,true);
         if($actualResponse['status']==200){
             $settings['api_status'] = 'valid';
-            update_option('elementor_plus_library_settings',$settings);
+            update_option('levelup_library_settings',$settings);
             //On First Installation Sync all Designs
-            elementor_plus_update_design_library(true);
+            levelup_update_design_library(true);
             return $actualResponse['message'];
         }else{
             return false;
@@ -220,11 +220,11 @@ function elementor_plus_call_api_registerd(){
 }
 
 
-add_action( 'wp_ajax_elementor_plus_remove_key',  'elementor_plus_remove_key' );
-function elementor_plus_remove_key(){
-    delete_option('elementor_plus_library_settings');
-    delete_option('elementor-plus-library-loaded-version');
-    delete_option('elementor-plus-library-version');
+add_action( 'wp_ajax_levelup_remove_key',  'levelup_remove_key' );
+function levelup_remove_key(){
+    delete_option('levelup_library_settings');
+    delete_option('levelup-library-loaded-version');
+    delete_option('levelup-library-version');
     echo json_encode(array("status"=>200, "message" => "Successfully removed."));
     wp_die();
 }

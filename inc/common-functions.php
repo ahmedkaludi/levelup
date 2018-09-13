@@ -1,8 +1,8 @@
 <?php
-if(!function_exists('getDesignListByCategory')){
-	function getDesignListByCategory($categoryslug){
-		$taxonomy = elementor_plus_basics_config('taxonomy');
-		$post_type = elementor_plus_basics_config('post_type');
+if(!function_exists('levelup_getDesignListByCategory')){
+	function levelup_getDesignListByCategory($categoryslug){
+		$taxonomy = levelup_basics_config('taxonomy');
+		$post_type = levelup_basics_config('post_type');
 		if($categoryslug==''){ return array(); }
 
 		$posts = get_posts( array(
@@ -28,8 +28,8 @@ if(!function_exists('getDesignListByCategory')){
 }
 if(!function_exists('elementorPlusGetDesignListData')){
 	function elementorPlusGetDesignListData($type = ''){
-		$taxonomy = elementor_plus_basics_config('taxonomy');
-		$post_type = elementor_plus_basics_config('post_type');
+		$taxonomy = levelup_basics_config('taxonomy');
+		$post_type = levelup_basics_config('post_type');
 		$cat_args = array(
 		    'orderby'       => 'term_id', 
 		    'order'         => 'ASC',
@@ -78,27 +78,27 @@ if(!function_exists('elementorPlusGetDesignListData')){
 	}
 }
 
-function elementor_plus_basics_config($get){
+function levelup_basics_config($get){
 	$config['post_type'] = 'ep_design_library';
 	$config['taxonomy'] = 'ep_widget_type';
 	return (isset($config[$get]) ? $config[$get]: '');
 }
 
-add_action( 'amp_post_template_css', 'elementor_plus_amp_design_styling' );
-function elementor_plus_amp_design_styling(){
+add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
+function levelup_amp_design_styling(){
 	$allCss = '';
-	global $elementor_plus_ampCss;
-	if(!empty($elementor_plus_ampCss)){
-		if(is_array($elementor_plus_ampCss)){
-			$elementor_plus_ampCss = array_unique($elementor_plus_ampCss);
-			if(count($elementor_plus_ampCss)>0){
-				foreach ($elementor_plus_ampCss as $key => $cssValue) {
+	global $levelup_ampCss;
+	if(!empty($levelup_ampCss)){
+		if(is_array($levelup_ampCss)){
+			$levelup_ampCss = array_unique($levelup_ampCss);
+			if(count($levelup_ampCss)>0){
+				foreach ($levelup_ampCss as $key => $cssValue) {
 
 					$allCss .= $cssValue;
 				}
 			}
 		}else{
-			$allCss .= $elementor_plus_ampCss;
+			$allCss .= $levelup_ampCss;
 		}
 	}
 	if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){

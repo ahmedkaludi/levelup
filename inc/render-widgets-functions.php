@@ -12,11 +12,11 @@ function render($settings){
 						         'compare' => '='
 						      )
 						   ),
-		'post_type'   => elementor_plus_basics_config('post_type'),
+		'post_type'   => levelup_basics_config('post_type'),
 		'post_status' => 'publish',
 		'numberposts' => 1
 	);
-	global $elementor_plus_ampCss;
+	global $levelup_ampCss;
 	$my_posts = get_posts($args);
 	if(count($my_posts)<1){
 		return '';
@@ -30,7 +30,7 @@ function render($settings){
 			$markup = $ampMarkup['amp_html'];
 			$amp_css = $ampMarkup['amp_css'];
 			if(!empty($amp_css)){
-				$elementor_plus_ampCss[$selected_design] = $amp_css;
+				$levelup_ampCss[$selected_design] = $amp_css;
 			}
 		}
 	}else{
@@ -41,8 +41,8 @@ function render($settings){
 			}
 			$markup = $nonAmpMarkup['non_amp_html'];
 			$non_amp_css = $nonAmpMarkup['non_amp_css'];
-			if($non_amp_css && !isset($elementor_plus_ampCss[$selected_design])){
-				$elementor_plus_ampCss[$selected_design] = 'added';//$non_amp_css;
+			if($non_amp_css && !isset($levelup_ampCss[$selected_design])){
+				$levelup_ampCss[$selected_design] = 'added';//$non_amp_css;
 				echo '<style>'.esc_html($non_amp_css).'</style>';
 			}
 			
@@ -61,7 +61,7 @@ namespace ElementorPlusDesignCount;
 
 function abvailableDesignCount(){
 	$args = array(
-	  	'post_type'   => elementor_plus_basics_config('post_type'),
+	  	'post_type'   => levelup_basics_config('post_type'),
 		'post_status' => 'publish',
 		'numberposts' => 1
 	);

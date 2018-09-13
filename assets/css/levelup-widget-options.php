@@ -72,7 +72,7 @@
 }
 
 /* The Close Button */
-#modalContainer .eplus-close {
+#modalContainer .levelup-close {
     position: absolute;
     right: 0;
     padding: 16px;
@@ -136,7 +136,7 @@
     background-image: linear-gradient(to bottom, #f3f3f3, #fff);
     border-bottom: 3px solid #9b0a46;
     }
-#modalContainer .elementor-plus-design-wrapper{
+#modalContainer .levelup-design-wrapper{
     position: absolute;
     width: 100%;
     text-align: center;
@@ -145,10 +145,10 @@
     display:none;
     background: #0000007d; 
 }
-#modalContainer .column:hover .elementor-plus-design-wrapper{
+#modalContainer .column:hover .levelup-design-wrapper{
     display:block
 }
-#modalContainer .ep-elementor-design-btn, .ep-elementor-design-preview{
+#modalContainer .levelup-elementor-design-btn, .levelup-elementor-design-preview{
     margin: 5px;
     background: #fff;
     border-radius: 40px;
@@ -157,15 +157,15 @@
     font-size: 16px;
     cursor:pointer;
 }
-#modalContainer .ep-elementor-design-btn{
+#modalContainer .levelup-elementor-design-btn{
     padding:8px 15px;
 }
-#modalContainer .ep-elementor-design-preview a{
+#modalContainer .levelup-elementor-design-preview a{
     color:#6d7882;
     padding:8px 15px;    background: #fff;
     border-radius: 40px;
 }
-#modalContainer .ep-elementor-design-text {
+#modalContainer .levelup-elementor-design-text {
     text-align: center;
     padding: 8px;
     background: #fff;
