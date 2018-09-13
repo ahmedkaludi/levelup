@@ -8,6 +8,7 @@ $option_name = 'levelup_library_settings';
  
 delete_option('levelup-library-version');
 delete_option('levelup-library-loaded-version');
+delete_option('levelup_default_designs_load');
 delete_option($option_name);
 
 

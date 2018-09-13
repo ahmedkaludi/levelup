@@ -148,22 +148,30 @@ function levelup_default_designs($responseData){
         return true;
 }
 
+add_action( 'admin_init',  'levelup_on_activation_call' );
+function levelup_on_activation_call(){
+    if(get_option('levelup_default_designs_load')!== 'true'){
+        //Default designs
+        $responseData = '';
+        if ($fh = fopen(LEVELUP__DIR__PATH.'/inc/designlib/layout.json', 'r')) {
+            while (!feof($fh)) {
+               $responseData .= fgets($fh);
+            }
+            fclose($fh);
+        }
+        $responseData = json_decode($responseData,true);
+        levelup_default_designs($responseData);
+        update_option('levelup-library-version', '0.1');
+        update_option('levelup-library-loaded-version', '0.1');
+        //Set flag for first time
+        update_option('levelup_default_designs_load','true'); 
+    }
+}
+
 add_action( 'wp_ajax_levelup_update_design_version',  'levelup_update_design_version' );
 
 //update Version
 function levelup_activation() {
-    //Default designs
-    $responseData = '';
-    if ($fh = fopen(LEVELUP__DIR__PATH.'/inc/designlib/layout.json', 'r')) {
-        while (!feof($fh)) {
-           $responseData .= fgets($fh);
-        }
-        fclose($fh);
-    }
-    $responseData = json_decode($responseData,true);
-    levelup_default_designs($responseData);
-    update_option('levelup-library-version', '0.1');
-    update_option('levelup-library-loaded-version', '0.1');
     //Check layout 
     if (! wp_next_scheduled ( 'levelup_daily_event' )) {
     wp_schedule_event(time(), 'daily', 'levelup_daily_event');
