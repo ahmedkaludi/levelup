@@ -31,6 +31,7 @@ function levelup_load() {
 	load_plugin_textdomain( LEVELUP_ENVIRONEMT, false, trailingslashit(LEVELUP__FILE__PATH) . 'languages' );
 	// Notice if the Elementor is not active
 	if ( ! did_action( 'elementor/loaded' ) ) {
+		add_action( 'admin_notices', 'levelup_fail_load' );
 		return;
 	}
 	// Check required version
@@ -67,4 +68,10 @@ function levelup_fail_load_out_of_date() {
 	$message = '<p>' . esc_html__( 'LevelUp is not working because you are using an old version of Elementor.', LEVELUP_TEXT_DOMAIN ) . '</p>';
 	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, __( 'Update Elementor Now', LEVELUP_TEXT_DOMAIN ) ) . '</p>';
 	echo '<div class="error">' . wp_kses_post($message) . '</div>';
+}
+function levelup_fail_load() {
+	if ( ! current_user_can( 'update_plugins' ) ) {
+		return;
+	}
+	echo '<div class="error">' . esc_html__( 'This plugin requires Elementor, please Activate Elementor plugin', LEVELUP_TEXT_DOMAIN )  . '</div>';
 }

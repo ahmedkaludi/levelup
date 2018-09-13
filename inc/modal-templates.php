@@ -14,8 +14,8 @@
          if($settings['api_key']==''){
         ?>
         <div class="row" id="levelup-designs-container">
-               <div class="">
-                   <strong>LevelUP</strong>. is installed but not yet configured, you need to configure here -  <a href="<?php echo esc_url('admin.php?page=levelup_settings',LEVELUP_TEXT_DOMAIN); ?>" class="button button-secondary button-hero" style="color: #f5faff;padding: 8px 15px;background: #5ab75a;border-radius: 40px;"><?php echo esc_html__('Finish Setup',LEVELUP_TEXT_DOMAIN); ?></a>
+               <div class="levelup-message-label">
+                   <strong><?php echo esc_html__('LevelUP',LEVELUP_TEXT_DOMAIN); ?></strong> <?php echo esc_html__('is installed but not yet configured, you need to configure here'); ?>  <a href="<?php echo esc_url('admin.php?page=levelup_settings',LEVELUP_TEXT_DOMAIN); ?>" class="button levelup-message-btn" style=""><?php echo esc_html__('Finish Setup',LEVELUP_TEXT_DOMAIN); ?></a>
                </div>
         </div>
     <?php } ?>

@@ -170,3 +170,15 @@
     padding: 8px;
     background: #fff;
 }
+.levelup-message-label{
+    BACKGROUND: #FFF9C4;
+    DISPLAY: INLINE-BLOCK;
+    WIDTH: 97.5%;
+    TEXT-ALIGN: CENTER;
+    PADDING: 15PX;
+    BORDER: 1PX SOLID #e6dfa2;
+    MARGIN: 0 13PX;
+}
+.levelup-message-btn{
+    color: #FFF;padding: 6px 12px;background: #4CAF50;border-radius: 50px;
+}
