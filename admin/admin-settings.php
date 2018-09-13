@@ -182,7 +182,7 @@ Class LEVELUP__Admin_settings{
 			    ?>
 			    	<p><?php echo esc_html__('New Version Available', LEVELUP_TEXT_DOMAIN); echo " ".esc_html($server_version); ?></p>
 			    	<br>
-			    	<button type="button" value="sync" name="sync" id="levelup-sync-lib" class="button"><i class="dashicons dashicons-download"></i> <?php echo esc_html__('Update the Library to', LEVELUP_TEXT_DOMAIN);?> <?php echo esc_html($server_version); ?></button>
+			    	<button type="button" value="sync" name="sync" id="levelup-sync-lib" class="button"><i class="dashicons dashicons-download"></i> <?php echo esc_html__('Upgrade the Library to', LEVELUP_TEXT_DOMAIN);?> <?php echo esc_html($server_version); ?></button>
 					
 				<?php }else{ ?>
 					<button type="button" id="levelup-sync-versions" class="button"><i class="dashicons dashicons-download"></i> <?php echo esc_html__('Sync Library', LEVELUP_TEXT_DOMAIN); ?> </button>
@@ -223,8 +223,8 @@ Class LEVELUP__Admin_settings{
 	    ?>
 		    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 		    	<p>
-		        	<?php echo esc_html__('New Version of LevelUp',LEVELUP_TEXT_DOMAIN); ?> <?php echo esc_html($server_version); ?> <?php echo esc_html__('is available',LEVELUP_TEXT_DOMAIN); ?>
-		        	<a href="<?php echo esc_url('admin.php?page=levelup_settings'); ?>" class=""><?php echo esc_html__('Click to update LevelUp design library',LEVELUP_TEXT_DOMAIN); ?></a> .<span class="levelup-response-status"></span>
+		        	<?php echo esc_html__('New Design Elements available',LEVELUP_TEXT_DOMAIN); ?> <?php echo esc_html($server_version); ?> <?php echo esc_html__('is available',LEVELUP_TEXT_DOMAIN); ?>
+		        	<a href="<?php echo esc_url('admin.php?page=levelup_settings'); ?>" class=""><?php echo esc_html__('Click to get the new designs',LEVELUP_TEXT_DOMAIN); ?></a> .<span class="levelup-response-status"></span>
 		        </p>
 		    </div>
 	    <?php

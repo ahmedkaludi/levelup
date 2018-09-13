@@ -15,7 +15,7 @@
         ?>
         <div class="row" id="levelup-designs-container">
                <div class="levelup-message-label">
-                   <strong><?php echo esc_html__('LevelUP',LEVELUP_TEXT_DOMAIN); ?></strong> <?php echo esc_html__('is installed but not yet configured, you need to configure here'); ?>  <a target="_blank" href="<?php echo esc_url('admin.php?page=levelup_settings',LEVELUP_TEXT_DOMAIN); ?>" class="button levelup-message-btn"><?php echo esc_html__('Finish Setup',LEVELUP_TEXT_DOMAIN); ?></a>
+                   <strong><?php echo esc_html__('LevelUP', LEVELUP_TEXT_DOMAIN); ?></strong> <?php echo esc_html__('is installed but not yet configured, you need to configure here'); ?>  <a target="_blank" href="<?php echo esc_url('admin.php?page=levelup_settings',LEVELUP_TEXT_DOMAIN); ?>" class="button levelup-message-btn"><?php echo esc_html__('Finish Setup',LEVELUP_TEXT_DOMAIN); ?></a> 
                </div>
         </div>
     <?php } ?>
