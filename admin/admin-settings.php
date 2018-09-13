@@ -203,7 +203,7 @@ Class LEVELUP__Admin_settings{
 		}else{
 			echo '<input type="text" name="levelup_library_settings[api_key]" value="'.esc_attr(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
 		}
-		echo '<p>'.esc_html__('Enter the LevelUP API key to get unlimited design elements.  ',LEVELUP_TEXT_DOMAIN ). '<a target="_blank" href="'.esc_url(LEVELUP_SERVER_URL.'/user-register/').'" style="text-decoration:none;">'.esc_html__( ' Get your FREE key in 20 seconds', LEVELUP_TEXT_DOMAIN ).' <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
+		echo '<p>'.esc_html__('Enter the LevelUP API key to get unlimited design elements.  ',LEVELUP_TEXT_DOMAIN ). '<a target="_blank" href="'.esc_url(LEVELUP_SERVER_URL.'/register/').'" style="text-decoration:none;">'.esc_html__( ' Get your FREE key in 20 seconds', LEVELUP_TEXT_DOMAIN ).' <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
 
 	}
 

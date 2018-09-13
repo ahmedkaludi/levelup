@@ -2,7 +2,7 @@
 //Sync Designs
 
 //Sync Constants
-define( 'LEVELUP_SERVER_URL', 'levelup.magazine3.company' );
+define( 'LEVELUP_SERVER_URL', 'http://levelup.magazine3.company' );
 define( 'LEVELUP_API_url', LEVELUP_SERVER_URL.'/wp-json/' );
 define( 'LEVELUP_SYNC_VERSION_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-version' );
 define( 'LEVELUP_SYNC_DESIGN_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-designs' );
@@ -43,9 +43,8 @@ function levelup_update_design_library($is_first_install=false){
     $status = $responseData = $metaData = '';
     $responseData = json_decode($response['body'],true);
     if($responseData['status']!='200'){
-        print_r($responseData);die;
         if($is_first_install){ return true; }
-        echo json_encode(array("status"=>400, "message"=>'cannot connect to server'));
+        echo json_encode(array("status"=>400, "message"=>'Server response not accurate Try again'));
         wp_die();
     }
 
@@ -60,26 +59,42 @@ function levelup_update_design_library($is_first_install=false){
 
         $post_type = levelup_basics_config('post_type');
         $taxonomy = levelup_basics_config('taxonomy');
-            global $wpdb;
-            $result = $wpdb->query( 
-                    $wpdb->prepare("
-                        DELETE posts,pt,pm
-                        FROM wp_posts posts
-                        LEFT JOIN wp_term_relationships pt ON pt.object_id = posts.ID
-                        LEFT JOIN wp_postmeta pm ON pm.post_id = posts.ID
-                        WHERE posts.post_type = %s
-                        ", 
-                        $post_type
-                    ) 
-            );
+            
+            levelup_default_designs($responseData);
+        
+        $current_version = update_option( 'levelup-library-loaded-version',$responseData['current_version']['version_detail']);
+        if($is_first_install){
+            update_option( 'levelup-library-loaded-version', $responseData['current_version']['version_detail']);
+            return true; //If first installation called 
+        }else{
+            echo json_encode(array("status"=>200, "message"=>'Design inserted Successfully'));
+            wp_die();
+        }
+}
 
-        foreach( $responseData['designs'] as $widgetType => $valCategory ){
+function levelup_default_designs($responseData){
+    $post_type = (function_exists('levelup_basics_config')? levelup_basics_config('post_type') : 'ep_design_library');
+    $taxonomy = (function_exists('levelup_basics_config')? levelup_basics_config('taxonomy') : 'ep_widget_type');
+    global $wpdb;
+    $result = $wpdb->query( 
+            $wpdb->prepare("
+                DELETE posts,pt,pm
+                FROM wp_posts posts
+                LEFT JOIN wp_term_relationships pt ON pt.object_id = posts.ID
+                LEFT JOIN wp_postmeta pm ON pm.post_id = posts.ID
+                WHERE posts.post_type = %s
+                ", 
+                $post_type
+            ) 
+    );
+    $wpdb->prepare( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = %s", array($taxonomy) );
+    foreach( $responseData['designs'] as $widgetType => $valCategory ){
             foreach( $valCategory['layouts'] as $key => $valDesigntype ){
                 $designType = $key;
                 $post_id = wp_insert_post(array('post_title'=> $valDesigntype['title'],
                                              'post_type'=>$post_type, 
                                             'post_status'  => 'publish',
-                                             'post_content'=>'Desgn Layouts with markup and css')
+                                             'post_content'=>'Design Layouts with markup and css')
 
                                         );
                 wp_set_object_terms( $post_id, array(
@@ -130,24 +145,26 @@ function levelup_update_design_library($is_first_install=false){
 
             }
         }//Foreach closed
-        $current_version = update_option( 'levelup-library-loaded-version',$responseData['current_version']['version_detail']);
-        if($is_first_install){
-            update_option( 'levelup-library-loaded-version', $responseData['current_version']['version_detail']);
-            return true; //If first installation called 
-        }else{
-            echo json_encode(array("status"=>200, "message"=>'Design inserted Successfully'));
-            wp_die();
-        }
+        return true;
 }
-
-
 
 add_action( 'wp_ajax_levelup_update_design_version',  'levelup_update_design_version' );
 
-
-
 //update Version
 function levelup_activation() {
+    //Default designs
+    $responseData = '';
+    if ($fh = fopen(LEVELUP__DIR__PATH.'/inc/designlib/layout.json', 'r')) {
+        while (!feof($fh)) {
+           $responseData .= fgets($fh);
+        }
+        fclose($fh);
+    }
+    $responseData = json_decode($responseData,true);
+    levelup_default_designs($responseData);
+    update_option('levelup-library-version', '0.1');
+    update_option('levelup-library-loaded-version', '0.1');
+    //Check layout 
     if (! wp_next_scheduled ( 'levelup_daily_event' )) {
     wp_schedule_event(time(), 'daily', 'levelup_daily_event');
     }
