@@ -235,6 +235,9 @@ function levelup_call_api_registerd(){
             update_option('levelup_library_settings',$settings);
             //On First Installation Sync all Designs
             levelup_update_design_library(true);
+            if('development'!=LEVELUP_ENVIRONEMT){ //on production 
+                levelup_activation();
+            }
             return $actualResponse['message'];
         }else{
             return false;
@@ -250,6 +253,8 @@ function levelup_remove_key(){
     delete_option('levelup_library_settings');
     delete_option('levelup-library-loaded-version');
     delete_option('levelup-library-version');
+    //Remove schedule hook
+    wp_clear_scheduled_hook( 'levelup_daily_event' ); 
     echo json_encode(array("status"=>200, "message" => "Successfully removed."));
     wp_die();
 }

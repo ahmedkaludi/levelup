@@ -50,15 +50,6 @@ function levelup_load() {
 }
 add_action( 'plugins_loaded', 'levelup_load' );
 
-
-register_activation_hook(__FILE__, 'levelup_activation_hook');
-function levelup_activation_hook(){
-	if('development'!=LEVELUP_ENVIRONEMT){ //on production 
-		levelup_activation();
-	}
-}
-
-
 function levelup_fail_load_out_of_date() {
 	if ( ! current_user_can( 'update_plugins' ) ) {
 		return;

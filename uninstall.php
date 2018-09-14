@@ -13,7 +13,7 @@ delete_option('levelup-library-loaded-version');
 delete_option('levelup_default_designs_load');
 delete_option($option_name);
 
-
+wp_clear_scheduled_hook( 'levelup_daily_event' ); 
 
 
 //
