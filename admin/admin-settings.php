@@ -31,8 +31,9 @@ Class LEVELUP__Admin_settings{
 	}
 
 	public function levelup_settings_menu(){
+		$settings = get_option('levelup_library_settings');
 		$availableUpdateHtml = '';
-		if($this->check_update_available()){
+		if($settings['api_status']=='valid' && $this->check_update_available()){
 			$availableUpdateHtml = '<span class="update-plugins count-1"><span class="update-count" title="">'.esc_html__( '1', LEVELUP_TEXT_DOMAIN ).'</span></span>';
 		}
 			$menu_label = sprintf( esc_html__( 'LevelUp ', LEVELUP_TEXT_DOMAIN)." %s",  $availableUpdateHtml);
