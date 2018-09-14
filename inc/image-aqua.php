@@ -221,7 +221,7 @@
      * This is just a tiny wrapper function for the class above so that there is no
      * need to change any code in your own WP themes. Usage is still the same :)
      */
-    function levelup_thubnail( $url, $width = null, $height = null, $crop = null, $single = true, $upscale = false ) {
+    function levelup_thumbnail( $url, $width = null, $height = null, $crop = null, $single = true, $upscale = false ) {
         /* WPML Fix */
         if ( defined( 'ICL_SITEPRESS_VERSION' ) ){
             global $sitepress;
