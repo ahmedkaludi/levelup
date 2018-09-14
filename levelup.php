@@ -3,7 +3,7 @@
  * Plugin Name: LevelUP 
  * Description: LevelUP takes your Elementor to the next level.
  * Plugin URI: http://levelup.magazine3.company/
- * Version: 1.0
+ * Version: 1.0.1
  * Author: mohammed_kaludi, ahmedkaludi, ampforwp
  * Author URI: http://magazine3.company/
  * Text Domain: levelup
