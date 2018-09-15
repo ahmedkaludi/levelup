@@ -1,4 +1,4 @@
-=== LevelUP ===
+=== LevelUP for Elementor - Design Elements Library ===
 Contributors: mohammed_kaludi, ahmedkaludi, ampforwp
 Tags: Page Builder, Elementor, AMP, Performance, SEO
 Requires at least: 3.6
