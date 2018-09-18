@@ -46,9 +46,11 @@ if(!function_exists('levelupGetDesignListData')){
 							        'posts_per_page' => -1,
 							        'post_type' => $post_type,
 							        'tax_query' => array(
+							        		array(
 							                'taxonomy' => $taxonomy,
 							                'field' => 'term_id',
 							                'terms' => $term->term_id,
+							            	)
 							            )
 							        
 							    ));
@@ -73,6 +75,8 @@ if(!function_exists('levelupGetDesignListData')){
 												'layouts'=>$currentDesigns
 												);
 			}
+			wp_reset_query();
+			wp_reset_postdata();
 		}
 		return $completeData;
 	}

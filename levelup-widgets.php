@@ -1,6 +1,7 @@
 <?php
 namespace LevelupWidgets;
 use LevelupWidgets\Widgets\CategoryWidgets;
+use LevelupWidgets\Widgets\FeatureWidgets;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Main Plugin Class
@@ -83,6 +84,7 @@ class LevelupPlugin {
 	private function includes() {
 		require __DIR__ . '/inc/render-widgets-functions.php';
 		require __DIR__ . '/widgets/category-widget.php';
+		require __DIR__ . '/widgets/feature-widget.php';
 	}
 	/**
 	 * Register Widget
@@ -91,6 +93,7 @@ class LevelupPlugin {
 	 */
 	private function register_widget() {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new CategoryWidgets() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new FeatureWidgets() );
 	}
 
 	public function add_levelup_widget_categories( $elements_manager ) {
