@@ -47,7 +47,7 @@
             }
             if( this.modalContainer == null){
                 this.modalContainer =
-                    $("<div id='modalContainer'>")
+                    $("<div id='levelup-modalContainer'>")
                         .css({
                             "z-index":"99999",
                             "position":"relative",

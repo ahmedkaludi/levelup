@@ -1,19 +1,19 @@
 /* Create four equal columns that floats next to each other */
-#modalContainer .img-name{
+#levelup-modalContainer .img-name{
 	height: 44px;
 	background-color:#ddd;
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
-#modalContainer .img-content{
+#levelup-modalContainer .img-content{
     position: relative;
 }
-#modalContainer .img-content img{width:100%;height:auto}
+#levelup-modalContainer .img-content img{width:100%;height:auto}
 
-#modalContainer .column:hover{
+#levelup-modalContainer .column:hover{
 	 box-shadow: 0 3px 18px 0 rgba(0, 0, 0, 0.07), 0 5px 20px 0 rgba(0, 0, 0, 0.1);
 }
-#modalContainer .column {
+#levelup-modalContainer .column {
     transition: .15s;
     float: left;
     width: 31%;
@@ -23,13 +23,13 @@
 }
 
 /* Clear floats after the columns */
-#modalContainer .row:after {
+#levelup-modalContainer .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
-#modalContainer .modal {
+#levelup-modalContainer .modal {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding: 15px 0px; /* Location of the box */
@@ -43,7 +43,7 @@
 }
 
 /* Modal Content */
-#modalContainer .modal-content {
+#levelup-modalContainer .modal-content {
     position: relative;
     background-color: #f1f3f5;
     height: 96vh;
@@ -72,7 +72,7 @@
 }
 
 /* The Close Button */
-#modalContainer .levelup-close {
+#levelup-modalContainer .levelup-close {
     position: absolute;
     right: 0;
     padding: 16px;
@@ -83,21 +83,21 @@
  
 
 /* The Modal Header, Footer and Body*/
-#modalContainer .modal-header {
+#levelup-modalContainer .modal-header {
     height: 50px;
     background-color: #fff;
     -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-#modalContainer .modal-body {
+#levelup-modalContainer .modal-body {
     max-height: 90vh;
     height: auto;
     overflow: scroll;
     padding: 15px;
     }
 
-#modalContainer .modal-footer {
+#levelup-modalContainer .modal-footer {
     padding: 10px 10px;
     color: white;
     border-bottom-right-radius: 6px;
@@ -108,7 +108,7 @@
     position: absolute;}
 
 /* Navigation Menu Css*/
-#modalContainer .nav{
+#levelup-modalContainer .nav{
     /*border:1px solid #ccc;*/
     /*border-width:1px 0;*/
     list-style:none;
@@ -116,10 +116,10 @@
     padding:0;
     text-align:center;
 }
-#modalContainer .nav li{
+#levelup-modalContainer .nav li{
     display:inline;
 }
-#modalContainer .nav a{
+#levelup-modalContainer .nav a{
     display: inline-block;
     padding: 17px 30px;
     border-bottom: 3px solid transparent;
@@ -127,16 +127,16 @@
     color: #6d7882;
     font-size: 13px;
 }
-#modalContainer .nav a:hover {
+#levelup-modalContainer .nav a:hover {
 }
-#modalContainer .nav a.active {
+#levelup-modalContainer .nav a.active {
     background-image: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#fff));
     background-image: -webkit-linear-gradient(top, #f3f3f3, #fff);
     background-image: -o-linear-gradient(top, #f3f3f3, #fff);
     background-image: linear-gradient(to bottom, #f3f3f3, #fff);
     border-bottom: 3px solid #9b0a46;
     }
-#modalContainer .levelup-design-wrapper{
+#levelup-modalContainer .levelup-design-wrapper{
     position: absolute;
     width: 100%;
     text-align: center;
@@ -145,10 +145,10 @@
     display:none;
     background: #0000007d; 
 }
-#modalContainer .column:hover .levelup-design-wrapper{
+#levelup-modalContainer .column:hover .levelup-design-wrapper{
     display:block
 }
-#modalContainer .levelup-elementor-design-btn, .levelup-elementor-design-preview{
+#levelup-modalContainer .levelup-elementor-design-btn, .levelup-elementor-design-preview{
     margin: 5px;
     background: #fff;
     border-radius: 40px;
@@ -157,15 +157,15 @@
     font-size: 16px;
     cursor:pointer;
 }
-#modalContainer .levelup-elementor-design-btn{
+#levelup-modalContainer .levelup-elementor-design-btn{
     padding:8px 15px;
 }
-#modalContainer .levelup-elementor-design-preview a{
+#levelup-modalContainer .levelup-elementor-design-preview a{
     color:#6d7882;
     padding:8px 15px;    background: #fff;
     border-radius: 40px;
 }
-#modalContainer .levelup-elementor-design-text {
+#levelup-modalContainer .levelup-elementor-design-text {
     text-align: center;
     padding: 8px;
     background: #fff;
