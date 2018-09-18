@@ -106,6 +106,16 @@ function levelup_amp_design_styling(){
 		}
 	}
 	if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
-		echo $allCss;
+		echo levelup_minify_css($allCss);
 	}
+}
+
+function levelup_minify_css($buffer){
+	// Remove comments
+$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
+// Remove space after colons
+$buffer = str_replace(': ', ':', $buffer);
+// Remove whitespace
+$buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
+return $buffer; 
 }
