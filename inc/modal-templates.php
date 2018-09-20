@@ -4,7 +4,7 @@
     <div class="modal-header">
       <span class="levelup-close eicon-close close"></span>
       	<ul class="nav">
-		  	<li><a class="active" href="/"><?php echo esc_html__('Category Module',LEVELUP_TEXT_DOMAIN); ?> (<%= layouts.length %> <?php echo esc_html__('Designs',LEVELUP_TEXT_DOMAIN) ?>)</a></li>
+		  	<li><a class="active" href="/"><%= name %> (<%= layouts.length %> <?php echo esc_html__('Designs',LEVELUP_TEXT_DOMAIN) ?>)</a></li>
 		  	
 		</ul>
     </div>

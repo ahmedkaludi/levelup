@@ -10,9 +10,11 @@ if(!function_exists('levelup_getDesignListByCategory')){
 							        'post_type' => $post_type,
 							        'orderby'=>'asc',
 							        'tax_query' => array(
+							        		array(
 							                'taxonomy' => $taxonomy,
 							                'field' => 'slug',
 							                'terms' => $categoryslug,
+							                )
 							            )							        
 							    ));
 		$categories = array();
