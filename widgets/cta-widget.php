@@ -115,6 +115,24 @@ class CtaWidgets extends Widget_Base {
 		);
 
 		// CTA Design 1 Fields //
+		$this->add_control(
+			'cta-image1',
+			[
+				'label' => __( 'Choose Background Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-1',
+						)
+					)
+				)
+			]
+		);
 		 $this->add_control(
 			'cta-head1', [
 				'label' => __( 'Heading', 'plugin-domain' ),
@@ -171,24 +189,6 @@ class CtaWidgets extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => __( '#' ),
 				'label_block' => true,
-				'conditions'=> array(
-					'terms'	=> array(
-						array(
-							'name' => 'layoutDesignSelected',
-							'value' => 'cta-design-1',
-						)
-					)
-				)
-			]
-		);
-		$this->add_control(
-			'cta-image1',
-			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
-				'type' => \Elementor\Controls_Manager::MEDIA,
-				'default' => [
-				'url' => \Elementor\Utils::get_placeholder_image_src(),
-				],
 				'conditions'=> array(
 					'terms'	=> array(
 						array(
@@ -279,6 +279,210 @@ class CtaWidgets extends Widget_Base {
 						array(
 							'name' => 'layoutDesignSelected',
 							'value' => 'cta-design-2',
+						)
+					)
+				)
+			]
+		);
+		// CTA Design 3 Fields //
+		$this->add_control(
+			'cta-image3',
+			[
+				'label' => __( 'Choose Background Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-head3', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Easy to setup. Easy to maintain.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-desc3',
+			[
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __( 'Bootstrap is a widely-used, sleek, intuitive and powerful front-end framework for faster and easier web development.', 'plugin-domain' ),
+				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btn3', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Get Started for Free' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btnlnk3', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-3',
+						)
+					)
+				)
+			]
+		);
+		// CTA Design 4 Fields //
+		$this->add_control(
+			'cta-bgimage4',
+			[
+				'label' => __( 'Choose Background Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-txt4', [
+				'label' => __( 'Label', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'GET STARTED' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-head4', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Better for your startup.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-desc4',
+			[
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __( 'We have created a new product that will help designers, developers and companies create websites for their startups quickly and easily', 'plugin-domain' ),
+				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btn4', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Google Play' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btnlnk4', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-image4',
+			[
+				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-4',
 						)
 					)
 				)
