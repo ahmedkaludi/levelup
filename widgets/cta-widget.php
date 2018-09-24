@@ -488,7 +488,208 @@ class CtaWidgets extends Widget_Base {
 				)
 			]
 		);
-
+		// CTA Design 5 Fields //
+		$this->add_control(
+			'cta-head5', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Start Working Faster' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-5',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-desc5',
+			[
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __( 'No payment required, jump in and get started.', 'plugin-domain' ),
+				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-5',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btn5', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Get a License' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-5',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btnlnk5', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-5',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-image5',
+			[
+				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-5',
+						)
+					)
+				)
+			]
+		);
+		// CTA Design 6 Fields //
+		$this->add_control(
+			'cta-head6', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'They made signs for me to come down from the rock, and go' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-desc6',
+			[
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __( 'Now the races of these two haven been for some ages utterly extinct, and besides.', 'plugin-domain' ),
+				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btn6-1', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Get a License' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btnlnk6-1', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btn6-2', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Learn More' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-btnlnk6-2', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cta-image6',
+			[
+				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'cta-design-6',
+						)
+					)
+				)
+			]
+		);
 		$this->end_controls_section();
 
 	}//Control settings are closed
