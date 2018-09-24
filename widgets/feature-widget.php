@@ -122,7 +122,7 @@ class FeatureWidgets extends Widget_Base {
 		);
 
 		// Feature Design 1 Fields //
-		 $this->add_control(
+		$this->add_control(
 			'heading1', [
 				'label' => __( 'Heading', 'plugin-domain' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
