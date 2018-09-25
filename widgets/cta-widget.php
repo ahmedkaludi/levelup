@@ -121,7 +121,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => __( 'Choose Background Image', 'plugin-domain' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/09/default-img.jpg',
 				],
 				'conditions'=> array(
 					'terms'	=> array(
@@ -155,7 +155,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => __( 'Description', 'plugin-domain' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( 'A high-quality solution for those who want a beautiful startup websitr quickely.', 'plugin-domain' ),
+				'default' => __( 'A high-quality solution for those who want a beautiful</br>startup websitr quickely.', 'plugin-domain' ),
 				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
 				'conditions'=> array(
 					'terms'	=> array(
@@ -291,7 +291,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => __( 'Choose Background Image', 'plugin-domain' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/09/default-img.jpg',
 				],
 				'conditions'=> array(
 					'terms'	=> array(
@@ -376,7 +376,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => __( 'Choose Background Image', 'plugin-domain' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/09/default-img.jpg',
 				],
 				'conditions'=> array(
 					'terms'	=> array(
