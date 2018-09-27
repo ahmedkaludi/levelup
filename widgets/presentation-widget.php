@@ -463,10 +463,109 @@ class PresentationWidgets extends Widget_Base {
 					'terms'	=> array(
 						array(
 							'name' => 'layoutDesignSelected',
-							'value' => 'content-presentation-design-2',
+							'value' => 'content-presentation-design-3',
 						)
 					)
 				)
+			]
+		);
+		// Content Presentation Design 4 Fields //
+		$this->add_control(
+			'cp4-heading1', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Simple Design & prototyping' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp4-desc', [
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Startup Framework gives you complete freedom over your creative process--you don\'t have to think about any technical aspects.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp4-btn', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Get Started' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp4-btnlnk', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp4-sub-heading', [
+				'label' => __( 'Sub Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'It is absolutely free.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp4-image',
+			[
+				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			'conditions'=> array(
+				'terms'	=> array(
+					array(
+						'name' => 'layoutDesignSelected',
+						'value' => 'content-presentation-design-4',
+					)
+				)
+			)
 			]
 		);
 		$this->end_controls_section();
