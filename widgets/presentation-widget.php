@@ -29,7 +29,7 @@ class PresentationWidgets extends Widget_Base {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Presentation', LEVELUP_TEXT_DOMAIN );
+		return esc_html__( 'Content Presentation', LEVELUP_TEXT_DOMAIN );
 	}
 	/**
 	 * Retrieve the widget icon.
