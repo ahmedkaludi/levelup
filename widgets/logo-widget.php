@@ -120,7 +120,7 @@ class LogoWidgets extends Widget_Base {
 				'default'=>'no',
 			)
 		);
-		// Content Presentation Design 1 Fields //
+		// Logo Design 1 Fields //
 		$this->add_control(
 			'lg1-heading', [
 				'label' => __( 'Heading', 'plugin-domain' ),
@@ -203,6 +203,86 @@ class LogoWidgets extends Widget_Base {
 						array(
 							'name' => 'layoutDesignSelected',
 							'value' => 'logo-design-1',
+						)
+					)
+				)
+			]
+		);
+		// Logo Design 2 Fields //
+		$this->add_control(
+			'lg2-heading', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'OUR CLIENTS' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'logo-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'lg2-desc', [
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Folks at these awesome companies are already using Startup Framework.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'logo-design-2',
+						)
+					)
+				)
+			]
+		);
+		$repeater2 = new \Elementor\Repeater();
+
+		$repeater2->add_control(
+			'lg2-image',
+			[
+				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+		$this->add_control(
+			'lg2-rep',
+			[
+				'label' => __( 'Repeater List', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater2->get_controls(),
+				'default' => [
+					[
+						'lg2-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg2-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg2-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg2-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg2-image' => __( '', 'plugin-domain' ),
+					],
+					
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'logo-design-2',
 						)
 					)
 				)
