@@ -112,12 +112,363 @@ class PresentationWidgets extends Widget_Base {
 			)
 		);
 
-		
+		// Content Presentation Design 1 Fields //
+		$this->add_control(
+			'cp1-heading1', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Take a Look at Our Awesome New Product' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-1',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp1-block-1-desc', [
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Of course we haven\'t forgotten about the responsive layout. Create a website with full mobile support.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-1',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp1-block-1-btn', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Avaliable on App Store' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-1',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp1-block-1-btnlnk', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-1',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp1-image',
+			[
+				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			'conditions'=> array(
+				'terms'	=> array(
+					array(
+						'name' => 'layoutDesignSelected',
+						'value' => 'content-presentation-design-1',
+					)
+				)
+			)
+			]
+		);
+		$repeater1 = new \Elementor\Repeater();
 
-				
-		
-		
+		$repeater1->add_control(
+			'title-1', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Title' , 'plugin-domain' ),
+				'label_block' => true,
+			]
+		);
+		$repeater1->add_control(
+			'text_description1',
+			[
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __( 'Description', 'plugin-domain' ),
+				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+			]
+		);
+		$this->add_control(
+			'cp1-rep',
+			[
+				'label' => __( 'Repeater List', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater1->get_controls(),
+				'default' => [
+					[
+						'title-1'=>__( 'FULL CONTROL', 'plugin-domain' ),
+						'text_description1'=>__( 'Easily change and tweak your content when you need to, however you want, No more third party wendor lock-in.', 'plugin-domain' ),
+					],
+					[
+						'title-1'=>__( 'FOR FREELANCERS AND AGENCIES', 'plugin-domain' ),
+						'text_description1'=>__( 'Easily change and tweak your content when you need to, however you want, No more third party wendor lock-in.', 'plugin-domain' ),
+					],
+					[
+						'title-1'=>__( 'CMD + C / CMD + V', 'plugin-domain' ),
+						'text_description1'=>__( 'Easily change and tweak your content when you need to, however you want, No more third party wendor lock-in.', 'plugin-domain' ),
+					],
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-1',
+						)
+					)
+				)
+			]
+		);
+		// Content Presentation Design 2 Fields //
+		$this->add_control(
+			'cp2-heading1', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Samples will show you the feeling on how to display around using the components in the website building process.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-2',
+						)
+					)
+				)
+			]
+		);		
+		$this->add_control(
+			'cp2-image',
+			[
+				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			'conditions'=> array(
+				'terms'	=> array(
+					array(
+						'name' => 'layoutDesignSelected',
+						'value' => 'content-presentation-design-2',
+					)
+				)
+			)
+			]
+		);
+		$repeater2 = new \Elementor\Repeater();
 
+		$repeater2->add_control(
+			'title-2', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Title' , 'plugin-domain' ),
+				'label_block' => true,
+			]
+		);
+		$repeater2->add_control(
+			'text_description2',
+			[
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __( 'Description', 'plugin-domain' ),
+				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+			]
+		);
+		$repeater2->add_control(
+			'cp2-btn', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Avaliable on App Store' , 'plugin-domain' ),
+				'label_block' => true,
+			]
+		);
+		$repeater2->add_control(
+			'cp2-btnlnk', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' , 'plugin-domain' ),
+				'label_block' => true,
+			]
+		);
+		$this->add_control(
+			'cp2-rep',
+			[
+				'label' => __( 'Repeater List', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater2->get_controls(),
+				'default' => [
+					[
+						'title-2'=>__( 'How Startup Frame works?', 'plugin-domain' ),
+						'text_description2'=>__( 'The Generator App is an onlinetoll thta helps you to export ready made templates ready to work as your future website. It helps you to combine slides, panels and other components and export it as a set of static files: HYML/CSS/JS.', 'plugin-domain' ),
+						'cp2-btn'=>__( 'View Tutorial', 'plugin-domain' ),
+						'cp2-btnlnk'=>__( '#', 'plugin-domain' ),
+					],
+					[
+						'title-2'=>__( 'Do you provide hosting with Startup Framework?', 'plugin-domain' ),
+						'text_description2'=>__( 'No, hosting is on you. You upload the result on your hosting via FTP or using tools you like. You can use any server, just make sure it have a PHP installed in case if you need a contact form.', 'plugin-domain' ),
+						'cp2-btn'=>__( 'Learn More', 'plugin-domain' ),
+						'cp2-btnlnk'=>__( '#', 'plugin-domain' ),
+					],
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-2',
+						)
+					)
+				)
+			]
+		);
+		// Content Presentation Design 3 Fields //
+		$this->add_control(
+			'cp3-heading1', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Welcome Home Designers.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp3-desc', [
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'We have created a new product that will help designers, developers and companies create websites for their startups quickly and easily.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp3-btn', [
+				'label' => __( 'Button Text', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Purchase Now for $248' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp3-btnlnk', [
+				'label' => __( 'Button Link', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( '#' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-3',
+						)
+					)
+				)
+			]
+		);
+		$repeater3 = new \Elementor\Repeater();
+
+		$repeater3->add_control(
+			'title-3', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Title' , 'plugin-domain' ),
+				'label_block' => true,
+			]
+		);
+		$repeater3->add_control(
+			'text_description3',
+			[
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => __( 'Description', 'plugin-domain' ),
+				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+			]
+		);	
+		$this->add_control(
+			'cp3-rep',
+			[
+				'label' => __( 'Repeater List', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater3->get_controls(),
+				'default' => [
+					[
+						'title-3'=>__( 'Build Quick', 'plugin-domain' ),
+						'text_description3'=>__( 'Get a beautiful site up and running in no time. Just choose Startup Framework you like and start tweaking it.', 'plugin-domain' ),
+						
+					],
+					[
+						'title-3'=>__( 'A Lot of blocks', 'plugin-domain' ),
+						'text_description3'=>__( 'Enjoy endless possibilities nd results with many blocks to tinker and combine with.', 'plugin-domain' ),
+					],
+					[
+						'title-3'=>__( 'Fully Responsive', 'plugin-domain' ),
+						'text_description3'=>__( 'Your site will look great and work seamlessly across difference devices and platforms.', 'plugin-domain' ),
+					],
+					[
+						'title-3'=>__( 'Build Today', 'plugin-domain' ),
+						'text_description3'=>__( 'Transform you ideas into reality and lunch a beautiful site with minimal frustration.', 'plugin-domain' ),
+					],
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-2',
+						)
+					)
+				)
+			]
+		);
 		$this->end_controls_section();
 
 	}//Control settings are closed
