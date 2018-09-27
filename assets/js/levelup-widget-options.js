@@ -421,7 +421,7 @@
                         }
                         $('.elementor-control-layoutDesignSelected').hide();
                     }
-                    if(model.attributes.widgetType == 'presentation'){
+                    if(model.attributes.widgetType == 'content-presentation'){
                         var self = this;
                         var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
                         if(currentStatus!='yes'){

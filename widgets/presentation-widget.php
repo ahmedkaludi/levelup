@@ -19,7 +19,7 @@ class PresentationWidgets extends Widget_Base {
 	 * @return string Widget name.
 	 */
 	public function get_name() {
-		return 'presentation';
+		return 'content-presentation';
 	}
 	/**
 	 * Retrieve the widget title.
@@ -66,7 +66,7 @@ class PresentationWidgets extends Widget_Base {
 	 * @return array Widget scripts dependencies.
 	 */
 	public function get_script_depends() {
-		return [ 'presentation-widget' ];
+		return [ 'content-presentation-widget' ];
 	}
 	/**
 	 * Register the widget controls.
@@ -89,7 +89,7 @@ class PresentationWidgets extends Widget_Base {
 				'label' => esc_html__( 'Content Presentation', LEVELUP_TEXT_DOMAIN ),
 			)
 		);
-		$designs = levelup_getDesignListByCategory('presentation');
+		$designs = levelup_getDesignListByCategory('content-presentation');
 		$defaultDesign = '';
 		$defaultDesign = array_keys($designs);
 		$defaultDesign = isset($defaultDesign[0])? $defaultDesign[0] : '';
