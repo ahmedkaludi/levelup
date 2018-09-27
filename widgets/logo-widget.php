@@ -120,8 +120,94 @@ class LogoWidgets extends Widget_Base {
 				'default'=>'no',
 			)
 		);
+		// Content Presentation Design 1 Fields //
+		$this->add_control(
+			'lg1-heading', [
+				'label' => __( 'Heading', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Trusted by over 500 great business' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'logo-design-1',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'lg1-desc', [
+				'label' => __( 'Description', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __( 'Startup Framework includes great form options for your startup projects. Each component is coded for web which makes creating quick and easy.' , 'plugin-domain' ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'logo-design-1',
+						)
+					)
+				)
+			]
+		);
+		$repeater1 = new \Elementor\Repeater();
 
-		
+		$repeater1->add_control(
+			'lg1-image',
+			[
+				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+		$this->add_control(
+			'lg1-rep',
+			[
+				'label' => __( 'Repeater List', 'plugin-domain' ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater1->get_controls(),
+				'default' => [
+					[
+						'lg1-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg1-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg1-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg1-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg1-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg1-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg1-image' => __( '', 'plugin-domain' ),
+					],
+					[
+						'lg1-image' => __( '', 'plugin-domain' ),
+					],
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'logo-design-1',
+						)
+					)
+				)
+			]
+		);
 		$this->end_controls_section();
 
 	}//Control settings are closed
