@@ -122,3 +122,8 @@ $buffer = str_replace(': ', ':', $buffer);
 $buffer = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $buffer);
 return $buffer; 
 }
+
+function levelup_new_excerpt_more( $more ) {
+    return '';
+}
+add_filter('excerpt_more', 'levelup_new_excerpt_more');
