@@ -123,9 +123,9 @@ class LogoWidgets extends Widget_Base {
 		// Logo Design 1 Fields //
 		$this->add_control(
 			'lg1-heading', [
-				'label' => __( 'Heading', 'plugin-domain' ),
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Trusted by over 500 great business' , 'plugin-domain' ),
+				'default' => esc_html__( 'Trusted by over 500 great business' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -139,9 +139,9 @@ class LogoWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'lg1-desc', [
-				'label' => __( 'Description', 'plugin-domain' ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Startup Framework includes great form options for your startup projects. Each component is coded for web which makes creating quick and easy.' , 'plugin-domain' ),
+				'default' => esc_html__( 'Startup Framework includes great form options for your startup projects. Each component is coded for web which makes creating quick and easy.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -158,7 +158,7 @@ class LogoWidgets extends Widget_Base {
 		$repeater1->add_control(
 			'lg1-image',
 			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -168,33 +168,33 @@ class LogoWidgets extends Widget_Base {
 		$this->add_control(
 			'lg1-rep',
 			[
-				'label' => __( 'Repeater List', 'plugin-domain' ),
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater1->get_controls(),
 				'default' => [
 					[
-						'lg1-image' => __( '', 'plugin-domain' ),
+						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => __( '', 'plugin-domain' ),
+						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => __( '', 'plugin-domain' ),
+						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => __( '', 'plugin-domain' ),
+						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => __( '', 'plugin-domain' ),
+						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => __( '', 'plugin-domain' ),
+						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => __( '', 'plugin-domain' ),
+						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => __( '', 'plugin-domain' ),
+						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 				],
 				'title_field' => 'Repeater',
@@ -211,9 +211,9 @@ class LogoWidgets extends Widget_Base {
 		// Logo Design 2 Fields //
 		$this->add_control(
 			'lg2-heading', [
-				'label' => __( 'Heading', 'plugin-domain' ),
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'OUR CLIENTS' , 'plugin-domain' ),
+				'default' => esc_html__( 'OUR CLIENTS' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -227,9 +227,9 @@ class LogoWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'lg2-desc', [
-				'label' => __( 'Description', 'plugin-domain' ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Folks at these awesome companies are already using Startup Framework.' , 'plugin-domain' ),
+				'default' => esc_html__( 'Folks at these awesome companies are already using Startup Framework.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -246,7 +246,7 @@ class LogoWidgets extends Widget_Base {
 		$repeater2->add_control(
 			'lg2-image',
 			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 					'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -256,24 +256,24 @@ class LogoWidgets extends Widget_Base {
 		$this->add_control(
 			'lg2-rep',
 			[
-				'label' => __( 'Repeater List', 'plugin-domain' ),
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::REPEATER,
 				'fields' => $repeater2->get_controls(),
 				'default' => [
 					[
-						'lg2-image' => __( '', 'plugin-domain' ),
+						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg2-image' => __( '', 'plugin-domain' ),
+						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg2-image' => __( '', 'plugin-domain' ),
+						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg2-image' => __( '', 'plugin-domain' ),
+						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg2-image' => __( '', 'plugin-domain' ),
+						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
 					],
 					
 				],

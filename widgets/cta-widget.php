@@ -118,7 +118,7 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-image1',
 			[
-				'label' => __( 'Choose Background Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Background Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/09/default-img.jpg',
@@ -135,9 +135,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		 $this->add_control(
 			'cta-head1', [
-				'label' => __( 'Heading', 'plugin-domain' ),
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Start Creating Right Now' , 'plugin-domain' ),
+				'default' => esc_html__( 'Start Creating Right Now' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -152,11 +152,11 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-desc1',
 			[
-				'label' => __( 'Description', 'plugin-domain' ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( 'A high-quality solution for those who want a beautiful</br>startup websitr quickely.', 'plugin-domain' ),
-				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'default' => esc_html__( 'A high-quality solution for those who want a beautiful</br>startup websitr quickely.', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(
 						array(
@@ -169,9 +169,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btn1', [
-				'label' => __( 'Button Text', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Get Started for $249' , 'plugin-domain' ),
+				'default' => esc_html__( 'Get Started for $249' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -185,9 +185,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btnlnk1', [
-				'label' => __( 'Button Link', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '#' ),
+				'default' => esc_html__( '#' ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -203,7 +203,7 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-image2',
 			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 				'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -220,9 +220,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-head2', [
-				'label' => __( 'Heading', 'plugin-domain' ),
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'The same beautiful experience across devices.' , 'plugin-domain' ),
+				'default' => esc_html__( 'The same beautiful experience across devices.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -237,11 +237,11 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-desc2',
 			[
-				'label' => __( 'Description', 'plugin-domain' ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( 'Get a fully retina ready site when you build with Startup Framework. Websites look sharper and more gorgeous on devices with retina display support.', 'plugin-domain' ),
-				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'default' => esc_html__( 'Get a fully retina ready site when you build with Startup Framework. Websites look sharper and more gorgeous on devices with retina display support.', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(
 						array(
@@ -254,9 +254,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btn2', [
-				'label' => __( 'Button Text', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Learn More' , 'plugin-domain' ),
+				'default' => esc_html__( 'Learn More' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -270,9 +270,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btnlnk2', [
-				'label' => __( 'Button Link', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '#' ),
+				'default' => esc_html__( '#' ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -288,7 +288,7 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-image3',
 			[
-				'label' => __( 'Choose Background Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Background Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/09/default-img.jpg',
@@ -305,9 +305,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-head3', [
-				'label' => __( 'Heading', 'plugin-domain' ),
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Easy to setup. Easy to maintain.' , 'plugin-domain' ),
+				'default' => esc_html__( 'Easy to setup. Easy to maintain.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -322,11 +322,11 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-desc3',
 			[
-				'label' => __( 'Description', 'plugin-domain' ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( 'Bootstrap is a widely-used, sleek, intuitive and powerful front-end framework for faster and easier web development.', 'plugin-domain' ),
-				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'default' => esc_html__( 'Bootstrap is a widely-used, sleek, intuitive and powerful front-end framework for faster and easier web development.', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(
 						array(
@@ -339,9 +339,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btn3', [
-				'label' => __( 'Button Text', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Get Started for Free' , 'plugin-domain' ),
+				'default' => esc_html__( 'Get Started for Free' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -355,9 +355,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btnlnk3', [
-				'label' => __( 'Button Link', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '#' ),
+				'default' => esc_html__( '#' ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -373,7 +373,7 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-bgimage4',
 			[
-				'label' => __( 'Choose Background Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Background Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/09/default-img.jpg',
@@ -390,9 +390,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-txt4', [
-				'label' => __( 'Label', 'plugin-domain' ),
+				'label' => esc_html__( 'Label', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'GET STARTED' , 'plugin-domain' ),
+				'default' => esc_html__( 'GET STARTED' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -406,9 +406,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-head4', [
-				'label' => __( 'Heading', 'plugin-domain' ),
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Better for your startup.' , 'plugin-domain' ),
+				'default' => esc_html__( 'Better for your startup.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -423,11 +423,11 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-desc4',
 			[
-				'label' => __( 'Description', 'plugin-domain' ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( 'We have created a new product that will help designers, developers and companies create websites for their startups quickly and easily', 'plugin-domain' ),
-				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create websites for their startups quickly and easily', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(
 						array(
@@ -440,9 +440,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btn4', [
-				'label' => __( 'Button Text', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Google Play' , 'plugin-domain' ),
+				'default' => esc_html__( 'Google Play' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -456,9 +456,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btnlnk4', [
-				'label' => __( 'Button Link', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '#' ),
+				'default' => esc_html__( '#' ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -473,7 +473,7 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-image4',
 			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 				'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -491,9 +491,9 @@ class CtaWidgets extends Widget_Base {
 		// CTA Design 5 Fields //
 		$this->add_control(
 			'cta-head5', [
-				'label' => __( 'Heading', 'plugin-domain' ),
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Start Working Faster' , 'plugin-domain' ),
+				'default' => esc_html__( 'Start Working Faster' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -508,11 +508,11 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-desc5',
 			[
-				'label' => __( 'Description', 'plugin-domain' ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( 'No payment required, jump in and get started.', 'plugin-domain' ),
-				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'default' => esc_html__( 'No payment required, jump in and get started.', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(
 						array(
@@ -525,9 +525,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btn5', [
-				'label' => __( 'Button Text', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Get a License' , 'plugin-domain' ),
+				'default' => esc_html__( 'Get a License' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -541,9 +541,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btnlnk5', [
-				'label' => __( 'Button Link', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '#' ),
+				'default' => esc_html__( '#' ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -558,7 +558,7 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-image5',
 			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 				'url' => \Elementor\Utils::get_placeholder_image_src(),
@@ -576,9 +576,9 @@ class CtaWidgets extends Widget_Base {
 		// CTA Design 6 Fields //
 		$this->add_control(
 			'cta-head6', [
-				'label' => __( 'Heading', 'plugin-domain' ),
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'They made signs for me to come down from the rock, and go' , 'plugin-domain' ),
+				'default' => esc_html__( 'They made signs for me to come down from the rock, and go' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -593,11 +593,11 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-desc6',
 			[
-				'label' => __( 'Description', 'plugin-domain' ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( 'Now the races of these two haven been for some ages utterly extinct, and besides.', 'plugin-domain' ),
-				'placeholder' => __( 'Type your description here', 'plugin-domain' ),
+				'default' => esc_html__( 'Now the races of these two haven been for some ages utterly extinct, and besides.', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(
 						array(
@@ -610,9 +610,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btn6-1', [
-				'label' => __( 'Button Text', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Get a License' , 'plugin-domain' ),
+				'default' => esc_html__( 'Get a License' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -626,9 +626,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btnlnk6-1', [
-				'label' => __( 'Button Link', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '#' ),
+				'default' => esc_html__( '#' ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -642,9 +642,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btn6-2', [
-				'label' => __( 'Button Text', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( 'Learn More' , 'plugin-domain' ),
+				'default' => esc_html__( 'Learn More' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -658,9 +658,9 @@ class CtaWidgets extends Widget_Base {
 		);
 		$this->add_control(
 			'cta-btnlnk6-2', [
-				'label' => __( 'Button Link', 'plugin-domain' ),
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '#' ),
+				'default' => esc_html__( '#' ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -675,7 +675,7 @@ class CtaWidgets extends Widget_Base {
 		$this->add_control(
 			'cta-image6',
 			[
-				'label' => __( 'Choose Image', 'plugin-domain' ),
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
 				'url' => \Elementor\Utils::get_placeholder_image_src(),
