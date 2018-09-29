@@ -56,11 +56,8 @@ function levelup_update_design_library($is_first_install=false){
         wp_die();
     }
 
-
-        $post_type = levelup_basics_config('post_type');
-        $taxonomy = levelup_basics_config('taxonomy');
             
-            levelup_default_designs($responseData);
+        levelup_default_designs($responseData);
         
         $current_version = update_option( 'levelup-library-loaded-version',$responseData['current_version']['version_detail']);
         if($is_first_install){
@@ -114,34 +111,10 @@ function levelup_default_designs($responseData){
                 update_post_meta( $post_id, 'non_amp_html_markup', $non_amp_html_markup );
                 update_post_meta( $post_id, 'design_unique_name', $valDesigntype['design_unique_name'] );
                 update_post_meta( $post_id, 'design_preview_url', (isset($valDesigntype['design_preview_url'])? $valDesigntype['design_preview_url']: '') );
+                update_post_meta( $post_id, 'design_feature_image_url', (isset($valDesigntype['designImage'])? $valDesigntype['designImage']: '') );
 
 
-                $media = media_sideload_image($valDesigntype['designImage'], $post_id);
-                if(!empty($media) && !is_wp_error($media)){
-                    $args = array(
-                        'post_type' => 'attachment',
-                        'posts_per_page' => -1,
-                        'post_status' => 'any',
-                        'post_parent' => $post_id
-                    );
-
-                    // reference new image to set as featured
-                    $attachments = get_posts($args);
-
-                    if(isset($attachments) && is_array($attachments)){
-                        foreach($attachments as $attachment){
-                            // grab source of full size images (so no 300x150 nonsense in path)
-                            $image = wp_get_attachment_image_src($attachment->ID, 'full');
-                            // determine if in the $media image we created, the string of the URL exists
-                            if(strpos($media, $image[0]) !== false){
-                                // if so, we found our image. set it as thumbnail
-                                set_post_thumbnail($post_id, $attachment->ID);
-                                // only want one image
-                                break;
-                            }
-                        }
-                    }
-                }
+                
 
             }
         }//Foreach closed
