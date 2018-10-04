@@ -240,8 +240,428 @@ class TeamWidgets extends Widget_Base {
 			]
 		);
 
+		// Team Design 2 Fileds//
+		$this->add_control(
+			'tm2-bg-image',
+			[
+				'label' => esc_html__( 'Choose Background Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/09/default-img.jpg',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'team2-head', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Our Crew' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'team2-desc', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Samples will show you the feeling on how to play around using the components in the website building process.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-2',
+						)
+					)
+				)
+			]
+		);
 
+		$repeater2 = new \Elementor\Repeater();
 
+		$repeater2->add_control(
+			'tm2-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+
+		$repeater2->add_control(
+			'tm2-title', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Title' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+
+		$repeater2->add_control(
+			'tm2-tw', [
+				'label' => esc_html__( 'Icon', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => levelup_get_font_icons(),
+				'default' => 'fa fa-twitter',
+			]
+		);
+		$repeater2->add_control(
+			'tm2-twlnk', [
+				'label' => esc_html__( 'Icon Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater2->add_control(
+			'tm2-fb', [
+				'label' => esc_html__( 'Icon', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => levelup_get_font_icons(),
+				'default' => 'fa fa-facebook-square',
+			]
+		);
+		$repeater2->add_control(
+			'tm2-fblnk', [
+				'label' => esc_html__( 'Icon Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater2->add_control(
+			'tm2-gt', [
+				'label' => esc_html__( 'Icon', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => levelup_get_font_icons(),
+				'default' => 'fa fa-github',
+			]
+		);
+		$repeater2->add_control(
+			'tm2-gtlnk', [
+				'label' => esc_html__( 'Icon Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+
+		$this->add_control(
+			'tm2-rep',
+			[
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater2->get_controls(),
+				'default' => [
+					[
+						'tm2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm2-title'=>__( 'SAMANTHA GIMSON', LEVELUP_TEXT_DOMAIN ),
+						'tm2-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),
+						'tm2-twlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm2-fb'=> esc_html__( 'fa fa-facebook-square', LEVELUP_TEXT_DOMAIN ),
+						'tm2-fblnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm2-gt'=> esc_html__( 'fa fa-github', LEVELUP_TEXT_DOMAIN ),
+						'tm2-gtlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+					[
+						'tm2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm2-title'=>__( 'EVAN BARRINGTON', LEVELUP_TEXT_DOMAIN ),
+						'tm2-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),
+						'tm2-twlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm2-fb'=> esc_html__( 'fa fa-facebook-square', LEVELUP_TEXT_DOMAIN ),
+						'tm2-fblnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm2-gt'=> esc_html__( 'fa fa-github', LEVELUP_TEXT_DOMAIN ),
+						'tm2-gtlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+					[
+						'tm2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm2-title'=>__( 'BRAIN OAKMAN', LEVELUP_TEXT_DOMAIN ),
+						'tm2-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),
+						'tm2-twlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm2-fb'=> esc_html__( 'fa fa-facebook-square', LEVELUP_TEXT_DOMAIN ),
+						'tm2-fblnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm2-gt'=> esc_html__( 'fa fa-github', LEVELUP_TEXT_DOMAIN ),
+						'tm2-gtlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+					
+					
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'tm2-btn', [
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'View our Crew' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'tm2-btnlnk', [
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'tm2-angl', [
+				'label' => esc_html__( 'Icon', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => levelup_get_font_icons(),
+				'default' => 'fa-angle-right',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-2',
+						)
+					)
+				)
+			]
+		);
+
+		// Team Design 3 Fileds//
+		
+		$this->add_control(
+			'team3-head', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Our Awesome Team' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'team2-desc', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create website for their startups quickly and easily.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'tm3-btn', [
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'ENJOY OUR TEAM' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'tm3-btnlnk', [
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-3',
+						)
+					)
+				)
+			]
+		);
+		$repeater3 = new \Elementor\Repeater();
+
+		$repeater3->add_control(
+			'tm3-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+
+		$repeater3->add_control(
+			'tm3-title', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Title' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+
+		$repeater3->add_control(
+			'tm3-desig', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Designation' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+
+		$repeater3->add_control(
+			'tm3-tw', [
+				'label' => esc_html__( 'Icon', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => levelup_get_font_icons(),
+				'default' => 'fa fa-twitter',
+			]
+		);
+		$repeater3->add_control(
+			'tm3-twlnk', [
+				'label' => esc_html__( 'Icon Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater3->add_control(
+			'tm3-fb', [
+				'label' => esc_html__( 'Icon', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => levelup_get_font_icons(),
+				'default' => 'fa fa-facebook-square',
+			]
+		);
+		$repeater3->add_control(
+			'tm3-fblnk', [
+				'label' => esc_html__( 'Icon Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater3->add_control(
+			'tm3-gt', [
+				'label' => esc_html__( 'Icon', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => levelup_get_font_icons(),
+				'default' => 'fa fa-github',
+			]
+		);
+		$repeater3->add_control(
+			'tm3-gtlnk', [
+				'label' => esc_html__( 'Icon Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+
+		$this->add_control(
+			'tm3-rep',
+			[
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater3->get_controls(),
+				'default' => [
+					[
+						'tm3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm3-title'=>__( 'Vanessa Laird', LEVELUP_TEXT_DOMAIN ),
+						'tm3-desig'=>__( 'UI DESIGNER', LEVELUP_TEXT_DOMAIN ),
+						'tm3-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),
+						'tm3-twlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm3-fb'=> esc_html__( 'fa fa-facebook-square', LEVELUP_TEXT_DOMAIN ),
+						'tm3-fblnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm3-gt'=> esc_html__( 'fa fa-github', LEVELUP_TEXT_DOMAIN ),
+						'tm3-gtlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+					[
+						'tm3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm3-title'=>__( 'Manson Campbell', LEVELUP_TEXT_DOMAIN ),
+						'tm3-desig'=>__( 'UI DESIGNER', LEVELUP_TEXT_DOMAIN ),
+						'tm3-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),
+						'tm3-twlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm3-fb'=> esc_html__( 'fa fa-facebook-square', LEVELUP_TEXT_DOMAIN ),
+						'tm3-fblnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm3-gt'=> esc_html__( 'fa fa-github', LEVELUP_TEXT_DOMAIN ),
+						'tm3-gtlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+					[
+						'tm3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm3-title'=>__( 'Irea Evans', LEVELUP_TEXT_DOMAIN ),
+						'tm3-desig'=>__( 'CLIENT MANAGER', LEVELUP_TEXT_DOMAIN ),
+						'tm3-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),
+						'tm3-twlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm3-fb'=> esc_html__( 'fa fa-facebook-square', LEVELUP_TEXT_DOMAIN ),
+						'tm3-fblnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+						'tm3-gt'=> esc_html__( 'fa fa-github', LEVELUP_TEXT_DOMAIN ),
+						'tm3-gtlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+					
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-2',
+						)
+					)
+				)
+			]
+		);
 
 		$this->end_controls_section();
 
