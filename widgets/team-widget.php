@@ -121,7 +121,128 @@ class TeamWidgets extends Widget_Base {
 			)
 		);
 
-		 
+		// Team Design 1 Fileds//
+		 $this->add_control(
+			'team-head1', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Great crew of Startup Framework' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-1',
+						)
+					)
+				)
+			]
+		);
+		$repeater1 = new \Elementor\Repeater();
+
+		$repeater1->add_control(
+			'tm1-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+
+		$repeater1->add_control(
+			'tm1-title', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Title' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater1->add_control(
+			'tm1-desig', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Designation' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater1->add_control(
+			'tm1-desc',
+			[
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
+			]
+		);
+		$this->add_control(
+			'tm1-rep',
+			[
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater1->get_controls(),
+				'default' => [
+					[
+						'tm1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm1-title'=>__( 'Nicole Fisher', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desig'=>__( 'PRODUCT MANAGER', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desc'=>__( 'Designer who makes easy to change and easy to create new elements.', LEVELUP_TEXT_DOMAIN ),
+						
+					],
+					[
+						'tm1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm1-title'=>__( 'Megan Douglas', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desig'=>__( 'CEO', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desc'=>__( 'Designer who makes easy to change and easy to create new elements.', LEVELUP_TEXT_DOMAIN ),
+						
+					],
+					[
+						'tm1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm1-title'=>__( 'John Carrington', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desig'=>__( 'DEVELOPER', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desc'=>__( 'Designer who makes easy to change and easy to create new elements.', LEVELUP_TEXT_DOMAIN ),
+						
+					],
+					[
+						'tm1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm1-title'=>__( 'Trinity Sherlock', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desig'=>__( 'DESIGNER', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desc'=>__( 'Designer who makes easy to change and easy to create new elements.', LEVELUP_TEXT_DOMAIN ),
+						
+					],
+					[
+						'tm1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm1-title'=>__( 'Jake Cramer', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desig'=>__( 'WRITER', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desc'=>__( 'Designer who makes easy to change and easy to create new elements.', LEVELUP_TEXT_DOMAIN ),
+						
+					],
+					[
+						'tm1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm1-title'=>__( 'Brandin Coleman', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desig'=>__( 'WRITER', LEVELUP_TEXT_DOMAIN ),
+						'tm1-desc'=>__( 'Designer who makes easy to change and easy to create new elements.', LEVELUP_TEXT_DOMAIN ),
+						
+					],
+					
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'team-design-1',
+						)
+					)
+				)
+			]
+		);
+
+
+
+
 		$this->end_controls_section();
 
 	}//Control settings are closed
