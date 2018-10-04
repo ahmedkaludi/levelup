@@ -443,6 +443,17 @@
                         }
                         $('.elementor-control-layoutDesignSelected').hide();
                     }
+                    if(model.attributes.widgetType == 'team'){
+                        var self = this;
+                        var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
+                        if(currentStatus!='yes'){
+                            openCallToActionDesignPopup(model.attributes.widgetType);
+                            //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
+                            model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
+                            
+                        }
+                        $('.elementor-control-layoutDesignSelected').hide();
+                    }
     			}
             );
 
