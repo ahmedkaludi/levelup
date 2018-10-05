@@ -482,7 +482,7 @@ class TeamWidgets extends Widget_Base {
 			]
 		);
 		$this->add_control(
-			'team2-desc', [
+			'team3-desc', [
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create website for their startups quickly and easily.' , LEVELUP_TEXT_DOMAIN ),
@@ -656,7 +656,7 @@ class TeamWidgets extends Widget_Base {
 					'terms'	=> array(
 						array(
 							'name' => 'layoutDesignSelected',
-							'value' => 'team-design-2',
+							'value' => 'team-design-3',
 						)
 					)
 				)
