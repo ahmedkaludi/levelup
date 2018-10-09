@@ -1,0 +1,28 @@
+.elementor-add-section-area-button.levelup-add-template-button {
+    background-color: #6d7882;
+    margin-left: 5px;
+}
+
+.levelup-preview-drop-event {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+.levelup-preview-drop-event.levelup-dragging-on-child{
+	border: 3px dashed #71d7f7;
+}

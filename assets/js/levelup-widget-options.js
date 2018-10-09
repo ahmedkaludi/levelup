@@ -116,6 +116,7 @@
 
         hideModal: function() {
                 this.trigger( "closeModalWindow");
+                 $(document.body).find('.elementor-preview-drop-event').hide();
 
                 this.hideModalBlanket();
                 $(document.body).unbind( "keyup", this.keyup);
@@ -341,8 +342,8 @@
     });
 
 
-    var AddPersonView = ModalView.extend({
-                    name: "AddPersonView",
+    var LevelupPopupView = ModalView.extend({
+                    name: "LevelupPopupView",
                     model: {},
                     //template: '#tmpl-levelup-library-templates' ,
                     initialize:function() {
@@ -355,10 +356,26 @@
                     elementGetData: function(e) {
                          e.preventDefault();
                         var modalViewThis = e.currentTarget;
-                       
                         var templateId = $(modalViewThis).attr("data-template-id");
-                       
-                        jQuery("[data-setting=layoutDesignSelected]").val(templateId).trigger("change");
+                        //jQuery("[data-setting=layoutDesignSelected]").val(templateId).trigger("change");
+                       $.ajax({
+                            url: levelup_object.ajax_url,
+                            type:'post',
+                            dataType: 'json',
+                            data: {templateId: templateId, action: 'levelup_get_design', currentWidget: LevelupWidgets.itemData},
+                            success:function(data){
+                                if(data.status=='200'){
+                                    elementor.getPreviewView().addChildModel(data.content, {});
+                                    $('.elementor-control-layoutDesignSelected').hide();
+                                }
+                            },
+                            error: function(){
+                              $('.elementor-control-layoutDesignSelected').hide();  
+                            }
+                        });
+                        
+
+                        
                         
                       this.hideModal();
                    },
@@ -370,9 +387,8 @@
                     }
                 }); 
 
-    var setMeassageStaticPointer = 0;
     $( window ).on( 'elementor:init', function(require,module,exports) {
-        if(levelup_object.widget_design.designs.length==0){
+         if(levelup_object.widget_design.designs.length==0){
            
             elementor.hooks.addFilter('elements/base-section-container/behaviors', function(behaviors, model){
                  $("#elementor-panel-category-levelup-widgets").find(".elementor-panel-category-items").find('.elementor-element-wrapper:first').hide();
@@ -387,86 +403,98 @@
         	elementor.hooks.addAction(
                 'panel/open_editor/widget',
                 function( panel, model, view ) {
-                    console.log(panel, model, view);
-     				if(model.attributes.widgetType == 'category'){
-                        var self = this;
-                        var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
-                        if(currentStatus!='yes'){
-                            openCallToActionDesignPopup(model.attributes.widgetType);
-                            //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
-                            model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
-                            
-                        }
-                        $('.elementor-control-layoutDesignSelected').hide();
+                    $('.elementor-control-layoutDesignSelected').hide();
+                    var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
+                    if(currentStatus!='yes'){
+                        model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
                     }
-                    if(model.attributes.widgetType == 'feature'){
-                        var self = this;
-                        var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
-                        if(currentStatus!='yes'){
-                            openCallToActionDesignPopup(model.attributes.widgetType);
-                            //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
-                            model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
-                            
-                        }
-                        $('.elementor-control-layoutDesignSelected').hide();
-                	}
-                    if(model.attributes.widgetType == 'cta'){
-                        var self = this;
-                        var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
-                        if(currentStatus!='yes'){
-                            openCallToActionDesignPopup(model.attributes.widgetType);
-                            //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
-                            model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
-                            
-                        }
-                        $('.elementor-control-layoutDesignSelected').hide();
-                    }
-                    if(model.attributes.widgetType == 'content-presentation'){
-                        var self = this;
-                        var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
-                        if(currentStatus!='yes'){
-                            openCallToActionDesignPopup(model.attributes.widgetType);
-                            //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
-                            model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
-                            
-                        }
-                        $('.elementor-control-layoutDesignSelected').hide();
-                    }
-                    if(model.attributes.widgetType == 'logo'){
-                        var self = this;
-                        var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
-                        if(currentStatus!='yes'){
-                            openCallToActionDesignPopup(model.attributes.widgetType);
-                            //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
-                            model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
-                            
-                        }
-                        $('.elementor-control-layoutDesignSelected').hide();
-                    }
-                    if(model.attributes.widgetType == 'team'){
-                        var self = this;
-                        var currentStatus = $("[data-setting=layoutDesignSelectionpoup]").val();
-                        if(currentStatus!='yes'){
-                            openCallToActionDesignPopup(model.attributes.widgetType);
-                            //jQuery("[data-setting=layoutDesignSelectionpoup]").val('yes').trigger("update");
-                            model.attributes.settings.attributes.layoutDesignSelectionpoup = 'yes';
-                            
-                        }
-                        $('.elementor-control-layoutDesignSelected').hide();
-                    }
+                    //openCallToActionDesignPopup(model.attributes.widgetType);
     			}
             );
 
         }
+        
 
+        
      });
-     $(document).on("click",'.elementor-control-type-section', function(){
-            $(this).parents('#elementor-controls').find('.elementor-control-layoutDesignSelected').hide();
+
+    var LevelupWidgetsExtands = Backbone.View.extend({
+            initialize: function initialize(){
+                //To hide layout options
+                var self = this;
+                $( window ).on( 'elementor:init', function(require,module,exports) {
+                     $('.elementor-control-layoutDesignSelected').hide();
+                    self.listenTo(elementor.channels.panelElements, 'element:drag:start', self.onPanelElementDragStartTrack)
+                    self.listenTo(elementor.channels.panelElements, 'element:drag:end', self.onPanelElementDragEndTrack)
+                })
+            },
+            onPanelElementDragEndTrack: function onPanelElementDragEndTrack(){
+                elementor.helpers.enableElementEvents(this.$el.find('iframe'));
+                if($('#levelup-drop-element').length>0){
+                    $('#levelup-drop-element').remove();
+                }
+            },
+            onPanelElementDragStartTrack: function onPanelElementDragStartTrack(){
+                elementor.helpers.disableElementEvents(this.$el.find('iframe'));
+                var elementView = elementor.channels.panelElements.request('element:selected');
+                this.itemData = {
+                    elType: elementView.model.get('elType'),
+                    widgetType: elementView.model.get('widgetType')
+                };
+                var is_Levelup = levelup_object.widget_design.designs[this.itemData.widgetType];
+                console.log(is_Levelup);
+                if(
+                    ( is_Levelup )  && this.itemData.elType=='widget'
+                ){
+                    
+                    if($('#levelup-drop-element').length>0){
+                        $('.levelup-preview-drop-event').remove();
+                    }
+                    $('#elementor-preview-loading').after("<div class='levelup-preview-drop-event' id='levelup-drop-element'>Drop here</div>");
+                    $('.levelup-preview-drop-event').css('border','2px dashed #d5dadf').show();
+                    var settings = {};
+                    settings.items = '#levelup-drop-element';
+
+                    $("#levelup-drop-element").bind("dragover", _.bind(this._dragOverEvent, this))
+                    $("#levelup-drop-element").bind("dragenter", _.bind(this._dragEnterEvent, this))
+                    $("#levelup-drop-element").bind("dragleave", _.bind(this._dragLeaveEvent, this))
+                    $("#levelup-drop-element").bind("drop", _.bind(this._dropEvent, this))
+                }
+            },
+            _dragOverEvent: function(e){
+                if (e.originalEvent) e = e.originalEvent
+                if (e.preventDefault) e.preventDefault()
+                    $(e.target).addClass("levelup-dragging-on-child");
+            },
+            _dragEnterEvent: function(e){
+                if (e.originalEvent) e = e.originalEvent
+                if (e.preventDefault) e.preventDefault()
+                $(e.target).html("You can Drop Here");
+                
+            },
+            _dragLeaveEvent: function(e){
+                if (e.originalEvent) e = e.originalEvent
+                if (e.preventDefault) e.preventDefault()
+                $(e.target).removeClass("levelup-dragging-on-child");  
+                $(e.target).html("Drop here");
+            },
+            _dropEvent: function(e){
+                if (e.originalEvent) e = e.originalEvent
+                if (e.preventDefault) e.preventDefault()
+                openCallToActionDesignPopup(this.itemData.widgetType);
+            }
         });
+   
+
+    var LevelupWidgets = new LevelupWidgetsExtands();
+
+    $(document).on("click",'.elementor-control-type-section', function(){
+        $(this).parents('#elementor-controls').find('.elementor-control-layoutDesignSelected').hide();
+    });
     var openCallToActionDesignPopup = function(designElement){
-	    var view = new AddPersonView();
+	    var view = new LevelupPopupView();
 	    view.model = levelup_object.widget_design.designs[designElement];
 	    view.render().showModal({});
 	}
-}( jQuery ) );
 
+}( jQuery ) );

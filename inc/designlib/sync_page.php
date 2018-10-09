@@ -112,6 +112,9 @@ function levelup_default_designs($responseData){
                 update_post_meta( $post_id, 'design_unique_name', $valDesigntype['design_unique_name'] );
                 update_post_meta( $post_id, 'design_preview_url', (isset($valDesigntype['design_preview_url'])? $valDesigntype['design_preview_url']: '') );
                 update_post_meta( $post_id, 'design_feature_image_url', (isset($valDesigntype['designImage'])? $valDesigntype['designImage']: '') );
+                
+                update_post_meta( $post_id, 'design_settings', (isset($valDesigntype['design_settings'])? $valDesigntype['design_settings']: '') );
+                update_post_meta( $post_id, 'design_option', (isset($valDesigntype['design_option'])? $valDesigntype['design_option']: '') );
 
 
                 

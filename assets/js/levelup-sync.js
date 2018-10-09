@@ -92,6 +92,7 @@ jQuery(document).ready(function($) {
 							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-yes levelup-response-status"></span>' );*/
 						}else{
 							syncButton.html("Check version");
+							location.reload();
 							/*$("#sync-status-notice .levelup-response-status").remove();
 							$( "#sync-status-notice p" ).append( '<span class="dashicons dashicons-no-alt levelup-response-status"></span>' );*/
 						}

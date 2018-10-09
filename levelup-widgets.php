@@ -39,6 +39,7 @@ class LevelupPlugin {
 		add_action( 'elementor/editor/before_enqueue_scripts', array($this, 'levelup_before_enqueue_scripts'));
 
 		add_action( 'elementor/frontend/after_register_scripts',  array($this, 'category_widget_scripts') );
+		add_action('elementor/editor/before_enqueue_styles', array($this, 'levelup_frontend_style'));
 
 	}
 	function category_widget_scripts() {
@@ -56,8 +57,8 @@ class LevelupPlugin {
 				$designList = $designArray;
 			}
 
-			wp_register_script( 'levelup-widget-options', plugins_url( '/assets/js/levelup-widget-options.js', LEVELUP__FILE__ ), [ 'jquery' ], false, true );
-
+			wp_register_script( 'levelup-widget-options', plugins_url( '/assets/js/levelup-widget-options.js', LEVELUP__FILE__ ), [ 'jquery'], false, true );
+			//,'elementor-editor' 
 			wp_localize_script( 'levelup-widget-options', 'levelup_object',
 	            array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
 	            	'elementor_theme_settings'=>esc_url('admin.php?page=levelup_settings'),
@@ -66,9 +67,20 @@ class LevelupPlugin {
 			
 			wp_enqueue_script( 'levelup-widget-options' );
 
-			
-
 	} 
+	function levelup_frontend_style(){
+		wp_register_style(
+			'levelup-editor-preview',
+			plugins_url('/assets/css/levelup-editor-preview.css',LEVELUP__FILE__),
+			[
+				'elementor-editor'
+			],
+			ELEMENTOR_VERSION
+		);
+
+		wp_enqueue_style( 'levelup-editor-preview' );
+
+	}
 	/**
 	 * On Widgets Registered
 	 *
