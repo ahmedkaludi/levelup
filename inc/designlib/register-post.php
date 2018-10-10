@@ -46,7 +46,7 @@ class LevelupDesign{
 		        'exclude_from_search' => true,
 		        'publicly_queryable'  => false,
 		        'show_in_nav_menus'   => false,
-		        'show_ui'             => True,
+		        'show_ui'             => false,
 
 		        'capability_type'     => 'page',
 		        //Rest API Support for custom post type

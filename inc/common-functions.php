@@ -154,14 +154,15 @@ function levelup_amp_design_styling(){
 	.elementor-row {flex-wrap: wrap;}
 	.elementor-column {width: 100%;}
 }';
-$elementorDynamicCss = '';
-$elementorGlobalCssPath = wp_upload_dir()['basedir']."/elementor/css/global.css";
-$elementorCssPath = wp_upload_dir()['basedir']."/elementor/css/post-".get_the_ID().".css";
-	if(file_exists($elementorGlobalCssPath)){
-		$allCss .= file_get_contents($elementorGlobalCssPath);
-	}
-	if(file_exists($elementorCssPath)){
-		$allCss .= file_get_contents($elementorCssPath);
+	if(function_exists('wp_upload_dir')){
+		$elementorGlobalCssPath = wp_upload_dir()['basedir']."/elementor/css/global.css";
+		$elementorCssPath = wp_upload_dir()['basedir']."/elementor/css/post-".get_the_ID().".css";
+		if(file_exists($elementorGlobalCssPath)){
+			$allCss .= file_get_contents($elementorGlobalCssPath);
+		}
+		if(file_exists($elementorCssPath)){
+			$allCss .= file_get_contents($elementorCssPath);
+		}
 	}
 	global $levelup_ampCss;
 	if(!empty($levelup_ampCss)){
@@ -265,24 +266,56 @@ function levelup_get_random_text(){
 }
 
 function levelup_iterate_data( $data_container, $callback ) {
-		if(!is_array($data_container)){ return $data_container; }
-		if ( isset( $data_container['elType'] ) ) {
-			if ( ! empty( $data_container['elements'] ) ) {
-				$data_container['elements'] = levelup_iterate_data( $data_container['elements'], $callback );
-			}
-
-			return $callback( $data_container );
+	if(!is_array($data_container)){ return $data_container; }
+	if ( isset( $data_container['elType'] ) ) {
+		if ( ! empty( $data_container['elements'] ) ) {
+			$data_container['elements'] = levelup_iterate_data( $data_container['elements'], $callback );
 		}
 
-		foreach ( $data_container as $element_key => $element_value ) {
-			$element_data = levelup_iterate_data( $data_container[ $element_key ], $callback );
-
-			if ( null === $element_data ) {
-				continue;
-			}
-
-			$data_container[ $element_key ] = $element_data;
-		}
-
-		return $data_container;
+		return $callback( $data_container );
 	}
+
+	foreach ( $data_container as $element_key => $element_value ) {
+		$element_data = levelup_iterate_data( $data_container[ $element_key ], $callback );
+
+		if ( null === $element_data ) {
+			continue;
+		}
+
+		$data_container[ $element_key ] = $element_data;
+	}
+
+	return $data_container;
+}
+
+add_filter( 'amp_post_template_file', 'levelup_child_designing_custom_template', 22, 3 );
+function levelup_child_designing_custom_template($file, $type, $post){
+	
+	global $post, $redux_builder_amp;
+	$levelupTemplate = get_post_meta( $post->ID, '_wp_page_template', true );
+	
+	$page_template = array('elementor_canvas','elementor_header_footer');
+	if(in_array($levelupTemplate, $page_template)){
+		switch (variable) {
+			case 'elementor_canvas':
+				if ( is_single() || is_page()  ) {
+					if( 'single' === $type && ! ('product' === $post->post_type) ) {
+						//$file = LEVELUP__FILE__PATH.'inc/templates/canvas.php';
+						$file = LEVELUP__FILE__PATH.'inc/templates/header-footer.php';
+				 	}
+				}
+				break;
+			case 'elementor_header_footer':
+				if ( is_single() || is_page()  ) {
+					if( 'single' === $type && ! ('product' === $post->post_type) ) {
+						$file = LEVELUP__FILE__PATH.'inc/templates/header-footer.php';
+			
+				 	}
+				}
+				break;
+		}
+	}
+	 
+	 
+	return $file;
+}
