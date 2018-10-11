@@ -672,9 +672,7 @@ class TeamWidgets extends Widget_Base {
 		$settings = $this->get_settings();
 
 		$markup = \LevelupDesign\render($settings);
-		if($markup){
-			$markup = $this->replacements_procees($settings,$markup);
-		}
+		
 		echo $markup;
 	}
 	/**
