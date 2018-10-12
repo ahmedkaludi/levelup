@@ -193,7 +193,7 @@ class PresentationWidgets extends Widget_Base {
 				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/placeholder.png',
 				],
 			'conditions'=> array(
 				'terms'	=> array(
@@ -279,7 +279,7 @@ class PresentationWidgets extends Widget_Base {
 				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => \Elementor\Utils::get_placeholder_image_src(),
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/placeholder.png',
 				],
 			'conditions'=> array(
 				'terms'	=> array(
