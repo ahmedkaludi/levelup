@@ -6,6 +6,7 @@ use LevelupWidgets\Widgets\CtaWidgets;
 use LevelupWidgets\Widgets\PresentationWidgets;
 use LevelupWidgets\Widgets\LogoWidgets;
 use LevelupWidgets\Widgets\TeamWidgets;
+use LevelupWidgets\Widgets\PricingWidgets;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Main Plugin Class
@@ -105,6 +106,7 @@ class LevelupPlugin {
 		require __DIR__ . '/widgets/presentation-widget.php';
 		require __DIR__ . '/widgets/logo-widget.php';
 		require __DIR__ . '/widgets/team-widget.php';
+		require __DIR__ . '/widgets/pricing-widget.php';
 	}
 	/**
 	 * Register Widget
@@ -118,6 +120,7 @@ class LevelupPlugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PresentationWidgets() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new LogoWidgets() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new TeamWidgets() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PricingWidgets() );
 	}
 
 	public function add_levelup_widget_categories( $elements_manager ) {
