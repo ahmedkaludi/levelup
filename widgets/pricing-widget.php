@@ -133,7 +133,7 @@ class PricingWidgets extends Widget_Base {
 		);
 		 $this->add_control(
 			'pricing-desc1', [
-				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'default' => esc_html__( 'Start with free trail. No credit card needed. Cancel at anytime.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
@@ -175,7 +175,7 @@ class PricingWidgets extends Widget_Base {
 		);
 		$repeater1->add_control(
 			'pricing-btn-1', [
-				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'label' => esc_html__( 'Button', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => esc_html__( 'Get Started for Free' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
@@ -184,7 +184,7 @@ class PricingWidgets extends Widget_Base {
 		$repeater1->add_control(
 			'pricing-btn-1-lnk',
 			[
-				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'rows' => 10,
 				'default' => esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
@@ -253,9 +253,276 @@ class PricingWidgets extends Widget_Base {
 				)
 			]
 		);
+		//Pricing Module Design 2
+		$this->add_control(
+			'pricing2-head', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Not sure how much you\'ll send?' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-2',
+						)
+					)
+				)
+			]
+		);
+		 $this->add_control(
+			'pricing2-desc', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'default' => esc_html__( 'Use the Startup Framework for free with no limits.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-2',
+						)
+					)
+				)
+			]
+		);
 
-		
+		$this->add_control(
+			'pricing2-text', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Free Plan' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pricing2-label', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '20.000 CUSTOMERS' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pricing2-desc2', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'default' => esc_html__( 'Startp Framework is free forever-- you only pay for custom domain hsosting or to export your site.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+				'pricing2-btn', [
+				'label' => esc_html__( 'Button', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Try for Free' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-2',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+				'pricing2-btn-lnk',[
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'rows' => 10,
+				'default' => esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-2',
+						)
+					)
+				)
+			]
+		);
+		//Pricing Module Design 3
+		$this->add_control(
+			'pricing3-head', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Simple Membership' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-3',
+						)
+					)
+				)
+			]
+		);
+		 $this->add_control(
+			'pricing3-desc', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'default' => esc_html__( 'Use the Startup Framework for free with no limits.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pricing3-label-1', [
+				'label' => esc_html__( 'Label 1', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Monthly' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-3',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pricing3-label-2', [
+				'label' => esc_html__( 'Label 2', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Yealry' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-3',
+						)
+					)
+				)
+			]
+		);
+		$repeater3 = new \Elementor\Repeater();
 
+		$repeater3->add_control(
+			'pri3-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/placeholder.png',
+				],
+			]
+		);
+
+		$repeater3->add_control(
+			'pricing3-lbl-nm', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Text' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater3->add_control(
+			'pricing3-pric', [
+				'label' => esc_html__( 'Price', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '0' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater3->add_control(
+			'pricing3-desc3',
+			[
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
+			]
+		);
+		$repeater3->add_control(
+			'pricing3-btn', [
+				'label' => esc_html__( 'Button', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Get Started for Free' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater3->add_control(
+			'pricing3-btn-lnk',
+			[
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'rows' => 10,
+				'default' => esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+			]
+		);
+		$this->add_control(
+			'pric3-rep',
+			[
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater3->get_controls(),
+				'default' => [
+					[
+						'pri3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-lbl-nm'=> esc_html__( 'Starter', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-pric'=> esc_html__( '19', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-desc3'=> esc_html__( 'Unlimited recipes, plans, programs and more. All you need to make eating healthy ridiculously simple and fun.', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-btn'=> esc_html__( 'Get Started for Free', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-btn-lnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+					[
+						'pri3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-lbl-nm'=> esc_html__( 'Professional', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-pric'=> esc_html__( '49', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-desc3'=> esc_html__( 'Unlock poweful time-saving tools for creating beautiful meal plans and transform your wellness business.', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-btn'=> esc_html__( 'Get Started for Free', LEVELUP_TEXT_DOMAIN ),
+						'pricing3-btn-lnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-3',
+						)
+					)
+				)
+			]
+		);
 		$this->end_controls_section();
 
 	}//Control settings are closed
