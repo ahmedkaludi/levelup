@@ -166,28 +166,28 @@ class LogoWidgets extends Widget_Base {
 				'fields' => $repeater1->get_controls(),
 				'default' => [
 					[
-						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg1-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-1.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg1-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-2.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg1-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-3.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg1-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-4.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg1-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-5.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg1-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-6.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg1-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-7.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg1-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg1-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-8.png', LEVELUP_TEXT_DOMAIN ),
 					],
 				],
 				'title_field' => 'Repeater',
@@ -254,19 +254,19 @@ class LogoWidgets extends Widget_Base {
 				'fields' => $repeater2->get_controls(),
 				'default' => [
 					[
-						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg2-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-9.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg2-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-10.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg2-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-11.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg2-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-12.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'lg2-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'lg2-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/logo-13.png', LEVELUP_TEXT_DOMAIN ),
 					],
 					
 				],

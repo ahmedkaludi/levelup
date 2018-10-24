@@ -206,7 +206,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/placeholder.png',
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/cta-2-1.jpg',
 				],
 				'conditions'=> array(
 					'terms'	=> array(
@@ -476,7 +476,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/placeholder.png',
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/cta-4-1.png',
 				],
 				'conditions'=> array(
 					'terms'	=> array(
@@ -561,7 +561,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/placeholder.png',
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/cta-5.png',
 				],
 				'conditions'=> array(
 					'terms'	=> array(
@@ -678,7 +678,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'default' => [
-				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/placeholder.png',
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/cta-6.png',
 				],
 				'conditions'=> array(
 					'terms'	=> array(
