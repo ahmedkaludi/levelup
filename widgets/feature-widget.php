@@ -518,17 +518,17 @@ class FeatureWidgets extends Widget_Base {
 				'fields' => $repeater4->get_controls(),
 				'default' => [
 					[
-						'image4' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'image4' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/feature-4-img.png', LEVELUP_TEXT_DOMAIN ),
 						'title-4'=> esc_html__( 'Our Services', LEVELUP_TEXT_DOMAIN ),
 						'text_description4'=> esc_html__( 'Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband.', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'image4' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'image4' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/feature-4-2-img.png', LEVELUP_TEXT_DOMAIN ),
 						'title-4'=> esc_html__( 'Technology', LEVELUP_TEXT_DOMAIN ),
 						'text_description4'=> esc_html__( 'Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband.', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'image4' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'image4' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/feature-4-3-img.png', LEVELUP_TEXT_DOMAIN ),
 						'title-4'=> esc_html__( 'New Designs', LEVELUP_TEXT_DOMAIN ),
 						'text_description4'=> esc_html__( 'Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband.', LEVELUP_TEXT_DOMAIN ),
 					],
