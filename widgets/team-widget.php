@@ -610,7 +610,7 @@ class TeamWidgets extends Widget_Base {
 				'fields' => $repeater3->get_controls(),
 				'default' => [
 					[
-						'tm3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm3-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/tm2-2.jpg', LEVELUP_TEXT_DOMAIN ),
 						'tm3-title'=>__( 'Vanessa Laird', LEVELUP_TEXT_DOMAIN ),
 						'tm3-desig'=>__( 'UI DESIGNER', LEVELUP_TEXT_DOMAIN ),
 						'tm3-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),
@@ -621,7 +621,7 @@ class TeamWidgets extends Widget_Base {
 						'tm3-gtlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'tm3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm3-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/tm2-3.jpg', LEVELUP_TEXT_DOMAIN ),
 						'tm3-title'=>__( 'Manson Campbell', LEVELUP_TEXT_DOMAIN ),
 						'tm3-desig'=>__( 'UI DESIGNER', LEVELUP_TEXT_DOMAIN ),
 						'tm3-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),
@@ -632,7 +632,7 @@ class TeamWidgets extends Widget_Base {
 						'tm3-gtlnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'tm3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'tm3-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/tm2-5.jpg', LEVELUP_TEXT_DOMAIN ),
 						'tm3-title'=>__( 'Irea Evans', LEVELUP_TEXT_DOMAIN ),
 						'tm3-desig'=>__( 'CLIENT MANAGER', LEVELUP_TEXT_DOMAIN ),
 						'tm3-tw'=> esc_html__( 'fa fa-twitter', LEVELUP_TEXT_DOMAIN ),

@@ -420,7 +420,7 @@ class PricingWidgets extends Widget_Base {
 			'pricing3-label-2', [
 				'label' => esc_html__( 'Label 2', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Yealry' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Yearly' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -496,7 +496,7 @@ class PricingWidgets extends Widget_Base {
 				'fields' => $repeater3->get_controls(),
 				'default' => [
 					[
-						'pri3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'pri3-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/pri-3-1.png', LEVELUP_TEXT_DOMAIN ),
 						'pricing3-lbl-nm'=> esc_html__( 'Starter', LEVELUP_TEXT_DOMAIN ),
 						'pricing3-pric'=> esc_html__( '19', LEVELUP_TEXT_DOMAIN ),
 						'pricing3-desc3'=> esc_html__( 'Unlimited recipes, plans, programs and more. All you need to make eating healthy ridiculously simple and fun.', LEVELUP_TEXT_DOMAIN ),
@@ -504,7 +504,7 @@ class PricingWidgets extends Widget_Base {
 						'pricing3-btn-lnk'=> esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'pri3-image' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+						'pri3-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/pri-3-2.png', LEVELUP_TEXT_DOMAIN ),
 						'pricing3-lbl-nm'=> esc_html__( 'Professional', LEVELUP_TEXT_DOMAIN ),
 						'pricing3-pric'=> esc_html__( '49', LEVELUP_TEXT_DOMAIN ),
 						'pricing3-desc3'=> esc_html__( 'Unlock poweful time-saving tools for creating beautiful meal plans and transform your wellness business.', LEVELUP_TEXT_DOMAIN ),
