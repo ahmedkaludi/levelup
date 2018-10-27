@@ -679,6 +679,123 @@ class PresentationWidgets extends Widget_Base {
 				)
 			]
 		);
+
+		// Content Presentation Design 6 Fields //
+		$this->add_control(
+			'cp6-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/iPhone-6-2-1-1.png',
+				],
+			'conditions'=> array(
+				'terms'	=> array(
+					array(
+						'name' => 'layoutDesignSelected',
+						'value' => 'content-presentation-design-6',
+					)
+				)
+			)
+			]
+		);
+		$this->add_control(
+			'cp6-heading', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Your day is protected' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp6-desc', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'There have not been any since we have lived here, said my mother.
+					We thought - Mr.Copperfield thought -it was quite a alrge rookery;but the rests were very old ones, and the birds have desertec them a long while.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp6-btn1', [
+				'label' => esc_html__( 'Button1 Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Try to hack us' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp6-btn1lnk', [
+				'label' => esc_html__( 'Button1 Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp6-btn2', [
+				'label' => esc_html__( 'Button2 Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Learn more' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp6-btn2lnk', [
+				'label' => esc_html__( 'Button2 Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
 		$this->end_controls_section();
 
 	}//Control settings are closed
