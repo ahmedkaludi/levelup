@@ -578,6 +578,107 @@ class PresentationWidgets extends Widget_Base {
 			)
 			]
 		);
+		// Content Presentation Design 5 Fields //
+		$this->add_control(
+			'cp5-heading5', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'What happens tomorrow?' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp5-desc', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'The sigh:of the tumblers restored Bob Sawyer to a degree of equanimity which he had no: possessed sice his interview with his landlacy. His face brightened up, and he began to feel quite convivial.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp5-btn', [
+				'label' => esc_html__( 'Button Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Watch Video' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp5-btnlnk', [
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp5-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/iPhone-6.png',
+				],
+			'conditions'=> array(
+				'terms'	=> array(
+					array(
+						'name' => 'layoutDesignSelected',
+						'value' => 'content-presentation-design-5',
+					)
+				)
+			)
+			]
+		);
+		$this->add_control(
+			'cp5-bg-image',
+			[
+				'label' => esc_html__( 'Choose Background Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/cp-5-bg-1.jpg',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
 		$this->end_controls_section();
 
 	}//Control settings are closed
