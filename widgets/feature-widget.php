@@ -666,7 +666,69 @@ class FeatureWidgets extends Widget_Base {
 				)
 			]
 		);
+		
+		// Feature Design 6 Fields //
+		 $repeater6 = new \Elementor\Repeater();
 
+		$repeater6->add_control(
+			'ft6-icon',
+			[
+				'label' => esc_html__( 'Icons', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' => levelup_get_font_icons(),
+				'default' => 'fa fa-bandcamp',
+			]
+		);
+
+		$repeater6->add_control(
+			'ft6-title', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Title' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater6->add_control(
+			'ft6-text_desc',
+			[
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'rows' => 10,
+				'default' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
+			]
+		);
+		$this->add_control(
+			'ft6_rep_lst',
+			[
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater6->get_controls(),
+				'default' => [
+					[
+						'ft6-icon' => esc_html__( 'fa fa-lock', LEVELUP_TEXT_DOMAIN ),
+						'ft6-title'=> esc_html__( 'Real-time all the time', LEVELUP_TEXT_DOMAIN ),
+						'ft6-text_desc'=> esc_html__( 'Thus much I thought to tell you in relation to yourself, and to the trust I resposed in you.Just then her head struck aganist the roof of the hall:in fact she was now more than nine feet high, and at once took up the little golden key and hurried off to the garden door.', LEVELUP_TEXT_DOMAIN ),
+					],
+					[
+						'ft6-icon' => esc_html__( 'fa fa-adjust', LEVELUP_TEXT_DOMAIN ),
+						'ft6-title'=> esc_html__( 'Adopt without any obstacles', LEVELUP_TEXT_DOMAIN ),
+						'ft6-text_desc'=> esc_html__( 'Thus much I thought to tell you in relation to yourself, and to the trust I resposed in you.Just then her head struck aganist the roof of the hall:in fact she was now more than nine feet high, and at once took up the little golden key and hurried off to the garden door.', LEVELUP_TEXT_DOMAIN ),
+					],
+					
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'feature-design-6',
+						)
+					)
+				)
+			]
+		);
+		
 		$this->end_controls_section();
 
 	}//Control settings are closed
