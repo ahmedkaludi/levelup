@@ -119,7 +119,7 @@ class TeamWidgets extends Widget_Base {
 			'team-head1', [
 				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Great crew of Startup Framework' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Great crew of Levelup Framework' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -478,7 +478,7 @@ class TeamWidgets extends Widget_Base {
 			'team3-desc', [
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create website for their startups quickly and easily.' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create website for their Levelup quickly and easily.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(

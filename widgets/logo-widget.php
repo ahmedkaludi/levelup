@@ -134,7 +134,7 @@ class LogoWidgets extends Widget_Base {
 			'lg1-desc', [
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Startup Framework includes great form options for your startup projects. Each component is coded for web which makes creating quick and easy.' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Levelup Framework includes great form options for your Levelup projects. Each component is coded for web which makes creating quick and easy.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -222,7 +222,7 @@ class LogoWidgets extends Widget_Base {
 			'lg2-desc', [
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Folks at these awesome companies are already using Startup Framework.' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Folks at these awesome companies are already using Levelup Framework.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(

@@ -155,7 +155,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => esc_html__( 'A high-quality solution for those who want a beautiful</br>startup websitr quickely.', LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'A high-quality solution for those who want a beautiful</br>Levelup websitr quickely.', LEVELUP_TEXT_DOMAIN ),
 				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(
@@ -240,7 +240,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => esc_html__( 'Get a fully retina ready site when you build with Startup Framework. Websites look sharper and more gorgeous on devices with retina display support.', LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Get a fully retina ready site when you build with Levelup Framework. Websites look sharper and more gorgeous on devices with retina display support.', LEVELUP_TEXT_DOMAIN ),
 				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(
@@ -408,7 +408,7 @@ class CtaWidgets extends Widget_Base {
 			'cta-head4', [
 				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Better for your startup.' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Better for your Levelup.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -426,7 +426,7 @@ class CtaWidgets extends Widget_Base {
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create websites for their startups quickly and easily', LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create websites for their Levelup quickly and easily', LEVELUP_TEXT_DOMAIN ),
 				'placeholder' => esc_html__( 'Type your description here', LEVELUP_TEXT_DOMAIN ),
 				'conditions'=> array(
 					'terms'	=> array(

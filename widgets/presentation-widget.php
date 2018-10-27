@@ -335,13 +335,13 @@ class PresentationWidgets extends Widget_Base {
 				'fields' => $repeater2->get_controls(),
 				'default' => [
 					[
-						'title-2'=>__( 'How Startup Frame works?', LEVELUP_TEXT_DOMAIN ),
+						'title-2'=>__( 'How Levelup Frame works?', LEVELUP_TEXT_DOMAIN ),
 						'text_description2'=>__( 'The Generator App is an onlinetoll thta helps you to export ready made templates ready to work as your future website. It helps you to combine slides, panels and other components and export it as a set of static files: HYML/CSS/JS.', LEVELUP_TEXT_DOMAIN ),
 						'cp2-btn'=>__( 'View Tutorial', LEVELUP_TEXT_DOMAIN ),
 						'cp2-btnlnk'=>__( '#', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
-						'title-2'=>__( 'Do you provide hosting with Startup Framework?', LEVELUP_TEXT_DOMAIN ),
+						'title-2'=>__( 'Do you provide hosting with Levelup Framework?', LEVELUP_TEXT_DOMAIN ),
 						'text_description2'=>__( 'No, hosting is on you. You upload the result on your hosting via FTP or using tools you like. You can use any server, just make sure it have a PHP installed in case if you need a contact form.', LEVELUP_TEXT_DOMAIN ),
 						'cp2-btn'=>__( 'Learn More', LEVELUP_TEXT_DOMAIN ),
 						'cp2-btnlnk'=>__( '#', LEVELUP_TEXT_DOMAIN ),
@@ -379,7 +379,7 @@ class PresentationWidgets extends Widget_Base {
 			'cp3-desc', [
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create websites for their startups quickly and easily.' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'We have created a new product that will help designers, developers and companies create websites for their Levelup quickly and easily.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -452,7 +452,7 @@ class PresentationWidgets extends Widget_Base {
 				'default' => [
 					[
 						'title-3'=>__( 'Build Quick', LEVELUP_TEXT_DOMAIN ),
-						'text_description3'=>__( 'Get a beautiful site up and running in no time. Just choose Startup Framework you like and start tweaking it.', LEVELUP_TEXT_DOMAIN ),
+						'text_description3'=>__( 'Get a beautiful site up and running in no time. Just choose Levelup Framework you like and start tweaking it.', LEVELUP_TEXT_DOMAIN ),
 						
 					],
 					[
@@ -500,7 +500,7 @@ class PresentationWidgets extends Widget_Base {
 			'cp4-desc', [
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => esc_html__( 'Startup Framework gives you complete freedom over your creative process--you don\'t have to think about any technical aspects.' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Levelup Framework gives you complete freedom over your creative process--you don\'t have to think about any technical aspects.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(

@@ -274,7 +274,7 @@ class PricingWidgets extends Widget_Base {
 			'pricing2-desc', [
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Use the Startup Framework for free with no limits.' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Use the Levelup Framework for free with no limits.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
@@ -388,7 +388,7 @@ class PricingWidgets extends Widget_Base {
 			'pricing3-desc', [
 				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Use the Startup Framework for free with no limits.' , LEVELUP_TEXT_DOMAIN ),
+				'default' => esc_html__( 'Use the Levelup Framework for free with no limits.' , LEVELUP_TEXT_DOMAIN ),
 				'label_block' => true,
 				'conditions'=> array(
 					'terms'	=> array(
