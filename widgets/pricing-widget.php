@@ -523,6 +523,175 @@ class PricingWidgets extends Widget_Base {
 				)
 			]
 		);
+		//Pricing Module Design 4
+		$this->add_control(
+			'pricing4-head', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Choose your perfect plan' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pricing4-desc', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'We thought - Mr.Copperfield thought -it was quite a alrge rookery;but the rests were very old ones, and the birds have desertec them a long while.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pricing4-text', [
+				'label' => esc_html__( 'Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Have a bigger team?' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pricing4-ln-txt', [
+				'label' => esc_html__( 'Text Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Let\'s talk' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pricing4-lnk', [
+				'label' => esc_html__( 'Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( '#' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$repeater4 = new \Elementor\Repeater();
+
+		$repeater4->add_control(
+			'pricing4-lst-head1', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Text' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater4->add_control(
+			'pricing4-lst-lbl', [
+				'label' => esc_html__( 'Label', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Label' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater4->add_control(
+			'pricing4-txt', [
+				'label' => esc_html__( 'text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Text' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater4->add_control(
+			'pricing4-lst-Facilities',
+			[
+				'label' => esc_html__( 'features', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
+				'default' => esc_html__( '', LEVELUP_TEXT_DOMAIN ),
+				
+				'description'=> esc_html__( 'Enter Content with semicolon (;) to saperate features', LEVELUP_TEXT_DOMAIN ),
+			]
+		);
+		$repeater4->add_control(
+			'pricing4-btn', [
+				'label' => esc_html__( 'Button', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Get Started' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater4->add_control(
+			'pricing4-btn-lnk',
+			[
+				'label' => esc_html__( 'Button Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'rows' => 10,
+				'default' => esc_html__( '#', LEVELUP_TEXT_DOMAIN ),
+			]
+		);
+		$this->add_control(
+			'pric4-rep',
+			[
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater4->get_controls(),
+				'default' => [
+					[
+						'pricing4-lst-head1' => __( 'Starter', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-lst-lbl'=>__( 'Free', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-txt'=>__( 'Build your schedule every day', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-lst-Facilities'=> esc_html__( 'Unlimitied events;Connect Dropbox & Evernote', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-btn'=>__( 'Get Started', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-btn-lnk'=>__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+					[
+						'pricing4-lst-head1' => __( 'Pro', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-lst-lbl'=>__( '$4.99', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-txt'=>__( 'Make your life better', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-lst-Facilities'=> esc_html__( 'Unlimitied events;Connect Dropbox & Evernote;Personal Assistant', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-btn'=>__( 'Make me a Pro', LEVELUP_TEXT_DOMAIN ),
+						'pricing4-btn-lnk'=>__( '#', LEVELUP_TEXT_DOMAIN ),
+					],
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
 		$this->end_controls_section();
 
 	}//Control settings are closed
