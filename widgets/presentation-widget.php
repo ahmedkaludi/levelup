@@ -902,6 +902,175 @@ class PresentationWidgets extends Widget_Base {
 			)
 			]
 		);
+		// Content Presentation Design 8 Fields //
+		$this->add_control(
+			'cp8-heading', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Beautiful Intreface' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp8-label1', [
+				'label' => esc_html__( 'Label 1', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'LANDING SCREEN' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp8-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/Screens-1-1.png',
+				],
+			'conditions'=> array(
+				'terms'	=> array(
+					array(
+						'name' => 'layoutDesignSelected',
+						'value' => 'content-presentation-design-8',
+					)
+				)
+			)
+			]
+		);
+		$this->add_control(
+			'cp8-label2', [
+				'label' => esc_html__( 'Label 2', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'NEWPROVIDENCE' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp8-sub-heading', [
+				'label' => esc_html__( 'Sub Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Get it to your smartphone' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp8-dwn', [
+				'label' => esc_html__( 'Download Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'DOWNLOAD FROM' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$repeater8 = new \Elementor\Repeater();
+
+		$repeater8->add_control(
+			'cp8-icon',
+			[
+				'label' => esc_html__( 'Icons', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::ICON,
+				'include' =>levelup_get_font_icons(),
+				'default' => 'fa fa-apple',
+			]
+		);
+		$repeater8->add_control(
+			'cp8-dwn-text1', [
+				'label' => esc_html__( 'Download Small Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Title' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater8->add_control(
+			'cp8-dwn-text2', [
+				'label' => esc_html__( 'Download Text', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Title' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$repeater8->add_control(
+			'cp8-dwn-lnk', [
+				'label' => esc_html__( 'Download Link', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Title' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+			]
+		);
+		$this->add_control(
+			'cp8-rep',
+			[
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater8->get_controls(),
+				'default' => [
+					[
+						'cp8-icon'=>__( 'fa fa-apple', LEVELUP_TEXT_DOMAIN ),
+						'cp8-dwn-text1'=>__( 'Download on the', LEVELUP_TEXT_DOMAIN ),
+						'cp8-dwn-text2'=>__( 'App Store', LEVELUP_TEXT_DOMAIN ),
+						'cp8-dwn-lnk'=>__( '#', LEVELUP_TEXT_DOMAIN ),
+						
+					],
+					[
+						'cp8-icon'=>__( 'fa fa-play', LEVELUP_TEXT_DOMAIN ),
+						'cp8-dwn-text1'=>__( 'Download on the', LEVELUP_TEXT_DOMAIN ),
+						'cp8-dwn-text2'=>__( 'Play Store', LEVELUP_TEXT_DOMAIN ),
+						'cp8-dwn-lnk'=>__( '#', LEVELUP_TEXT_DOMAIN ),
+						
+					],
+					
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
 
 		$this->end_controls_section();
 
