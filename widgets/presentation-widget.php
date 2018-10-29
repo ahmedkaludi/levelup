@@ -796,6 +796,113 @@ class PresentationWidgets extends Widget_Base {
 				)
 			]
 		);
+		// Content Presentation Design 7 Fields //
+		$this->add_control(
+			'cp7-heading', [
+				'label' => esc_html__( 'Heading', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'we are almost everywhere' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-7',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp7-desc', [
+				'label' => esc_html__( 'Description', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'There have not been any since we have lived here, said my mother.We thought - Mr.Copperfield thought -it was quite a alrge rookery;but the rests were very old ones, and the birds have desertec them a long while.' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-7',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp7-lg-lbl', [
+				'label' => esc_html__( 'Label', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'PARTNERS' , LEVELUP_TEXT_DOMAIN ),
+				'label_block' => true,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-7',
+						)
+					)
+				)
+			]
+		);
+		$repeater7 = new \Elementor\Repeater();	
+
+		$repeater7->add_control(
+			'cp7-lg-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => \Elementor\Utils::get_placeholder_image_src(),
+				],
+			]
+		);
+		$this->add_control(
+			'cp7-rep',
+			[
+				'label' => esc_html__( 'Repeater List', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::REPEATER,
+				'fields' => $repeater7->get_controls(),
+				'default' => [
+					[
+						'cp7-lg-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/Dropbox-Logo-1.png', LEVELUP_TEXT_DOMAIN ),
+					],
+					[
+						'cp7-lg-image' => esc_html__( 'http://levelup.magazine3.company/wp-content/uploads/2018/10/Evernote-Logo-1.png', LEVELUP_TEXT_DOMAIN ),
+					],
+					
+				],
+				'title_field' => 'Repeater',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-7',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp7-image',
+			[
+				'label' => esc_html__( 'Choose Image', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+				'url' => 'http://levelup.magazine3.company/wp-content/uploads/2018/10/World-Map-1.png',
+				],
+			'conditions'=> array(
+				'terms'	=> array(
+					array(
+						'name' => 'layoutDesignSelected',
+						'value' => 'content-presentation-design-7',
+					)
+				)
+			)
+			]
+		);
+
 		$this->end_controls_section();
 
 	}//Control settings are closed
