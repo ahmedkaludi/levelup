@@ -7,6 +7,7 @@ use LevelupWidgets\Widgets\PresentationWidgets;
 use LevelupWidgets\Widgets\LogoWidgets;
 use LevelupWidgets\Widgets\TeamWidgets;
 use LevelupWidgets\Widgets\PricingWidgets;
+use LevelupWidgets\Widgets\TestimonialWidgets;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Main Plugin Class
@@ -40,11 +41,19 @@ class LevelupPlugin {
 		add_action( 'elementor/editor/before_enqueue_scripts', array($this, 'levelup_before_enqueue_scripts'));
 
 		add_action( 'elementor/frontend/after_register_scripts',  array($this, 'category_widget_scripts') );
+		add_action( 'elementor/frontend/after_enqueue_styles',  array($this, 'widget_style') );
 		add_action('elementor/editor/before_enqueue_styles', array($this, 'levelup_frontend_style'));
 
 	}
+	function widget_style(){
+		wp_register_style( 'levelup-testimonial-widget', plugins_url( '/assets/css/frontend/lightslider.css', LEVELUP__FILE__ ));
+	}
 	function category_widget_scripts() {
 			wp_register_script( 'levelup-category-widget', plugins_url( '/assets/js/category-widget.js', LEVELUP__FILE__ ), array( 'jquery' ), false, true );
+
+			//testimonial-widget Scripts
+			wp_register_script( 'levelup-testimonial-widget', plugins_url( '/assets/js/frontend/lightslider.js', LEVELUP__FILE__ ), array( 'jquery' ), false, true );
+			wp_register_script( 'levelup-testimonial-widget-slider', plugins_url( '/assets/js/frontend/mainlightslider.js', LEVELUP__FILE__ ), array( 'levelup-testimonial-widget' ), false, true );
 		} 
 	function levelup_before_enqueue_style(){
 		echo  include LEVELUP__FILE__PATH.'/assets/css/levelup-widget-options.php';
@@ -107,6 +116,7 @@ class LevelupPlugin {
 		require __DIR__ . '/widgets/logo-widget.php';
 		require __DIR__ . '/widgets/team-widget.php';
 		require __DIR__ . '/widgets/pricing-widget.php';
+		require __DIR__ . '/widgets/testimonial-widget.php';
 	}
 	/**
 	 * Register Widget
@@ -121,6 +131,7 @@ class LevelupPlugin {
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new LogoWidgets() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new TeamWidgets() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PricingWidgets() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new TestimonialWidgets() );
 	}
 
 	public function add_levelup_widget_categories( $elements_manager ) {
