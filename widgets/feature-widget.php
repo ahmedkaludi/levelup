@@ -708,12 +708,12 @@ class FeatureWidgets extends Widget_Base {
 					[
 						'ft6-icon' => esc_html__( 'fa fa-lock', LEVELUP_TEXT_DOMAIN ),
 						'ft6-title'=> esc_html__( 'Real-time all the time', LEVELUP_TEXT_DOMAIN ),
-						'ft6-text_desc'=> esc_html__( 'Thus much I thought to tell you in relation to yourself, and to the trust I resposed in you.Just then her head struck aganist the roof of the hall:in fact she was now more than nine feet high, and at once took up the little golden key and hurried off to the garden door.', LEVELUP_TEXT_DOMAIN ),
+						'ft6-text_desc'=> esc_html__( 'Thus much I thought to tell you in relation yourself, and to the trust I resposed in you.Just then her head struck aganist the roof , and at once took up the little golden.', LEVELUP_TEXT_DOMAIN ),
 					],
 					[
 						'ft6-icon' => esc_html__( 'fa fa-adjust', LEVELUP_TEXT_DOMAIN ),
 						'ft6-title'=> esc_html__( 'Adopt without any obstacles', LEVELUP_TEXT_DOMAIN ),
-						'ft6-text_desc'=> esc_html__( 'Thus much I thought to tell you in relation to yourself, and to the trust I resposed in you.Just then her head struck aganist the roof of the hall:in fact she was now more than nine feet high, and at once took up the little golden key and hurried off to the garden door.', LEVELUP_TEXT_DOMAIN ),
+						'ft6-text_desc'=> esc_html__( 'Thus much I thought to tell you in relation yourself, and to the trust I resposed in you.Just then her head struck aganist the roof , and at once took up the little golden.', LEVELUP_TEXT_DOMAIN ),
 					],
 					
 				],
