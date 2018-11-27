@@ -74,6 +74,7 @@
           event.preventDefault(); // Keep this AFTER the key filter above
           if ( panel.expanded() ) {
             api.panel( panel.params.panel ).expand();
+            $("#accordion-section-header_setting_section").hide();
           }
         });
     },

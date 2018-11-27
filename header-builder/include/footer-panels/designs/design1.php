@@ -1,15 +1,15 @@
 <?php
-class header_footer_design1{
+class footer_design1{
 	public $config = array();
-	public $panelId = 'header-design1';
+	public $panelId = 'footer-design1';
 	public $previewImg = "http://localhost/magzine/wp/wp-content/uploads/2018/11/cropped-coffee-432-300x202.jpg";
 	function config_deisgn(){
 		$this->config = array(
 			array(
 				'api_type'		=> 'hf_panel',
 				'id' 			=> $this->panelId,//change unique
-				'panel'    		=> 'header_panel',
-				'title'         => __('First Design', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+				'panel'    		=> 'footer_panel',
+				'title'         => __('1st Footer Design', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 		        'description'   => "<img src='".$this->previewImg."'>".__("This is the description which doesn't want to show up", HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 		        'previewImg'	=> $this->previewImg,
 		        'capability'    => 'edit_theme_options',
@@ -40,7 +40,7 @@ class header_footer_design1{
 									"name"	=> $title,
 									"id"	=> $id,
 									"width" => "4",
-									"section" => "header_html",
+									"section" => "footer_html",
 								);
 			}
 		}

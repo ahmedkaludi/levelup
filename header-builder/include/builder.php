@@ -16,23 +16,39 @@ Class HeaderBuild{
 
 		add_action( 'customize_register', array($this, 'register_options') );
 		
-			add_action( 'customize_controls_enqueue_scripts', array($this,'customizer_live_preview_scripts' ));
+		add_action( 'customize_controls_enqueue_scripts', array($this,'customizer_live_preview_scripts' ));
 		
 
+        add_action( 'wp_enqueue_scripts', array($this, 'add_theme_scripts') );
 
 		//Builder
 		add_action( 'admin_print_scripts', array( $this, 'builder_template' ) );
 	}
 
 	function get_builders(){
+        $designs = new \HeaderBuilder\headerPanels\headerPanels();
+        $headerOpt = $designs->panel_builder_options();
+
+        //Footer
+        $designs = new \HeaderBuilder\footerPanels\footerPanels();
+        $footerOpt = $designs->panel_builder_options();
+        return array_merge($headerOpt, $footerOpt);
+    }
+    function get_designs(){
 		$designs = new \HeaderBuilder\headerPanels\headerPanels();
-		$headerOpt = $designs->panel_builder_options();
-		return $headerOpt;
+		$headerOpt = $designs->panel_design_options();
+
+        //Footer
+        $designs = new \HeaderBuilder\footerPanels\footerPanels();
+        $footerOpt = $designs->panel_design_options();
+		return array_merge($headerOpt,$footerOpt);
 	}
+
+    function add_theme_scripts() {
+      wp_enqueue_style( 'header-style', esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/css/header_style.css') );
+    }
 	
 	function customizer_live_preview_scripts(){
-		
-
 		wp_enqueue_script( 'customize-controls');
 		wp_enqueue_script( 
 			  'HF-Builder',			//Give the script an ID
@@ -48,8 +64,13 @@ Class HeaderBuild{
 		wp_localize_script( 'HF-Builder', 'HF_Builder', array(
             'builders'  => $this->get_builders(),
             'is_rtl'    => '',
+            'designs'  => $this->get_designs(),
         ) );
-
+        wp_localize_script( 'HF-Builder', 'HF_Designs', array(
+            'designs'  => $this->get_designs(),
+          
+        ) );
+        
 	}
 
 	function register_options($wp_customize){
@@ -76,6 +97,9 @@ Class HeaderBuild{
 					$wp_customize->add_panel($id,$args);
 					break;
 				case 'hf_section':
+                    if($id == 'header_setting_section' || $id == 'footer_panel_settings'){
+                     $args['sanitize_callback'] = 'header_footer_santizer';
+                    }
 					$lvl1ParentSection = new \HFBuilder_WP_Customize_Section(  $wp_customize, $id, $args);
 					$wp_customize->add_section($lvl1ParentSection);
 					break;
@@ -83,6 +107,9 @@ Class HeaderBuild{
 					$wp_customize->add_section($id,$args);
 					break;
 				case 'wp_settings':
+                    if($id == 'header_panel_settings'){
+                        $args['sanitize_callback'] = 'header_footer_santizer';
+                    }
 					$wp_customize->add_setting($id,$args);
 					break;
 				case 'wp_control':
@@ -110,9 +137,13 @@ Class HeaderBuild{
 
 	function get_options(){
 		require_once HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'header-panels/header-panels.php';
-		$headers = new \HeaderBuilder\headerPanels\headerPanels();
-		$returnJson = $headers->config_options();
-        return $returnJson;
+        $headers = new \HeaderBuilder\headerPanels\headerPanels();
+        $returnJson = $headers->config_options();
+
+        require_once HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'footer-panels/footer-panels.php';
+		$footer = new \HeaderBuilder\footerPanels\footerPanels();
+		$footerReturnJson = $footer->config_options();
+        return array_merge($returnJson,$footerReturnJson);
     }
 
     /**
@@ -127,12 +158,6 @@ Class HeaderBuild{
                         <div class="customify--cb-devices-switcher">
                         </div>
                         <div class="customify--cb-actions">
-                            <a data-id="{{ data.id }}_templates" class="focus-section button button-secondary"
-                               href="#"><?php _e( 'Templates', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></a>
-                            <a class="button button-secondary customify--panel-close" href="#">
-                                <span class="close-text"><?php _e( 'Close', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></span>
-                                <span class="panel-name-text">{{ data.title }}</span>
-                            </a>
                         </div>
                     </div>
                     <div class="customify--cb-body"></div>
@@ -146,7 +171,7 @@ Class HeaderBuild{
 
                 <# if ( ! _.isUndefined( data.rows.top ) ) { #>
                     <div class="customify--row-top customify--cb-row" data-id="{{ data.id }}_top">
-                        <a class="customify--cb-row-settings" title="{{ data.rows.top }}" data-id="top" href="#"></a>
+                        <a class="customify--cb-row-settings" title="{{ data.rows.top }}" data-id="top-header-design" href="#"></a>
                         <div class="customify--row-inner">
                             <div class="row--grid">
 								<?php for ( $i = 1; $i <= 12; $i ++ ) {
@@ -160,7 +185,7 @@ Class HeaderBuild{
 
                 <# if ( ! _.isUndefined( data.rows.main ) ) { #>
                     <div class="customify--row-main customify--cb-row" data-id="{{ data.id }}_main">
-                        <a class="customify--cb-row-settings" title="{{ data.rows.main }}" data-id="main"
+                        <a class="customify--cb-row-settings" title="{{ data.rows.main }}" data-id="middle-header-design"
                            href="#"></a>
 
                         <div class="customify--row-inner">
@@ -178,7 +203,7 @@ Class HeaderBuild{
                 <# if ( ! _.isUndefined( data.rows.bottom ) ) { #>
                     <div class="customify--row-bottom customify--cb-row" data-id="{{ data.id }}_bottom">
                         <a class="customify--cb-row-settings" title="{{ data.rows.bottom }}"
-                           data-id="bottom" href="#"></a>
+                           data-id="bottom-header-design" href="#"></a>
                         <div class="customify--row-inner">
                             <div class="row--grid">
                                 <?php for ( $i = 1; $i <= 12; $i ++ ) {
@@ -196,7 +221,7 @@ Class HeaderBuild{
                 <# if ( ! _.isUndefined( data.rows.sidebar ) ) { #>
                     <div class="customify--cp-sidebar">
                         <div class="customify--row-bottom customify--cb-row" data-id="{{ data.id }}_sidebar">
-                            <a class="customify--cb-row-settings" title="{{ data.rows.sidebar }}" data-id="sidebar"
+                            <a class="customify--cb-row-settings" title="{{ data.rows.sidebar }}" data-id="sidebar-header-design"
                                href="#"></a>
                             <div class="customify--row-inner">
                                 <div class="customify--cb-items customify--sidebar-items" data-id="sidebar"></div>

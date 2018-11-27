@@ -26,6 +26,7 @@ define( 'LEVELUP_ENVIRONEMT', 'production' );//development
 require( LEVELUP__DIR__PATH . '/inc/common-functions.php' );
 require( LEVELUP__DIR__PATH . '/inc/designlib/register-post.php' );
 require( LEVELUP__DIR__PATH . '/inc/designlib/sync_page.php' );
+require( LEVELUP__DIR__PATH . '/header-builder/header-builder.php' );
 function levelup_load() {
 	// Load localization file
 	load_plugin_textdomain( LEVELUP_ENVIRONEMT, false, trailingslashit(LEVELUP__FILE__PATH) . 'languages' );

@@ -4,12 +4,32 @@
   -ms-transform: translateX(-100%);
   transform: translateX(-100%);
 }
-
-ul#sub-accordion-panel-header_panel li.control-panel {
+#customize-controls img{
+  display: block;
+  width:300px;
+  height: 70px;
+}
+i.selecteddesign {
+    position: absolute;
+    font-size: 26px;
+    border-radius: 50%;
+    padding: 1px;
+    background-color: #00ff00;
+    top: 9px;
+    padding-right: 5px;
+    color:#fff;
+}
+/*ul#sub-accordion-panel-header_panel li.control-panel {
     width: 126px;
     float: left;
     margin-left: 15px;
     height: 101px;
+}*/
+
+
+/*#headercaller > */
+#accordion-section-header_setting_section{
+  display:none;
 }
 
 
@@ -17,11 +37,9 @@ ul#sub-accordion-panel-header_panel li.control-panel {
 
 
 
-
-
-
-
-
+.customify--cb-row.row-active {
+  border-color: #0073aa;
+}
 .customify--customize-builder {
   position: fixed;
   bottom: 0px;
