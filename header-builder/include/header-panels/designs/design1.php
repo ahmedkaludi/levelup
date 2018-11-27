@@ -2,8 +2,9 @@
 class header_footer_design1{
 	public $config = array();
 	public $panelId = 'header-design1';
-	public $previewImg = "http://localhost/magzine/wp/wp-content/uploads/2018/11/cropped-coffee-432-300x202.jpg";
+	public $previewImg = "/assets/img/d1.jpg";
 	function config_deisgn(){
+		$this->previewImg  = HEADER_FOOTER_PLUGIN_DIR_URI. $this->previewImg;
 		$this->config = array(
 			array(
 				'api_type'		=> 'hf_panel',
@@ -31,7 +32,6 @@ class header_footer_design1{
 	function get_builder_config(){
 		$this->config_deisgn();
 		$sections = array();
-
 		foreach ($this->config as $key => $value) {
 			if($value['api_type']=='wp_section'){
 				$id = $value['id'];

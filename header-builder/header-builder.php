@@ -12,7 +12,6 @@ function header_footer_santizer($input, $setting){
         $input = json_decode( urldecode_deep( $input ), true );
     }
     $input = sanitize_text_field_deep( $input );
-    print_r($input);die;
     return ($input);
 }
 

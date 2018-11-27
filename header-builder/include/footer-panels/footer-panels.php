@@ -90,7 +90,7 @@ class footerPanels{
 						'id' 				=> 'footer_setting_section',
 				        'panel'    			=> 'footer_panel',
 						'title'    			=> 'footer panel section',
-				        'description' 		=> '',
+						'description' 		=> '',
 				        'display'			=> false
 					),
 					//settings
@@ -99,7 +99,7 @@ class footerPanels{
 						'id'				=> 'footer_panel_settings',
 						'capability'        => 'edit_theme_options',
 						"default"			=> "",
-				        'sanitize_callback' => 'sanitize_text_field',
+				        'sanitize_callback' => 'header_footer_santizer',
 				        'transport'			=> 'postMessage',
 				        'name'				=> 'footer_panel_settings'
 				    ),

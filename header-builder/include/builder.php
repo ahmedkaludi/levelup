@@ -97,7 +97,7 @@ Class HeaderBuild{
 					$wp_customize->add_panel($id,$args);
 					break;
 				case 'hf_section':
-                    if($id == 'header_setting_section' || $id == 'footer_panel_settings'){
+                    if($id == 'header_setting_section' || $id == 'footer_setting_section'){
                      $args['sanitize_callback'] = 'header_footer_santizer';
                     }
 					$lvl1ParentSection = new \HFBuilder_WP_Customize_Section(  $wp_customize, $id, $args);
@@ -107,7 +107,7 @@ Class HeaderBuild{
 					$wp_customize->add_section($id,$args);
 					break;
 				case 'wp_settings':
-                    if($id == 'header_panel_settings'){
+                    if($id == 'header_panel_settings' || $id == 'footer_panel_settings'){
                         $args['sanitize_callback'] = 'header_footer_santizer';
                     }
 					$wp_customize->add_setting($id,$args);
