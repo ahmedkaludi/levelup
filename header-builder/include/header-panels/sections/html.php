@@ -44,6 +44,8 @@ class HtmlDesign{
 			    ),
 
 			);
+		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+      	$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 	}
 
 	function render(){

@@ -121,11 +121,12 @@ add_action('after_setup_theme', function(){
 function render_footer_option_html(){
     echo '<footer class="site-footer" id="site-footer">';
     HeaderFooter_Customize_Layout_Builder_Frontend()->set_id( 'footer' );
-    HeaderFooter_Customize_Layout_Builder_Frontend()->set_control_id( 'footer_builder_panel' );
+    HeaderFooter_Customize_Layout_Builder_Frontend()->set_control_id( 'footer_panel_settings' );
     $list_items = HeaderFooter_Customize_Layout_Builder()->get_builder_items( 'footer' );
-    
     HeaderFooter_Customize_Layout_Builder_Frontend()->set_config_items( $list_items );
     HeaderFooter_Customize_Layout_Builder_Frontend()->render();
+
+
     echo '</footer>';
 }
 
@@ -145,6 +146,24 @@ function render_footer_option_html(){
         echo '</div>';
     echo '</header>';
  }
+
+
+add_action( 'widgets_init','wp_call_register_sidebars'  );
+function wp_call_register_sidebars(){
+
+     for( $i = 1; $i <= 5; $i++ ) {
+            register_sidebar( array(
+                /* translators: 1: Widget number. */
+                'name'          => sprintf( __( 'Footer Sidebar %d', 'customify' ), $i ),
+                'id'            => 'footer-widget-'.$i,
+                'description'       => __( 'Add widgets here.', 'customify' ),
+                'before_widget' => '<section id="%1$s" class="widget %2$s">',
+                'after_widget'  => '</section>',
+                'before_title'  => '<h4 class="widget-title">',
+                'after_title'   => '</h4>',
+            ) );
+        }
+}
 
 
 require_once(HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'/builder.php');

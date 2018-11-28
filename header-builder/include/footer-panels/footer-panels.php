@@ -4,7 +4,7 @@ namespace HeaderBuilder\footerPanels;
 class footerPanels{
 	public $configs = array();
 	public $configs_builder = array();
-	public $sectionsLoader = array('top-footer','bottom-footer', 'footer-sidebar1', 'footer-sidebar2','footer-sidebar2', 'footer-sidebar3', 'footer-sidebar4', 'footer-copyright', 'social-icons');
+	public $sectionsLoader = array('top-footer','bottom-footer', 'footer-sidebar1','footer-sidebar2', 'footer-sidebar3', 'footer-sidebar4', 'footer-sidebar5', 'footer-copyright', 'social-icon');
 	public $designs = 	array(
 						'design1',
 						/*'design2',*/
@@ -52,17 +52,41 @@ class footerPanels{
 					$this->designCss[$designSettings] = $designObject->render_css();
 				}
 
-				
-				$SocialiconObj = new \HeaderBuilder\headerPanels\sections\SocialiconDesign($designObject->panelId, $designPanel[0]['title']);
+				$SocialiconObj = new \HeaderBuilder\footerPanels\sections\SocialiconFooterDesign($designObject->panelId, $designPanel[0]['title']);
 				$this->configs = array_merge($this->configs, $SocialiconObj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('header', $SocialiconObj );
+				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $SocialiconObj );
+
+				$copyrightObj = new \HeaderBuilder\footerPanels\sections\footerCopyrightDesign($designObject->panelId, $designPanel[0]['title']);
+				$this->configs = array_merge($this->configs, $copyrightObj->getFields());
+				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $copyrightObj );
+
+				$footerSidebar1Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar1Design($designObject->panelId, $designPanel[0]['title']);
+				$this->configs = array_merge($this->configs, $footerSidebar1Obj->getFields());
+				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar1Obj );
+
+				$footerSidebar2Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar2Design($designObject->panelId, $designPanel[0]['title']);
+				$this->configs = array_merge($this->configs, $footerSidebar2Obj->getFields());
+				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar2Obj );
+
+				$footerSidebar3Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar3Design($designObject->panelId, $designPanel[0]['title']);
+				$this->configs = array_merge($this->configs, $footerSidebar3Obj->getFields());
+				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar3Obj );
+
+				$footerSidebar4Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar4Design($designObject->panelId, $designPanel[0]['title']);
+				$this->configs = array_merge($this->configs, $footerSidebar4Obj->getFields());
+				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar4Obj );
+
+				$footerSidebar5Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar5Design($designObject->panelId, $designPanel[0]['title']);
+				$this->configs = array_merge($this->configs, $footerSidebar5Obj->getFields());
+				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar5Obj );
+
+
+
 
 				//Top settings
 				$topDesignObj = new \HeaderBuilder\headerPanels\sections\TopDesign($designObject->panelId, $designPanel[0]['title']);
 				$this->configs = array_merge($this->configs, $topDesignObj->getFields());
-
 				
-
 				//Bottom settings
 				$bottomDesignObj = new \HeaderBuilder\headerPanels\sections\BottomDesign($designObject->panelId, $designPanel[0]['title']);
 				$this->configs = array_merge($this->configs, $bottomDesignObj->getFields());

@@ -15,7 +15,7 @@ class HeaderFooter_Customize_Layout_Builder {
      */
     function init() {
 
-        do_action( 'customify/customize-builder/init' );
+        do_action( 'header_footer/customize-builder/init' );
 
         if ( is_admin() ) {
             add_action( 'customize_controls_enqueue_scripts', array( $this, 'scripts' ) );
@@ -54,7 +54,7 @@ class HeaderFooter_Customize_Layout_Builder {
             return false;
         }
 
-        add_filter( 'customify/customizer/config', array( $class, '_customize' ), 35, 2 );
+        add_filter( 'header_footer/customizer/config', array( $class, '_customize' ), 35, 2 );
         $this->registered_builders[ $id ] = $class;
     }
 
@@ -99,19 +99,19 @@ class HeaderFooter_Customize_Layout_Builder {
      */
     function get_builder_items( $builder_id ) {
         if ( ! $builder_id ) {
-            return apply_filters( 'customify/builder/' . $builder_id . '/items', array() );
+            return apply_filters( 'header_footer/builder/' . $builder_id . '/items', array() );
         }
         if ( ! isset( $this->registered_items[ $builder_id ] ) ) {
-            return apply_filters( 'customify/builder/' . $builder_id . '/items', array() );
+            return apply_filters( 'header_footer/builder/' . $builder_id . '/items', array() );
         }
         $items = array();
         foreach ( $this->registered_items[ $builder_id ] as $name => $obj ) {
             if ( method_exists( $obj, 'item' ) ) {
-                $item                 = $obj->item();
+                $item                 = $obj->getFields();
                 $items[ $item['id'] ] = $item;
             }
         }
-        $items = apply_filters( 'customify/builder/' . $builder_id . '/items', $items );
+        $items = apply_filters( 'header_footer/builder/' . $builder_id . '/items', $items );
 
         return $items;
     }

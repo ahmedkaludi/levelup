@@ -24,27 +24,7 @@ class LogoDesign{
 			        'description' 		=> __('Section description which does show up', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
-				
-				//settings
-                array(
-                    'api_type'          => 'wp_settings',
-                    'id'                => 'setting'. $this->panel,
-                    'capability'        => 'edit_theme_options',
-                    "default"           => "Black",
-                    'sanitize_callback' => 'sanitize_text_field',
-                    'transport'         => 'postMessage'
-                ),
-                //control
-                array(
-                    'api_type'          => 'wp_control',
-                    'id'                => 'setting'. $this->panel,
-                    'section'           => $this->nameslug. $this->panel,
-                    'label'             => __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-                    'type'              => 'text'
-                ),
-
-
-                //settings Sitename
+				//settings Sitename
 				array(
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'site_name'. $this->panel,
@@ -57,6 +37,7 @@ class LogoDesign{
 			    array(
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'site_name'. $this->panel,
+                    'render_callback'   => array($this, 'render'),
 			        'section' 			=> $this->nameslug. $this->panel,
 			        'label'   			=> __('Enter Site name', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'

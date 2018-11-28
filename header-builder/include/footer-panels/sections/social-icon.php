@@ -23,15 +23,13 @@ class SocialiconFooterDesign{
 					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'description' 		=> __('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
-
-				
 				//settings
 				array(
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'facebook'. $this->panel,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "ADD CUSTOM TEXT HERE OR REMOVE IT",
-			        'sanitize_callback' => 'sanitize_text_field',
+					"default"			=> "https://www.facebook.com/wordpress",
+			        'sanitize_callback' => 'sanitize_textarea_field',
 			        'transport'			=> 'postMessage'
 			    ),
 			    //control
@@ -48,7 +46,7 @@ class SocialiconFooterDesign{
 					'id'				=> 'twitter'. $this->panel,
 					'capability'        => 'edit_theme_options',
 					"default"			=> "ADD CUSTOM TEXT HERE OR REMOVE IT",
-			        'sanitize_callback' => 'sanitize_text_field',
+			        'sanitize_callback' => 'sanitize_textarea_field',
 			        'transport'			=> 'postMessage'
 			    ),
 			    //control
@@ -65,7 +63,7 @@ class SocialiconFooterDesign{
 					'id'				=> 'googleplus'. $this->panel,
 					'capability'        => 'edit_theme_options',
 					"default"			=> "ADD CUSTOM TEXT HERE OR REMOVE IT",
-			        'sanitize_callback' => 'sanitize_text_field',
+			        'sanitize_callback' => 'sanitize_textarea_field',
 			        'transport'			=> 'postMessage'
 			    ),
 			    //control

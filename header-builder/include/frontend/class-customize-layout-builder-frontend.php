@@ -49,6 +49,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             return $this->data;
         }
         $data = headerfooter_get_setting( $this->control_id );
+
         $data = wp_parse_args( $data, array(
             'desktop' => '',
             'tablet'  => '',
@@ -140,7 +141,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                              *
 	                         * @since 0.2.1
 	                         */
-                            do_action('customify/builder/'.$this->id.'/before-item/'.$item['id'] );
+                            do_action('header_footer/builder/'.$this->id.'/before-item/'.$item['id'] );
                             $object_item = HeaderFooter_Customize_Layout_Builder()->get_builder_item( $this->id, $item['id'] );
                             // Call render in registered class
                             if ( $object_item ) {
@@ -181,7 +182,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 	                         *
 	                         * @since 0.2.1
 	                         */
-	                        do_action('customify/builder/'.$this->id.'/after-item/'.$item['id'] );
+	                        do_action('header_footer/builder/'.$this->id.'/after-item/'.$item['id'] );
 
                             // Get item output
                             $ob_render = ob_get_clean();
@@ -417,7 +418,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                 $classes[] = 'builder-item--group';
             }
 
-            $classes = apply_filters( 'customify/builder/item-wrapper-classes', $classes, $item );
+            $classes = apply_filters( 'header_footer/builder/item-wrapper-classes', $classes, $item );
             $classes = join( ' ', $classes ); // customify-grid-middle
 
             $row_items_html = '';
@@ -471,6 +472,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
     function render( $row_ids = array( 'top', 'main', 'bottom' ) ) {
         $setting = $this->get_settings();
         $items   = $this->render_items();
+        
         foreach ( $row_ids as $row_id ) {
             $show = true;//customify_is_builder_row_display( $this->id, $row_id );
             if ( $show && isset( $this->rows[ $row_id ] ) ) {
@@ -504,12 +506,12 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                             $classes[] = sanitize_text_field( $row_layout );
                         }
 
-                        $classes = apply_filters( 'customify/builder/row-classes', $classes, $row_id, $this );
+                        $classes = apply_filters( 'header_footer/builder/row-classes', $classes, $row_id, $this );
 
                         $atts['class']       = join( ' ', $classes );
                         $atts['id']          = 'cb-row--' . $_id;
                         $atts['data-row-id'] = $row_id;
-                        $atts  = apply_filters( 'customify/builder/row-attrs', $atts, $row_id, $this );
+                        $atts  = apply_filters( 'header_footer/builder/row-attrs', $atts, $row_id, $this );
                         $string_atts = '';
                         foreach ( $atts as $k => $s ) {
                             if ( is_array( $s ) ) {
@@ -542,7 +544,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                             $inner_class['row_text_mode'] = $row_text_mode;
                         }
 
-                        $inner_class  = apply_filters( 'customify/builder/inner-row-classes', $inner_class, $row_id, $this );
+                        $inner_class  = apply_filters( 'header_footer/builder/inner-row-classes', $inner_class, $row_id, $this );
 
                         if ( $html_mobile || $html_desktop ) {
                             ?>

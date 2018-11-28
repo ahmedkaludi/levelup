@@ -74,6 +74,7 @@ Class HeaderBuild{
 	}
 
 	function register_options($wp_customize){
+        add_action( 'widgets_init','wp_call_register_sidebars'  );
 		include HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'customize-panel.php';
 		include HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'customize-section.php';
 
@@ -111,9 +112,18 @@ Class HeaderBuild{
                         $args['sanitize_callback'] = 'header_footer_santizer';
                     }
 					$wp_customize->add_setting($id,$args);
+                    $wp_customize->selective_refresh->add_partial($id,$args);
 					break;
 				case 'wp_control':
 					$wp_customize->add_control($id,$args);
+                    break;
+                case 'wp_widget':
+                   
+                        if (  $wp_customize->get_section( 'sidebar-widgets-'.$id ) ) {
+                          $wp_customize->get_section( 'sidebar-widgets-'.$id )->panel = $args['panel'];
+                        }
+                    
+                    break;
 				default:
 					# code...
 					break;

@@ -1,9 +1,9 @@
 <?php
-namespace HeaderBuilder\headerPanels\sections;
-class HtmlDesign{
-	public $id = 'html';
-	public $name = 'HTML';
-	public $nameslug = 'html-';
+namespace HeaderBuilder\footerPanels\sections;
+class footerCopyrightDesign{
+	public $id = 'copyright';
+	public $name = 'Copyright';
+	public $nameslug = 'copyright-';
 	public $api_type = 'wp_section';
 	public $panel = '';
 	public $panelName = '';
