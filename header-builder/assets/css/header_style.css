@@ -20,11 +20,6 @@
     display: inline-block;
     color: #fff;
 }
-.customify-grid > div{
-    margin-left: 8.3333333333%;
-  }
-
-
 
 
 
@@ -1988,4 +1983,25 @@ Footer
 
 .footer-copyright {
   font-size: 0.875em;
+}
+
+[class~="customify-grid"], [class*="customify-grid-"], [class*="customify-grid_"] {
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin: 0 -1em;
+}
+.customify-container {
+    position: relative;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+.customify-container, .layout-contained {
+    max-width: 1248px;
+    margin: 0 auto;
 }

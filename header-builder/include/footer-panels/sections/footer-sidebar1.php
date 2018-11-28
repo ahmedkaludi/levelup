@@ -69,6 +69,7 @@ class footerSidebar1Design{
 
 	function render( $item_config = array() ) {
 		$show = false;
+		$footer_id = 'footer-widget-1';
 	    if ( is_active_sidebar( $footer_id ) ) {
 	        echo '<div class="widget-area">';
 	        dynamic_sidebar($footer_id);

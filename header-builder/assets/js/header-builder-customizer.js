@@ -1479,7 +1479,7 @@
 	                this.container.on( 'click', '.customify--cb-row-settings', function( e ){
 	                    e.preventDefault();
 	                    var id = $( this ).attr( 'data-id' ) || '';
-
+	                    $( this ).parent("div").addClass("row-active");
 	                    var section = id + '' + options.id;
 
 	                    if ( ! _.isUndefined(  wpcustomize.section( section ) ) ) {
