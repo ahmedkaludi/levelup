@@ -231,7 +231,7 @@ Class HeaderBuild{
                 <# if ( ! _.isUndefined( data.rows.sidebar ) ) { #>
                     <div class="customify--cp-sidebar">
                         <div class="customify--row-bottom customify--cb-row" data-id="{{ data.id }}_sidebar">
-                            <a class="customify--cb-row-settings" title="{{ data.rows.sidebar }}" data-id="sidebar-header-design"
+                            <a class="customify--cb-row-settings" title="{{ data.rows.sidebar }}" data-id="sidebar"
                                href="#"></a>
                             <div class="customify--row-inner">
                                 <div class="customify--cb-items customify--sidebar-items" data-id="sidebar"></div>

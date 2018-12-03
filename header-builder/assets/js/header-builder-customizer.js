@@ -1479,7 +1479,6 @@
 	                this.container.on( 'click', '.customify--cb-row-settings', function( e ){
 	                    e.preventDefault();
 	                    var id = $( this ).attr( 'data-id' ) || '';
-	                    $( this ).parent("div").addClass("row-active");
 	                    var section = id + '' + options.id;
 
 	                    if ( ! _.isUndefined(  wpcustomize.section( section ) ) ) {
@@ -1680,6 +1679,15 @@
          _.each( HF_Designs.designs, function( opts, id ){
             $('#accordion-panel-'+opts['id']).find('h3').prepend("<img src='"+opts['previewImg']+"' width='200' height='200'>");
         } );
+
+        wpcustomize.state( 'expandedSection' ).bind( function( section ) {
+            $( '.customify--device-panel .grid-stack-item' ).removeClass( 'item-active' );
+            $( '.customify--cb-row' ).removeClass('row-active');
+            if ( section ) {
+                $( '.customify--cb-row[data-id="'+section.id+'"]' ).addClass('row-active');
+                $( '.customify--device-panel .grid-stack-item.for-s-'+section.id ).addClass( 'item-active' );
+            }
+        });
 	});
 
 } )( jQuery, wp.customize || null );
@@ -1853,7 +1861,7 @@ Customizer
      * @see /wp-includes/js/customize-selective-refresh.js
      */
 
-    wp.customize.selectiveRefresh.Partial.prototype.ready = function(){
+   /* wp.customize.selectiveRefresh.Partial.prototype.ready = function(){
         var partial = this;
 
         if ( _.isUndefined( skips_to_add_shortcut[ partial.id ] ) ) {
@@ -1873,7 +1881,7 @@ Customizer
                 });
             });
         }
-    };
+    };*/
 
 
 } )( jQuery, wp.customize );

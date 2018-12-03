@@ -18,15 +18,20 @@ define( 'LEVELUP__FILE__URI', plugin_dir_url(__FILE__));
 define( 'LEVELUP__DIR__PATH', __DIR__ );
 define( 'LEVELUP_TEXT_DOMAIN', 'levelup' );
 define( 'LEVELUP_ENVIRONEMT', 'production' );//development
+define( 'LEVELUP_VERSION', '0.0.1' );//development
 /**
  *
  * Load the plugin after Elementor (and other plugins) are loaded.
  *
  */
-require( LEVELUP__DIR__PATH . '/inc/common-functions.php' );
-require( LEVELUP__DIR__PATH . '/inc/designlib/register-post.php' );
-require( LEVELUP__DIR__PATH . '/inc/designlib/sync_page.php' );
-require( LEVELUP__DIR__PATH . '/header-builder/header-builder.php' );
+//Header Footer builder
+require_once( LEVELUP__DIR__PATH . '/header-builder/header-builder.php' );
+//importer
+require_once( LEVELUP__DIR__PATH . '/inc/importer/levelup_importer.php' );
+//Elementor
+require_once( LEVELUP__DIR__PATH . '/inc/common-functions.php' );
+require_once( LEVELUP__DIR__PATH . '/inc/designlib/register-post.php' );
+require_once( LEVELUP__DIR__PATH . '/inc/designlib/sync_page.php' );
 function levelup_load() {
 	// Load localization file
 	load_plugin_textdomain( LEVELUP_ENVIRONEMT, false, trailingslashit(LEVELUP__FILE__PATH) . 'languages' );

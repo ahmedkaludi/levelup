@@ -48,9 +48,9 @@ class MenuIconDesign{
 
 	function render(){
         $label = sanitize_text_field( headerfooter_get_setting( 'nav_icon_text' ) );
-        $show_label = headerfooter_get_setting('nav_icon_show_text', 'all' );
+        $show_label = array("desktop"=>'Menu', 'tablet'=>'', 'mobile'=> '');//headerfooter_get_setting('nav_icon_show_text', 'all' );
         $style = sanitize_text_field( headerfooter_get_setting('nav_icon_style' ) );
-        $sizes = headerfooter_get_setting('nav_icon_size', 'all' );
+        $sizes = array('desktop'=>'medium', 'tablet'=>'medium', 'mobile'=>'medium');
 
         $classes = array('menu-mobile-toggle item-button');
         $label_classes = array( 'nav-icon--label' );
