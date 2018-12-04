@@ -11,6 +11,9 @@ Class HeaderBuild{
         return self::$instance;
     }
 	function init(){
+        require_once HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'header-panels/header-panels.php';
+        require_once HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'footer-panels/footer-panels.php';
+        add_action('wp', array($this, 'register_for_frontend'));
 		add_action( 'customize_controls_enqueue_scripts', array($this, 'hfbuilder_customize_controls_scripts') );
 		add_action( 'customize_controls_print_styles', array($this, 'hfbuilder_customize_controls_styles') );
 
@@ -23,7 +26,13 @@ Class HeaderBuild{
 
 		//Builder
 		add_action( 'admin_print_scripts', array( $this, 'builder_template' ) );
+
 	}
+
+    function register_for_frontend(){
+         $designs = new \HeaderBuilder\headerPanels\headerPanels();
+         $designs = new \HeaderBuilder\footerPanels\footerPanels();
+    }
 
 	function get_builders(){
         $designs = new \HeaderBuilder\headerPanels\headerPanels();
@@ -146,11 +155,11 @@ Class HeaderBuild{
 	
 
 	function get_options(){
-		require_once HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'header-panels/header-panels.php';
+		
         $headers = new \HeaderBuilder\headerPanels\headerPanels();
         $returnJson = $headers->config_options();
 
-        require_once HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'footer-panels/footer-panels.php';
+        
 		$footer = new \HeaderBuilder\footerPanels\footerPanels();
 		$footerReturnJson = $footer->config_options();
         return array_merge($returnJson,$footerReturnJson);

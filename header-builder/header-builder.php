@@ -3,7 +3,6 @@
 define('HEADER_FOOTER_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
 define('HEADER_FOOTER_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('HEADER_FOOTER_PLUGIN_PATH_INCLUDE', HEADER_FOOTER_PLUGIN_PATH.'/include/');
-define('HEADER_FOOTER_PLUGIN_VERSION', '1.0');
 define('HEADER_FOOTER_PLUGIN_TEXT_DOMAIN', 'header-builder');
 
 function header_footer_santizer($input, $setting){
