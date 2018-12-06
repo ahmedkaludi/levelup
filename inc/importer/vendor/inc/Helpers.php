@@ -63,7 +63,7 @@ class Helpers {
 			'content'    => '',
 			'widgets'    => '',
 			'customizer' => '',
-			'redux'      => '',
+			'pagedesign'      => '',
 		);
 		$downloader = new Downloader();
 
@@ -90,6 +90,7 @@ class Helpers {
 		// ----- Set widget file path -----
 		// Get widgets file as well. If defined!
 		if ( ! empty( $import_file_info['import_widget_file_url'] ) ) {
+		if( $_POST['levelup_import_widget']){
 			// Set the filename string for widgets import file.
 			$widget_filename = apply_filters( 'levelup_import/downloaded_widgets_file_prefix', 'demo-widgets-import-file_' ) . self::$demo_import_start_time . apply_filters( 'levelup_import/downloaded_widgets_file_suffix_and_file_extension', '.json' );
 
@@ -100,6 +101,7 @@ class Helpers {
 			if ( is_wp_error( $downloaded_files['widgets'] ) ) {
 				return $downloaded_files['widgets'];
 			}
+		}//If levelup_import_widget closing
 		}
 		else if ( ! empty( $import_file_info['local_import_widget_file'] ) ) {
 			if ( file_exists( $import_file_info['local_import_widget_file'] ) ) {
@@ -110,16 +112,21 @@ class Helpers {
 		// ----- Set customizer file path -----
 		// Get customizer import file as well. If defined!
 		if ( ! empty( $import_file_info['import_customizer_file_url'] ) ) {
-			// Setup filename path to save the customizer content.
-			$customizer_filename = apply_filters( 'levelup_import/downloaded_customizer_file_prefix', 'demo-customizer-import-file_' ) . self::$demo_import_start_time . apply_filters( 'levelup_import/downloaded_customizer_file_suffix_and_file_extension', '.dat' );
+			if( $_POST['levelup_import_customizer']){
+				// Setup filename path to save the customizer content.
+				$customizer_filename = apply_filters( 'levelup_import/downloaded_customizer_file_prefix', 'demo-customizer-import-file_' ) . self::$demo_import_start_time . apply_filters( 'levelup_import/downloaded_customizer_file_suffix_and_file_extension', '.dat' );
 
-			// Download the customizer import file.
-			$downloaded_files['customizer'] = $downloader->download_file( $import_file_info['import_customizer_file_url'], $customizer_filename );
-
-			// Return from this function if there was an error.
-			if ( is_wp_error( $downloaded_files['customizer'] ) ) {
-				return $downloaded_files['customizer'];
+				// Download the customizer import file.
+				$downloaded_files['customizer'] = $downloader->download_file( $import_file_info['import_customizer_file_url'], $customizer_filename );
+				
+				// Return from this function if there was an error.
+				if ( is_wp_error( $downloaded_files['customizer'] ) ) {
+					return $downloaded_files['customizer'];
+				}
 			}
+			
+
+			
 		}
 		else if ( ! empty( $import_file_info['local_import_customizer_file'] ) ) {
 			if ( file_exists( $import_file_info['local_import_customizer_file'] ) ) {
@@ -127,46 +134,21 @@ class Helpers {
 			}
 		}
 
-		// ----- Set Redux file paths -----
-		// Get Redux import file as well. If defined!
-		if ( ! empty( $import_file_info['import_redux'] ) && is_array( $import_file_info['import_redux'] ) ) {
-			$redux_items = array();
+		// ----- Set pagedesign file path -----
+		// Get pagedesign import file as well. If defined!
+		if ( ! empty( $import_file_info['import_page_design_url'] ) && $_POST['levelup_import_design'] ) {
+			// Setup filename path to save the pagedesign content.
+			$customizer_filename = apply_filters( 'levelup_import/downloaded_pagedesign_file_prefix', 'demo-pagedesign-import-file_' ) . self::$demo_import_start_time . apply_filters( 'levelup_import/downloaded_pagedesign_file_suffix_and_file_extension', '.dat' );
 
-			// Setup filename paths to save the Redux content.
-			foreach ( $import_file_info['import_redux'] as $index => $redux_item ) {
-				$redux_filename = apply_filters( 'levelup_import/downloaded_redux_file_prefix', 'demo-redux-import-file_' ) . $index . '-' . self::$demo_import_start_time . apply_filters( 'levelup_import/downloaded_redux_file_suffix_and_file_extension', '.json' );
+			// Download the pagedesign import file.
+			$downloaded_files['pagedesign'] = $downloader->download_file( $import_file_info['import_page_design_url'], $customizer_filename );
 
-				// Download the Redux import file.
-				$file_path = $downloader->download_file( $redux_item['file_url'], $redux_filename );
-
-				// Return from this function if there was an error.
-				if ( is_wp_error( $file_path ) ) {
-					return $file_path;
-				}
-
-				$redux_items[] = array(
-					'option_name' => $redux_item['option_name'],
-					'file_path'   => $file_path,
-				);
+			// Return from this function if there was an error.
+			if ( is_wp_error( $downloaded_files['pagedesign'] ) ) {
+				return $downloaded_files['pagedesign'];
 			}
-
-			// Download the Redux import file.
-			$downloaded_files['redux'] = $redux_items;
 		}
-		else if ( ! empty( $import_file_info['local_import_redux'] ) ) {
-
-			$redux_items = array();
-
-			// Setup filename paths to save the Redux content.
-			foreach ( $import_file_info['local_import_redux'] as $redux_item ) {
-				if ( file_exists( $redux_item['file_path'] ) ) {
-					$redux_items[] = $redux_item;
-				}
-			}
-
-			// Download the Redux import file.
-			$downloaded_files['redux'] = $redux_items;
-		}
+		
 
 		return $downloaded_files;
 	}
@@ -366,7 +348,7 @@ class Helpers {
 		$attachment = array(
 			'guid'           => self::get_log_url( $log_path ),
 			'post_mime_type' => $filetype['type'],
-			'post_title'     => apply_filters( 'levelup_import/attachment_prefix', esc_html__( 'One Click Demo Import - ', LEVELUP_TEXT_DOMAIN ) ) . preg_replace( '/\.[^.]+$/', '', basename( $log_path ) ),
+			'post_title'     => apply_filters( 'levelup_import/attachment_prefix', esc_html__( 'Levelup Import - ', LEVELUP_TEXT_DOMAIN ) ) . preg_replace( '/\.[^.]+$/', '', basename( $log_path ) ),
 			'post_content'   => '',
 			'post_status'    => 'inherit',
 		);

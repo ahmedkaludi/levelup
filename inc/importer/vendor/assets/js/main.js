@@ -193,6 +193,26 @@ jQuery( function ( $ ) {
 		data.append( 'security', levelup_import.ajax_nonce );
 		data.append( 'selected', selectedImportID );
 
+		//Get checkbox values
+		var levelup_import_design = 0, levelup_import_widget = 0, levelup_import_customizer = 0, levelup_import_contents = 0;
+		if( $('#levelup_import_design:checked').length){
+			levelup_import_design = $('#levelup_import_design:checked').val();
+			data.append('levelup_import_design', levelup_import_design);
+		}
+		if( $('#levelup_import_widget:checked').length ){
+			levelup_import_widget = $('#levelup_import_widget:checked').val();
+			data.append('levelup_import_widget', levelup_import_widget);
+		}
+		if( $('#levelup_import_customizer:checked').length ){
+			levelup_import_customizer = $('#levelup_import_customizer:checked').val();
+			data.append('levelup_import_customizer', levelup_import_customizer);
+		}
+		if( $('#levelup_import_contents:checked').length ){
+			levelup_import_contents = $('#levelup_import_contents:checked').val();
+			data.append('levelup_import_contents', levelup_import_contents);
+		}
+		/*console.log(data);
+		return false;*/
 		// AJAX call to import everything (content, widgets, before/after setup)
 		ajaxCall( data );
 	}
@@ -244,6 +264,13 @@ jQuery( function ( $ ) {
 			previewImageContent = '<div class="levelup_modal-image-container"><img src="' + currentFilePreviewImage + '" alt="' + levelup_import.import_files[ selectedImportID ]['import_file_name'] + '"></div>'
 		}
 
+		previewImageContent = '<div class="levelup_modal-image-container">'+
+							'<div><label><input type="checkbox" name="import_design" checked id="levelup_import_design" value="1"> Design</label></div>'+
+							'<div><label><input type="checkbox" name="import_widget" checked id="levelup_import_widget" value="1"> Widgets</label></div>'+
+							'<div><label><input type="checkbox" name="import_customizer" checked id="levelup_import_customizer" value="1"> Customizer Settings</label></div>'+
+							'<div><label><input type="checkbox" name="import_contents" id="levelup_import_contents" value="1"> Dummy Contents</label></div>'+
+							+'</div>';
+
 		// Prepare notice output.
 		if( '' !== importNotice ) {
 			importNoticeContent = '<div class="levelup_modal-notice  levelup_demo-import-notice">' + importNotice + '</div>';
@@ -254,7 +281,7 @@ jQuery( function ( $ ) {
 		$dialogContiner.html(
 			'<p class="levelup_modal-item-title">' + levelup_import.import_files[ selectedImportID ]['import_file_name'] + '</p>' +
 			previewImageContent +
-			importNoticeContent
+			"<div class='notices'>"+importNoticeContent+"</div>"
 		);
 
 		// Display the confirmation popup.

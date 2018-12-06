@@ -292,6 +292,10 @@ class OneClickDemoImport {
 		if ( ! empty( $this->selected_import_files['content'] ) ) {
 			$this->append_to_frontend_error_messages( $this->importer->import_content( $this->selected_import_files['content'] ) );
 		}
+		//page designs
+		if ( ! empty( $this->selected_import_files['pagedesign'] ) ) {
+			$this->append_to_frontend_error_messages( $this->importer->import_content( $this->selected_import_files['pagedesign'] ) );
+		}
 
 		/**
 		 * 4). Execute the actions hooked to the 'levelup_import/after_content_import_execution' action:
@@ -387,10 +391,10 @@ class OneClickDemoImport {
 			$response['message'] = '';
 
 			if ( ! apply_filters( 'levelup_import/disable_pt_branding', false ) ) {
-				$twitter_status = esc_html__( 'Just used One Click Demo Import plugin and it was awesome! Thanks @ProteusThemes! #OCDI https://www.proteusthemes.com/', LEVELUP_TEXT_DOMAIN );
+				$twitter_status = esc_html__( 'Just used Levelup Import plugin and it was awesome! Thanks @ProteusThemes! #OCDI https://www.proteusthemes.com/', LEVELUP_TEXT_DOMAIN );
 
 				$response['message'] .= sprintf(
-					__( '%1$s%6$sWasn\'t this a great One Click Demo Import experience?%7$s Created and maintained by %3$sProteusThemes%4$s. %2$s%5$sClick to Tweet!%4$s%8$s', LEVELUP_TEXT_DOMAIN ),
+					__( '%1$s%6$sWasn\'t this a great Levelup Import experience?%7$s Created and maintained by %3$sProteusThemes%4$s. %2$s%5$sClick to Tweet!%4$s%8$s', LEVELUP_TEXT_DOMAIN ),
 					'<div class="notice  notice-info"><p>',
 					'<br>',
 					'<strong><a href="https://www.proteusthemes.com/" target="_blank">',
@@ -403,7 +407,7 @@ class OneClickDemoImport {
 			}
 
 			$response['message'] .= sprintf(
-				__( '%1$s%3$sThat\'s it, all done!%4$s%2$sThe demo import has finished. Please check your page and make sure that everything has imported correctly. If it did, you can deactivate the %3$sOne Click Demo Import%4$s plugin, because it has done its job.%5$s', LEVELUP_TEXT_DOMAIN ),
+				__( '%1$s%3$sThat\'s it, all done!%4$s%2$sThe demo import has finished. Please check your page and make sure that everything has imported correctly. If it did, you can deactivate the %3$sLevelup Import%4$s plugin, because it has done its job.%5$s', LEVELUP_TEXT_DOMAIN ),
 				'<div class="notice  notice-success"><p>',
 				'<br>',
 				'<strong>',
