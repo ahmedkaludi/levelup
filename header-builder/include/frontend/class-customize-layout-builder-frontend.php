@@ -444,12 +444,12 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                     }
 
                     $item_classes = join(' ', $item_classes); // customify-grid-middle
-                    $row_items_html .= '<div class="' . esc_attr($item_classes) . '" data-section="' . $item_config['section'] . '" data-item-id="' . esc_attr($item_id) . '" >';
+                    //$row_items_html .= '<div class="' . esc_attr($item_classes) . '" data-section="' . $item_config['section'] . '" data-item-id="' . esc_attr($item_id) . '" >';
                     $row_items_html .= $this->setup_item_content($content, $id, $device);
                     if (is_customize_preview()) {
                         $row_items_html .= '<span class="item--preview-name">' . esc_html($item_config['name']) . '</span>';
                     }
-                    $row_items_html .= '</div>';
+                   // $row_items_html .= '</div>';
                 }
             }
             if ( $row_items_html ) {

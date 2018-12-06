@@ -48,8 +48,12 @@ class header_footer_design1{
 		return $sections;
 	}
 
+	function default_data(){
+		return '';
+	}
+
 	function render_css(){
-		$css = '#header{
+		$css = '.customify-grid-middle{
 					display:inline-flex;
 					flex-wrap: wrap;
 					align-items: center;
@@ -103,9 +107,10 @@ class header_footer_design1{
 					width:100%;
 					text-align:right;
 				}
-				.nav-scl{
+				.builder-first--menu-header-design1{
 					flex-grow: 1;
 				    order: 1;
+				    text-align: right;
 				}
 				.scl-icns ul{
 					display: flex;
@@ -119,6 +124,7 @@ class header_footer_design1{
 				.nav-menu{
 					margin-right: 25px;
 				}
+				.nav-menu ul{margin:0;}
 				.nav-menu, .scl-icns{
 					display: inline-block;
 				    vertical-align: middle;

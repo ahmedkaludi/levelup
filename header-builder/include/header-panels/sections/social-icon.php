@@ -98,6 +98,7 @@ class SocialiconDesign{
 	}
 
 	function render( $item_config = array() ) {
+		$items = array();
 		if(headerfooter_get_setting( 'facebook'. $this->panel)){
 			$items['facebook']['url'] = headerfooter_get_setting( 'facebook'. $this->panel);
 			$items['facebook']['icon'] = 'facebook';

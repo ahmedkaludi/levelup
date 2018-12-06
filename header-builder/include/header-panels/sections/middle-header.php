@@ -9,6 +9,14 @@ class MiddleDesign{
 	function __construct($panel,$panelName){
 		$this->panel = $panel; 
 		$this->panelName = $panelName; 
+		add_filter('header_footer/builder/inner-row-classes', array($this, 'printAddedClass'),10, 3);
+	}
+	function printAddedClass($inner_class, $row_id, $thisobj){
+		$class = headerfooter_get_setting( 'id-'.$this->panel. $this->id);
+		if($inner_class){
+			$inner_class[] = $class;
+		}
+		return $inner_class;
 	}
 	function getFields(){
 		return array(
@@ -37,6 +45,24 @@ class MiddleDesign{
 			    	'id'				=> 'color-'.$this->panel. $this->id,
 			        'section' 			=> $this->id. $this->panel,
 			        'label'   			=> __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'type'    			=> 'text'
+			    ),
+
+			    //settings
+				array(
+					'api_type'			=> 'wp_settings',
+					'id'				=> 'id-'.$this->panel. $this->id,
+					'capability'        => 'edit_theme_options',
+					"default"			=> "header",
+			        'sanitize_callback' => 'sanitize_text_field',
+			        'transport'			=> 'postMessage'
+			    ),
+			    //control
+			    array(
+			    	'api_type'			=> 'wp_control',
+			    	'id'				=> 'id-'.$this->panel. $this->id,
+			        'section' 			=> $this->id. $this->panel,
+			        'label'   			=> __('Enter Class', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 

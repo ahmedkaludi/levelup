@@ -47,10 +47,15 @@ class LogoDesign{
 	}
 
 	function logo(){
-        $custom_logo_id = headerfooter_get_media( 'custom_logo' );
-        $logo_image = headerfooter_get_media( $custom_logo_id, 'full' );
-        $logo_retina = headerfooter_get_setting( 'header_logo_retina' );
-        $logo_retina_image = headerfooter_get_media( $logo_retina );
+         $custom_logo_id = esc_attr( get_theme_mod( 'custom_logo' ) );
+
+            if( $custom_logo_id ) {
+                $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+                $logo_image = $logo[0];
+            }
+        //$logo_image = headerfooter_get_media( $custom_logo_id, 'full' );
+        $logo_retina = '';//headerfooter_get_setting( 'header_logo_retina' );
+        $logo_retina_image = '';//headerfooter_get_media( $logo_retina );
         if ( $logo_image ) {
             ?>
             <div class="logo">
@@ -75,7 +80,7 @@ class LogoDesign{
         ?>
         <div class="<?php echo esc_attr( join(' ', $logo_classes ) ); ?>">
             <?php
-
+            $show_name = $show_desc = 'no';
             $this->logo();
             if ( $show_name !== 'no' ||  $show_desc !== 'no' ) {
                 echo '<div class="site-name-desc">';
