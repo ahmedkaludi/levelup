@@ -60,7 +60,7 @@ class footerPanels{
 				$this->configs = array_merge($this->configs, $copyrightObj->getFields());
 				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $copyrightObj );
 
-				$footerSidebar1Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar1Design($designObject->panelId, $designPanel[0]['title']);
+				/*$footerSidebar1Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar1Design($designObject->panelId, $designPanel[0]['title']);
 				$this->configs = array_merge($this->configs, $footerSidebar1Obj->getFields());
 				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar1Obj );
 
@@ -78,14 +78,14 @@ class footerPanels{
 
 				$footerSidebar5Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar5Design($designObject->panelId, $designPanel[0]['title']);
 				$this->configs = array_merge($this->configs, $footerSidebar5Obj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar5Obj );
+				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar5Obj );*/
 
 
 
 
-				//Top settings
+				/*//Top settings
 				$topDesignObj = new \HeaderBuilder\headerPanels\sections\TopDesign($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $topDesignObj->getFields());
+				$this->configs = array_merge($this->configs, $topDesignObj->getFields());*/
 				
 				//Bottom settings
 				$bottomDesignObj = new \HeaderBuilder\headerPanels\sections\BottomDesign($designObject->panelId, $designPanel[0]['title']);
@@ -169,7 +169,7 @@ class footerPanels{
 													//"mobile"=>"Mobile/Tablet"
 													);
 					$returnData[$panel]['rows'] = array("bottom"=>"Header Bottom",
-													"top"=>"Header Top",
+													//"top"=>"Header Top",
 													//"sidebar"=>"Menu Sidebar",
 													);
 					$returnData[$panel]['settings'] = 'footer_panel_settings';
