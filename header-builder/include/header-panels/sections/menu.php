@@ -5,6 +5,7 @@ class MenuDesign{
 	public $name = 'Menu';
 	public $nameslug = 'menu-';
 	public $api_type = 'wp_section';
+	public $width = '6';
 	public $panel = '';
 	public $panelName = '';
 	function __construct($panel,$panelName){
@@ -12,6 +13,17 @@ class MenuDesign{
 		$this->panelName = $panelName; 
 		$this->id = $this->nameslug. $this->panel;
 	}
+
+	function item(){
+        return array(
+                    'name' => $this->name,
+                    'id'   => $this->id,
+                    'col'  => 0,
+                    'width'=> $this->width,
+                    'section'=> $this->panel
+                    );
+    }
+
 	function getFields(){
 		return array(
 				array(
@@ -19,7 +31,7 @@ class MenuDesign{
 					'id' 				=> $this->nameslug. $this->panel,
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
-                    'width'             => '6',
+                    'width'             => $this->width,
 					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'description' 		=> __('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
@@ -51,15 +63,7 @@ class MenuDesign{
         $style = '';
         $container_classes = $this->id . ' ' . $this->id . '-__id__ nav-menu-__device__ ' . $this->id . '-__device__' . ($style ? ' ' . $style : '');
         echo '<nav class="nav-menu" id="site-navigation-__id__-__device__" class="site-navigation ' . $container_classes . '">';
-        wp_nav_menu(
-		  array(
-		    'menu' => 'primary',
-		    // do not fall back to first non-empty menu
-		    'theme_location' => 'primary',
-		    // do not fall back to wp_page_menu()
-		    'fallback_cb' => false
-		  )
-		);
+        wp_nav_menu();
 
         echo '</nav>';
 

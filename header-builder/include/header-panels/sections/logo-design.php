@@ -4,7 +4,8 @@ class LogoDesign{
 	public $id = 'logo';
 	public $name = 'Logo Design';
 	public $nameslug = 'logo-';
-	public $api_type = 'wp_section';
+    public $api_type = 'wp_section';
+	public $width = '3';
 	public $panel = '';
 	public $panelName = '';
 	function __construct($panel,$panelName){
@@ -12,6 +13,15 @@ class LogoDesign{
 		$this->panelName = $panelName; 
 		$this->id = $this->nameslug. $this->panel;
 	}
+    function item(){
+        return array(
+                    'name' => $this->name,
+                    'id'   => $this->id,
+                    'col'  => 0,
+                    'width'=> $this->width,
+                    'section'=> $this->panel
+                    );
+    }
 	function getFields(){
 		return array(
 				array(
@@ -42,13 +52,50 @@ class LogoDesign{
 			        'label'   			=> __('Enter Site name', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
+                //settings show_name
+                array(
+                    'api_type'          => 'wp_settings',
+                    'id'                => 'show_name'. $this->panel,
+                    'capability'        => 'edit_theme_options',
+                    "default"           => "yes",
+                    'sanitize_callback' => 'sanitize_text_field',
+                    'transport'         => 'postMessage'
+                ),
+                //control
+                array(
+                    'api_type'          => 'wp_control',
+                    'id'                => 'show_name'. $this->panel,
+                    'render_callback'   => array($this, 'render'),
+                    'section'           => $this->nameslug. $this->panel,
+                    'label'             => __('Enter Site name', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+                    'type'              => 'checkbox'
+                ),
+
+                //settings show_name
+                array(
+                    'api_type'          => 'wp_settings',
+                    'id'                => 'show_desc'. $this->panel,
+                    'capability'        => 'edit_theme_options',
+                    "default"           => "yes",
+                    'sanitize_callback' => 'sanitize_text_field',
+                    'transport'         => 'postMessage'
+                ),
+                //control
+                array(
+                    'api_type'          => 'wp_control',
+                    'id'                => 'show_desc'. $this->panel,
+                    'render_callback'   => array($this, 'render'),
+                    'section'           => $this->nameslug. $this->panel,
+                    'label'             => __('Enter Site Description', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+                    'type'              => 'checkbox'
+                ),
 
 			);
 	}
 
 	function logo(){
-         $custom_logo_id = esc_attr( get_theme_mod( 'custom_logo' ) );
-
+        $custom_logo_id = esc_attr( get_theme_mod( 'custom_logo' ) );
+        $logo_image = '';
             if( $custom_logo_id ) {
                 $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
                 $logo_image = $logo[0];
@@ -70,17 +117,23 @@ class LogoDesign{
     }
 
 	function render(){
-        $show_name      = headerfooter_get_setting( 'header_logo_name' );
-        $show_desc      = headerfooter_get_setting( 'header_logo_desc' );
+        $show_name      = headerfooter_get_setting( 'show_name'. $this->panel );
+        $show_desc      = headerfooter_get_setting( 'show_desc'. $this->panel );
         $image_position = headerfooter_get_setting( 'header_logo_pos' );
-        $site_name = headerfooter_get_setting( 'site_name'. $this->panel );
+        $site_name      = headerfooter_get_setting( 'site_name'. $this->panel );
         $logo_classes = array( 'site-branding'  );
         $logo_classes[] = 'logo-'.$image_position;
         $logo_classes = apply_filters( 'customify/logo-classes', $logo_classes );
         ?>
         <div class="<?php echo esc_attr( join(' ', $logo_classes ) ); ?>">
             <?php
-            $show_name = $show_desc = 'no';
+            if(!$show_name){
+                $show_name = 'no';    
+            }
+            if(!$show_desc){
+                $show_desc = 'no';    
+            }
+            
             $this->logo();
             if ( $show_name !== 'no' ||  $show_desc !== 'no' ) {
                 echo '<div class="site-name-desc">';

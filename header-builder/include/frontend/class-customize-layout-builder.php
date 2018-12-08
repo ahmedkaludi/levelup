@@ -107,7 +107,7 @@ class HeaderFooter_Customize_Layout_Builder {
         $items = array();
         foreach ( $this->registered_items[ $builder_id ] as $name => $obj ) {
             if ( method_exists( $obj, 'item' ) ) {
-                $item                 = $obj->getFields();
+                $item                 = $obj->item();
                 $items[ $item['id'] ] = $item;
             }
         }

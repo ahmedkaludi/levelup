@@ -74,7 +74,10 @@
           event.preventDefault(); // Keep this AFTER the key filter above
           if ( panel.expanded() ) {
             api.panel( panel.params.panel ).expand();
-            $("#accordion-section-header_setting_section").hide();
+            if(HF_Builder.is_production){
+              $("#accordion-section-header_setting_section").hide();
+              $("#accordion-section-footer_setting_section").hide();
+            }
           }
         });
     },

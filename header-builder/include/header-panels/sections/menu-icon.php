@@ -5,6 +5,7 @@ class MenuIconDesign{
 	public $name = 'Menu Icon';
 	public $nameslug = 'menu-icon-';
 	public $api_type = 'wp_section';
+    public $width = '2';
 	public $panel = '';
 	public $panelName = '';
 	function __construct($panel,$panelName){
@@ -12,6 +13,17 @@ class MenuIconDesign{
 		$this->panelName = $panelName; 
 		$this->id = $this->nameslug. $this->panel;
 	}
+
+    function item(){
+        return array(
+                    'name' => $this->name,
+                    'id'   => $this->id,
+                    'col'  => 0,
+                    'width'=> $this->width,
+                    'section'=> $this->panel
+                    );
+    }
+
 	function getFields(){
 		return array(
 				array(

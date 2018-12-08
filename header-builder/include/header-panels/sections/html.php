@@ -5,6 +5,7 @@ class HtmlDesign{
 	public $name = 'HTML';
 	public $nameslug = 'html-';
 	public $api_type = 'wp_section';
+	public $width = '4';
 	public $panel = '';
 	public $panelName = '';
 	function __construct($panel,$panelName){
@@ -12,6 +13,17 @@ class HtmlDesign{
 		$this->panelName = $panelName; 
 		$this->id = $this->nameslug. $this->panel;
 	}
+
+	function item(){
+        return array(
+                    'name' => $this->name,
+                    'id'   => $this->id,
+                    'col'  => 0,
+                    'width'=> $this->width,
+                    'section'=> $this->panel
+                    );
+    }
+
 	function getFields(){
 		return array(
 				array(
@@ -19,7 +31,7 @@ class HtmlDesign{
 					'id' 				=> $this->nameslug. $this->panel,
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
-                    'width'             => '4',
+                    'width'             => $this->width,
 					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'description' 		=> __('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),

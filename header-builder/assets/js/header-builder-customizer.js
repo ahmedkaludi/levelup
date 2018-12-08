@@ -1654,10 +1654,14 @@
 	                } );
 
 	                $(document).on( 'click', '#accordion-panel-header_panel', function(e){
-	                   $("#accordion-section-header_setting_section").hide();
+	                	if(HF_Builder.is_production){
+		                   $("#accordion-section-header_setting_section").hide();
+		            	}
 	                } );
 	                $(document).on( 'click', '#accordion-panel-footer_panel', function(e){
-	                   $("#accordion-section-footer_setting_section").hide();
+	                   if(HF_Builder.is_production){
+	                   	$("#accordion-section-footer_setting_section").hide();
+	                   }
 	                } );
 
 	                $document.trigger( 'customify_builder_panel_loaded', [ id, that ] );
@@ -1674,8 +1678,10 @@
 		 _.each( HF_Builder.builders, function( opts, id ){
             new HFpanelBuilder( opts, id );
         } );
-        $("#accordion-section-header_setting_section").hide();
-        $("#accordion-section-footer_setting_section").hide();
+		 if(HF_Builder.is_production){
+	        $("#accordion-section-header_setting_section").hide();
+	        $("#accordion-section-footer_setting_section").hide();
+		 }
          _.each( HF_Designs.designs, function( opts, id ){
             $('#accordion-panel-'+opts['id']).find('h3').prepend("<img src='"+opts['previewImg']+"' width='200' height='200'>");
         } );

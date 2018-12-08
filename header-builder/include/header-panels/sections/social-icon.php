@@ -5,6 +5,7 @@ class SocialiconDesign{
 	public $name = 'Social Icon';
 	public $nameslug = 'social-icon-';
 	public $api_type = 'wp_section';
+	public $width = '4';
 	public $panel = '';
 	public $panelName = '';
 	function __construct($panel,$panelName){
@@ -12,6 +13,17 @@ class SocialiconDesign{
 		$this->panelName = $panelName; 
 		$this->id = $this->nameslug. $this->panel;
 	}
+
+	function item(){
+        return array(
+                    'name' => $this->name,
+                    'id'   => $this->id,
+                    'col'  => 0,
+                    'width'=> $this->width,
+                    'section'=> $this->panel
+                    );
+    }
+
 	function getFields(){
 		return array(
 				array(
@@ -19,7 +31,7 @@ class SocialiconDesign{
 					'id' 				=> $this->nameslug. $this->panel,
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
-                    'width'             => '4',
+                    'width'             => $this->width,
 					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'description' 		=> __('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
@@ -99,25 +111,28 @@ class SocialiconDesign{
 
 	function render( $item_config = array() ) {
 		$items = array();
-		
-		//if(headerfooter_get_setting( 'twitter'. $this->panel)){
-			$items['twitter']['url'] = headerfooter_get_setting( 'twitter'. $this->panel);
-			$items['twitter']['icon'] = 'twitter';
-			$items['twitter']['title'] = 'twitter';
-		//}
-		//if(headerfooter_get_setting( 'facebook'. $this->panel)){
+		if(headerfooter_get_setting( 'facebook'. $this->panel)){
 			$items['facebook']['url'] = headerfooter_get_setting( 'facebook'. $this->panel);
 			$items['facebook']['icon'] = 'facebook';
 			$items['facebook']['title'] = 'facebook';
-		//}
-		//if(headerfooter_get_setting( 'twitter'. $this->panel)){
-			$items['googleplus']['url'] = headerfooter_get_setting( 'google-plus'. $this->panel );
-			$items['googleplus']['icon'] = 'google-plus';	
-			$items['googleplus']['title'] = 'google-plus';	
-		//}
+		}
+		if(headerfooter_get_setting( 'twitter'. $this->panel)){
+			$items['twitter']['url'] = headerfooter_get_setting( 'twitter'. $this->panel);
+			$items['twitter']['icon'] = 'twitter';
+			$items['twitter']['title'] = 'twitter';
+		}
+		if(headerfooter_get_setting( 'twitter'. $this->panel)){
+			$items['googleplus']['url'] = headerfooter_get_setting( 'googleplus'. $this->panel );
+			$items['googleplus']['icon'] = 'googleplus';	
+			$items['googleplus']['title'] = 'googleplus';	
+		}
+		if(headerfooter_get_setting( 'instagram'. $this->panel)){
+			$items['googleplus']['url'] = headerfooter_get_setting( 'instagram'. $this->panel );
+			$items['googleplus']['icon'] = 'instagram';	
+			$items['googleplus']['title'] = 'Instagram';	
+		}
 		
 		$items = array_filter($items);
-		// print_r($items);die;
 		$rel = '';
 		if (isset( $nofollow) && $nofollow == 1 ) {
 			$rel = 'rel="nofollow" ';
@@ -131,17 +146,20 @@ class SocialiconDesign{
 		if ( ! empty( $items ) ) {
           
 			echo '<div class="scl-icns social-navigation">
-					<ul>';
-			foreach ( $items as $index => $item ) {
+					<ul class="">';
+			foreach ( ( array ) $items as $index => $item ) {
+
 				
-				if ( $item['icon'] ) {
+				
+				
+				if ( $item['url'] && $item['icon'] ) {
 					echo '<li><a class="social-'. str_replace( array( ' ', 'fa-fa' ), array( '-', 'icon' ), esc_attr( $item['icon'] )) . '" '.$rel.'target="' . esc_attr( $target ) . '" href="' . esc_url( $item['url'] ) . '">';
 					if ( $item['icon'] ) {
-						echo '<i class="fa fa-'.esc_attr( $item['icon'] ). ' icon ' . esc_attr( $item['icon'] ) . '" title="' . esc_attr( $item['title'] ) . '"></i><span class="screen-reader-text">' . esc_attr( $item['title'] ) . '</span>';
+						echo '<i class="icon ' . esc_attr( $item['icon'] ) . '" title="' . esc_attr( $item['title'] ) . '"></i><span class="screen-reader-text">' . esc_attr( $item['title'] ) . '</span>';
 					}
-					
+					if ( $item['url'] ) {
 						echo '</a>';
-					
+					}
 					echo '</li>';
 				}
 

@@ -74,6 +74,7 @@ Class HeaderBuild{
             'builders'  => $this->get_builders(),
             'is_rtl'    => '',
             'designs'  => $this->get_designs(),
+            'is_production'=> (LEVELUP_ENVIRONEMT!='development'? true : false),
         ) );
         wp_localize_script( 'HF-Builder', 'HF_Designs', array(
             'designs'  => $this->get_designs(),

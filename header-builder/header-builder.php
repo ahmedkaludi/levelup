@@ -4,6 +4,7 @@ define('HEADER_FOOTER_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
 define('HEADER_FOOTER_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('HEADER_FOOTER_PLUGIN_PATH_INCLUDE', HEADER_FOOTER_PLUGIN_PATH.'/include/');
 define('HEADER_FOOTER_PLUGIN_TEXT_DOMAIN', 'header-builder');
+$levelup_head_started = $levelup_foot_started = false;;
 
 function header_footer_santizer($input, $setting){
 	$input = wp_unslash( $input );
@@ -112,12 +113,14 @@ function HeaderFooter_Customize_Layout_Builder() {
 }
 
 add_action('after_setup_theme', function(){
- add_action("header_footer_get_header_option_rander", "render_header_option_html");
- add_action("header_footer_get_footer_option_rander", "render_footer_option_html");
+ add_action("levelup_head", "render_header_option_html");
+ add_action("levelup_foot", "render_footer_option_html");
 
 });
 
 function render_footer_option_html(){
+    global $levelup_foot_started;
+    $levelup_foot_started = true;
     echo '<footer class="site-footer" id="site-footer">';
     HeaderFooter_Customize_Layout_Builder_Frontend()->set_id( 'footer' );
     HeaderFooter_Customize_Layout_Builder_Frontend()->set_control_id( 'footer_panel_settings' );
@@ -130,6 +133,8 @@ function render_footer_option_html(){
 }
 
  function render_header_option_html(){
+    global $levelup_head_started;
+    $levelup_head_started = true;
    echo HeaderFooter_Customize_Layout_Builder_Frontend()->close_icon( ' close-panel close-sidebar-panel' );
     /**
      * Hook before header
@@ -146,6 +151,18 @@ function render_footer_option_html(){
     echo '</header>';
  }
 
+ function levelup_check_hf_builder($type="head"){
+    global $levelup_head_started, $levelup_foot_started;
+    switch($type){
+        case 'head':
+            return $levelup_head_started;
+        break;
+        case 'false':
+            return $levelup_foot_started;
+        break;
+    }
+    return false;
+ }
 
 add_action( 'widgets_init','wp_call_register_sidebars'  );
 function wp_call_register_sidebars(){

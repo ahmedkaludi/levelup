@@ -49,12 +49,12 @@ class header_footer_design1{
 	}
 
 	function default_data(){
-		return '';
+		$jsonArray = '{"desktop":{"top":[{"x":0,"y":1,"width":12,"height":1,"id":"html-header-design2"}],"main":[{"x":1,"y":1,"width":3,"height":1,"id":"logo-header-design2"},{"x":8,"y":1,"width":4,"height":1,"id":"menu-icon-header-design2"}],"bottom":[]},"mobile":{"top":[{"x":0,"y":1,"width":12,"height":1,"id":"html-header-design2"}],"main":[{"x":6,"y":1,"width":4,"height":1,"id":"social-icon-header-design2"},{"x":0,"y":1,"width":3,"height":1,"id":"logo-header-design2"},{"x":10,"y":1,"width":2,"height":1,"id":"menu-icon-header-design2"}],"bottom":[],"sidebar":[]},"selected_design":"header-design2"}';
+		return $jsonArray;
 	}
 
 	function render_css(){
 		$css = '.customify-grid-middle{
-					display:inline-flex;
 					flex-wrap: wrap;
 					align-items: center;
 					width:100%;
