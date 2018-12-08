@@ -99,28 +99,25 @@ class SocialiconDesign{
 
 	function render( $item_config = array() ) {
 		$items = array();
-		if(headerfooter_get_setting( 'facebook'. $this->panel)){
-			$items['facebook']['url'] = headerfooter_get_setting( 'facebook'. $this->panel);
-			$items['facebook']['icon'] = 'facebook';
-			$items['facebook']['title'] = 'facebook';
-		}
-		if(headerfooter_get_setting( 'twitter'. $this->panel)){
+		
+		//if(headerfooter_get_setting( 'twitter'. $this->panel)){
 			$items['twitter']['url'] = headerfooter_get_setting( 'twitter'. $this->panel);
 			$items['twitter']['icon'] = 'twitter';
 			$items['twitter']['title'] = 'twitter';
-		}
-		if(headerfooter_get_setting( 'twitter'. $this->panel)){
-			$items['googleplus']['url'] = headerfooter_get_setting( 'googleplus'. $this->panel );
-			$items['googleplus']['icon'] = 'googleplus';	
-			$items['googleplus']['title'] = 'googleplus';	
-		}
-		if(headerfooter_get_setting( 'instagram'. $this->panel)){
-			$items['googleplus']['url'] = headerfooter_get_setting( 'instagram'. $this->panel );
-			$items['googleplus']['icon'] = 'instagram';	
-			$items['googleplus']['title'] = 'Instagram';	
-		}
+		//}
+		//if(headerfooter_get_setting( 'facebook'. $this->panel)){
+			$items['facebook']['url'] = headerfooter_get_setting( 'facebook'. $this->panel);
+			$items['facebook']['icon'] = 'facebook';
+			$items['facebook']['title'] = 'facebook';
+		//}
+		//if(headerfooter_get_setting( 'twitter'. $this->panel)){
+			$items['googleplus']['url'] = headerfooter_get_setting( 'google-plus'. $this->panel );
+			$items['googleplus']['icon'] = 'google-plus';	
+			$items['googleplus']['title'] = 'google-plus';	
+		//}
 		
 		$items = array_filter($items);
+		// print_r($items);die;
 		$rel = '';
 		if (isset( $nofollow) && $nofollow == 1 ) {
 			$rel = 'rel="nofollow" ';
@@ -134,20 +131,17 @@ class SocialiconDesign{
 		if ( ! empty( $items ) ) {
           
 			echo '<div class="scl-icns social-navigation">
-					<ul class="">';
-			foreach ( ( array ) $items as $index => $item ) {
-
+					<ul>';
+			foreach ( $items as $index => $item ) {
 				
-				
-				
-				if ( $item['url'] && $item['icon'] ) {
+				if ( $item['icon'] ) {
 					echo '<li><a class="social-'. str_replace( array( ' ', 'fa-fa' ), array( '-', 'icon' ), esc_attr( $item['icon'] )) . '" '.$rel.'target="' . esc_attr( $target ) . '" href="' . esc_url( $item['url'] ) . '">';
 					if ( $item['icon'] ) {
-						echo '<i class="icon ' . esc_attr( $item['icon'] ) . '" title="' . esc_attr( $item['title'] ) . '"></i><span class="screen-reader-text">' . esc_attr( $item['title'] ) . '</span>';
+						echo '<i class="fa fa-'.esc_attr( $item['icon'] ). ' icon ' . esc_attr( $item['icon'] ) . '" title="' . esc_attr( $item['title'] ) . '"></i><span class="screen-reader-text">' . esc_attr( $item['title'] ) . '</span>';
 					}
-					if ( $item['url'] ) {
+					
 						echo '</a>';
-					}
+					
 					echo '</li>';
 				}
 

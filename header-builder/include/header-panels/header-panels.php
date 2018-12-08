@@ -4,7 +4,7 @@ namespace HeaderBuilder\headerPanels;
 class headerPanels{
 	public $configs = array();
 	public $configs_builder = array();
-	public $sectionsLoader = array('top-header', 'middle-header','bottom-header', 'sidebar-design','logo-design', 'menu-icon','menu', 'html', 'social-icon');
+	public $sectionsLoader = array('top-header', 'middle-header','bottom-header', 'sidebar-design','logo-design', 'menu-icon','menu', 'html', 'social-icon', 'search');
 	public $designs = 	array(
 						'design1',
 						'design2',
@@ -14,9 +14,13 @@ class headerPanels{
 		$this->include_files();
 		//if(is_admin()){
 			add_action( 'wp_head', array($this, 'design_style_action') );
+			add_action( 'wp_enqueue_scripts', array($this, 'font_awesome_css'));
 		//}
 	}
-
+	function font_awesome_css(){
+		wp_enqueue_style( 'footercss', HEADER_FOOTER_PLUGIN_DIR_URI . 'assets/css/font-awesome.css');
+		//wp_enqueue_style( 'footermin', HEADER_FOOTER_PLUGIN_DIR_URI . 'assets/css/font-awesome.min.css');
+	}
 	function design_style_action(){
 		?><style type="text/css">
              <?php 
@@ -58,6 +62,8 @@ class headerPanels{
 				$modules['menuObj'] = new \HeaderBuilder\headerPanels\sections\MenuDesign($designObject->panelId, $designPanel[0]['title']);
 				$modules['htmlObj'] = new \HeaderBuilder\headerPanels\sections\HtmlDesign($designObject->panelId, $designPanel[0]['title']);
 				$modules['SocialiconObj'] = new \HeaderBuilder\headerPanels\sections\SocialiconDesign($designObject->panelId, $designPanel[0]['title']);
+				$modules['SearchDesignObj'] = new \HeaderBuilder\headerPanels\sections\SearchDesign($designObject->panelId, $designPanel[0]['title']);
+
 				//Top settings
 				$modules['topDesignObj'] = new \HeaderBuilder\headerPanels\sections\TopDesign($designObject->panelId, $designPanel[0]['title']);
 				//Middle settings

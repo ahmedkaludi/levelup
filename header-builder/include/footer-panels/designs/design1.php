@@ -65,6 +65,7 @@ class footer_design1{
 					list-style-type: none;
 					display: inline-block;
 					margin-right:20px;
+					font-size:18px;
 				}
 				.scl-icns{margin-right:20px;}
 				.scl-icns ul li:last-child a img{
@@ -111,10 +112,12 @@ class footer_design1{
 					display: flex;
 				    line-height: 0;
 				    align-items: center;
+				    margin:0;
 				}
 				.scl-icns li a{
 					line-height: 0;
 					display:block;
+					color:#000;
 				}
 				.nav-menu{
 					margin-right: 25px;
@@ -136,7 +139,9 @@ class footer_design1{
 					background:#f8f7f8;
 					width:100%;
 				}
-
+				.sr span, .overlay-close span{
+					font-size:18px;
+				}
 				.overlay {
 					position: fixed;
 					width: 100%;
@@ -161,9 +166,6 @@ class footer_design1{
 				    border-radius: 50px;
 				    line-height: 0;
 				}
-				/*.overlay .overlay-close:hover{
-
-				}*/
 				.overlay-slidedown {
 					visibility: hidden;
 					transform: translateY(-100%);
@@ -190,7 +192,11 @@ class footer_design1{
 				    font-weight: 500;
 				    margin-top: 20px;
 				    display: inline-block;
-				}';
+				    color:#333;
+				}
+
+
+				';
 		return $css;
 	}
 }

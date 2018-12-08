@@ -99,8 +99,6 @@ function fonts(){
 add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
 function levelup_amp_design_styling(){
 	$allCss = '/** Levelup CSS **/
-	.cntr .amp-wp-content, .cntr .amp-post-title{padding:0 10px;} 
-	.cntr{max-width:100%;padding:0;}
 @media (min-width: 768px){
   .elementor-column.elementor-col-10, .elementor-column[data-col="10"] {
     width: 10%; }
