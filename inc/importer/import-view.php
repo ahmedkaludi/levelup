@@ -1,9 +1,9 @@
 <?php
 namespace LUIMPORT;
+$importerObj = OneClickDemoImport::get_instance();
+$predefined_themes = $importerObj->import_files;
 
-$predefined_themes = $this->import_files;
-
-if ( ! empty( $this->import_files ) && isset( $_GET['import-mode'] ) && 'manual' === $_GET['import-mode'] ) {
+if ( ! empty( $importerObj->import_files ) && isset( $_GET['import-mode'] ) && 'manual' === $_GET['import-mode'] ) {
 	$predefined_themes = array();
 }
 
@@ -24,20 +24,15 @@ if ( ! empty( $this->import_files ) && isset( $_GET['import-mode'] ) && 'manual'
 
 	</div>
 
-	<?php
-	$plugin_intro_text = ob_get_clean();
-
-	// Display the plugin intro text (can be replaced with custom text through the filter below).
-	echo wp_kses_post( apply_filters( 'levelup_import/plugin_intro_text', $plugin_intro_text ) );
-	?>
-
-	<?php if ( empty( $this->import_files ) ) : ?>
+	
+	<?php if ( empty( $importerObj->import_files ) ) : ?>
 		<div class="notice  notice-info  is-dismissible">
 			<p><?php esc_html_e( 'There are no predefined import files available in this theme. Please upload the import files manually!', LEVELUP_TEXT_DOMAIN ); ?></p>
 		</div>
 	<?php endif; 
 
 	?>
+
 
 		<!-- OCDI grid layout -->
 		<div class="levelup_gl  js-levelup-gl">

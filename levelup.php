@@ -24,15 +24,16 @@ define( 'LEVELUP_VERSION', '0.0.1' );//development
  * Load the plugin after Elementor (and other plugins) are loaded.
  *
  */
-//Header Footer builder
-require_once( LEVELUP__DIR__PATH . '/header-builder/header-builder.php' );
-//importer
-require_once( LEVELUP__DIR__PATH . '/inc/importer/levelup_importer.php' );
+
 //Elementor
 require_once( LEVELUP__DIR__PATH . '/inc/common-functions.php' );
 require_once( LEVELUP__DIR__PATH . '/inc/designlib/register-post.php' );
 require_once( LEVELUP__DIR__PATH . '/inc/designlib/sync_page.php' );
 function levelup_load() {
+	//Header Footer builder
+	require_once( LEVELUP__DIR__PATH . '/header-builder/header-builder.php' );
+	//importer
+	require_once( LEVELUP__DIR__PATH . '/inc/importer/levelup_importer.php' );
 	// Load localization file
 	load_plugin_textdomain( LEVELUP_ENVIRONEMT, false, trailingslashit(LEVELUP__FILE__PATH) . 'languages' );
 	// Notice if the Elementor is not active

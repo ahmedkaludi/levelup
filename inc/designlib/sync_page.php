@@ -12,13 +12,14 @@ define( 'LEVELUP_API_VALIDATE', LEVELUP_API_url.'elementor_design_layout/v1/api_
 add_action('admin_enqueue_scripts', 'levelup_sync_script');
 
 function levelup_sync_script($hook){
-    if ('elementor_page_levelup_settings' != $hook) {
+    if ('toplevel_page_levelup' != $hook) {
         return;
     }
     wp_register_script('levelup_sync_script', LEVELUP__FILE__URI . '/assets/js/levelup-sync.js', [ 'jquery' ], false, true );
 
     wp_localize_script( 'levelup_sync_script', 'levelup_sync_object',
                 array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
+                    'securty_nonce'=> wp_create_nonce('levelup_ajax_check_nonce')
                 ) );
     wp_enqueue_script('levelup_sync_script');
 }

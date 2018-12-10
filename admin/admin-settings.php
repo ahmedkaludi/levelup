@@ -31,20 +31,7 @@ Class LEVELUP__Admin_settings{
 	}
 
 	public function levelup_settings_menu(){
-		$settings = get_option('levelup_library_settings');
-		$availableUpdateHtml = '';
-		if(isset($settings['api_status']) && $settings['api_status']=='valid' && $this->check_update_available()){
-			$availableUpdateHtml = '<span class="update-plugins count-1"><span class="update-count" title="">'.esc_html__( '1', LEVELUP_TEXT_DOMAIN ).'</span></span>';
-		}
-			$menu_label = sprintf( esc_html__( 'LevelUp ', LEVELUP_TEXT_DOMAIN)." %s",  $availableUpdateHtml);
-		add_submenu_page(
-				self::PAGE_ID,
-				esc_html__('LevelUp Settings', LEVELUP_TEXT_DOMAIN),
-				$menu_label,
-				'manage_options',
-				'levelup_settings',
-				[ $this, 'levelup_settings' ]
-			);
+		//links moved in "Composite-menu.php" 
 	}
 
 	public function levelup_get_tab( $default = '') {
@@ -89,18 +76,14 @@ Class LEVELUP__Admin_settings{
 					);
 			}
 			settings_errors();
-		}?>
+		}
+		?>
 		<div class="wrap">
 			<h1><?php esc_html__('LevelUp Settings', LEVELUP_TEXT_DOMAIN); ?></h1>
-			<h2 class="nav-tab-wrapper levelup-tabs">
-
-				<?php
+			<?php
+				//Get Current default Tab
 				$tab = $this->levelup_get_tab($this->allTabs[0]);
-				foreach ($this->allTabs as $key => $value) {
-					echo '<a href="' . esc_url($this->levelup_admin_link($value)) . '" class="nav-tab ' . esc_attr( $tab == $value ? 'nav-tab-active' : '') . '"><span class="dashicons '.esc_attr($this->tabsdata[$value]['icon_class']).'"></span> ' . esc_html__(ucfirst($this->tabsdata[$value]['label_name']), LEVELUP_TEXT_DOMAIN) . '</a>';
-				}
-				?>
-			</h2>
+			?>
 			<form action="options.php" method="post" enctype="multipart/form-data" class="levelup-settings-form">
 				<div class="setting-wrappers">
 				<?php
