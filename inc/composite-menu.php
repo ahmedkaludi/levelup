@@ -1,9 +1,8 @@
 <?php
 Class levelup_menuConnector{
 	function init(){
-		add_action('admin_menu', array($this,'register_custom_menu_page'));
-
-		add_action('wp_ajax_levelup_send_query_message', 'levelup_send_query_message');
+		add_action('admin_menu', array($this,'register_levelup_menu_page'));
+		add_action('wp_ajax_levelup_send_query_message', array($this,'levelup_send_query_message'));
 	}
 	//Common functions
 	private function check_update_available(){
@@ -15,7 +14,7 @@ Class levelup_menuConnector{
 	    }
 		return false;
 	}
-	function register_custom_menu_page() {
+	function register_levelup_menu_page() {
 		$settings = get_option('levelup_library_settings');
 		$availableUpdateHtml = '';
 		if(isset($settings['api_status']) && $settings['api_status']=='valid' && $this->check_update_available()){
@@ -38,6 +37,7 @@ Class levelup_menuConnector{
 
 	function LevelupSettings(){
 		$type = $_GET['type'];
+		if(empty($type)){ $type = 'dashboard'; }
 		ob_start();
 		switch($type){
 			case 'dashboard':
@@ -58,7 +58,7 @@ Class levelup_menuConnector{
 	ob_end_clean();
 	  echo '<div class="wrap">
 	  			<div id="icon-themes" class="icon32"></div>
-				<h2>Sandbox Theme Options</h2>
+				<h2>Levelup Settings</h2>
 				'. settings_errors().'
 
 				<h2 class="nav-tab-wrapper">
