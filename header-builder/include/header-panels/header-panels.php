@@ -158,7 +158,7 @@ class headerPanels{
 										"title"		=> $panel_name,
 											);
 					$returnData[$panel]['devices'] = array("desktop"=>"Desktop",
-													"mobile"=>"Mobile/Tablet"
+													"mobile"=>"Mobile"
 													);
 					$returnData[$panel]['rows'] = array("bottom"=>"Header Bottom",
 													"main"=>"Header Main",

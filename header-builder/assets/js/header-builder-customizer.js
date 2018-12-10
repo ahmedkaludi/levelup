@@ -11,7 +11,7 @@
 	            items: [],
 	            container: null,
 	            ready: false,
-	            devices: {'desktop': 'Desktop', 'mobile': 'Mobile/Tablet' },
+	            devices: {'desktop': 'Desktop', 'mobile': 'Mobile' },
 	            activePanel: 'desktop',
 	            panels: {},
 	            activeRow: 'main',
