@@ -55,6 +55,7 @@ Class HeaderBuild{
 
     function add_theme_scripts() {
       wp_enqueue_style( 'header-style', esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/css/header_style.css') );
+      wp_enqueue_script( 'levelup-hf-js',  esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/js/levelup-frontend.js'), array( 'jquery' ), LEVELUP_VERSION, true );
     }
 	
 	function customizer_live_preview_scripts(){
@@ -78,7 +79,10 @@ Class HeaderBuild{
         ) );
         wp_localize_script( 'HF-Builder', 'HF_Designs', array(
             'designs'  => $this->get_designs(),
-          
+        ) );
+
+        wp_localize_script( 'HF-Builder', 'HF_Designs_Default', array(
+            'designs'  => $this->get_designs(),
         ) );
         
 	}
