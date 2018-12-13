@@ -1,7 +1,7 @@
 <?php
 namespace HeaderBuilder\headerPanels\sections;
 class MenuIconDesign{
-	public $id = 'menu';
+	public $id = 'menu-icon';
 	public $name = 'Menu Icon';
 	public $nameslug = 'menu-icon-';
 	public $api_type = 'wp_section';

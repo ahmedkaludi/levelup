@@ -44,13 +44,23 @@ Class HeaderBuild{
         return array_merge($headerOpt, $footerOpt);
     }
     function get_designs(){
-		$designs = new \HeaderBuilder\headerPanels\headerPanels();
-		$headerOpt = $designs->panel_design_options();
+        $designs = new \HeaderBuilder\headerPanels\headerPanels();
+        $headerOpt = $designs->panel_design_options();
 
         //Footer
         $designs = new \HeaderBuilder\footerPanels\footerPanels();
         $footerOpt = $designs->panel_design_options();
-		return array_merge($headerOpt,$footerOpt);
+        return array_merge($headerOpt,$footerOpt);
+    }
+
+    function get_default_designs(){
+		$designs = new \HeaderBuilder\headerPanels\headerPanels();
+		$headerDefaultOptions = $designs->designDefaultData;
+
+        //Footer
+        $designs = new \HeaderBuilder\footerPanels\footerPanels();
+        $footerDefaultOptions = $designs->designDefaultData;
+		return array_merge($headerDefaultOptions,$footerDefaultOptions);
 	}
 
     function add_theme_scripts() {
@@ -75,6 +85,7 @@ Class HeaderBuild{
             'builders'  => $this->get_builders(),
             'is_rtl'    => '',
             'designs'  => $this->get_designs(),
+            'default_design' => $this->get_default_designs(),
             'is_production'=> (LEVELUP_ENVIRONEMT!='development'? true : false),
         ) );
         wp_localize_script( 'HF-Builder', 'HF_Designs', array(
@@ -182,6 +193,10 @@ Class HeaderBuild{
                         <div class="customify--cb-devices-switcher">
                         </div>
                         <div class="customify--cb-actions">
+                            <?php do_action('levelup/hfbuilder/actionsbtn'); ?>
+                            <a class="btn"></a>
+                            <a data-id="{{ data.id }}_templates" class="focus-section button button-secondary"
+                               href="#"><?php esc_html__( 'Set as header', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></a>
                         </div>
                     </div>
                     <div class="customify--cb-body"></div>
