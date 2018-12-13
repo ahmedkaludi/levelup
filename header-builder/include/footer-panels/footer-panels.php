@@ -83,13 +83,13 @@ class footerPanels{
 
 
 
-				/*//Top settings
-				$topDesignObj = new \HeaderBuilder\headerPanels\sections\TopDesign($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $topDesignObj->getFields());*/
+				//Top settings
+				$topDesignObj = new \HeaderBuilder\footerPanels\sections\TopFooterDesign($designObject->panelId, $designPanel[0]['title']);
+				$this->configs = array_merge($this->configs, $topDesignObj->getFields());
 				
 				//Bottom settings
-				$bottomDesignObj = new \HeaderBuilder\headerPanels\sections\BottomDesign($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $bottomDesignObj->getFields());
+				/*$bottomDesignObj = new \HeaderBuilder\footerPanels\sections\BottomFooterDesign($designObject->panelId, $designPanel[0]['title']);
+				$this->configs = array_merge($this->configs, $bottomDesignObj->getFields());*/
 
 				$this->configs = array_merge($this->configs, $designPanel);
 			}

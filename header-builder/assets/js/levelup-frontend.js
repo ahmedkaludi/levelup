@@ -1,4 +1,4 @@
-jQuery(document).ready(function(){
+jQuery(document).ready(function($){
     $(document).on( 'click',  '.menu-mobile-toggle', function( e ){
         e.preventDefault();
         open_menu_sidebar();
@@ -8,8 +8,8 @@ jQuery(document).ready(function(){
             open_menu_sidebar( false );
         }
     } );
-    
-})
+
+
     var open_menu_sidebar = function( toggle ){
         $( 'body' ).removeClass( 'hiding-header-menu-sidebar' );
         if ( typeof toggle === "undefined" ) {
@@ -70,3 +70,7 @@ jQuery(document).ready(function(){
         }
 
     };
+    
+    
+})
+    

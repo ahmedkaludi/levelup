@@ -2516,3 +2516,11 @@ header .hamburger--squeeze.is-active .hamburger-inner::after {
 .cb-row--mobile [class~="customify-col"], .cb-row--mobile [class*="customify-col-"], .cb-row--mobile [class*="customify-col_"] {
   padding: 0 0.5em 0;
 }
+
+
+/*************
+/*Footer
+/*************/
+.footer-bottom{
+    background: #303030;
+}
