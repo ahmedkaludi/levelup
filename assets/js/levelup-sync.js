@@ -125,4 +125,34 @@ jQuery(document).ready(function($) {
 		}
 	})
 
+	$(".levelup-send-query").on("click", function(e){
+        e.preventDefault();   
+        var message = $("#levelup_query_message").val();              
+        if($.trim(message) !=''){
+         $.ajax({
+                        type: "POST",    
+                        url:ajaxurl,                    
+                        dataType: "json",
+                        data:{action:"levelup_send_query_message", 
+	                        message:message, 
+	                        levelup_security_nonce:levelup_sync_object.securty_nonce},
+                        success:function(response){                       
+                          if(response['status'] =='t'){
+                            $(".levelup-query-success").show();
+                            $(".levelup-query-error").hide();
+                          }else{
+                            $(".levelup-query-success").hide();  
+                            $(".levelup-query-error").show();
+                          }
+                        },
+                        error: function(response){                    
+                        console.log(response);
+                        }
+                        });   
+        }else{
+            alert('Please enter the message');
+        }                        
+
+    });
+
 });

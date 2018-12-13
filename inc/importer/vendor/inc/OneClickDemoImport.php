@@ -102,7 +102,6 @@ class OneClickDemoImport {
 	 */
 	protected function __construct() {
 		// Actions.
-		add_action( 'admin_menu', array( $this, 'create_plugin_page' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'wp_ajax_levelup_import_demo_data', array( $this, 'import_demo_data_ajax_callback' ) );
 		add_action( 'wp_ajax_levelup_import_customizer_data', array( $this, 'import_customizer_data_ajax_callback' ) );
@@ -126,41 +125,6 @@ class OneClickDemoImport {
 	 */
 	private function __wakeup() {}
 
-
-	/**
-	 * Creates the plugin page and a submenu item in WP Appearance menu.
-	 */
-	public function create_plugin_page() {
-		$this->plugin_page_setup = apply_filters( 'levelup_import/plugin_page_setup', array(
-			'parent_slug' => 'themes.php',
-			'page_title'  => esc_html__( 'Levelup Demo Import' , LEVELUP_TEXT_DOMAIN ),
-			'menu_title'  => esc_html__( 'Levelup Import Data' , LEVELUP_TEXT_DOMAIN ),
-			'capability'  => 'import',
-			'menu_slug'   => 'levelup-import',
-		) );
-
-		$this->plugin_page = add_submenu_page(
-			$this->plugin_page_setup['parent_slug'],
-			$this->plugin_page_setup['page_title'],
-			$this->plugin_page_setup['menu_title'],
-			$this->plugin_page_setup['capability'],
-			$this->plugin_page_setup['menu_slug'],
-			 array( $this, 'display_plugin_page' )
-		);
-
-		register_importer( $this->plugin_page_setup['menu_slug'], $this->plugin_page_setup['page_title'], $this->plugin_page_setup['menu_title'], array( $this, 'display_plugin_page' ) );
-	}
-
-    
-	/**
-	 * Plugin page display.
-	 * Output (HTML) is in another file.
-	 */
-	public function display_plugin_page() {
-		require_once LEVELUP__FILE__PATH . 'inc/importer/import-view.php';
-	}
-
-
 	/**
 	 * Enqueue admin scripts (JS and CSS)
 	 *
@@ -168,7 +132,7 @@ class OneClickDemoImport {
 	 */
 	public function admin_enqueue_scripts( $hook ) {
 		// Enqueue the scripts only on the plugin page.
-		if ( $this->plugin_page === $hook || ( 'admin.php' === $hook && $this->plugin_page_setup['menu_slug'] === esc_attr( $_GET['import'] ) ) ) {
+		if ( 'toplevel_page_levelup' === $hook && $_GET['type']=='template' ) {
 			wp_enqueue_script( 'jquery-ui-dialog' );
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
 
@@ -180,7 +144,7 @@ class OneClickDemoImport {
 			wp_localize_script( 'levelup-main-js', 'levelup_import',
 				array(
 					'ajax_url'         => admin_url( 'admin-ajax.php' ),
-					'ajax_nonce'       => wp_create_nonce( 'ocdi-ajax-verification' ),
+					'ajax_nonce'       => wp_create_nonce( 'levelup-ajax-verification' ),
 					'import_files'     => $this->import_files,
 					'wp_customize_on'  => apply_filters( 'levelup_import/enable_wp_customize_save_hooks', false ),
 					'import_popup'     => apply_filters( 'levelup_import/enable_grid_layout_import_popup_confirmation', true ),
