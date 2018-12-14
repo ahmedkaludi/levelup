@@ -1,5 +1,5 @@
 <?php
-namespace HeaderBuilder\fooetrPanels\sections;
+namespace HeaderBuilder\footerPanels\sections;
 class TopFooterDesign{
 	public $name = 'Top footer settings';
 	public $api_type = 'wp_section';

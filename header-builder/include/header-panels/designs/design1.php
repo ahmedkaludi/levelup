@@ -19,6 +19,37 @@ class header_footer_design1{
 			),
 
 
+
+			//Option to save 
+			array(
+				'api_type'			=> 'wp_section',
+				'id' 				=> 'header_setting_config_'.$this->panelId,
+		        'panel'    			=> $this->panelId,
+				'title'    			=> 'header section config',
+		        'description' 		=> '',
+		        'exclude_section'	=> true,
+		        'display'			=> false
+			),
+
+			//settings
+			array(
+				'api_type'			=> 'wp_settings',
+				'id'				=> 'config-settings-'.$this->panelId,
+				'capability'        => 'edit_theme_options',
+				"default"			=> '{"desktop":{"top":[{"x":0,"y":1,"width":12,"height":1,"id":"html-header-design1"}],"main":[{"x":1,"y":1,"width":3,"height":1,"id":"logo-header-design1"},{"x":8,"y":1,"width":4,"height":1,"id":"menu-icon-header-design1"}],"bottom":[]},"mobile":{"top":[{"x":0,"y":1,"width":12,"height":1,"id":"html-header-design1"}],"main":[{"x":6,"y":1,"width":4,"height":1,"id":"social-icon-header-design1"},{"x":0,"y":1,"width":3,"height":1,"id":"logo-header-design1"},{"x":10,"y":1,"width":2,"height":1,"id":"menu-icon-header-design1"}],"bottom":[],"sidebar":[]},"selected_design":"header-design1"}',
+		        'sanitize_callback' => 'sanitize_text_field',
+		        'transport'			=> 'postMessage'
+		    ),
+		    //control
+		    array(
+		    	'api_type'			=> 'wp_control',
+		    	'id'				=> 'config-settings-'.$this->panelId,
+		        'section' 			=> 'header_setting_config_'.$this->panelId,
+		        'label'   			=> esc_html__('Enter Design1 config', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+		        'type'    			=> 'js_raw'
+		    ),
+
+
 		);
 		
 
@@ -46,11 +77,6 @@ class header_footer_design1{
 		}
 
 		return $sections;
-	}
-
-	function default_data(){
-		$jsonArray = '{"desktop":{"top":[{"x":0,"y":1,"width":12,"height":1,"id":"html-header-design2"}],"main":[{"x":1,"y":1,"width":3,"height":1,"id":"logo-header-design2"},{"x":8,"y":1,"width":4,"height":1,"id":"menu-icon-header-design2"}],"bottom":[]},"mobile":{"top":[{"x":0,"y":1,"width":12,"height":1,"id":"html-header-design2"}],"main":[{"x":6,"y":1,"width":4,"height":1,"id":"social-icon-header-design2"},{"x":0,"y":1,"width":3,"height":1,"id":"logo-header-design2"},{"x":10,"y":1,"width":2,"height":1,"id":"menu-icon-header-design2"}],"bottom":[],"sidebar":[]},"selected_design":"header-design2"}';
-		return $jsonArray;
 	}
 
 	function render_css(){

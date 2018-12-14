@@ -62,8 +62,7 @@ class HtmlDesign{
 
 	function render(){
         $content = headerfooter_get_setting( 'html'. $this->panel );
-        echo '<div class="builder-header-'.esc_attr( $this->id ).'-item item--html">';
-        echo apply_filters('customify_the_content', wp_kses_post( balanceTags( $content, true ) ) );
-        echo '</div>';
+       	echo sprintf('<div class="builder-header-%s-item item--html">%s</div>',esc_attr( $this->id ), $content);
+       
     }
 }

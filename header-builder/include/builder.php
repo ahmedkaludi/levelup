@@ -13,6 +13,7 @@ Class HeaderBuild{
 	function init(){
         require_once HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'header-panels/header-panels.php';
         require_once HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'footer-panels/footer-panels.php';
+        $options = $this->get_options();
         add_action('wp', array($this, 'register_for_frontend'));
 		add_action( 'customize_controls_enqueue_scripts', array($this, 'hfbuilder_customize_controls_scripts') );
 		add_action( 'customize_controls_print_styles', array($this, 'hfbuilder_customize_controls_styles') );
@@ -44,14 +45,14 @@ Class HeaderBuild{
         return array_merge($headerOpt, $footerOpt);
     }
     function get_designs(){
-		$designs = new \HeaderBuilder\headerPanels\headerPanels();
-		$headerOpt = $designs->panel_design_options();
+        $designs = new \HeaderBuilder\headerPanels\headerPanels();
+        $headerOpt = $designs->panel_design_options();
 
         //Footer
         $designs = new \HeaderBuilder\footerPanels\footerPanels();
         $footerOpt = $designs->panel_design_options();
-		return array_merge($headerOpt,$footerOpt);
-	}
+        return array_merge($headerOpt,$footerOpt);
+    }
 
     function add_theme_scripts() {
       wp_enqueue_style( 'header-style', esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/css/header_style.css') );
@@ -167,7 +168,15 @@ Class HeaderBuild{
         
 		$footer = new \HeaderBuilder\footerPanels\footerPanels();
 		$footerReturnJson = $footer->config_options();
-        return array_merge($returnJson,$footerReturnJson);
+        $allFields = array_merge($returnJson,$footerReturnJson);
+
+        global $levelupDefaultOptions;
+        foreach ($allFields as $key => $value) {
+            if($value['api_type']=='wp_settings'){
+                $levelupDefaultOptions[$value['id']] = $value['default'];
+            }
+        }
+        return $allFields;
     }
 
     /**
@@ -182,6 +191,10 @@ Class HeaderBuild{
                         <div class="customify--cb-devices-switcher">
                         </div>
                         <div class="customify--cb-actions">
+                            <?php do_action('levelup/hfbuilder/actionsbtn'); ?>
+                            <a class="btn"></a>
+                            <a data-id="{{ data.id }}_templates" class="focus-section button button-secondary"
+                               href="#"><?php echo esc_html__( 'Set as Default', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></a>
                         </div>
                     </div>
                     <div class="customify--cb-body"></div>

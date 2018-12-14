@@ -142,7 +142,7 @@ class headerPanels{
 		$panel = $returnData = array();
 		foreach ($this->configs as $key => $value) {
 			
-			if($value['api_type']=='wp_section'){
+			if($value['api_type']=='wp_section' && (!isset($value['exclude_section']))){
 				$sectionid = $value['id'];
 				$title = $value['title'];
 				$panel = $value['panel'];
