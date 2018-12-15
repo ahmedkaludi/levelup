@@ -1426,14 +1426,14 @@
 	                var that  = this;
 	                data = {};
 	                //var data = wpcustomize.control( that.settingsId ).params.value;
-	                var data = wpcustomize.control( that.settingsId ).setting.get();
-	                console.log(data);
+	                var settingId = "config-settings-"+that.controlId;
+	                if(wpcustomize.control( settingId )){
+		                var data = wpcustomize.control( settingId ).setting.get();
+		                data = that.decodeValue(data)
+		            }
 	                if ( ! _.isObject( data ) ) {
 	                    data = {};
 	                }
-	                if($("#accordion-panel-"+data['selected_design']).find('.selecteddesign').length==0){
-		                $("#accordion-panel-"+data['selected_design']+" h3").prepend('<i class="selecteddesign dashicons dashicons-yes"></i>')
-		            }
 	                _.each( that.panels, function( $rows,  device ) {
 	                    var device_data = {};
 	                    if ( _.isObject( data[ device ] ) ) {
@@ -1507,7 +1507,7 @@
 	                return encodeURI( JSON.stringify( value ) )
 	            },
 	            decodeValue: function( value ){
-	                return JSON.parse( decodeURI( value ) );
+	                return JSON.parse( decodeURIComponent( value ) );
 	            },
 	            save: function(){
 	                var that = this;
@@ -1538,7 +1538,7 @@
 	                //console.log(wpcustomize.control( that.controlId+"_settings" ));
 	                console.log(data);
 
-	                wpcustomize.control( that.settingsId ).setting.set( that.encodeValue( data ) );
+	                wpcustomize.control( "config-settings-"+that.controlId ).setting.set( that.encodeValue( data ) );
 	                console.log('Panel Data: ', data );
 	            },
 	            showPanel: function(){
@@ -1604,10 +1604,13 @@
 	                that.items = items;
 	                that.devices = devices;
 
-	                /*if ( options.section ) {
-	                	console.log(options.section);
-	                    wpcustomize.section( options.section ).container.addClass( 'customify--hide' );
-	                }*/
+	                if(wpcustomize.control( that.settingsId )){
+		                var data = wpcustomize.control( that.settingsId ).setting.get();
+		                data = that.decodeValue(data);
+		            }
+	                if($("#accordion-panel-"+data['selected_design']).find('.selecteddesign').length==0){
+		                $("#accordion-panel-"+data['selected_design']+" h3").prepend('<i class="selecteddesign dashicons dashicons-yes"></i>')
+		            }
 
 	                that.addDevicePanels();
 	                that.switchToDevice( that.activePanel );
@@ -1651,6 +1654,15 @@
 	                    e.preventDefault();
 	                    var device = $( this ).data('device');
 	                    that.switchToDevice( device );
+	                } );
+
+	                that.container.on( 'click', '.customify--cb-actions a.set-default-design', function(e){
+	                    e.preventDefault();
+	                    var designId = $( this ).attr('data-id').replace('_templates', '');
+	                    designId = "config-settings-"+designId;
+	                    var data = wpcustomize.control( designId ).setting.get();
+	                    console.log(that.decodeValue(data) );
+	                    wpcustomize.control( that.settingsId ).setting.set( that.decodeValue(data) );
 	                } );
 
 	                $(document).on( 'click', '#accordion-panel-header_panel', function(e){

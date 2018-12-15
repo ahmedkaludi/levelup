@@ -49,7 +49,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             return $this->data;
         }
         $data = headerfooter_get_setting( $this->control_id );
-
+        $data = json_decode( urldecode($data), true ) ;
         $data = wp_parse_args( $data, array(
             'desktop' => '',
             'tablet'  => '',
