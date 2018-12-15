@@ -155,7 +155,7 @@ class SocialiconDesign{
 				if ( $item['url'] && $item['icon'] ) {
 					echo '<li><a class="social-'. str_replace( array( ' ', 'fa-fa' ), array( '-', 'icon' ), esc_attr( $item['icon'] )) . '" '.$rel.'target="' . esc_attr( $target ) . '" href="' . esc_url( $item['url'] ) . '">';
 					if ( $item['icon'] ) {
-						echo '<i class="icon ' . esc_attr( $item['icon'] ) . '" title="' . esc_attr( $item['title'] ) . '"></i><span class="screen-reader-text">' . esc_attr( $item['title'] ) . '</span>';
+						echo '<i class="fa fa-' . esc_attr( $item['icon'] ) . '" title="' . esc_attr( $item['title'] ) . '"></i><span class="screen-reader-text">' . esc_attr( $item['title'] ) . '</span>';
 					}
 					if ( $item['url'] ) {
 						echo '</a>';

@@ -55,6 +55,7 @@ Class HeaderBuild{
     }
 
     function add_theme_scripts() {
+      wp_enqueue_style( 'header-style-fonts-awesome', esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/css/font-awesome.css') );
       wp_enqueue_style( 'header-style', esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/css/header_style.css') );
       wp_enqueue_script( 'levelup-hf-js',  esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/js/levelup-frontend.js'), array( 'jquery' ), LEVELUP_VERSION, true );
     }
@@ -193,7 +194,7 @@ Class HeaderBuild{
                         <div class="customify--cb-actions">
                             <?php do_action('levelup/hfbuilder/actionsbtn'); ?>
                             <a class="btn"></a>
-                            <a data-id="{{ data.id }}_templates" class="focus-section button button-secondary"
+                            <a data-id="{{ data.id }}_templates" class="set-default-design focus-section button button-secondary"
                                href="#"><?php echo esc_html__( 'Set as Default', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></a>
                         </div>
                     </div>
