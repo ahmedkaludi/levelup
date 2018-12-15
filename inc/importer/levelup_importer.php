@@ -7,11 +7,19 @@ function demo_designs_import_files(){
 	return array(
 			array(
 				'import_file_name'           => 'Bolts Construction',
-				'import_file_url'            => 'http://artifacts.proteusthemes.com/xml-exports/bolts-latest.xml',
-				'import_widget_file_url'     => 'http://artifacts.proteusthemes.com/json-widgets/bolts-construction-ptcs.json',
-				'import_customizer_file_url' => 'http://artifacts.proteusthemes.com/customizer-exports/bolts-construction.dat',
+				'import_file_url'            => 'http://localhost/import/2018-12-15.xml',
+				'import_widget_file_url'     => '',
+				'import_customizer_file_url' => 'http://localhost/import/level-up-export.dat',
 				'import_preview_image_url'   => 'http://artifacts.proteusthemes.com/import-preview-images/bolts-construction.jpg',
 				'preview_url'                => 'https://demo.proteusthemes.com/bolts',
 			),
 		);
+}
+
+add_action( 'wp_import_insert_post', 'levelup_import_set_frontPage', 10,4 );
+function levelup_import_set_frontPage($post_id, $original_id, $postdata, $data){
+	if($post_id){
+		update_option( 'page_on_front', $post_id );
+		update_option( 'show_on_front', 'page' );
+	}
 }
