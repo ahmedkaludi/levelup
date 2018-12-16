@@ -90,6 +90,7 @@ class header_footer_design1{
 					list-style-type: none;
 					display: inline-block;
 					margin-right: 20px;
+					position: relative;
 				}
 				.scl-icns ul li{
 					list-style-type: none;
@@ -112,6 +113,7 @@ class header_footer_design1{
 				    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 				    position: relative;
 				    overflow: hidden;
+				    transition:all 0.3s ease-in-out 0s;
 				}
 				.nav-menu ul li a:before {
 				    content: "";
@@ -128,6 +130,61 @@ class header_footer_design1{
 				}
 				.nav-menu ul li a:hover:before, .nav-menu ul li a:focus:before, .nav-menu ul li a:active:before, .nav-menu ul li.active a:before {
 				    right: 0;
+				}
+				.nav-menu ul li ul li a:before{
+					content:"";
+					position:relative;
+				}
+				.nav-menu li:hover > ul{
+				    opacity: 1;
+				    transform: translateY(0px);
+				    visibility: visible;
+				    transition: all 0.2s ease-in-out 0s;
+				}
+				.nav-menu li ul li{
+				    display: block;
+				    position: relative;
+				    margin-right:0;
+				    border-bottom: 1px solid #ddd;
+    				padding: 0px 12px;
+				}
+				.nav-menu li ul li:last-child{
+					border-bottom:none;
+				}
+				.nav-menu li ul li a{
+					padding:5px 0px;
+					font-size: 13px;
+				}
+				.nav-menu li ul li ul{
+				    left: 100%;
+				    top: 0;
+				}
+				.nav-menu .menu li.menu-item-has-children:after{
+					content:">";
+					display:inline-block;
+					color: #000;
+				    position: relative;
+				    top: 2px;
+				    padding-left: 3px;
+				}
+				.nav-menu li ul{
+				    background: #ffffff none repeat scroll 0 0;
+				    left: 0;
+				    min-width: 200px;
+				    opacity: 0;
+				    position: absolute;
+				    top: 100%;
+				    transform: translateY(15px);
+				    transition: all 0.3s ease-in-out 0s;
+				    visibility: hidden;
+				    text-align:left;
+				    box-shadow:1px 1px 10px 1px #c7c7c7;
+				}
+				.nav-menu .menu li.menu-item-has-children .sub-menu {
+				    display: block;	    
+    				text-align: left;
+    				padding:5px 0;
+    				z-index: 1;
 				}
 				.nav-rt{
 					width:100%;
@@ -222,7 +279,11 @@ class header_footer_design1{
 				    font-weight: 500;
 				    margin-top: 20px;
 				    display: inline-block;
-				}';
+				}
+
+				/** Hamberger Menu CSS **/
+				
+				';
 		return $css;
 	}
 }
