@@ -136,11 +136,11 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                             ob_start();
                             $has_cb      = false;
 
-	                        /**
+                            /**
                              * Hook before builder item
                              *
-	                         * @since 0.2.1
-	                         */
+                             * @since 0.2.1
+                             */
                             do_action('header_footer/builder/'.$this->id.'/before-item/'.$item['id'] );
                             $object_item = HeaderFooter_Customize_Layout_Builder()->get_builder_item( $this->id, $item['id'] );
                             // Call render in registered class
@@ -177,16 +177,16 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                                 }
                             }
 
-	                        /**
-	                         * Hook after builder item
-	                         *
-	                         * @since 0.2.1
-	                         */
-	                        do_action('header_footer/builder/'.$this->id.'/after-item/'.$item['id'] );
+                            /**
+                             * Hook after builder item
+                             *
+                             * @since 0.2.1
+                             */
+                            do_action('header_footer/builder/'.$this->id.'/after-item/'.$item['id'] );
 
                             // Get item output
                             $ob_render = ob_get_clean();
-	                        // END render builder item
+                            // END render builder item
 
                             if ( ! $return_render ) {
                                 if ( $ob_render ) {
@@ -258,12 +258,12 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
     function setup_item_content( $content, $id, $device ) {
         $content = str_replace( '__id__', $id, $content );
         $content = str_replace( '__device__', $device, $content );
-	    /**
+        /**
          *
          * Ensure only one H! tag for the site title
          *
-	     * @since 0.2.3
-	     */
+         * @since 0.2.3
+         */
         $content = str_replace( '__site_device_tag__', $device == 'desktop' ? 'h1' : 'h2', $content );
 
         return $content;
@@ -413,6 +413,10 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                 $atts[] = '_sm-0';
             }
 
+            $first_id_name = explode("-", $first_id);
+            unset($first_id_name[count($first_id_name)-1]);
+            $classes[] = implode('-', $first_id_name);
+
             $classes[] = 'builder-item builder-first--' . $first_id;
             if ( count( $item['items'] ) > 1 ) {
                 $classes[] = 'builder-item--group';
@@ -535,9 +539,9 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                         // Check if the row is header or footer.
                         $inner_class = array();
                         if ( $this->id == 'header' ) {
-	                        $inner_class[] = 'header--row-inner';
+                            $inner_class[] = 'header--row-inner';
                         } else {
-	                        $inner_class[] = 'footer--row-inner';
+                            $inner_class[] = 'footer--row-inner';
                         }
                         $inner_class[] = $_id.'-inner';
                         if ( $row_text_mode ) {
@@ -587,7 +591,45 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
      * Render sidebar row
      */
     function render_mobile_sidebar() {
-        $id           = 'sidebar';
+
+
+        echo '
+        <input type="checkbox" id="offcanvas-menu" class="toggle" />
+            <div class="menu-overlay">
+                <aside class="menu-container">
+
+                    <div class="menu-heading clearfix">
+                        <label for="offcanvas-menu" class="close-btn">
+                            <i class="fa fa-times">close</i>
+                        </label>
+                    </div>
+
+                    <nav class="slide-menu">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+                            <li><a href="#"><i class="fa fa-star"></i>Favorites</a></li>
+                            <li><a href="#"><i class="fa fa-folder-open"></i>Categories</a></li>
+                            <li><a href="#"><i class="fa fa-cogs"></i>Settings</a></li>
+                        </ul>
+                    </nav>
+
+                </aside>
+                <section class="content">
+                <label for="offcanvas-menu" class="full-screen-close">close</label>
+                    <div class="menu">
+                        <label for="offcanvas-menu" class="toggle-btn">
+                            <i class="fa fa-bars">menu</i>
+                        </label>
+                    </div>
+
+                </section>
+            </div>
+        ';
+
+
+
+
+        /*$id           = 'sidebar';
         $mobile_items = $this->get_row_settings( $id, 'mobile' );
         $menu_sidebar_skin = headerfooter_get_setting('header_sidebar_skin_mode');
 
@@ -624,7 +666,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                     $inner_classes = $inner_classes . ' builder-item-focus ';
                 }
 
-	            $content = $this->setup_item_content( $content, $id, 'mobile' );
+                $content = $this->setup_item_content( $content, $id, 'mobile' );
                 //$content = str_replace( '__id__', $id, $content );
                 //$content = str_replace( '__device__', 'mobile', $content );
 
@@ -640,7 +682,12 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             echo '</div>';
             echo '</div>';
             echo '</div>';
-        }
+
+
+
+
+
+        }*/
     }
 
     /**

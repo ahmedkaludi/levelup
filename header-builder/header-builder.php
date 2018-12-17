@@ -51,14 +51,16 @@ function render_footer_option_html(){
      * @since 0.2.2
      */
     do_action( 'customizer/before-header' );
+     HeaderFooter_Customize_Layout_Builder_Frontend()->render_mobile_sidebar();
     echo '<header id="headerfooter-masthead" class="headerfooter-site-header">';
         echo '<div id="headerfooter-masthead-inner" class="headerfooter-site-header-inner">';
             $list_items = HeaderFooter_Customize_Layout_Builder()->get_builder_items( 'header' );
             HeaderFooter_Customize_Layout_Builder_Frontend()->set_config_items( $list_items );
             HeaderFooter_Customize_Layout_Builder_Frontend()->render();
-            HeaderFooter_Customize_Layout_Builder_Frontend()->render_mobile_sidebar();
+            
         echo '</div>';
     echo '</header>';
+
  }
 
  function levelup_check_hf_builder($type="head"){

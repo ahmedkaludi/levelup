@@ -96,10 +96,10 @@ class header_footer_design1{
 					list-style-type: none;
 					display: inline-block;
 					margin-right:20px;
+					font-size:18px;
 				}
-				.scl-icns{margin-right:20px;}
-				.scl-icns ul li:last-child a img{
-					width:20px;
+				.scl-icns ul li:last-child{
+					margin-right:0px;
 				}
 				.nav-menu ul li a{
 					text-decoration: none;
@@ -199,10 +199,12 @@ class header_footer_design1{
 					display: flex;
 				    line-height: 0;
 				    align-items: center;
+				    margin:0;
 				}
 				.scl-icns li a{
 					line-height: 0;
 					display:block;
+					color:#000;
 				}
 				.nav-menu{
 					margin-right: 25px;
@@ -216,6 +218,9 @@ class header_footer_design1{
 					order:1;
 					line-height: 0;
 				}
+				.cb-row--desktop .search-header{
+					text-align:center;
+				}
 				.sr button{
 					background:transparent;
 					border:none;
@@ -225,7 +230,9 @@ class header_footer_design1{
 					background:#f8f7f8;
 					width:100%;
 				}
-
+				.sr span, .overlay-close span{
+					font-size:18px;
+				}
 				.overlay {
 					position: fixed;
 					width: 100%;
@@ -282,7 +289,164 @@ class header_footer_design1{
 				}
 
 				/** Hamberger Menu CSS **/
-				
+				.headerfooter-site-header{
+					position:relative;
+					z-index:99;
+				}
+				.cb-row--mobile{margin:0;}
+				.cb-row--mobile .logo-header .logo{
+					text-align: left;
+				}
+				.cb-row--mobile .menu-icon-header{
+					text-align: right;
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+				.header-menu-sidebar-bg {
+				    position: relative;
+				    word-wrap: break-word;
+				    min-height: 100%;
+				    display: block;
+				}
+				.header-menu-sidebar-bg:before {
+				    content: "";
+				    position: absolute;
+				    top: 0;
+				    bottom: 0;
+				    left: 0;
+				    right: 0;
+				    display: block;
+				    min-height: 100%;
+				}
+				.header-menu-sidebar .header-menu-sidebar-bg:before {
+				    background: rgba(0,0,0,.9);
+				}
+				.is-menu-sidebar.menu_sidebar_slide_left .header-menu-sidebar {
+				    z-index: 999900;
+				    height: 100%;
+				    -webkit-transform: translate3d(0,0,0);
+				    transform: translate3d(0,0,0);
+				    left: 0;
+				    visibility: visible;
+				}
+				.is-menu-sidebar .header-menu-sidebar {
+				    overflow: auto;
+				}
+				.menu_sidebar_slide_left .header-menu-sidebar {
+				    width: auto;
+				    right: 45px;
+				}
+				.header-menu-sidebar {
+				    padding: 0;
+				    position: fixed;
+				    width: 100%;
+				    max-width: 100%;
+				    top: 0;
+				    z-index: 999900;
+				    visibility: hidden;
+				}
+
+
+
+
+
+
+
+
+.site, .menu-container {
+	width:100%;
+	height:100%;
+    overflow-x: hidden;
+}
+.toggle, .full-screen-close{
+	display: none;
+}
+.full-screen-close{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	cursor: pointer;
+	top:0;
+	left:0;
+}
+.toggle:checked + .menu-overlay > .menu-container {
+  	margin-left: 0;
+}
+.toggle:checked + .menu-overlay > .content .full-screen-close{
+  	display: block;
+  	background: rgba(0,0,0,.5);
+  	 z-index: 9;
+}
+.menu{
+	padding-top: 24px;
+}
+.toggle-btn, .close-btn{
+	cursor: pointer;
+}
+.toggle-btn{
+	font-size: 2.25rem;
+}
+.close-btn{
+	float: right;
+	font-size: 1.5rem;
+	padding: 1.5rem;
+	color: #ededed;
+}
+.menu-container, .content{
+	transition: margin 0.5s ease-in-out;
+}
+.menu-container{
+	background: #2c3e50;
+	width: 40%;
+	margin-left: -40%;
+	
+	float: left;
+	height: 100%;
+	position: absolute;
+
+	z-index:99;
+}
+.slide-menu i{
+	margin-right: 1rem;
+	font-size: 1.5rem;
+	vertical-align: middle;
+}
+.slide-menu li a{
+	color: #fff;
+	padding: 1.5rem;
+	font-size: 1.125rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	display: block;
+	transition: background-color .5s ease-in-out;
+}
+.slide-menu li a:hover{
+	background-color: #34495e;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				';
 		return $css;
 	}
