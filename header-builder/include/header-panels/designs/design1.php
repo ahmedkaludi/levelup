@@ -355,6 +355,9 @@ class header_footer_design1{
 				    z-index: 999900;
 				    visibility: hidden;
 				}
+				.menu{
+					display:none;
+				}
 
 
 
@@ -363,80 +366,89 @@ class header_footer_design1{
 
 
 
-.site, .menu-container {
-	width:100%;
-	height:100%;
-    overflow-x: hidden;
-}
-.toggle, .full-screen-close{
-	display: none;
-}
-.full-screen-close{
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	cursor: pointer;
-	top:0;
-	left:0;
-}
-.toggle:checked + .menu-overlay > .menu-container {
-  	margin-left: 0;
-}
-.toggle:checked + .menu-overlay > .content .full-screen-close{
-  	display: block;
-  	background: rgba(0,0,0,.5);
-  	 z-index: 9;
-}
-.menu{
-	padding-top: 24px;
-}
-.toggle-btn, .close-btn{
-	cursor: pointer;
-}
-.toggle-btn{
-	font-size: 2.25rem;
-}
-.close-btn{
-	float: right;
-	font-size: 1.5rem;
-	padding: 1.5rem;
-	color: #ededed;
-}
-.menu-container, .content{
-	transition: margin 0.5s ease-in-out;
-}
-.menu-container{
-	background: #2c3e50;
-	width: 40%;
-	margin-left: -40%;
-	
-	float: left;
-	height: 100%;
-	position: absolute;
 
-	z-index:99;
-}
-.slide-menu i{
-	margin-right: 1rem;
-	font-size: 1.5rem;
-	vertical-align: middle;
-}
-.slide-menu li a{
-	color: #fff;
-	padding: 1.5rem;
-	font-size: 1.125rem;
-	text-transform: uppercase;
-	font-weight: 600;
-	display: block;
-	transition: background-color .5s ease-in-out;
-}
-.slide-menu li a:hover{
-	background-color: #34495e;
-}
+@media(max-width:1024px){
+	.menu{
+		display:block;
+		float: right;
+	    z-index: 999999;
+	    position: relative;
+	    padding: 0px 30px 0px 0px;
 
-
-
-
+	    
+	    color:#000;
+	}
+	.mb-mnu{
+		display:inline-block;
+		width:100%;
+	}
+	.site, .menu-container {
+		width:100%;
+		height:100%;
+	    overflow-x: hidden;
+	}
+	.toggle, .full-screen-close{
+		display: none;
+	}
+	.full-screen-close{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		cursor: pointer;
+		top:0;
+		left:0;
+	}
+	.toggle:checked + .menu-overlay > .menu-container {
+	  	margin-left: 0;
+	}
+	.toggle:checked + .menu-overlay > .content .full-screen-close{
+	  	display: block;
+	  	background: rgba(0,0,0,.5);
+	  	 z-index: 9;
+	}
+	.toggle-btn, .close-btn{
+		cursor: pointer;
+	}
+	.toggle-btn{
+		font-size:24px;
+	}
+	.close-btn{
+		float: right;
+		color: #ededed;
+		font-size: 24px;
+    	padding-right: 20px;
+	}
+	.menu-container, .content{
+		transition: margin 0.3s ease-in-out;
+	}
+	.menu-container{
+		background: #0C0C0C;
+		width: 86%;
+		margin-left: -86%;
+		float: left;
+		height: 100%;
+		position: absolute;
+		z-index:999;
+	}
+	.mb-mnu ul{
+		margin:0;
+	}
+	.mb-mnu ul li{
+		display:block;
+		border-bottom: 1px solid transparent;
+		border-color: rgba(255,255,255,.08);
+	}
+	.mb-mnu li a{
+		color: #fff;
+		padding: 7px 10px;
+		font-size: 15px;
+		line-height:1.4;
+		font-weight: 500;
+		display: block;
+		transition: background-color .5s ease-in-out;
+		display:inline-block;
+	}
+}
 
 
 
