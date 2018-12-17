@@ -41,7 +41,28 @@ Class levelup_menuConnector{
 		ob_start();
 		switch($type){
 			case 'dashboard':
-				echo 'Need Support?: Our world class technical team is always available to help you with your issues. Just send us an email.';
+				echo '
+                <div class="levelup_dashboard">
+                    <div class="levelup_dashboard_left">
+                        <h2>Learn</h2>
+                        <p>Get started:</p>
+                        <iframe width="400" height="225" src="https://www.youtube.com/embed/fnlzOHECEDo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <h4>Learn deeper:</h4>
+                        <div class="levelup_dashboard_left_sub">
+                           <ul>
+                           <li><a href="#">Watch Videos</a></li>
+                           <li><a href="#">Read Documentation</a></li>
+                           </ul>
+                        </div>
+                    </div>
+                    <div class="levelup_dashboard_right">
+                        <h2>Start with a Template</h2>
+                        <p>Save time by choosing among beautiful templates designed for different sectors and purposes.</p>
+                        <a href="#" class="button button-primary">Import a Template</a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+                ';
 			break;
 			case 'template':
 				require_once LEVELUP__FILE__PATH . 'inc/importer/import-view.php';
@@ -58,10 +79,10 @@ Class levelup_menuConnector{
 	ob_end_clean();
 	  echo '<div class="wrap">
 	  			<div id="icon-themes" class="icon32"></div>
-				<h2>Levelup Settings</h2>
+                <h2 class="levelup_option_header">LevelUP<span>1.1</span></h2> 
 				'. settings_errors().'
 
-				<h2 class="nav-tab-wrapper">
+				<h2 class="nav-tab-wrapper"> 
 		            <a href="'.admin_url('admin.php?page=levelup&type=dashboard').'" class="nav-tab '.($type=='dashboard'? 'nav-tab-active': '').'">Dashboard</a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=template').'" class="nav-tab '.($type=='template'? 'nav-tab-active': '').'">Templates</a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=tools').'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">Tools</a>
