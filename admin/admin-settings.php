@@ -26,7 +26,7 @@ Class LEVELUP__Admin_settings{
 		add_action('admin_init', array( $this, 'levelup_tabs_settings_init'));
 	}
 	function levelup_plugin_action_links( $links ) {
-		$links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=levelup_settings' ) ) . '">' . esc_html__( 'Settings', LEVELUP_TEXT_DOMAIN ) . '</a>';
+		$links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=levelup' ) ) . '">' . esc_html__( 'Settings', LEVELUP_TEXT_DOMAIN ) . '</a>';
 		return $links;
 	}
 
