@@ -14,12 +14,22 @@ class headerPanels{
 		$this->include_files();
 		//if(is_admin()){
 			add_action( 'wp_head', array($this, 'design_style_action') );
+			add_action( 'amp_post_template_css', array($this, 'amp_design_style_action') );
 			add_action( 'wp_enqueue_scripts', array($this, 'font_awesome_css'));
 		//}
 	}
 	function font_awesome_css(){
 		wp_enqueue_style( 'footercss', HEADER_FOOTER_PLUGIN_DIR_URI . 'assets/css/font-awesome.css');
 		//wp_enqueue_style( 'footermin', HEADER_FOOTER_PLUGIN_DIR_URI . 'assets/css/font-awesome.min.css');
+	}
+	function amp_design_style_action(){
+		if(is_array($this->designCss)){
+			foreach ($this->designCss as $key => $value) {
+				echo $value;
+			}
+		}else{
+			echo $this->designCss;
+		}
 	}
 	function design_style_action(){
 		?><style type="text/css">

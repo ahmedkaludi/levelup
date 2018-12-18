@@ -45,7 +45,6 @@ function render_footer_option_html(){
  function render_header_option_html(){
     global $levelup_head_started;
     $levelup_head_started = true;
-   echo HeaderFooter_Customize_Layout_Builder_Frontend()->close_icon( ' close-panel close-sidebar-panel' );
     /**
      * Hook before header
      * @since 0.2.2

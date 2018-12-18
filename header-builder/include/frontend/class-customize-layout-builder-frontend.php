@@ -592,44 +592,8 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
      */
     function render_mobile_sidebar() {
 
-
-        echo '
-        <input type="checkbox" id="offcanvas-menu" class="toggle" />
-            <div class="menu-overlay">
-                <aside class="menu-container">
-
-                    <div class="menu-heading clearfix">
-                        <label for="offcanvas-menu" class="close-btn">
-                            <i class="fa fa-times">close</i>
-                        </label>
-                    </div>
-
-                    <nav class="slide-menu">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-home"></i>Home</a></li>
-                            <li><a href="#"><i class="fa fa-star"></i>Favorites</a></li>
-                            <li><a href="#"><i class="fa fa-folder-open"></i>Categories</a></li>
-                            <li><a href="#"><i class="fa fa-cogs"></i>Settings</a></li>
-                        </ul>
-                    </nav>
-
-                </aside>
-                <section class="content">
-                <label for="offcanvas-menu" class="full-screen-close">close</label>
-                    <div class="menu">
-                        <label for="offcanvas-menu" class="toggle-btn">
-                            <i class="fa fa-bars">menu</i>
-                        </label>
-                    </div>
-
-                </section>
-            </div>
-        ';
-
-
-
-
-        /*$id           = 'sidebar';
+        $items   = $this->render_items();
+        $id           = 'sidebar';
         $mobile_items = $this->get_row_settings( $id, 'mobile' );
         $menu_sidebar_skin = headerfooter_get_setting('header_sidebar_skin_mode');
 
@@ -644,9 +608,14 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                 $classes[] = $menu_sidebar_skin;
             }
 
-            echo '<div id="header-menu-sidebar" class="' . esc_attr( join( ' ', $classes ) ) . '">';
-            echo '<div id="header-menu-sidebar-bg" class="header-menu-sidebar-bg">';
-            echo '<div id="header-menu-sidebar-inner" class="header-menu-sidebar-inner">';
+            echo '
+            <input type="checkbox" id="offcanvas-menu" class="toggle" />
+            <div id="header-menu-sidebar" class="menu-overlay ">';// ' . esc_attr( join( ' ', $classes ) ) . '
+            echo '<aside class="menu-container">
+                
+            ';
+            echo $this->close_icon();
+           
 
             foreach ( $mobile_items as $item ) {
                 $item_id     = $item['id'];
@@ -667,8 +636,8 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                 }
 
                 $content = $this->setup_item_content( $content, $id, 'mobile' );
-                //$content = str_replace( '__id__', $id, $content );
-                //$content = str_replace( '__device__', 'mobile', $content );
+                $content = str_replace( '__id__', $id, $content );
+                $content = str_replace( '__device__', 'mobile', $content );
 
                 echo '<div class="' . esc_attr( $classes ) . '">';
                 echo '<div class="' . esc_attr( $inner_classes ) . '" data-item-id="' . esc_attr( $item_id ) . '" data-section="' . $item_config['section'] . '">';
@@ -679,15 +648,15 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                 echo '</div>';
                 echo '</div>';
             }
+           
+            echo '</aside>';
             echo '</div>';
-            echo '</div>';
-            echo '</div>';
 
 
 
 
 
-        }*/
+        }
     }
 
     /**
@@ -698,14 +667,19 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
      */
     function close_icon( $class = '' ) {
         $menu_sidebar_skin = '';//headerfooter_get_setting('header_sidebar_text_mode');
-        $close = '<a class="close is-size-medium '. $menu_sidebar_skin . esc_attr( $class ) . '" href="#">
+       /* $close = '<a class="close is-size-medium '. $menu_sidebar_skin . esc_attr( $class ) . '" href="#">
         <span class="hamburger hamburger--squeeze is-active">
             <span class="hamburger-box">
               <span class="hamburger-inner"><span class="screen-reader-text">' . __( 'Menu', 'customify' ) . '</span></span>
             </span>
         </span>
         <span class="screen-reader-text">' . __( 'Close', 'customify' ) . '</span>
-        </a>';
+        </a>';*/
+       $close = ' <div class="menu-heading clearfix">
+                               <label for="offcanvas-menu" class="close-btn">
+                                   <i class="fa fa-times"></i>
+                               </label>
+                           </div>';
 
         return $close;
     }

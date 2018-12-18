@@ -296,7 +296,7 @@ function levelup_child_designing_custom_template($file, $type, $post){
 	
 	$page_template = array('elementor_canvas','elementor_header_footer');
 	if(in_array($levelupTemplate, $page_template)){
-		switch (variable) {
+		switch ($page_template) {
 			case 'elementor_canvas':
 				if ( is_single() || is_page()  ) {
 					if( 'single' === $type && ! ('product' === $post->post_type) ) {

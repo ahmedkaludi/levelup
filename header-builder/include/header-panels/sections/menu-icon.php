@@ -95,8 +95,20 @@ class MenuIconDesign{
         if( $style ) {
             $classes[] = $style;
         }
-        ?>
-        <a class="<?php echo esc_attr( join(' ', $classes ) ); ?>">
+        echo '<section class="content '.esc_attr( join(' ', $classes ) ).'">
+                        <label for="offcanvas-menu" class="full-screen-close" onclick="document.getElementById(\'offcanvas-menu\').click()"></label>
+                            <div class="menu">
+                                <label for="offcanvas-menu" class="toggle-btn" onclick="document.getElementById(\'offcanvas-menu\').click()">
+                                    <i class="fa fa-bars"></i>
+
+                                </label>
+                            </div>
+        
+                        </section>';
+            if ( $show_label ) {
+                echo '<span class="'.esc_attr( join( ' ', $label_classes ) ).'">'.$label.'</span>';
+            }
+       /* <a class="<?php echo esc_attr( join(' ', $classes ) ); ?>">
             <span class="hamburger hamburger--squeeze">
                 <span class="hamburger-box">
                   <span class="hamburger-inner"></span>
@@ -106,7 +118,12 @@ class MenuIconDesign{
             if ( $show_label ) {
                 echo '<span class="'.esc_attr( join( ' ', $label_classes ) ).'">'.$label.'</span>';
             }
-            ?></a>
+            ?></a>*/
+        ?>
+        
+
+        
+        
         <?php
     }
 }
