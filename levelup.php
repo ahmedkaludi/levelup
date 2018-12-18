@@ -75,3 +75,10 @@ function levelup_fail_load() {
 	}
 	echo '<div class="error">' . esc_html__( 'This plugin requires Elementor, please Activate Elementor plugin', LEVELUP_TEXT_DOMAIN )  . '</div>';
 }
+
+function levelup_activation_redirect( $plugin ) {
+    if( $plugin == plugin_basename( __FILE__ ) ) {
+        exit( wp_redirect( admin_url( 'admin.php?page=levelup&type=dashboard' ) ) );
+    }
+}
+add_action( 'activated_plugin', 'levelup_activation_redirect' );
