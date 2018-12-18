@@ -14,7 +14,18 @@ class footerPanels{
 		$this->include_files();
 		//if(is_admin()){
 			add_action( 'wp_head', array($this, 'design_style_action') );
+			add_action( 'amp_post_template_css', array($this, 'amp_design_style_action') );
 		//}
+	}
+
+	function amp_design_style_action(){
+		 if(is_array($this->designCss)){
+             	foreach ($this->designCss as $key => $value) {
+             		echo $value;
+             	}
+             }else{
+             	echo $this->designCss;
+             }
 	}
 
 	function design_style_action(){
@@ -52,13 +63,12 @@ class footerPanels{
 					$this->designCss[$designSettings] = $designObject->render_css();
 				}
 
-				$SocialiconObj = new \HeaderBuilder\footerPanels\sections\SocialiconFooterDesign($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $SocialiconObj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $SocialiconObj );
 
-				$copyrightObj = new \HeaderBuilder\footerPanels\sections\footerCopyrightDesign($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $copyrightObj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $copyrightObj );
+				$modules['SocialiconObj'] = new \HeaderBuilder\footerPanels\sections\SocialiconFooterDesign($designObject->panelId, $designPanel[0]['title']);
+				
+
+				$modules['copyrightObj'] = new \HeaderBuilder\footerPanels\sections\footerCopyrightDesign($designObject->panelId, $designPanel[0]['title']);
+				
 
 				/*$footerSidebar1Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar1Design($designObject->panelId, $designPanel[0]['title']);
 				$this->configs = array_merge($this->configs, $footerSidebar1Obj->getFields());
@@ -84,8 +94,19 @@ class footerPanels{
 
 
 				//Top settings
-				$topDesignObj = new \HeaderBuilder\footerPanels\sections\TopFooterDesign($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $topDesignObj->getFields());
+				$modules['topDesignObj'] = new \HeaderBuilder\footerPanels\sections\TopFooterDesign($designObject->panelId, $designPanel[0]['title']);
+
+
+				foreach ($modules as $key => $value) {
+					$this->configs = array_merge($this->configs, $value->getFields());
+					if(!in_array($key, array('topDesignObj'))
+					){
+						HeaderFooter_Customize_Layout_Builder()->register_item('footer', $value );
+					}
+					if(method_exists($value,'render_css')){
+						$this->designCss[$key] = $value->render_css();
+					}
+				}
 				
 				//Bottom settings
 				/*$bottomDesignObj = new \HeaderBuilder\footerPanels\sections\BottomFooterDesign($designObject->panelId, $designPanel[0]['title']);
@@ -132,7 +153,7 @@ class footerPanels{
 				    	'api_type'			=> 'wp_control',
 				    	'id'				=> 'footer_panel_settings',
 				        'section' 			=> 'footer_setting_section',
-				        'label'   			=> __('Enter Color', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+				        'label'   			=> __('Footer Selected Settings', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 				        'type'    			=> 'js_raw',
 				        'selector'          => '#footercaller',
 				    ),
@@ -150,7 +171,7 @@ class footerPanels{
 		$panel = $returnData = array();
 		foreach ($this->configs as $key => $value) {
 			
-			if($value['api_type']=='wp_section'){
+			if($value['api_type']=='wp_section' && (!isset($value['exclude_section']))){
 				$sectionid = $value['id'];
 				$title = $value['title'];
 				$panel = $value['panel'];
@@ -168,18 +189,18 @@ class footerPanels{
 					$returnData[$panel]['devices'] = array("desktop"=>"Footer Layout",
 													//"mobile"=>"Mobile/Tablet"
 													);
-					$returnData[$panel]['rows'] = array("bottom"=>"Header Bottom",
-													//"top"=>"Header Top",
+					$returnData[$panel]['rows'] = array(//"bottom"=>array('name'=>"Bottom Bottom", "id"=>'top-footer-design'),
+													"top"=>array('name'=>"Footer Top", "id"=>'top-footer-design')
 													//"sidebar"=>"Menu Sidebar",
 													);
 					$returnData[$panel]['settings'] = 'footer_panel_settings';
 				}
 				
 				if(
-					strpos('top-header-design'.$panel, $sectionid)===false &&
-					strpos('middle-header-design'.$panel, $sectionid)===false &&
-					strpos('bottom-header-design'.$panel, $sectionid)===false &&
-					strpos('sidebar-header-design'.$panel, $sectionid)===false 
+					strpos('top-footer-design'.$panel, $sectionid)===false &&
+					strpos('middle-footer-design'.$panel, $sectionid)===false &&
+					strpos('bottom-footer-design'.$panel, $sectionid)===false &&
+					strpos('sidebar-footer-design'.$panel, $sectionid)===false 
 				){
 					$returnData[$panel]['items'][$sectionid] = array(
 										"name"	=> $title,

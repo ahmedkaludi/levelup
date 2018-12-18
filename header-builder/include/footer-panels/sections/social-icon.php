@@ -12,6 +12,15 @@ class SocialiconFooterDesign{
 		$this->panelName = $panelName; 
 		$this->id = $this->nameslug. $this->panel;
 	}
+	function item(){
+        return array(
+                    'name' => $this->name,
+                    'id'   => $this->id,
+                    'col'  => 0,
+                    'width'=> $this->width,
+                    'section'=> $this->panel
+                    );
+    }
 	function getFields(){
 		return array(
 				array(
@@ -124,7 +133,7 @@ class SocialiconFooterDesign{
 				if ( $item['url'] && $item['icon'] ) {
 					echo '<li><a class="social-'. str_replace( array( ' ', 'fa-fa' ), array( '-', 'icon' ), esc_attr( $item['icon'] )) . '" '.$rel.'target="' . esc_attr( $target ) . '" href="' . esc_url( $item['url'] ) . '">';
 					if ( $item['icon'] ) {
-						echo '<i class="icon ' . esc_attr( $item['icon'] ) . '" title="' . esc_attr( $item['title'] ) . '"></i><span class="screen-reader-text">' . esc_attr( $item['title'] ) . '</span>';
+						echo '<i class="fa icon fa-' . esc_attr( $item['icon'] ) . '" title="' . esc_attr( $item['title'] ) . '"></i><span class="screen-reader-text">' . esc_attr( $item['title'] ) . '</span>';
 					}
 					if ( $item['url'] ) {
 						echo '</a>';

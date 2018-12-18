@@ -18,6 +18,34 @@ class footer_design1{
 			),
 
 
+
+			//Option to save 
+			array(
+				'api_type'			=> 'wp_section',
+				'id' 				=> 'footer_setting_config_'.$this->panelId,
+		        'panel'    			=> $this->panelId,
+				'title'    			=> 'Footer section config',
+		        'description' 		=> '',
+		        'exclude_section'	=> true,
+			),
+
+			//settings
+			array(
+				'api_type'			=> 'wp_settings',
+				'id'				=> 'config-settings-'.$this->panelId,
+				'capability'        => 'edit_theme_options',
+				"default"			=> '{}',
+		        'sanitize_callback' => 'header_footer_santizer',
+		        'transport'			=> 'postMessage'
+		    ),
+		    //control
+		    array(
+		    	'api_type'			=> 'wp_control',
+		    	'id'				=> 'config-settings-'.$this->panelId,
+		        'section' 			=> 'footer_setting_config_'.$this->panelId,
+		        'label'   			=> esc_html__('Enter Design1 config', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+		        'type'    			=> 'js_raw'
+		    ),
 		);
 		
 

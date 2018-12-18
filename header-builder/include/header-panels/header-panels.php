@@ -170,11 +170,11 @@ class headerPanels{
 					$returnData[$panel]['devices'] = array("desktop"=>"Desktop",
 													"mobile"=>"Mobile"
 													);
-					$returnData[$panel]['rows'] = array("bottom"=>"Header Bottom",
-													"main"=>"Header Main",
-													"sidebar"=>"Menu Sidebar",
-													"top"=>"Header Top"
-													);
+					$returnData[$panel]['rows'] = array("bottom"=>array('name'=>"Header Bottom", "id"=>'bottom-header-design'),
+													"main"=>array('name'=>"Header Main", "id"=>'middle-header-design'),
+													"sidebar"=>array('name'=>"Menu Sidebar", "id"=>'sidebar-header-design'),
+													"top"=>array('name'=>"Header Top", "id"=>'top-header-design')
+												);
 					$returnData[$panel]['settings'] = 'header_panel_settings';
 				}
 				

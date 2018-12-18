@@ -1,7 +1,7 @@
 <?php
 namespace HeaderBuilder\footerPanels\sections;
 class TopFooterDesign{
-	public $name = 'Top footer settings';
+	public $name = 'Footer row settings';
 	public $api_type = 'wp_section';
 	public $panel = '';
 	public $id = 'top-footer-design';
