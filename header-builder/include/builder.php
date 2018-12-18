@@ -101,7 +101,7 @@ Class HeaderBuild{
         $options = array_merge(array(array(
                 'api_type'      => 'hf_panel',
                 'id'            => 'levelup_panel_main',
-                'title'         => __('Levelup Panel', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+                'title'         => __('LevelUP', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
                 'capability'    => 'edit_theme_options',
                 'priority'      => 2
             )), $options);

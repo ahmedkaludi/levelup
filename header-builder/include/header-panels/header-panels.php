@@ -118,7 +118,7 @@ class headerPanels{
 						'api_type'=> 'hf_panel',
 						'id' => 'header_panel',
 						'panel'=> 'levelup_panel_main',
-						'title'=>esc_html__('Header Builder Designs', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+						'title'=>esc_html__('Header Builder', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 						'description'   => esc_html__("Header Builder Design :(", HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 						'capability'    => 'edit_theme_options',
 						'priority'      => 2
