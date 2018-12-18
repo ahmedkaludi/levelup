@@ -97,7 +97,7 @@ class MenuIconDesign{
         }
         echo '<section class="content '.esc_attr( join(' ', $classes ) ).'">
                         <label for="offcanvas-menu" class="full-screen-close" onclick="document.getElementById(\'offcanvas-menu\').click()"></label>
-                            <div class="menu">
+                            <div class="hamb-menu">
                                 <label for="offcanvas-menu" class="toggle-btn" onclick="document.getElementById(\'offcanvas-menu\').click()">
                                     <i class="fa fa-bars"></i>
 

@@ -366,14 +366,12 @@ class header_footer_design1{
 
 
 @media(max-width:1024px){
-	.menu{
+	.hamb-menu{
 		display:block;
 		float: right;
 	    z-index: 999999;
 	    position: relative;
-	    padding: 0px 30px 0px 0px;
-
-	    
+	    padding: 0px 0px 0px 0px;
 	    color:#000;
 	}
 	.mb-mnu{
@@ -399,7 +397,7 @@ class header_footer_design1{
 	.toggle:checked + .menu-overlay > .menu-container {
 	  	margin-left: 0;
 	}
-	.toggle:checked + .menu-overlay > .content .full-screen-close{
+	.toggle:checked + .content .full-screen-close{
 	  	display: block;
 	  	background: rgba(0,0,0,.5);
 	  	 z-index: 9;
@@ -428,15 +426,22 @@ class header_footer_design1{
 		position: absolute;
 		z-index:999;
 	}
-	.mb-mnu ul{
+	.mobile{
+		width:100%;
+		display:inline-block;
 		margin:0;
 	}
-	.mb-mnu ul li{
+	.mobile .menu-menu-container ul{
+		margin:0;
+		padding:0;
+	}
+	.mobile .menu-menu-container ul li{
 		display:block;
 		border-bottom: 1px solid transparent;
 		border-color: rgba(255,255,255,.08);
+		margin:0;
 	}
-	.mb-mnu li a{
+	.mobile .menu-menu-container li a{
 		color: #fff;
 		padding: 7px 10px;
 		font-size: 15px;
