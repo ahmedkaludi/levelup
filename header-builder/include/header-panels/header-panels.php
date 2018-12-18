@@ -26,14 +26,8 @@ class headerPanels{
 		if(is_array($this->designCss)){
 			foreach ($this->designCss as $key => $value) {
 				if(is_array($value)){
-
 					echo $value['global_design_css'];
-					if(\ampforwp_is_amp_endpoint()){
-						echo $value['amp_css'];
-					}else{
-						echo $value['non_amp_css'];
-					}
-
+					echo $value['amp_css'];
 				}else{
 					echo $value;
 				}
@@ -47,7 +41,14 @@ class headerPanels{
              <?php 
              if(is_array($this->designCss)){
              	foreach ($this->designCss as $key => $value) {
-             		echo $value;
+             		if(is_array($value)){
+
+						echo $value['global_design_css'];
+						echo $value['non_amp_css'];
+
+					}else{
+						echo $value;
+					}
              	}
              }else{
              	echo $this->designCss;
