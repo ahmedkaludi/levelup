@@ -96,15 +96,13 @@ class MenuIconDesign{
             $classes[] = $style;
         }
         echo '<section class="content '.esc_attr( join(' ', $classes ) ).'">
-                        <label for="offcanvas-menu" class="full-screen-close" onclick="document.getElementById(\'offcanvas-menu\').click()"></label>
-                            <div class="hamb-menu">
-                                <label for="offcanvas-menu" class="toggle-btn" onclick="document.getElementById(\'offcanvas-menu\').click()">
-                                    <i class="fa fa-bars"></i>
+                    <div class="hamb-menu">
+                        <label for="offcanvas-menu" class="toggle-btn" onclick="document.getElementById(\'offcanvas-menu\').click()">
+                            <i class="fa fa-bars"></i>
 
-                                </label>
-                            </div>
-        
-                        </section>';
+                        </label>
+                    </div>
+               </section>';
             if ( $show_label ) {
                 echo '<span class="'.esc_attr( join( ' ', $label_classes ) ).'">'.$label.'</span>';
             }
