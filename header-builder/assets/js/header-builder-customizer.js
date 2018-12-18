@@ -1507,7 +1507,12 @@
 	                return encodeURI( JSON.stringify( value ) )
 	            },
 	            decodeValue: function( value ){
-	                return JSON.parse( decodeURIComponent( value ) );
+	            	var expr =  /%/;
+	            	if(expr.test(value)){
+	            		return JSON.parse(decodeURIComponent( value ));
+	            	}else{
+	                	return value;
+	            	}
 	            },
 	            save: function(){
 	                var that = this;
@@ -1536,7 +1541,7 @@
 	                data['selected_design'] = options.id;
 	                //console.log(wpcustomize.panel(that.controlId).parent().value);
 	                //console.log(wpcustomize.control( that.controlId+"_settings" ));
-	                console.log(data);
+	                console.log(that.controlId);
 
 	                wpcustomize.control( "config-settings-"+that.controlId ).setting.set( that.encodeValue( data ) );
 	                console.log('Panel Data: ', data );
@@ -1789,14 +1794,14 @@ Customizer
 
 	wp.customize( 'footer_panel_settings', function( settings ) {
         settings.bind( function( to ) {
-        	console.log(settings);
+        	console.log(settings, to);
             header_changed( 'footer_panel', false );
             $document.trigger('customize_section_opened', [ 'header_sidebar' ]) ;
-            if ( to.indexOf( 'menu_sidebar_dropdown' ) > 1 ) {
+            /*if ( to.indexOf( 'menu_sidebar_dropdown' ) > 1 ) {
                 $( '.menu-mobile-toggle, .menu-mobile-toggle .hamburger' ).addClass( 'is-active' );
             } else {
                 $( '.menu-mobile-toggle, .menu-mobile-toggle .hamburger' ).removeClass( 'is-active' );
-            }
+            }*/
         });
     }) ;
     wp.customize( 'header_panel_settings', function( settings ) {

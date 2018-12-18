@@ -355,13 +355,13 @@ class OneClickDemoImport {
 			$response['message'] = '';
 
 			if ( ! apply_filters( 'levelup_import/disable_pt_branding', false ) ) {
-				$twitter_status = esc_html__( 'Just used Levelup Import plugin and it was awesome! Thanks @ProteusThemes! #OCDI https://www.proteusthemes.com/', LEVELUP_TEXT_DOMAIN );
+				$twitter_status = esc_html__( 'Just used Levelup Import plugin and it was awesome! Thanks @Levelup! #levelup', LEVELUP_TEXT_DOMAIN );
 
 				$response['message'] .= sprintf(
-					__( '%1$s%6$sWasn\'t this a great Levelup Import experience?%7$s Created and maintained by %3$sProteusThemes%4$s. %2$s%5$sClick to Tweet!%4$s%8$s', LEVELUP_TEXT_DOMAIN ),
+					__( '%1$s%6$sWasn\'t this a great Levelup Import experience?%7$s Created and maintained by %3$sLevelUp%4$s. %2$s%5$sClick to Tweet!%4$s%8$s', LEVELUP_TEXT_DOMAIN ),
 					'<div class="notice  notice-info"><p>',
 					'<br>',
-					'<strong><a href="https://www.proteusthemes.com/" target="_blank">',
+					'<strong><a href="" target="_blank">',
 					'</a></strong>',
 					'<strong><a href="' . add_query_arg( 'status', urlencode( $twitter_status ), 'http://twitter.com/home' ) . '" target="_blank">',
 					'<strong>',

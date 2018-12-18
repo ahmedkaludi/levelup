@@ -39,6 +39,15 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
         $this->config_items = $config_items;
     }
 
+    function isJson($string) {
+        try{
+             json_decode($string);
+         }catch(Exception $e){
+           return (json_last_error() == JSON_ERROR_NONE);  
+         }
+        return (json_last_error() == JSON_ERROR_NONE);
+    }
+
     /**
      * Get Panel Settings Data
      *
@@ -49,7 +58,11 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             return $this->data;
         }
         $data = headerfooter_get_setting( $this->control_id );
-        $data = json_decode( urldecode($data), true ) ;
+        if($this->isJson($data)){
+            $data = json_decode( $data, true );
+        }else{
+            $data = json_decode( urldecode($data), true );
+        }
         $data = wp_parse_args( $data, array(
             'desktop' => '',
             'tablet'  => '',
@@ -95,13 +108,14 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
     function render_items( $list_items = array() ) {
         $setting = $this->get_settings();
         $items   = array();
-
+        
         // Loop devices
         foreach ( $setting as $device => $device_settings ) {
             foreach ( $device_settings as $row_id => $row_items ) {
                 if ( ! isset( $this->rows[ $row_id ] ) ) {
                     $this->rows[ $row_id ] = array();
                 }
+                
                 // if this row not empty
                 if ( is_array( $row_items ) && count( $row_items ) ) {
 
@@ -186,6 +200,27 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 
                             // Get item output
                             $ob_render = ob_get_clean();
+                            if( ampforwp_is_amp_endpoint() && strpos($item['id'], 'menu-icon-') === False){ 
+                                $sanitizer_obj = new AMPFORWP_Content( $ob_render,
+                                                                    array(), 
+                                                                    apply_filters( 'ampforwp_content_sanitizers', 
+                                                                        array( 'AMP_Img_Sanitizer' => array(), 
+                                                                            'AMP_Blacklist_Sanitizer' => array(),
+                                                                            'AMP_Style_Sanitizer' => array(), 
+                                                                            'AMP_Video_Sanitizer' => array(),
+                                                                            'AMP_Audio_Sanitizer' => array(),
+                                                                            'AMP_Iframe_Sanitizer' => array(
+                                                                                 'add_placeholder' => true,
+                                                                             ),
+                                                                        ) 
+                                                                    ) 
+                                                                );
+                                $ob_render = $sanitizer_obj->get_amp_content();
+                            }
+
+                            if($this->id=='footer'){
+                                echo $ob_render;
+                            }
                             // END render builder item
 
                             if ( ! $return_render ) {
@@ -476,7 +511,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
     function render( $row_ids = array( 'top', 'main', 'bottom' ) ) {
         $setting = $this->get_settings();
         $items   = $this->render_items();
-        
+
         foreach ( $row_ids as $row_id ) {
             $show = true;//customify_is_builder_row_display( $this->id, $row_id );
             if ( $show && isset( $this->rows[ $row_id ] ) ) {
@@ -650,6 +685,8 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             }
            
             echo '</aside>';
+            echo '</div>';
+            echo '</div>';
             echo '</div>';
 
 

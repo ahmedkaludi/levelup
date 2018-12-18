@@ -98,7 +98,7 @@ Class HeaderBuild{
   		$wp_customize->register_section_type( '\HFBuilder_WP_Customize_Section' );
 
 		$options = $this->get_options();
-		//print_r($options);die;
+
 		foreach($options as $args){
 			$id = $args['id'];
 			$type = $args['api_type'];
@@ -209,21 +209,21 @@ Class HeaderBuild{
 
                 <# if ( ! _.isUndefined( data.rows.top ) ) { #>
                     <div class="customify--row-top customify--cb-row" data-id="{{ data.id }}_top">
-                        <a class="customify--cb-row-settings" title="{{ data.rows.top }}" data-id="top-header-design" href="#"></a>
+                        <a class="customify--cb-row-settings" title="{{ data.rows.top.name }}" data-id="{{ data.rows.top.id }}" href="#"></a>
                         <div class="customify--row-inner">
                             <div class="row--grid">
 								<?php for ( $i = 1; $i <= 12; $i ++ ) {
 									echo '<div></div>';
 								} ?>
                             </div>
-                            <div class="customify--cb-items grid-stack gridster" data-id="top"></div>
+                            <div class="customify--cb-items grid-stack gridster" data-id="{{ data.rows.top.id }}"></div>
                         </div>
                     </div>
                 <#  } #>
 
                 <# if ( ! _.isUndefined( data.rows.main ) ) { #>
                     <div class="customify--row-main customify--cb-row" data-id="{{ data.id }}_main">
-                        <a class="customify--cb-row-settings" title="{{ data.rows.main }}" data-id="middle-header-design"
+                        <a class="customify--cb-row-settings" title="{{ data.rows.main.name }}" data-id="{{ data.rows.main.id }}"
                            href="#"></a>
 
                         <div class="customify--row-inner">
@@ -232,7 +232,7 @@ Class HeaderBuild{
                                     echo '<div></div>';
                                 } ?>
                             </div>
-                            <div class="customify--cb-items grid-stack gridster" data-id="main"></div>
+                            <div class="customify--cb-items grid-stack gridster" data-id="{{ data.rows.main.id }}"></div>
                         </div>
                     </div>
                 <#  } #>
@@ -240,15 +240,15 @@ Class HeaderBuild{
 
                 <# if ( ! _.isUndefined( data.rows.bottom ) ) { #>
                     <div class="customify--row-bottom customify--cb-row" data-id="{{ data.id }}_bottom">
-                        <a class="customify--cb-row-settings" title="{{ data.rows.bottom }}"
-                           data-id="bottom-header-design" href="#"></a>
+                        <a class="customify--cb-row-settings" title="{{ data.rows.bottom.name }}"
+                           data-id="{{ data.rows.bottom.id }}" href="#"></a>
                         <div class="customify--row-inner">
                             <div class="row--grid">
                                 <?php for ( $i = 1; $i <= 12; $i ++ ) {
                                     echo '<div></div>';
                                 } ?>
                             </div>
-                            <div class="customify--cb-items grid-stack gridster" data-id="bottom"></div>
+                            <div class="customify--cb-items grid-stack gridster" data-id="{{ data.rows.bottom.id }}"></div>
                         </div>
                     </div>
                 <#  } #>
@@ -259,10 +259,10 @@ Class HeaderBuild{
                 <# if ( ! _.isUndefined( data.rows.sidebar ) ) { #>
                     <div class="customify--cp-sidebar">
                         <div class="customify--row-bottom customify--cb-row" data-id="{{ data.id }}_sidebar">
-                            <a class="customify--cb-row-settings" title="{{ data.rows.sidebar }}" data-id="sidebar"
+                            <a class="customify--cb-row-settings" title="{{ data.rows.sidebar.name }}" data-id="{{ data.rows.sidebar.id }}
                                href="#"></a>
                             <div class="customify--row-inner">
-                                <div class="customify--cb-items customify--sidebar-items" data-id="sidebar"></div>
+                                <div class="customify--cb-items customify--sidebar-items" data-id="{{ data.rows.sidebar.id }}"></div>
                             </div>
                         </div>
                         <div>
