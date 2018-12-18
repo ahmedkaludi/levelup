@@ -85,7 +85,7 @@ Class levelup_menuConnector{
 				<h2 class="nav-tab-wrapper"> 
 		            <a href="'.admin_url('admin.php?page=levelup&type=dashboard').'" class="nav-tab '.($type=='dashboard'? 'nav-tab-active': '').'">Dashboard</a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=template').'" class="nav-tab '.($type=='template'? 'nav-tab-active': '').'">Templates</a>
-		            <a href="'.admin_url('admin.php?page=levelup&type=tools').'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">Tools</a>
+		            <a href="'.admin_url('admin.php?page=levelup&type=tools').'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">Tools <span class="levelup_action">Action Required</span></a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=support').'" class="nav-tab '.($type=='support'? 'nav-tab-active': '').'">Support</a>
 		        </h2>
 		         

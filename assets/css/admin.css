@@ -15,7 +15,7 @@
     float: left;
     width: 40%;
 }
-.levelup_dashboard h2 {
+.levelup_dashboard h2, .levelup_import_screen h2,.levelup_tools_heading, .levelup_support_div h2 {
     margin-bottom: 20px;
     font-size: 24px;
 }
@@ -36,4 +36,11 @@
 .levelup_dashboard_left_sub ul{
     list-style-type: disc;
     list-style-position: inside;
+}
+.levelup_action{
+    background: #FFEB3B;
+    padding: 2px 4px;
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: normal;
 }

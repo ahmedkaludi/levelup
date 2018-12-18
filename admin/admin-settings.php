@@ -79,13 +79,12 @@ Class LEVELUP__Admin_settings{
 		}
 		?>
 		<div class="wrap">
-			<h1><?php esc_html__('LevelUp Settings', LEVELUP_TEXT_DOMAIN); ?></h1>
 			<?php
 				//Get Current default Tab
 				$tab = $this->levelup_get_tab($this->allTabs[0]);
 			?>
 			<form action="options.php" method="post" enctype="multipart/form-data" class="levelup-settings-form">
-				<div class="setting-wrappers">
+				<div class="levelup levelup-tools-screen">
 				<?php
 				// Output nonce, action, and option_page fields for a settings page.
 				settings_fields( 'levelup_theme_setting_group' );	
@@ -111,10 +110,7 @@ Class LEVELUP__Admin_settings{
 	public function levelup_tabs_settings_init(){
 		register_setting( 'levelup_theme_setting_group', 'levelup_library_settings' );
         
-		$desciption2 = "<strong style='font-size: 13px;text-transform: uppercase'>".esc_html__('Welcome to LevelUP:',LEVELUP_TEXT_DOMAIN)."</strong> <span style='font-weight:normal; font-size: 14px;'>".esc_html__('Get Ready take your WP to the next level with the below features.',LEVELUP_TEXT_DOMAIN).
-        "   </span>    
-         <br />
-<strong style='font-size: 24px;margin-top: 50px;position: relative;display: block;line-height: 8px;'>".esc_html__('Design Library for Elementor',LEVELUP_TEXT_DOMAIN)."</strong><br/><span style='font-weight:normal;font-size: 14px;'>".esc_html__('Its a free service which requires API key to be installed so that we can deliver the design elements on constant basis.',LEVELUP_TEXT_DOMAIN);
+		$desciption2 = "<h2 class='levelup_tools_heading'>".esc_html__('Design Library',LEVELUP_TEXT_DOMAIN)."</h2> <p class='levelup_tools_desc'>".esc_html__('Design Library is a free service where we will be creating high quality designs and adding them to our cloud library. You can connect to that library with the help of API and get instant access to all of the designs and use them anywhere! We will be updating the design library on consistent basis and you will get a notification when the update is available.',LEVELUP_TEXT_DOMAIN);
 
 		add_settings_section('dashboard_menu_section', $desciption2, '__return_false', 'dashboard_menu_section');
 		
@@ -187,7 +183,7 @@ Class LEVELUP__Admin_settings{
 		}else{
 			echo '<input type="text" name="levelup_library_settings[api_key]" value="'.esc_attr(isset($settings['api_key'])? $settings['api_key']: '').'" class="regular-text">';
 		}
-		echo '<p>'.esc_html__('Enter the LevelUP API key to get unlimited design elements.  ',LEVELUP_TEXT_DOMAIN ). '<a target="_blank" href="'.esc_url(LEVELUP_SERVER_URL.'/register/').'" style="text-decoration:none;">'.esc_html__( ' Get your FREE key in 20 seconds', LEVELUP_TEXT_DOMAIN ).' <i class="dashicons dashicons-arrow-right-alt"></i></a>.</p>';
+		echo '<p>'.esc_html__('  ',LEVELUP_TEXT_DOMAIN ). '<a target="_blank" href="'.esc_url(LEVELUP_SERVER_URL.'/register/').'" style="text-decoration:none;">'.esc_html__( ' Get your FREE key in 20 seconds', LEVELUP_TEXT_DOMAIN ).' <i class="dashicons dashicons-arrow-right-alt"></i></a></p>';
 
 	}
 

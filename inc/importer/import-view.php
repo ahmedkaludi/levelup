@@ -9,21 +9,9 @@ if ( ! empty( $importerObj->import_files ) && isset( $_GET['import-mode'] ) && '
 
 ?>
 
-<div class="levelup  wrap  about-wrap">
-	<h2 class="levelup_title"><?php esc_html_e( 'One-Click Demo Importer', LEVELUP_TEXT_DOMAIN ); ?></h2>
-	
-	<div class="levelup_intro-text">
-		<p class="about-description">
-			<?php esc_html_e( 'Levelup Import data (post, pages, images, theme settings, ...) is the easiest way to setup your theme.', LEVELUP_TEXT_DOMAIN ); ?>
-			<?php esc_html_e( 'It will allow you to quickly edit everything instead of creating content from scratch.', LEVELUP_TEXT_DOMAIN ); ?>
-		</p>
-
-		<hr>
-
-		<p><?php esc_html_e( 'When you import the data, the following things might happen:', LEVELUP_TEXT_DOMAIN ); ?></p>
-
-	</div>
-
+<div class="levelup levelup_import_screen">
+	<h2 class="levelup_import_title"><?php esc_html_e( 'Design Templates', LEVELUP_TEXT_DOMAIN ); ?></h2>
+ 	<p class="levelup_import_desc"><?php esc_html_e( 'You can import the pre-built demos with just one click. To get started, Browse the gallery below and click Import.', LEVELUP_TEXT_DOMAIN ); ?></p>
 	
 	<?php if ( empty( $importerObj->import_files ) ) : ?>
 		<div class="notice  notice-info  is-dismissible">
