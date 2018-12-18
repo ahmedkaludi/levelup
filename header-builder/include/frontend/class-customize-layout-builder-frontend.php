@@ -200,7 +200,6 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 
                             // Get item output
                             $ob_render = ob_get_clean();
-                            echo $this->id;
                             if($this->id=='footer'){
                                 echo $ob_render;
                             }
