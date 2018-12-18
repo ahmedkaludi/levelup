@@ -10,7 +10,7 @@ if ( ! empty( $importerObj->import_files ) && isset( $_GET['import-mode'] ) && '
 ?>
 
 <div class="levelup  wrap  about-wrap">
-	<h2 class="levelup_title  dashicons-before  dashicons-sos"><?php esc_html_e( 'Levelup Import', LEVELUP_TEXT_DOMAIN ); ?></h2>
+	<h2 class="levelup_title"><?php esc_html_e( 'One-Click Demo Importer', LEVELUP_TEXT_DOMAIN ); ?></h2>
 	
 	<div class="levelup_intro-text">
 		<p class="about-description">

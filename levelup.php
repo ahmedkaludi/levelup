@@ -19,6 +19,8 @@ define( 'LEVELUP__DIR__PATH', __DIR__ );
 define( 'LEVELUP_TEXT_DOMAIN', 'levelup' );
 define( 'LEVELUP_ENVIRONEMT', 'development' );//production
 define( 'LEVELUP_VERSION', '0.0.1' );//development
+
+
 /**
  *
  * Load the plugin after Elementor (and other plugins) are loaded.
