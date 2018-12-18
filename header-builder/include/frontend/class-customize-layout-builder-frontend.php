@@ -609,8 +609,8 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             }
 
             echo '
-            <input type="checkbox" id="offcanvas-menu" class="toggle" />
-            <div id="header-menu-sidebar" class="menu-overlay ">';// ' . esc_attr( join( ' ', $classes ) ) . '
+            <input type="checkbox" id="offcanvas-menu" class="toggle hide-on-desktop" />
+            <div id="header-menu-sidebar" class="menu-overlay hide-on-desktop">';// ' . esc_attr( join( ' ', $classes ) ) . '
             echo '<aside class="menu-container">
                 
             ';

@@ -62,7 +62,7 @@ class MenuDesign{
     {
         $style = '';
         $container_classes = $this->id . ' ' . $this->id . '-__id__ nav-menu-__device__ ' . $this->id . '-__device__' . ($style ? ' ' . $style : '');
-        echo '<nav  id="site-navigation-__id__-__device__" class="site-navigation ' . $container_classes . '" class="nav-menu">';
+        echo '<nav  id="site-navigation-__id__-__device__" class="site-navigation  nav-menu  __device__ ' . $container_classes . '" class="nav-menu">';
         wp_nav_menu();
 
         echo '</nav>';

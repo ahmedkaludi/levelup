@@ -355,9 +355,7 @@ class header_footer_design1{
 				    z-index: 999900;
 				    visibility: hidden;
 				}
-				.menu{
-					display:none;
-				}
+				
 
 
 
