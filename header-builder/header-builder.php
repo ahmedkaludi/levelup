@@ -25,9 +25,12 @@ function HeaderFooter_Customize_Layout_Builder() {
 add_action('after_setup_theme', function(){
  add_action("levelup_head", "render_header_option_html");
  add_action("levelup_foot", "render_footer_option_html");
+ add_action( 'amp_post_template_css',  'amp_global_css' );
 
 });
-
+function amp_global_css(){
+    require_once(HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'/frontend/amp_css_global.php');
+}
 function render_footer_option_html(){
     global $levelup_foot_started;
     $levelup_foot_started = true;

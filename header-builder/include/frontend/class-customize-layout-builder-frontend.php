@@ -200,6 +200,24 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 
                             // Get item output
                             $ob_render = ob_get_clean();
+                            if( ampforwp_is_amp_endpoint() && strpos($item['id'], 'menu-icon-') === False){ 
+                                $sanitizer_obj = new AMPFORWP_Content( $ob_render,
+                                                                    array(), 
+                                                                    apply_filters( 'ampforwp_content_sanitizers', 
+                                                                        array( 'AMP_Img_Sanitizer' => array(), 
+                                                                            'AMP_Blacklist_Sanitizer' => array(),
+                                                                            'AMP_Style_Sanitizer' => array(), 
+                                                                            'AMP_Video_Sanitizer' => array(),
+                                                                            'AMP_Audio_Sanitizer' => array(),
+                                                                            'AMP_Iframe_Sanitizer' => array(
+                                                                                 'add_placeholder' => true,
+                                                                             ),
+                                                                        ) 
+                                                                    ) 
+                                                                );
+                                $ob_render = $sanitizer_obj->get_amp_content();
+                            }
+
                             if($this->id=='footer'){
                                 echo $ob_render;
                             }

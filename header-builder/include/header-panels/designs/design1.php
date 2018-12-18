@@ -463,6 +463,13 @@ class header_footer_design1{
 
 
 				';
-		return $css;
+
+		$amp_css = '';
+		$non_amp_css = '';
+
+		$allcss['global_design_css'] = $css;
+		$allcss['amp_css'] = $amp_css;
+		$allcss['non_amp_css'] = $non_amp_css;
+		return $allcss;
 	}
 }
