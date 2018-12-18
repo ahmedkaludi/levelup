@@ -44,3 +44,26 @@
     border-radius: 5px;
     font-weight: normal;
 }
+.levelup-nav{
+    height: 35px;
+}
+.levelup_options{
+    margin-top: 20px;
+    max-width: 800px;
+}
+.levelup_options h2{
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 15px;
+    margin: 0px 0 0 0;
+}
+.levelup_options_container li{
+    padding: 6px 22px;
+    width: 220px;
+    display: inline-flex;
+}
+.levelup_options_container li a{
+    text-decoration: none;
+    line-height: 19px;
+    padding-left: 4px;
+}
