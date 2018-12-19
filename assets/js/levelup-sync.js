@@ -155,4 +155,94 @@ jQuery(document).ready(function($) {
 
     });
 
+
+    /***
+     * Enable AMP support
+     *
+     **/
+    $('.button-add-support-activate').click(function(e){
+        if(pagenow == 'toplevel_page_levelup' && $(this).hasClass('levelup-activation-call-module-upgrade')){// Check for current page
+            var self = $(this);
+            var nonce = levelup_sync_object.securty_nonce;
+            self.addClass('updating-message');
+            var currentId = self.attr('id');
+            var activate = '';
+            if(currentId=='add-amp-support'){
+                activate = '&activate=amp';
+            }
+            self.text( wp.updates.l10n.installing );
+            $.ajax({
+                url: ajaxurl,
+                type: 'post',
+                data: 'action=levelup_enable_modules_upgread'+activate+'&verify_nonce='+nonce,
+                dataType: 'json',
+                success: function (response){
+                    if(response.status==200){
+                    	//To installation
+                    	wp.updates.installPlugin(
+                        {
+	                            slug: response.slug,
+	                            success: function(pluginresponse){
+	                            	//wp.updates.installPluginSuccess(pluginresponse);
+	                                levelupWPActivateModulesUpgrage(pluginresponse.activateUrl, self, response, nonce)
+								}
+							}
+						);
+                    }else{
+                        alert(response.message)
+                    }
+                    
+                }
+            })//ajaxComplete(wpActivateModulesUpgrage(response.path, self, response));
+            
+        }
+    });
+
+
+
+    var levelupWPActivateModulesUpgrage = function(url, self, response, nonce){
+	    	if (typeof url === 'undefined' || !url) {
+	            return;
+	        }
+	         self.text( 'Activating...' );
+	    	 jQuery.ajax(
+	            {
+	                async: true,
+	                type: 'GET',
+	                //data: dataString,
+	                url: url,
+	                success: function () {
+	                    self.removeClass('updating-message')
+	                    var msgplug = '';
+	                    if(self.attr('id')=='add-amp-support'){
+	                        msgplug = 'PWA';
+
+
+							self.html('<a href="'+response.redirect_url+'" style="text-decoration: none;color: #555;">Installed! - Let\'s Go to '+msgplug+' Settings</a>')
+							self.removeClass('levelup-activation-call-module-upgrade');
+	                    }
+	                },
+	                error: function (jqXHR, exception) {
+	                    var msg = '';
+	                    if (jqXHR.status === 0) {
+	                        msg = 'Not connect.\n Verify Network.';
+	                    } else if (jqXHR.status === 404) {
+	                        msg = 'Requested page not found. [404]';
+	                    } else if (jqXHR.status === 500) {
+	                        msg = 'Internal Server Error [500].';
+	                    } else if (exception === 'parsererror') {
+	                        msg = 'Requested JSON parse failed.';
+	                    } else if (exception === 'timeout') {
+	                        msg = 'Time out error.';
+	                    } else if (exception === 'abort') {
+	                        msg = 'Ajax request aborted.';
+	                    } else {
+	                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+	                    }
+	                    console.log(msg);
+	                },
+	            }
+	        );
+	    }
+
 });

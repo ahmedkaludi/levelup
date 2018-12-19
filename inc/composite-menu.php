@@ -3,6 +3,7 @@ Class levelup_menuConnector{
 	function init(){
 		add_action('admin_menu', array($this,'register_levelup_menu_page'));
 		add_action('wp_ajax_levelup_send_query_message', array($this,'levelup_send_query_message'));
+		add_action( 'wp_ajax_levelup_enable_modules_upgread', array($this,'levelup_enable_modules_upgread') );
 	}
 	//Common functions
 	private function check_update_available(){
@@ -57,12 +58,13 @@ Class levelup_menuConnector{
                     <div class="levelup_dashboard_right">
                         <h2>Start with a Template</h2>
                         <p>Save time by choosing among beautiful templates designed for different sectors and purposes.</p>
-                        <a href="#" class="button button-primary">Import a Template</a>
+                        <a href="'.esc_url(admin_url( $path = 'admin.php?page=levelup&type=template' )).'" class="button button-primary">Import a Template</a>
                     </div>
                     <div class="cb"></div>
                 </div>
                 ';
-			break;			case 'options':
+			break;			
+			case 'options':
 				echo '
 
 <div class="levelup_options postbox">
@@ -105,8 +107,12 @@ Class levelup_menuConnector{
 				$levelupAPISettings = new \LevelUPElementorThemeSettings\LEVELUP__Admin_settings();
 				$levelupAPISettings->levelup_settings();
 			break;
+
+			case 'amp_support':
+				require_once LEVELUP__FILE__PATH . 'admin/amp-support.php';
+			break;
 			case 'support':
-				require_once LEVELUP__FILE__PATH . 'inc/support.php';
+				require_once LEVELUP__FILE__PATH . 'admin/support.php';
 			break;
 		}
 	$content = ob_get_contents();
@@ -120,6 +126,7 @@ Class levelup_menuConnector{
 		            <a href="'.admin_url('admin.php?page=levelup&type=dashboard').'" class="nav-tab '.($type=='dashboard'? 'nav-tab-active': '').'">Dashboard</a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=options').'" class="nav-tab '.($type=='options'? 'nav-tab-active': '').'">Options</a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=template').'" class="nav-tab '.($type=='template'? 'nav-tab-active': '').'">Templates</a>
+		            <a href="'.admin_url('admin.php?page=levelup&type=amp_support').'" class="nav-tab '.($type=='amp_support'? 'nav-tab-active': '').'">AMP</a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=tools').'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">Tools <span class="levelup_action">Action Required</span></a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=support').'" class="nav-tab '.($type=='support'? 'nav-tab-active': '').'">Support</a>
 		        </h2>
@@ -157,6 +164,53 @@ Class levelup_menuConnector{
         }        
            wp_die();           
 	}
+
+
+	function levelup_enable_modules_upgread(){
+		if(!wp_verify_nonce( $_REQUEST['verify_nonce'], 'levelup_ajax_check_nonce' ) ) {
+	        echo json_encode(array("status"=>300,"message"=>'Request not valid'));
+	        exit();
+	    }
+	    // Exit if the user does not have proper permissions
+	    if(! current_user_can( 'install_plugins' ) ) {
+	        echo json_encode(array("status"=>300,"message"=>'User Request not valid'));
+	        exit();
+	    }
+	    $plugins = array();
+	    $redirectSettingsUrl = '';
+	    $currentActivateModule = sanitize_text_field( wp_unslash($_REQUEST['activate']));
+	    switch($currentActivateModule){
+	        case 'amp': 
+	            $nonceUrl = add_query_arg(
+	                                    array(
+	                                        'action'        => 'activate',
+	                                        'plugin'        => 'accelerated-mobile-pages',
+	                                        'plugin_status' => 'all',
+	                                        'paged'         => '1',
+	                                        '_wpnonce'      => wp_create_nonce( 'activate-plugin_accelerated-mobile-pages' ),
+	                                    ),
+	                        esc_url(network_admin_url( 'plugins.php' ))
+	                        );
+	            $plugins[] = array(
+	                            'name' => 'accelerated-mobile-pages',
+	                            'path_' => 'https://downloads.wordpress.org/plugin/accelerated-mobile-pages.zip',
+	                            'path' => $nonceUrl,
+	                            'install' => 'accelerated-mobile-pages/accelerated-moblie-pages.php',
+	                        );
+	            $redirectSettingsUrl = admin_url('admin.php?page=amp_options');
+	        break;
+	        default:
+	            $plugins = array();
+	        break;
+	    }
+	    if(count($plugins)>0){
+	       echo json_encode( array( "status"=>200, "message"=>"Module successfully Added",'redirect_url'=>esc_url($redirectSettingsUrl) , "slug"=>$plugins[0]['name'], 'path'=> $plugins[0]['path'] ) );
+	    }else{
+	        echo json_encode(array("status"=>300, "message"=>"Modules not Found"));
+	    }
+	    wp_die();
+	}
+
 
 }
 

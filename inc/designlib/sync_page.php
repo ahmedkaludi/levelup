@@ -15,10 +15,10 @@ function levelup_sync_script($hook){
     if ('toplevel_page_levelup' != $hook) {
         return;
     }
-	wp_register_style( 'levelup_admin_style', LEVELUP__FILE__URI .  'assets/css/admin.css' );
+	wp_register_style( 'levelup_admin_style', LEVELUP__FILE__URI .  'assets/css/admin.css', array(), LEVELUP_VERSION );
 	wp_enqueue_style( 'levelup_admin_style' );
 
-    wp_register_script('levelup_sync_script', LEVELUP__FILE__URI . '/assets/js/levelup-sync.js', [ 'jquery' ], false, true );
+    wp_register_script('levelup_sync_script', LEVELUP__FILE__URI . '/assets/js/levelup-sync.js', [ 'jquery',  'updates' ], LEVELUP_VERSION, true );
 
     wp_localize_script( 'levelup_sync_script', 'levelup_sync_object',
                 array( 'ajax_url' => admin_url( 'admin-ajax.php' ),

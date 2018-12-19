@@ -21,5 +21,13 @@ function levelup_import_set_frontPage($post_id, $original_id, $postdata, $data){
 	if($post_id){
 		update_option( 'page_on_front', $post_id );
 		update_option( 'show_on_front', 'page' );
+
+
+		//AMP 
+		global $redux_builder_amp;
+		$redux_builder_amp = get_option('redux_builder_amp');
+		$redux_builder_amp['amp-frontpage-select-option'] = 1;
+		$redux_builder_amp['amp-frontpage-select-option-pages'] = $post_id;
+		update_option( 'redux_builder_amp', $redux_builder_amp );
 	}
 }
