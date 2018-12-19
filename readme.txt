@@ -16,8 +16,15 @@ LevelUP's core feature is the design library, it's fully plug and play. If you w
 
 We do not track any of your data, we just deliver the design elements through API. If you don't wish to connect then you can still use the plugin but it will only give you access to the pre-built 10 designs. If you have doubts about the data or privacy then you can check our [terms](http://levelup.magazine3.company/terms/) or directly contact us on [team@magazine3.com](mailto:team@magazine3.com).
 
-= Features: =
+== Credits ==
+* Font Awesome 4.7.0 ( http://fontawesome.io/license/ Font: SIL OFL 1.1, CSS: MIT License )
+* Lightslider v1.1.3 ( https://github.com/sachinchoolur/lightslider - Copyright (c) 2015 Sachin N; Licensed MIT )
+* Some code used in this plugin was forked from Customify https://bit.ly/2SdCWxT | License: GPLv2 or later & License URI: http://www.gnu.org/licenses/gpl-2.0.html )
+* Modernizr 2.7.1 (Custom Build) | MIT & BSD | Build: http://modernizr.com/download/ 
+* Code forked from One Click Demo Import 2.5.1 ( https://github.com/proteusthemes/one-click-demo-import | Under Licensed GPL3 https://www.gnu.org/licenses/gpl-3.0.en.html )
+ 
 
+= Features: =
 * Design Library 
 * New Design Elements added every week.
 * AMP: First plugin to build AMP compatibility on Elementor (or any other pagebuilder for that matter). Our Elementor widgets works perfectly on AMP as well as non-amp version.

@@ -6,7 +6,6 @@ $predefined_themes = $importerObj->import_files;
 if ( ! empty( $importerObj->import_files ) && isset( $_GET['import-mode'] ) && 'manual' === $_GET['import-mode'] ) {
 	$predefined_themes = array();
 }
-
 ?>
 
 <div class="levelup levelup_import_screen">
