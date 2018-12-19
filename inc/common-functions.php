@@ -98,6 +98,9 @@ function fonts(){
 //add_action('wp_head', 'levelup_nonamp_design_styling', 100);
 add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
 function levelup_amp_design_styling(){
+	if(!if_levelup_has_builder()){
+		return false;
+	}
 	$allCss = '/** Levelup CSS **/
 @media (min-width: 768px){
   .elementor-column.elementor-col-10, .elementor-column[data-col="10"] {
@@ -204,7 +207,11 @@ function levelup_nonamp_design_styling()
 	echo "<style type='text/css'>".levelup_minify_css($allCss)."</style>";
 	
 }
-
+/**
+ * CSS beautifier
+ * @ $buffer All CSS content to be sanitize
+ * @ $is_amp If AMP Enabled than minify the names of classes
+ */
 function levelup_minify_css($buffer, $is_amp=false){
 	// Remove comments
 	$buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $buffer);
@@ -215,7 +222,10 @@ function levelup_minify_css($buffer, $is_amp=false){
 	if($is_amp){ $buffer = levelup_minify_amp_name_css($buffer); }
 	return $buffer; 
 }
-
+/**
+ * CSS beautifier
+ * @ $buffer Minify the names of classes
+ */
 function levelup_minify_amp_name_css($buffer){
 	$buffer = str_replace(array(".elementor-element", ".elementor"), array(".e",".el"), $buffer);
 	return $buffer;
@@ -318,4 +328,37 @@ function levelup_child_designing_custom_template($file, $type, $post){
 	 
 	 
 	return $file;
+}
+
+
+
+/***********
+**
+** Common function API
+**
+************/
+/**
+ * @return true if levelup theme activated
+ */
+if(!function_exists('if_is_levelup')){
+	function if_is_levelup(){
+		$theme = wp_get_theme();
+		if ( 'Level UP' == $theme->name) {
+			 return true;
+		}
+		return false;
+	}
+}
+/**
+ * @return true if ELEMENTOR Builder Enabled
+ */
+if(!function_exists('if_levelup_has_builder'))  {
+	
+	function if_levelup_has_builder(){
+		global $post;
+		if(is_object($post) && get_post_meta( $post->ID, '_elementor_edit_mode', false ) ){
+			return true;
+		}
+		return false; 
+	}
 }
