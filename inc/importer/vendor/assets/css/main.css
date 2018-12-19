@@ -8,10 +8,6 @@
 	text-align: inherit;
 }
 
-.levelup h2:first-child,
-.levelup h3:first-child {
-	margin-top: 0;
-}
 
 .levelup hr {
 	margin: 2.62em 0;

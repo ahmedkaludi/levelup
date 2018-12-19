@@ -1,6 +1,7 @@
 <style type="text/css">.levelup-query-success{color: #006600;}.levelup-query-error{color: #bf3322;}.levelup_hide{display: none;}</style>
 <div class="levelup_support_div">
-    <strong><?php echo esc_html__('If you have any query, please write the query in below box or email us at', LEVELUP_TEXT_DOMAIN) ?> <a href="mailto:team@magazine3.com">team@magazine3.com</a>. <?php echo esc_html__('We will reply to your email address shortly', LEVELUP_TEXT_DOMAIN) ?></strong>
+    <h2>Passionate Developers are here to serve you!</h2>
+    <p><?php echo esc_html__('If you have any query, please write the query in below box or email us at', LEVELUP_TEXT_DOMAIN) ?> <a href="mailto:team@magazine3.com">team@magazine3.com</a>. <?php echo esc_html__('We will reply to your email address shortly', LEVELUP_TEXT_DOMAIN) ?></p>
 
     <ul>
         <li>

@@ -45,7 +45,6 @@ Class levelup_menuConnector{
                 <div class="levelup_dashboard">
                     <div class="levelup_dashboard_left">
                         <h2>Learn</h2>
-                        <p>Get started:</p>
                         <iframe width="400" height="225" src="https://www.youtube.com/embed/fnlzOHECEDo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <h4>Learn deeper:</h4>
                         <div class="levelup_dashboard_left_sub">
@@ -63,6 +62,41 @@ Class levelup_menuConnector{
                     <div class="cb"></div>
                 </div>
                 ';
+			break;			case 'options':
+				echo '
+
+<div class="levelup_options postbox">
+    <h2 class="hndle">Links to Customizer Settings</h2>
+    <div class="levelup_options_container">
+        <ul>
+            <li>
+                <span class="dashicons dashicons-format-image"></span>
+                <a href="#">Upload Logo</a>
+            </li>
+            <li>
+                <span class="dashicons dashicons-format-image"></span>
+                <a href="#">Header Builder</a>
+            </li>
+            <li>
+                <span class="dashicons dashicons-format-image"></span>
+                <a href="#">Footer Builder</a>
+            </li>
+            <li>
+                <span class="dashicons dashicons-format-image"></span>
+                <a href="#">Upload Logo</a>
+            </li>
+            <li>
+                <span class="dashicons dashicons-format-image"></span>
+                <a href="#">Upload Logo</a>
+            </li>
+            <li>
+                <span class="dashicons dashicons-format-image"></span>
+                <a href="#">Upload Logo</a>
+            </li>
+        </ul>
+    </div>
+</div>
+';
 			break;
 			case 'template':
 				require_once LEVELUP__FILE__PATH . 'inc/importer/import-view.php';
@@ -82,10 +116,11 @@ Class levelup_menuConnector{
                 <h2 class="levelup_option_header">LevelUP<span>1.1</span></h2> 
 				'. settings_errors().'
 
-				<h2 class="nav-tab-wrapper"> 
+				<h2 class="levelup-nav nav-tab-wrapper"> 
 		            <a href="'.admin_url('admin.php?page=levelup&type=dashboard').'" class="nav-tab '.($type=='dashboard'? 'nav-tab-active': '').'">Dashboard</a>
+		            <a href="'.admin_url('admin.php?page=levelup&type=options').'" class="nav-tab '.($type=='options'? 'nav-tab-active': '').'">Options</a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=template').'" class="nav-tab '.($type=='template'? 'nav-tab-active': '').'">Templates</a>
-		            <a href="'.admin_url('admin.php?page=levelup&type=tools').'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">Tools</a>
+		            <a href="'.admin_url('admin.php?page=levelup&type=tools').'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">Tools <span class="levelup_action">Action Required</span></a>
 		            <a href="'.admin_url('admin.php?page=levelup&type=support').'" class="nav-tab '.($type=='support'? 'nav-tab-active': '').'">Support</a>
 		        </h2>
 		         
