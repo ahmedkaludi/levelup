@@ -205,7 +205,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                                                                     array(), 
                                                                     apply_filters( 'ampforwp_content_sanitizers', 
                                                                         array( 'AMP_Img_Sanitizer' => array(), 
-                                                                            'AMP_Blacklist_Sanitizer' => array(),
+                                                                            //'AMP_Blacklist_Sanitizer' => array(),
                                                                             'AMP_Style_Sanitizer' => array(), 
                                                                             'AMP_Video_Sanitizer' => array(),
                                                                             'AMP_Audio_Sanitizer' => array(),
@@ -644,7 +644,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             }
 
             echo '
-            <input type="checkbox" id="offcanvas-menu" class="toggle hide-on-desktop" />
+            <input type="checkbox" id="offcanvas-menu" class="toggle tgl hide-on-desktop" />
             <div id="header-menu-sidebar" class="menu-overlay hide-on-desktop">';// ' . esc_attr( join( ' ', $classes ) ) . '
             echo '<aside class="menu-container">
                 
