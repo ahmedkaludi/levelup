@@ -28,7 +28,10 @@
 .fa-facebook:before {
   content: "\f09a";
 }
-.fa-google-plus:before {
+.fa-instagram:before {
+    content: "\f16d";
+}
+.fa-googleplus:before {
   content: "\f0d5";
 }
 .fa-search:before {

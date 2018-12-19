@@ -128,6 +128,27 @@ class header_footer_design1{
 				    transition-duration: 0.3s;
 				    transition-timing-function: ease-out;
 				}
+				.cb-row--desktop .hd1-menu input{
+					display:none;
+				}
+				.cb-row--desktop .hd1-menu .toggle:after {
+				    content: "\f107";
+				    color:#333;
+				    font-family: "FontAwesome";
+				    display: inline-block;
+				    float:right;
+				    padding: 0px 8px;
+				    font-size: 20px;
+				    line-height:1;
+				    transform: rotate(270deg);
+				    cursor: pointer;
+				    transition:all 0.3s ease-in-out 0s;
+				    position:relative;
+				    top:2px;
+				}
+				.cb-row--desktop .hd1-menu .menu-item-has-children:hover .toggle:after {
+					transform: rotate(360deg);
+				}
 				.nav-menu.desktop ul li a:hover:before, .nav-menu.desktop ul li a:focus:before, .nav-menu.desktop ul li a:active:before, .nav-menu ul li.active a:before {
 				    right: 0;
 				}
@@ -431,7 +452,7 @@ class header_footer_design1{
 		margin:0;
 	}
 	.mobile .hd1-menu{
-		margin:0;
+		margin:20px 0px 0px 0px;
 		padding:0;
 	}
 	.mobile .hd1-menu li{
@@ -460,6 +481,7 @@ class header_footer_design1{
 	}
 	.mobile .hd1-menu li.menu-item-has-children ul {
 	    display: none;
+	    transition:all 0.3s ease-in-out 0s;
 	}
 	.mobile .hd1-menu [id^=drop]:checked + label + ul {
 	    display: block;
@@ -478,6 +500,7 @@ class header_footer_design1{
 	    line-height:1;
 	    transform: rotate(360deg);
 	    cursor: pointer;
+	    transition:all 0.3s ease-in-out 0s;
 	}
 	.mobile .hd1-menu [id^=drop]:checked + .toggle:after {
 	    transform: rotate(180deg);
