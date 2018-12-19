@@ -685,6 +685,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             }
            
             echo '</aside>';
+            echo '<label for="offcanvas-menu" class="full-screen-close"></label>';
             echo '</div>';
             echo '</div>';
             echo '</div>';

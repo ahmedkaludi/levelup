@@ -291,7 +291,7 @@ class header_footer_design1{
 				/** Hamberger Menu CSS **/
 				.headerfooter-site-header{
 					position:relative;
-					z-index:99;
+					z-index:0;
 				}
 				.cb-row--mobile{margin:0;}
 				.cb-row--mobile .logo-header .logo{
@@ -395,11 +395,12 @@ class header_footer_design1{
 	.toggle:checked + .menu-overlay > .menu-container {
 	  	margin-left: 0;
 	}
-	.toggle:checked + .content .full-screen-close{
+	.toggle:checked + .menu-overlay .full-screen-close{
 	  	display: block;
 	  	background: rgba(0,0,0,.5);
-	  	 z-index: 9;
+	  	z-index:99;
 	}
+
 	.toggle-btn, .close-btn{
 		cursor: pointer;
 	}
