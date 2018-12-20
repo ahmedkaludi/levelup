@@ -4,9 +4,9 @@ use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
- * Elementor Category widget
+ * Elementor Logo widget
  *
- * Elementor widget for Category widget.
+ * Elementor widget for Logo widget.
  *
  * @since 1.0.0
  */
