@@ -3,17 +3,12 @@ namespace LevelUPElementorThemeSettings;
 Class LEVELUP__Admin_settings{
 	const PAGE_ID = 'elementor';
 	const MENU_PRIORITY_AMP_THEMES = 503;
-	public $allTabs = array('dashboard','help');
+	public $allTabs = array('dashboard');
 	public $tabsdata = array(
 				'dashboard'	=> array(
 									'label_name'	=>	'dashboard',
 									'icon_class'	=> 	'dashicons-dashboard',
 									'section_slug'	=>	'dashboard_menu_section',
-								),
-								'help'		=>	array(
-									'label_name'	=> 'Help',
-									'icon_class'	=> 'dashicons-editor-help',
-									'section_slug'	=>'help_menu_section',
 								),
 						);
 	function __construct(){
@@ -133,14 +128,6 @@ Class LEVELUP__Admin_settings{
 				'dashboard_menu_section'							// Settings Section ID
 			);
 		}
-		
-		$desciption = "<strong>".esc_html__('Need Support',LEVELUP_TEXT_DOMAIN)."?</strong>: <span style='font-weight:normal'>".esc_html__('Our world class technical team is always available to help you with your issues',LEVELUP_TEXT_DOMAIN).". <a class='link' href='mailto:team@magazine3.com' target='_blank' style='font-weight:bold;display:inline-block'>".esc_html__('Just send us an email',LEVELUP_TEXT_DOMAIN)."</a></span>.";
-
-		add_settings_section('help_menu_section',
-								 $desciption, 
-								 '__return_false',
-								 'help_menu_section'
-								);
 		
 
 	}
