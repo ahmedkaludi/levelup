@@ -9,7 +9,7 @@
  */
 
 namespace LUIMPORT;
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 class WidgetImporter {
 	/**
 	 * Import widgets from WIE or JSON file.

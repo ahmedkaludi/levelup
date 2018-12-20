@@ -6,7 +6,7 @@
  */
 
 namespace LUIMPORT;
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 class Downloader {
 	/**
 	 * Holds full path to where the files will be saved.

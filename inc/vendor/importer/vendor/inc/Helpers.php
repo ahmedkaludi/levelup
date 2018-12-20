@@ -6,7 +6,7 @@
  */
 
 namespace LUIMPORT;
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 /**
  * Class with static helper functions.
  */

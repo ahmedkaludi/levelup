@@ -6,7 +6,7 @@
  */
 
 namespace LUIMPORT;
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 class Logger extends \ProteusThemes\WPContentImporter2\WPImporterLoggerCLI {
 	/**
 	 * Variable for front-end error display.

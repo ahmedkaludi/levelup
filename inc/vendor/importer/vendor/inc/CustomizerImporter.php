@@ -9,6 +9,7 @@
  */
 
 namespace LUIMPORT;
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 class CustomizerImporter {
 	/**

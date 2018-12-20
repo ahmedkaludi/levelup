@@ -6,7 +6,7 @@
  */
 
 namespace LUIMPORT;
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 class Importer {
 	/**
 	 * The importer class object used for importing content.

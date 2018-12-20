@@ -6,7 +6,7 @@
  */
 
 namespace LUIMPORT;
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 use WP_CLI;
 
 class WPCLICommands extends \WP_CLI_Command {

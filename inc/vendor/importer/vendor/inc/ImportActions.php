@@ -7,7 +7,7 @@
  */
 
 namespace LUIMPORT;
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 class ImportActions {
 	/**
 	 * Register all action hooks for this class.

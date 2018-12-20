@@ -1,5 +1,8 @@
 <?php
 namespace LUIMPORT;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 $importerObj = OneClickDemoImport::get_instance();
 $predefined_themes = $importerObj->import_files;
 

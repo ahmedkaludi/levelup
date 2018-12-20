@@ -8,7 +8,7 @@
  */
 
 namespace LUIMPORT;
-
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 class WXRImporter extends \ProteusThemes\WPContentImporter2\WXRImporter {
 	/**
 	 * Constructor method.
