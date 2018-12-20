@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 <style type="text/css">.levelup-query-success{color: #006600;}.levelup-query-error{color: #bf3322;}.levelup_hide{display: none;}</style>
 <div class="levelup_support_div">
     <h2>Passionate Developers are here to serve you!</h2>

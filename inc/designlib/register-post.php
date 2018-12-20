@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class LevelupDesign{
 	public function __construct(){
 		add_action('init',array($this, 'registerPostType'));

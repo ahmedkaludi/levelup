@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 Class levelup_menuConnector{
 	function init(){
 		add_action('admin_menu', array($this,'register_levelup_menu_page'));

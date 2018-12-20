@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( class_exists( 'WP_Customize_Panel' ) ) {
 
   class HFBuilder_WP_Customize_Panel extends \WP_Customize_Panel {

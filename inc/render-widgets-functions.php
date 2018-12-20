@@ -1,5 +1,6 @@
 <?php
 namespace LevelupDesign;
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 function render($settings, $returnWithSettings = false){
 	$selected_design = $settings['layoutDesignSelected'];

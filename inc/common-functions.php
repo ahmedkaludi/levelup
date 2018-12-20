@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if(!function_exists('levelup_getDesignListByCategory')){
 	function levelup_getDesignListByCategory($categoryslug){
 		$taxonomy = levelup_basics_config('taxonomy');

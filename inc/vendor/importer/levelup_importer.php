@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 require_once LEVELUP__FILE__PATH.'inc/vendor/importer/vendor/vendor_importer.php';
 add_filter( 'levelup_import/import_files', 'demo_designs_import_files'  );
 

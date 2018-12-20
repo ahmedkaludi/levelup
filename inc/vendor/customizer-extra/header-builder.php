@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 define('HEADER_FOOTER_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
 define('HEADER_FOOTER_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('HEADER_FOOTER_PLUGIN_PATH_INCLUDE', HEADER_FOOTER_PLUGIN_PATH.'/include/');

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     function header_panel_get_settings(){
      $value = get_theme_mod('header_panel_settings');
      return  $value;

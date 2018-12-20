@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     class Levelup_Aq_Exception extends Exception {}
 
     class Levelup_Aq_Resize

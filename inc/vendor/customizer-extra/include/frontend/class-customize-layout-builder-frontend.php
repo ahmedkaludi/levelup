@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class HeaderFooter_Customize_Layout_Builder_Frontend {
     static $_instance;
     private $control_id = 'header_panel_settings';

@@ -1,5 +1,6 @@
 <?php
 namespace LevelUPElementorThemeSettings;	
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 Class LEVELUP__Admin_settings{
 	const PAGE_ID = 'elementor';
 	const MENU_PRIORITY_AMP_THEMES = 503;

@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly?>
 <script id="tmpl-levelup-library-templates" type="text/html">
   <!-- Modal content -->
   <div class="modal-content">

@@ -1,6 +1,6 @@
 <?php
 namespace HeaderBuilder;
-
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 Class HeaderBuild{
 	static $instance;
 	static function get_instance()
