@@ -101,7 +101,7 @@ Class levelup_menuConnector{
 ';
 			break;
 			case 'template':
-				require_once LEVELUP__FILE__PATH . 'inc/importer/import-view.php';
+				require_once LEVELUP__FILE__PATH . '/inc/vendor/importer/import-view.php';
 			break;
 			case 'tools':
 				$levelupAPISettings = new \LevelUPElementorThemeSettings\LEVELUP__Admin_settings();
