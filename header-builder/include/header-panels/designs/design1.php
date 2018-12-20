@@ -86,7 +86,7 @@ class header_footer_design1{
 					width:100%;
 					padding: 38px 0px;
 				}
-				.site-content{position:relative;z-index:-1;}
+				
 				.nav-menu.desktop ul li{
 					list-style-type: none;
 					display: inline-block;
