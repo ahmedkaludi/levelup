@@ -313,7 +313,7 @@ class header_footer_design1{
 				/** Hamberger Menu CSS **/
 				.headerfooter-site-header{
 					position:relative;
-					z-index:0;
+					z-index:1;
 				}
 				.cb-row--mobile{margin:0;}
 				.cb-row--mobile .logo-header .logo{
