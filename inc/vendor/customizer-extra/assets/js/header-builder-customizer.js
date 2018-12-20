@@ -50,12 +50,12 @@
 	            drag_drop: function(){
 	                var that = this;
 
-	                $( '.customify--device-panel', that.container ).each( function(){
+	                $( '.levelup--device-panel', that.container ).each( function(){
 	                    var panel = $( this );
 	                    var device = panel.data( 'device' );
 	                    var sortable_ids= [];
 	                    that.panels[ device ] = {};
-	                    $( '.customify--cb-items', panel ).each( function( index ){
+	                    $( '.levelup--cb-items', panel ).each( function( index ){
 	                        var data_name = $( this ).attr( 'data-id' ) || '';
 	                        var id;
 	                        if ( ! data_name ) {
@@ -91,17 +91,17 @@
 	                    var sidebar = $( '#_sid_mobile-sidebar', panel );
 	                    var sidebar_id = sidebar.attr( 'id' ) || false;
 
-	                    $( '.customify-available-items .grid-stack-item', panel ).draggable({
+	                    $( '.levelup-available-items .grid-stack-item', panel ).draggable({
 	                        revert: 'invalid',
 	                        connectToSortable: ( sidebar_id ) ? '#'+sidebar_id : false,
 	                        start: function( event, ui ){
 	                            $( 'body' ).addClass( 'builder-item-moving' );
-	                            $( '.customify--cb-items', panel ).css( 'z-index', '' );
+	                            $( '.levelup--cb-items', panel ).css( 'z-index', '' );
 	                            ui.helper.parent().css( 'z-index', 9999 );
 	                        },
 	                        stop: function(  event, ui ){
 	                            $( 'body' ).removeClass( 'builder-item-moving' );
-	                            $( '.customify--cb-items', panel ).css( 'z-index', '' );
+	                            $( '.levelup--cb-items', panel ).css( 'z-index', '' );
 	                            ui.helper.parent().css( 'z-index', '' );
 	                        }
 
@@ -123,7 +123,7 @@
 	                    }
 
 
-	                    $( '.customify-available-items .grid-stack-item', panel ).resizable({
+	                    $( '.levelup-available-items .grid-stack-item', panel ).resizable({
 	                        handles: 'w, e',
 	                        stop: function( event, ui ){
 	                            that.setGridWidth( ui.element.parent(), ui );
@@ -1281,10 +1281,10 @@
 	            addNewWidget: function ( $item, row ) {
 
 	                var that = this;
-	                var panel = that.container.find('.customify--device-panel.customify--panel-'+that.activePanel );
+	                var panel = that.container.find('.levelup--device-panel.levelup--panel-'+that.activePanel );
 	                var el = row;
 	                if ( ! _.isObject( el ) ) {
-	                    el =  panel.find( '.customify--cb-items' ).first();
+	                    el =  panel.find( '.levelup--cb-items' ).first();
 	                }
 
 	                var elItem = $item;
@@ -1296,12 +1296,12 @@
 	                    handle: '.grid-stack-item-content',
 	                    start: function( event, ui ){
 	                        $( 'body' ).addClass( 'builder-item-moving' );
-	                        $( '.customify--cb-items', panel ).css( 'z-index', '' );
+	                        $( '.levelup--cb-items', panel ).css( 'z-index', '' );
 	                        ui.helper.parent().css( 'z-index', 9999 );
 	                    },
 	                    stop: function(  event, ui ){
 	                        $( 'body' ).removeClass( 'builder-item-moving' );
-	                        $( '.customify--cb-items', panel ).css( 'z-index', '' );
+	                        $( '.levelup--cb-items', panel ).css( 'z-index', '' );
 	                        that.save();
 	                    },
 	                    drag: function( event, ui ){
@@ -1327,7 +1327,7 @@
 	            addPanel: function( device ){
 	                var that = this;
 	                var template = that.getTemplate();
-	                var template_id =  'tmpl-customify--cb-panel';
+	                var template_id =  'tmpl-levelup--cb-panel';
 	                if (  $( '#'+template_id ).length == 0 ) {
 	                    return ;
 	                }
@@ -1339,25 +1339,25 @@
 	                        id: options.id,
 	                        rows: options.rows
 	                    }, template_id );
-	                return '<div class="customify--device-panel customify-vertical-panel customify--panel-'+device+'" data-device="'+device+'">'+html+'</div>';
+	                return '<div class="levelup--device-panel levelup-vertical-panel levelup--panel-'+device+'" data-device="'+device+'">'+html+'</div>';
 	            },
 	            addDevicePanels: function(){
 	                var that = this;
 	                _.each( that.devices, function( device_name, device ) {
 	                    var panelHTML = that.addPanel( device );
-	                    $( '.customify--cb-devices-switcher', that.container ).append( '<a href="#" class="switch-to switch-to-'+device+'" data-device="'+device+'">'+device_name+'</a>' );
-	                    $( '.customify--cb-body', that.container ).append( panelHTML );
+	                    $( '.levelup--cb-devices-switcher', that.container ).append( '<a href="#" class="switch-to switch-to-'+device+'" data-device="'+device+'">'+device_name+'</a>' );
+	                    $( '.levelup--cb-body', that.container ).append( panelHTML );
 	                } );
 
-	                if ( $( '#customify-upsell-tmpl' ).length ) {
-	                    $( $( '#customify-upsell-tmpl' ).html() ).insertAfter(  $( '.customify--cb-devices-switcher', that.container ) );
+	                if ( $( '#levelup-upsell-tmpl' ).length ) {
+	                    $( $( '#levelup-upsell-tmpl' ).html() ).insertAfter(  $( '.levelup--cb-devices-switcher', that.container ) );
 	                }
 
 	            },
 	            addItem: function( node ){
 	                var that = this;
 	                var template = that.getTemplate();
-	                var template_id =  'tmpl-customify--cb-item';
+	                var template_id =  'tmpl-levelup--cb-item';
 	                if (  $( '#'+template_id ).length == 0 ) {
 	                    return ;
 	                }
@@ -1368,8 +1368,8 @@
 	                var that = this;
 
 	                _.each( that.devices, function(device_name, device ){
-	                    var $itemWrapper = $( '<div class="customify-available-items" data-device="'+device+'"></div>' );
-	                    $( '.customify--panel-'+device, that.container ).append( $itemWrapper );
+	                    var $itemWrapper = $( '<div class="levelup-available-items" data-device="'+device+'"></div>' );
+	                    $( '.levelup--panel-'+device, that.container ).append( $itemWrapper );
 
 
 	                    _.each( that.items, function( node ) {
@@ -1404,13 +1404,13 @@
 	                var that = this;
 	                var numberDevices = _.size( that.devices );
 	                if( numberDevices > 1 ) {
-	                    $('.customify--cb-devices-switcher a', that.container).removeClass('customify--tab-active');
-	                    $('.customify--cb-devices-switcher .switch-to-' + device, that.container).addClass('customify--tab-active');
-	                    $('.customify--device-panel', that.container).addClass('customify--panel-hide');
-	                    $('.customify--device-panel.customify--panel-' + device, that.container).removeClass('customify--panel-hide');
+	                    $('.levelup--cb-devices-switcher a', that.container).removeClass('levelup--tab-active');
+	                    $('.levelup--cb-devices-switcher .switch-to-' + device, that.container).addClass('levelup--tab-active');
+	                    $('.levelup--device-panel', that.container).addClass('levelup--panel-hide');
+	                    $('.levelup--device-panel.levelup--panel-' + device, that.container).removeClass('levelup--panel-hide');
 	                    that.activePanel = device;
 	                } else {
-	                    $('.customify--cb-devices-switcher a', that.container).addClass('customify--tab-active');
+	                    $('.levelup--cb-devices-switcher a', that.container).addClass('levelup--tab-active');
 	                }
 
 	                if ( _.isUndefined( toggle_button ) || toggle_button ) {
@@ -1442,7 +1442,7 @@
 	                    _.each( device_data, function( items, row_id ) {
 	                        if( ! _.isUndefined( items ) ) {
 	                            _.each( items, function (node, index) {
-	                                var item = $('.customify-available-items[data-device="' + device + '"] .grid-stack-item[data-id="' + node.id + '"]').first();
+	                                var item = $('.levelup-available-items[data-device="' + device + '"] .grid-stack-item[data-id="' + node.id + '"]').first();
 	                                item.attr('data-gs-width', node.width);
 	                                item.attr('data-gs-x', node.x);
 	                                item.removeClass( 'item-from-list' );
@@ -1455,7 +1455,7 @@
 	                that.ready = true;
 	            },
 	            focus: function(){
-	                this.container.on( 'click', '.customify--cb-item-setting, .customify--cb-item-name, .item-tooltip', function( e ) {
+	                this.container.on( 'click', '.levelup--cb-item-setting, .levelup--cb-item-name, .item-tooltip', function( e ) {
 	                    e.preventDefault();
 	                    var section = $( this ).data( 'section' ) || '';
 	                    //console.log( 'Clicked section' , section );
@@ -1476,7 +1476,7 @@
 	                } );
 
 	                // Focus rows
-	                this.container.on( 'click', '.customify--cb-row-settings', function( e ){
+	                this.container.on( 'click', '.levelup--cb-row-settings', function( e ){
 	                    e.preventDefault();
 	                    var id = $( this ).attr( 'data-id' ) || '';
 	                    var section = id + '' + options.id;
@@ -1490,14 +1490,14 @@
 	            },
 	            remove: function(){
 	                var that = this;
-	                $document.on( 'click', '.customify--device-panel .customify--cb-item-remove', function ( e ) {
+	                $document.on( 'click', '.levelup--device-panel .levelup--cb-item-remove', function ( e ) {
 	                    e.preventDefault();
 	                    var item = $( this ).closest('.grid-stack-item');
-	                    var panel = item.closest( '.customify--device-panel' );
+	                    var panel = item.closest( '.levelup--device-panel' );
 	                    item.attr( 'data-gs-width', 1 );
 	                    item.attr( 'data-gs-x', 0 );
 	                    item.removeAttr( 'style' );
-	                    $( '.customify-available-items', panel ).append( item );
+	                    $( '.levelup-available-items', panel ).append( item );
 	                    that.updateAllGrids();
 	                    that.save();
 	                } );
@@ -1548,14 +1548,14 @@
 	            },
 	            showPanel: function(){
 	                var that = this;
-	                this.container.removeClass('customify--builder--hide').addClass( 'customify--builder-show' );
+	                this.container.removeClass('levelup--builder--hide').addClass( 'levelup--builder-show' );
 	                setTimeout( function(){
 	                    var h = that.container.height();
 	                    $( '#customize-preview' ).addClass( 'cb--preview-panel-show' ).css( { 'bottom': h-1, 'margin-top' : '0px' } );
 	                }, 100 );
 	            },
 	            hidePanel: function(){
-	                this.container.removeClass( 'customify--builder-show' );
+	                this.container.removeClass( 'levelup--builder-show' );
 	                $( '#customize-preview' ).removeClass( 'cb--preview-panel-show' ).removeAttr('style');
 	            },
 	            togglePanel: function(){
@@ -1571,10 +1571,10 @@
 	                    }
 	                });
 
-	                that.container.on( 'click', '.customify--panel-close', function(e){
+	                that.container.on( 'click', '.levelup--panel-close', function(e){
 	                    e.preventDefault();
-	                    that.container.toggleClass( 'customify--builder--hide' );
-	                    if( that.container.hasClass('customify--builder--hide') ) {
+	                    that.container.toggleClass( 'levelup--builder--hide' );
+	                    if( that.container.hasClass('levelup--builder--hide') ) {
 	                        $( '#customize-preview' ).removeClass( 'cb--preview-panel-show' );
 	                    } else {
 	                        $( '#customize-preview' ).addClass( 'cb--preview-panel-show' );
@@ -1589,9 +1589,9 @@
 	                    sidebarWidth = 0;
 	                }
 	                if ( is_rtl ) {
-	                    this.container.find( '.customify--cb-inner' ).css( {'margin-right': sidebarWidth } );
+	                    this.container.find( '.levelup--cb-inner' ).css( {'margin-right': sidebarWidth } );
 	                } else {
-	                    this.container.find( '.customify--cb-inner' ).css( {'margin-left': sidebarWidth } );
+	                    this.container.find( '.levelup--cb-inner' ).css( {'margin-left': sidebarWidth } );
 	                }
 
 	            },
@@ -1655,13 +1655,13 @@
 	                }, 100 )  );
 
 	                // Switch panel
-	                that.container.on( 'click', '.customify--cb-devices-switcher a.switch-to', function(e){
+	                that.container.on( 'click', '.levelup--cb-devices-switcher a.switch-to', function(e){
 	                    e.preventDefault();
 	                    var device = $( this ).data('device');
 	                    that.switchToDevice( device );
 	                } );
 
-	                that.container.on( 'click', '.customify--cb-actions a.set-default-design', function(e){
+	                that.container.on( 'click', '.levelup--cb-actions a.set-default-design', function(e){
 	                    e.preventDefault();
 	                    var designId = $( this ).attr('data-id').replace('_templates', '');
 	                    designId = "config-settings-"+designId;
@@ -1704,11 +1704,11 @@
         } );
 
         wpcustomize.state( 'expandedSection' ).bind( function( section ) {
-            $( '.customify--device-panel .grid-stack-item' ).removeClass( 'item-active' );
-            $( '.customify--cb-row' ).removeClass('row-active');
+            $( '.levelup--device-panel .grid-stack-item' ).removeClass( 'item-active' );
+            $( '.levelup--cb-row' ).removeClass('row-active');
             if ( section ) {
-                $( '.customify--cb-row[data-id="'+section.id+'"]' ).addClass('row-active');
-                $( '.customify--device-panel .grid-stack-item.for-s-'+section.id ).addClass( 'item-active' );
+                $( '.levelup--cb-row[data-id="'+section.id+'"]' ).addClass('row-active');
+                $( '.levelup--device-panel .grid-stack-item.for-s-'+section.id ).addClass( 'item-active' );
             }
         });
 	});
@@ -1856,8 +1856,8 @@ Customizer
         } );
 
         function setupPreviewNamePosition(){
-            $( '.customify-grid .has_menu.builder-item-focus' ).each( function(){
-                var parentPos = $( this ).closest('.customify-grid').offset();
+            $( '.levelup-grid .has_menu.builder-item-focus' ).each( function(){
+                var parentPos = $( this ).closest('.levelup-grid').offset();
                 var childPos = $( this ).offset();
                 var h = $( this ).innerHeight();
                 var top =  childPos.top - parentPos.top;

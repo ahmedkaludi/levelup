@@ -192,69 +192,69 @@ Class HeaderBuild{
 	function builder_template() {
 		?>
         <script type="text/html" id="template-headerfooter--builder-panel">
-            <div class="customify--customize-builder">
-                <div class="customify--cb-inner">
-                    <div class="customify--cb-header">
-                        <div class="customify--cb-devices-switcher">
+            <div class="levelup--customize-builder">
+                <div class="levelup--cb-inner">
+                    <div class="levelup--cb-header">
+                        <div class="levelup--cb-devices-switcher">
                         </div>
-                        <div class="customify--cb-actions">
+                        <div class="levelup--cb-actions">
                             <?php do_action('levelup/hfbuilder/actionsbtn'); ?>
                             <a class="btn"></a>
                             <a data-id="{{ data.id }}_templates" class="set-default-design focus-section button button-secondary"
                                href="#"><?php echo esc_html__( 'Set as Default', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></a>
                         </div>
                     </div>
-                    <div class="customify--cb-body"></div>
+                    <div class="levelup--cb-body"></div>
                 </div>
             </div>
         </script>
 
 
-        <script type="text/html" id="tmpl-customify--cb-panel">
-            <div class="customify--cp-rows">
+        <script type="text/html" id="tmpl-levelup--cb-panel">
+            <div class="levelup--cp-rows">
 
                 <# if ( ! _.isUndefined( data.rows.top ) ) { #>
-                    <div class="customify--row-top customify--cb-row" data-id="{{ data.id }}_top">
-                        <a class="customify--cb-row-settings" title="{{ data.rows.top.name }}" data-id="{{ data.rows.top.id }}" href="#"></a>
-                        <div class="customify--row-inner">
+                    <div class="levelup--row-top levelup--cb-row" data-id="{{ data.id }}_top">
+                        <a class="levelup--cb-row-settings" title="{{ data.rows.top.name }}" data-id="{{ data.rows.top.id }}" href="#"></a>
+                        <div class="levelup--row-inner">
                             <div class="row--grid">
 								<?php for ( $i = 1; $i <= 12; $i ++ ) {
 									echo '<div></div>';
 								} ?>
                             </div>
-                            <div class="customify--cb-items grid-stack gridster" data-id="{{ data.rows.top.id }}"></div>
+                            <div class="levelup--cb-items grid-stack gridster" data-id="{{ data.rows.top.id }}"></div>
                         </div>
                     </div>
                 <#  } #>
 
                 <# if ( ! _.isUndefined( data.rows.main ) ) { #>
-                    <div class="customify--row-main customify--cb-row" data-id="{{ data.id }}_main">
-                        <a class="customify--cb-row-settings" title="{{ data.rows.main.name }}" data-id="{{ data.rows.main.id }}"
+                    <div class="levelup--row-main levelup--cb-row" data-id="{{ data.id }}_main">
+                        <a class="levelup--cb-row-settings" title="{{ data.rows.main.name }}" data-id="{{ data.rows.main.id }}"
                            href="#"></a>
 
-                        <div class="customify--row-inner">
+                        <div class="levelup--row-inner">
                             <div class="row--grid">
                                 <?php for ( $i = 1; $i <= 12; $i ++ ) {
                                     echo '<div></div>';
                                 } ?>
                             </div>
-                            <div class="customify--cb-items grid-stack gridster" data-id="{{ data.rows.main.id }}"></div>
+                            <div class="levelup--cb-items grid-stack gridster" data-id="{{ data.rows.main.id }}"></div>
                         </div>
                     </div>
                 <#  } #>
 
 
                 <# if ( ! _.isUndefined( data.rows.bottom ) ) { #>
-                    <div class="customify--row-bottom customify--cb-row" data-id="{{ data.id }}_bottom">
-                        <a class="customify--cb-row-settings" title="{{ data.rows.bottom.name }}"
+                    <div class="levelup--row-bottom levelup--cb-row" data-id="{{ data.id }}_bottom">
+                        <a class="levelup--cb-row-settings" title="{{ data.rows.bottom.name }}"
                            data-id="{{ data.rows.bottom.id }}" href="#"></a>
-                        <div class="customify--row-inner">
+                        <div class="levelup--row-inner">
                             <div class="row--grid">
                                 <?php for ( $i = 1; $i <= 12; $i ++ ) {
                                     echo '<div></div>';
                                 } ?>
                             </div>
-                            <div class="customify--cb-items grid-stack gridster" data-id="{{ data.rows.bottom.id }}"></div>
+                            <div class="levelup--cb-items grid-stack gridster" data-id="{{ data.rows.bottom.id }}"></div>
                         </div>
                     </div>
                 <#  } #>
@@ -263,12 +263,12 @@ Class HeaderBuild{
 
             <# if ( data.device != 'desktop' ) { #>
                 <# if ( ! _.isUndefined( data.rows.sidebar ) ) { #>
-                    <div class="customify--cp-sidebar">
-                        <div class="customify--row-bottom customify--cb-row" data-id="{{ data.id }}_sidebar">
-                            <a class="customify--cb-row-settings" title="{{ data.rows.sidebar.name }}" data-id="{{ data.rows.sidebar.id }}
+                    <div class="levelup--cp-sidebar">
+                        <div class="levelup--row-bottom levelup--cb-row" data-id="{{ data.id }}_sidebar">
+                            <a class="levelup--cb-row-settings" title="{{ data.rows.sidebar.name }}" data-id="{{ data.rows.sidebar.id }}
                                href="#"></a>
-                            <div class="customify--row-inner">
-                                <div class="customify--cb-items customify--sidebar-items" data-id="{{ data.rows.sidebar.id }}"></div>
+                            <div class="levelup--row-inner">
+                                <div class="levelup--cb-items levelup--sidebar-items" data-id="{{ data.rows.sidebar.id }}"></div>
                             </div>
                         </div>
                         <div>
@@ -277,7 +277,7 @@ Class HeaderBuild{
 
         </script>
 
-        <script type="text/html" id="tmpl-customify--cb-item">
+        <script type="text/html" id="tmpl-levelup--cb-item">
             <div class="grid-stack-item item-from-list for-s-{{ data.section }}"
                  title="{{ data.name }}"
                  data-id="{{ data.id }}"
@@ -291,15 +291,15 @@ Class HeaderBuild{
             >
                 <div class="item-tooltip" data-section="{{ data.section }}">{{ data.name }}</div>
                 <div class="grid-stack-item-content">
-                    <span class="customify--cb-item-name" data-section="{{ data.section }}">{{ data.name }}</span>
-                    <span class="customify--cb-item-remove customify-cb-icon"></span>
-                    <span class="customify--cb-item-setting customify-cb-icon" data-section="{{ data.section }}"></span>
+                    <span class="levelup--cb-item-name" data-section="{{ data.section }}">{{ data.name }}</span>
+                    <span class="levelup--cb-item-remove levelup-cb-icon"></span>
+                    <span class="levelup--cb-item-setting levelup-cb-icon" data-section="{{ data.section }}"></span>
                 </div>
             </div>
         </script>
 
-        <script type="text/html" id="customify-upsell-tmpl">
-            <p class="customify-upsell-panel"><?php _e( '', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></p>
+        <script type="text/html" id="levelup-upsell-tmpl">
+            <p class="levelup-upsell-panel"><?php _e( '', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></p>
         </script>
 	<?php
 		

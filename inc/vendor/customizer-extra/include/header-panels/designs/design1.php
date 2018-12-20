@@ -80,7 +80,7 @@ class header_footer_design1{
 	}
 
 	function render_css(){
-		$css = '.customify-grid-middle{
+		$css = '.levelup-grid-middle{
 					flex-wrap: wrap;
 					align-items: center;
 					width:100%;

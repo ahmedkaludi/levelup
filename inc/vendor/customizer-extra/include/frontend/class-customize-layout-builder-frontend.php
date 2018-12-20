@@ -188,7 +188,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 
                             if ( ! $has_cb ) {
                                 if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-                                    //printf( __( 'Callback function <strong>%s</strong> do not exists.', 'customify' ), $fn );
+                                    //printf( __( 'Callback function <strong>%s</strong> do not exists.', 'levelup' ), $fn );
                                 }
                             }
 
@@ -424,12 +424,12 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             $number_item = count( $item['items'] );
 
             if ( $this->id != 'footer' ) {
-                $classes[] = "customify-col-{$width}_md-{$width}_sm-{$width}";
+                $classes[] = "levelup-col-{$width}_md-{$width}_sm-{$width}";
             } else {
                 if ( $number_group_item > 1 ) {
-                    $classes[] = "customify-col-{$width}_md-{$width}_sm-6_xs-12";
+                    $classes[] = "levelup-col-{$width}_md-{$width}_sm-6_xs-12";
                 } else {
-                    $classes[] = "customify-col-{$width}_md-{$width}_sm-12_xs-12";
+                    $classes[] = "levelup-col-{$width}_md-{$width}_sm-12_xs-12";
                 }
 
             }
@@ -459,7 +459,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             }
 
             $classes = apply_filters( 'header_footer/builder/item-wrapper-classes', $classes, $item );
-            $classes = join( ' ', $classes ); // customify-grid-middle
+            $classes = join( ' ', $classes ); // levelup-grid-middle
 
             $row_items_html = '';
             foreach ( $item['items'] as $_it ) {
@@ -483,7 +483,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                         $item_classes[] = ' builder-item-focus';
                     }
 
-                    $item_classes = join(' ', $item_classes); // customify-grid-middle
+                    $item_classes = join(' ', $item_classes); // levelup-grid-middle
                     //$row_items_html .= '<div class="' . esc_attr($item_classes) . '" data-section="' . $item_config['section'] . '" data-item-id="' . esc_attr($item_id) . '" >';
                     $row_items_html .= $this->setup_item_content($content, $id, $device);
                     if (is_customize_preview()) {
@@ -528,7 +528,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                     $atts          = array();
                     if ( ! empty( $desktop_items ) || ! empty( $mobile_items ) ) {
 
-                        $align_classes = 'customify-grid-middle';
+                        $align_classes = 'levelup-grid-middle';
                         if ( $this->id != 'footer' ) {
                             if ( empty( $desktop_items ) ) {
                                 $classes[] = 'hide-on-desktop';
@@ -537,7 +537,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                                 $classes[] = 'hide-on-mobile hide-on-tablet';
                             }
                         } else {
-                            $align_classes = 'customify-grid-top';
+                            $align_classes = 'levelup-grid-top';
                         }
 
                         $row_layout = headerfooter_get_setting( $this->id . '_' . $row_id . '_layout' );
@@ -590,7 +590,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                             ?>
                             <div <?php echo $string_atts; ?> data-show-on="<?php echo esc_attr(join(" ", $show_on_devices)); ?>">
                                 <div class="<?php echo join( ' ', $inner_class ); ?>">
-                                    <div class="customify-container">
+                                    <div class="levelup-container">
                                         <?php
                                         if ($html_desktop) {
 
@@ -599,14 +599,14 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                                                 if (empty($mobile_items)) {
                                                     $c = '';
                                                 }
-                                                echo '<div class="customify-grid ' . esc_attr($c . ' ' . $align_classes) . '">';
+                                                echo '<div class="levelup-grid ' . esc_attr($c . ' ' . $align_classes) . '">';
                                                 echo $html_desktop;
                                                 echo '</div>';
                                             }
                                         }
 
                                         if ($html_mobile) {
-                                            echo '<div class="cb-row--mobile hide-on-desktop customify-grid ' . esc_attr($align_classes) . '">';
+                                            echo '<div class="cb-row--mobile hide-on-desktop levelup-grid ' . esc_attr($align_classes) . '">';
                                             echo $html_mobile;
                                             echo '</div>';
                                         }
@@ -709,10 +709,10 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
        /* $close = '<a class="close is-size-medium '. $menu_sidebar_skin . esc_attr( $class ) . '" href="#">
         <span class="hamburger hamburger--squeeze is-active">
             <span class="hamburger-box">
-              <span class="hamburger-inner"><span class="screen-reader-text">' . __( 'Menu', 'customify' ) . '</span></span>
+              <span class="hamburger-inner"><span class="screen-reader-text">' . __( 'Menu', 'levelup' ) . '</span></span>
             </span>
         </span>
-        <span class="screen-reader-text">' . __( 'Close', 'customify' ) . '</span>
+        <span class="screen-reader-text">' . __( 'Close', 'levelup' ) . '</span>
         </a>';*/
        $close = ' <div class="menu-heading clearfix">
                                <label for="offcanvas-menu" class="close-btn">

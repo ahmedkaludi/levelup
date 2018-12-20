@@ -50,7 +50,7 @@ class HeaderFooter_Customize_Layout_Builder {
 
         if ( ! $class instanceof Customify_Customize_Builder_Panel ) {
             $name = get_class( $class );
-            _doing_it_wrong( $name, sprintf( __( 'Class <strong>%s</strong> do not extends class <strong>Customify_Customize_Builder_Panel</strong>.', 'customify' ), $name ), '1.0.0' );
+            _doing_it_wrong( $name, sprintf( __( 'Class <strong>%s</strong> do not extends class <strong>Customify_Customize_Builder_Panel</strong>.', 'levelup' ), $name ), '1.0.0' );
             return false;
         }
 

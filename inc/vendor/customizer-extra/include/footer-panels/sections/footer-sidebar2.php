@@ -83,7 +83,7 @@ class footerSidebar2Design{
 	            echo '<div class="widget-area">';
 	            $id = str_replace('footer-', '', $footer_id);
 	            the_widget('WP_Widget_Text', array(
-	                'title'  => sprintf(__('Footer Widget %s', 'customify'), $id),
+	                'title'  => sprintf(__('Footer Widget %s', 'levelup'), $id),
 	                'text'   => sprintf( // WPCS: XSS ok.
 	                /*
 	                Translators:
@@ -91,7 +91,7 @@ class footerSidebar2Design{
 	                    2: Customize URL
 	                    3: Footer ID
 	                */
-	                    __('<p>Replace this widget content by going to <a href="%1$s"><strong>Appearance &rarr; Customize &rarr; Footer &rarr; Footer %2$s</strong></a> and adding widgets into this widget area.</p>', 'customify'),
+	                    __('<p>Replace this widget content by going to <a href="%1$s"><strong>Appearance &rarr; Customize &rarr; Footer &rarr; Footer %2$s</strong></a> and adding widgets into this widget area.</p>', 'levelup'),
 	                    esc_url(admin_url('customize.php?autofocus[section]=sidebar-widgets-footer-' . $id)),
 	                    $id
 	                ),
