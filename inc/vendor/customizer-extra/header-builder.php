@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 define('HEADER_FOOTER_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
 define('HEADER_FOOTER_PLUGIN_DIR_URI', plugin_dir_url(__FILE__));
 define('HEADER_FOOTER_PLUGIN_PATH_INCLUDE', HEADER_FOOTER_PLUGIN_PATH.'/include/');
-define('HEADER_FOOTER_PLUGIN_TEXT_DOMAIN', 'header-builder');
+define('HEADER_FOOTER_PLUGIN_TEXT_DOMAIN', 'levelup');
 $levelup_head_started = $levelup_foot_started = false;
 $levelupDefaultOptions = array();
 
@@ -53,13 +53,12 @@ function render_footer_option_html(){
      * @since 0.2.2
      */
     do_action( 'customizer/before-header' );
+    $list_items = HeaderFooter_Customize_Layout_Builder()->get_builder_items( 'header' );
+    HeaderFooter_Customize_Layout_Builder_Frontend()->set_config_items( $list_items );
      HeaderFooter_Customize_Layout_Builder_Frontend()->render_mobile_sidebar();
     echo '<header id="headerfooter-masthead" class="headerfooter-site-header">';
         echo '<div id="headerfooter-masthead-inner" class="headerfooter-site-header-inner">';
-            $list_items = HeaderFooter_Customize_Layout_Builder()->get_builder_items( 'header' );
-            HeaderFooter_Customize_Layout_Builder_Frontend()->set_config_items( $list_items );
             HeaderFooter_Customize_Layout_Builder_Frontend()->render();
-            
         echo '</div>';
     echo '</header>';
 

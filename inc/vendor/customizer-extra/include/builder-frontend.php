@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
      $value = get_theme_mod('footer_panel_settings');
      return  $value;
     }
-	function header_footer_render( $row_ids = array( 'top', 'main', 'bottom' ) ) {
+	function header_footer_render( $row_ids = array( 'top-header-design', 'middle-header-design', 'bottom-header-design', 'sidebar-header-design', 'top-footer-design' ) ) {
         $setting = $this->header_panel_get_settings();
         $items   = $this->render_items();
         foreach ( $row_ids as $row_id ) {

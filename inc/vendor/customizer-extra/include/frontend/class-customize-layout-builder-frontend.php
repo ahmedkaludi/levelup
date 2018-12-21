@@ -509,7 +509,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 
     }
 
-    function render( $row_ids = array( 'top', 'main', 'bottom' ) ) {
+    function render( $row_ids = array( 'top-header-design', 'middle-header-design', 'bottom-header-design', 'sidebar-header-design', 'top-footer-design' ) ) {
         $setting = $this->get_settings();
         $items   = $this->render_items();
 
@@ -520,8 +520,9 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                 if ( ! empty( $show_on_devices ) ) {
                     $classes = array();
                     $_id     = sprintf( '%1$s-%2$s', $this->id, $row_id );
-
+                   //$_id = str_replace(array('-header-design', '-footer-design'), array('', ''), $this->$_id);
                     $classes[]     = $_id;
+                    $classes[]     = $this->id;
                     $classes[]     = $this->id . '--row';
                     $desktop_items = $this->get_row_settings( $row_id, 'desktop' );
                     $mobile_items  = $this->get_row_settings( $row_id, 'mobile' );
