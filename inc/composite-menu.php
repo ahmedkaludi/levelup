@@ -132,12 +132,12 @@ Class levelup_menuConnector{
 				'. settings_errors().'
 
 				<h2 class="levelup-nav nav-tab-wrapper"> 
-		            <a href="'.admin_url('admin.php?page=levelup&type=dashboard').'" class="nav-tab '.($type=='dashboard'? 'nav-tab-active': '').'">Dashboard</a>
-		            <a href="'.admin_url('admin.php?page=levelup&type=options').'" class="nav-tab '.($type=='options'? 'nav-tab-active': '').'">Options</a>
-		            <a href="'.admin_url('admin.php?page=levelup&type=template').'" class="nav-tab '.($type=='template'? 'nav-tab-active': '').'">Templates</a>
-		            <a href="'.admin_url('admin.php?page=levelup&type=amp_support').'" class="nav-tab '.($type=='amp_support'? 'nav-tab-active': '').'">AMP</a>
-		            <a href="'.admin_url('admin.php?page=levelup&type=tools').'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">Tools '.$steprequired.'</a>
-		            <a href="'.admin_url('admin.php?page=levelup&type=support').'" class="nav-tab '.($type=='support'? 'nav-tab-active': '').'">Support</a>
+		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=dashboard')).'" class="nav-tab '.($type=='dashboard'? 'nav-tab-active': '').'">Dashboard</a>
+		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=options')).'" class="nav-tab '.($type=='options'? 'nav-tab-active': '').'">Options</a>
+		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=template')).'" class="nav-tab '.($type=='template'? 'nav-tab-active': '').'">Templates</a>
+		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=amp_support')).'" class="nav-tab '.($type=='amp_support'? 'nav-tab-active': '').'">AMP</a>
+		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=tools')).'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">Tools '.$steprequired.'</a>
+		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=support')).'" class="nav-tab '.($type=='support'? 'nav-tab-active': '').'">Support</a>
 		        </h2>
 		         
 		        <div class="contentWrapper">'. 

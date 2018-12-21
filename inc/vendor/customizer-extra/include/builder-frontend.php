@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         $setting = $this->header_panel_get_settings();
         $items   = $this->render_items();
         foreach ( $row_ids as $row_id ) {
-            $show = customify_is_builder_row_display( $this->id, $row_id );
+            $show = levelup_is_builder_row_display( $this->id, $row_id );
             if ( $show && isset( $this->rows[ $row_id ] ) ) {
                 $show_on_devices = $this->rows[ $row_id ];
                 if ( ! empty( $show_on_devices ) ) {
