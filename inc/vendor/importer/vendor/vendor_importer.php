@@ -31,12 +31,12 @@ class LEVELUP_import_init_Plugin {
 			// Composer autoloader.
 			require_once LEVELUP_OCDI_PATH . 'vendor/autoload.php';
 			// Instantiate the main plugin class *Singleton*.
-			$pt_one_click_demo_import = LUIMPORT\OneClickDemoImport::get_instance();
+			$pt_one_click_demo_import = LEVELUPIMPORT\OneClickDemoImport::get_instance();
 
 			// Register WP CLI commands
 			if ( defined( 'WP_CLI' ) && WP_CLI ) {
-				WP_CLI::add_command( 'levelup list', array( 'LUIMPORT\WPCLICommands', 'list_predefined' ) );
-				WP_CLI::add_command( 'levelup import', array( 'LUIMPORT\WPCLICommands', 'import' ) );
+				WP_CLI::add_command( 'levelup list', array( 'LEVELUPIMPORT\WPCLICommands', 'list_predefined' ) );
+				WP_CLI::add_command( 'levelup import', array( 'LEVELUPIMPORT\WPCLICommands', 'import' ) );
 			}
 		}
 	}

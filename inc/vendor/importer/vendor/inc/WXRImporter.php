@@ -7,7 +7,7 @@
  * @package ocdi
  */
 
-namespace LUIMPORT;
+namespace LEVELUPIMPORT;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 class WXRImporter extends \ProteusThemes\WPContentImporter2\WXRImporter {
 	/**

@@ -1,5 +1,5 @@
 <?php
-namespace LUIMPORT;
+namespace LEVELUPIMPORT;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }

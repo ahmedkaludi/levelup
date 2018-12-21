@@ -6,7 +6,7 @@
  * @package ocdi
  */
 
-namespace LUIMPORT;
+namespace LEVELUPIMPORT;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 class ImportActions {
 	/**

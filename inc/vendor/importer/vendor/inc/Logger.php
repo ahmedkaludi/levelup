@@ -5,7 +5,7 @@
  * @package ocdi
  */
 
-namespace LUIMPORT;
+namespace LEVELUPIMPORT;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 class Logger extends \ProteusThemes\WPContentImporter2\WPImporterLoggerCLI {
 	/**

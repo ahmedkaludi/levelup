@@ -9,7 +9,7 @@
  * @package ocdi
  */
 
-namespace LUIMPORT;
+namespace LEVELUPIMPORT;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 final class CustomizerOption extends \WP_Customize_Setting {
 	/**

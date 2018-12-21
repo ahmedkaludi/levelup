@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ProteusThemes\\WPContentImporter2\\' => array($vendorDir . '/proteusthemes/wp-content-importer-v2/src'),
-    'LUIMPORT\\' => array($baseDir . '/inc'),
+    'LEVELUPIMPORT\\' => array($baseDir . '/inc'),
 );

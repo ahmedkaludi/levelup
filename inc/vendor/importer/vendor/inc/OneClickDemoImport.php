@@ -5,7 +5,7 @@
  * @package ocdi
  */
 
-namespace LUIMPORT;
+namespace LEVELUPIMPORT;
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 /**
  * One Click Demo Import class, so we don't have to worry about namespaces.

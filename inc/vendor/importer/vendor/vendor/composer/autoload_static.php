@@ -13,7 +13,7 @@ class ComposerStaticInite67535fe8bb9e847195ca18c8c330d4g
         ),
         'L' => 
         array (
-            'LUIMPORT\\' => 9,
+            'LEVELUPIMPORT\\' => 14,
         ),
     );
 
@@ -22,7 +22,7 @@ class ComposerStaticInite67535fe8bb9e847195ca18c8c330d4g
         array (
             0 => __DIR__ . '/..' . '/proteusthemes/wp-content-importer-v2/src',
         ),
-        'LUIMPORT\\' => 
+        'LEVELUPIMPORT\\' => 
         array (
             0 => __DIR__ . '/../..' . '/inc',
         ),
