@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Add Panel Builder to WP Customize
  *
- * Class Customify_Customize_Layout_Builder
+ * Class HeaderFooter_Customize_Layout_Builder
  */
 class HeaderFooter_Customize_Layout_Builder {
     static $_instance;
@@ -20,8 +20,8 @@ class HeaderFooter_Customize_Layout_Builder {
         if ( is_admin() ) {
             add_action( 'customize_controls_enqueue_scripts', array( $this, 'scripts' ) );
             add_action( 'customize_controls_print_footer_scripts', array( $this, 'template' ) );
-            add_action( 'wp_ajax_customify_builder_save_template', array( $this, 'ajax_save_template' ) );
-            add_action( 'wp_ajax_customify_builder_export_template', array( $this, 'ajax_export_template' ) );
+            add_action( 'wp_ajax_levelup_builder_save_template', array( $this, 'ajax_save_template' ) );
+            add_action( 'wp_ajax_levelup_builder_export_template', array( $this, 'ajax_export_template' ) );
         }
 
     }
@@ -29,10 +29,10 @@ class HeaderFooter_Customize_Layout_Builder {
     /**
      * Register builder panel
      *
-     * @see Customify_Customize_Builder_Panel
+     * @see Levelup_Customize_Builder_Panel
      *
      * @param $id string                                ID of panel
-     * @param $class Customify_Customize_Builder_Panel  Panel class name
+     * @param $class Levelup_Customize_Builder_Panel  Panel class name
      * @return bool
      */
     function register_builder( $id, $class ) {
@@ -48,9 +48,9 @@ class HeaderFooter_Customize_Layout_Builder {
             $class = new $class();
         }
 
-        if ( ! $class instanceof Customify_Customize_Builder_Panel ) {
+        if ( ! $class instanceof Levelup_Customize_Builder_Panel ) {
             $name = get_class( $class );
-            _doing_it_wrong( $name, sprintf( __( 'Class <strong>%s</strong> do not extends class <strong>Customify_Customize_Builder_Panel</strong>.', 'levelup' ), $name ), '1.0.0' );
+            _doing_it_wrong( $name, sprintf( __( 'Class <strong>%s</strong> do not extends class <strong>Levelup_Customize_Builder_Panel</strong>.', 'levelup' ), $name ), '1.0.0' );
             return false;
         }
 
@@ -62,7 +62,7 @@ class HeaderFooter_Customize_Layout_Builder {
     /**
      * Add an item builder to panel
      *
-     * @see Customify_Customize_Layout_Builder::register_builder();
+     * @see Levelup_Customize_Layout_Builder::register_builder();
      *
      * @param $builder_id string        Id of panel
      * @param $class      object        Class to handle this item

@@ -172,13 +172,13 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                             // Call render by function if class do not exists
                             if ( ! $has_cb ) {
                                 $id            = str_replace( '-', '_', $item['id'] );
-                                $fn            = 'customify_builder_' . $id . '_item';
+                                $fn            = 'levelup_builder_' . $id . '_item';
                                 $return_render = false;
                                 if ( function_exists( $fn ) ) {
                                     $return_render = call_user_func_array( $fn, array( $item_config, $item ) );
                                     $has_cb        = true;
                                 } else {
-                                    $fn = 'customify_builder_' . $this->id . '_' . $id . '_item';
+                                    $fn = 'levelup_builder_' . $this->id . '_' . $id . '_item';
                                     if ( function_exists( $fn ) ) {
                                         $return_render = call_user_func_array( $fn, array( $item_config, $item ) );
                                         $has_cb        = true;
@@ -514,7 +514,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
         $items   = $this->render_items();
 
         foreach ( $row_ids as $row_id ) {
-            $show = true;//customify_is_builder_row_display( $this->id, $row_id );
+            $show = true;//levelup_is_builder_row_display( $this->id, $row_id );
             if ( $show && isset( $this->rows[ $row_id ] ) ) {
                 $show_on_devices = $this->rows[ $row_id ];
                 if ( ! empty( $show_on_devices ) ) {

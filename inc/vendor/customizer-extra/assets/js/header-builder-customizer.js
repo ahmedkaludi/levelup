@@ -1562,7 +1562,7 @@
 	                var that = this;
 	                wpcustomize.state( 'expandedPanel' ).bind( function( paneVisible ) {
 	                    if ( wpcustomize.panel( options.panel ).expanded() ) {
-	                        $document.trigger( 'customify_panel_builder_open', [ options.panel ] );
+	                        $document.trigger( 'levelup_panel_builder_open', [ options.panel ] );
 	                        console.log( 'open-builder:', options.panel );
 	                        top._current_builder_panel = id;
 	                        that.showPanel();
@@ -1681,7 +1681,7 @@
 	                   }
 	                } );
 
-	                $document.trigger( 'customify_builder_panel_loaded', [ id, that ] );
+	                $document.trigger( 'levelup_builder_panel_loaded', [ id, that ] );
 
 	            }
 
@@ -1734,7 +1734,7 @@ Customizer
             remove_items = false;
         }
         //console.log( 'partial_id', partial_id );
-        if( partial_id === 'header_panel' || partial_id === 'customify_customize_render_header' ) {
+        if( partial_id === 'header_panel' || partial_id === 'levelup_customize_render_header' ) {
 
             var is_drop_down = $( 'body' ).hasClass( 'menu_sidebar_dropdown' );
 
@@ -1875,8 +1875,8 @@ Customizer
 
 
     var skips_to_add_shortcut = {
-        customify_customize_render_header: 1,
-        customify_customize_render_footer: 1
+        levelup_customize_render_header: 1,
+        levelup_customize_render_footer: 1
     };
 
     /**
