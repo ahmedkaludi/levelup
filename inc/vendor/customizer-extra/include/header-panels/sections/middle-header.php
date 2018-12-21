@@ -33,36 +33,35 @@ class MiddleDesign{
 				//settings
 				array(
 					'api_type'			=> 'wp_settings',
-					'id'				=> 'color-'.$this->panel. $this->id,
+					'id'				=> 'height-'.$this->panel. $this->id,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "Black",
+					"default"			=> "60px",
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'transport'			=> 'postMessage'
 			    ),
 			    //control
 			    array(
 			    	'api_type'			=> 'wp_control',
-			    	'id'				=> 'color-'.$this->panel. $this->id,
+			    	'id'				=> 'height-'.$this->panel. $this->id,
 			        'section' 			=> $this->id. $this->panel,
-			        'label'   			=> __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> __('Height', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
-
 			    //settings
 				array(
 					'api_type'			=> 'wp_settings',
-					'id'				=> 'id-'.$this->panel. $this->id,
+					'id'				=> 'backgroundcolor-'.$this->panel. $this->id,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "header",
+					"default"			=> "gray",
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'transport'			=> 'postMessage'
 			    ),
 			    //control
 			    array(
 			    	'api_type'			=> 'wp_control',
-			    	'id'				=> 'id-'.$this->panel. $this->id,
+			    	'id'				=> 'backgroundcolor-'.$this->panel. $this->id,
 			        'section' 			=> $this->id. $this->panel,
-			        'label'   			=> __('Enter Class', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> __('Enter Color', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 

@@ -80,7 +80,14 @@ class header_footer_design1{
 	}
 
 	function render_css(){
-		$css = '.levelup-grid-middle{
+		$topheaderHeight  = get_theme_mod( 'height-'. $this->panelId.'middle-header-design' );
+		$topheaderbg      = headerfooter_get_setting( 'backgroundcolor-'. $this->panelId.'middle-header-design' );
+
+		$css = '.headerfooter-site-header{
+					background:'.$topheaderbg.';
+					height:'.$topheaderHeight.';
+				}
+				.levelup-grid-middle{
 					flex-wrap: wrap;
 					align-items: center;
 					width:100%;
@@ -262,6 +269,7 @@ class header_footer_design1{
 					top: 0;
 					left: 0;
 					background: #eee;
+					z-index:99;
 				}
 				.ov-form {
 				    position: relative;
