@@ -127,9 +127,9 @@ class SocialiconDesign{
 			$items['googleplus']['title'] = 'googleplus';	
 		}
 		if(headerfooter_get_setting( 'instagram'. $this->panel)){
-			$items['googleplus']['url'] = headerfooter_get_setting( 'instagram'. $this->panel );
-			$items['googleplus']['icon'] = 'instagram';	
-			$items['googleplus']['title'] = 'Instagram';	
+			$items['instagram']['url'] = headerfooter_get_setting( 'instagram'. $this->panel );
+			$items['instagram']['icon'] = 'instagram';	
+			$items['instagram']['title'] = 'Instagram';	
 		}
 		
 		$items = array_filter($items);
