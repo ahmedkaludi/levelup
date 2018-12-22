@@ -82,16 +82,16 @@ class header_footer_design1{
 	function render_css(){
 		$topheaderHeight  = get_theme_mod( 'height-'. $this->panelId.'middle-header-design' );
 		$topheaderbg      = headerfooter_get_setting( 'backgroundcolor-'. $this->panelId.'middle-header-design' );
+		$topheadercntclr      = headerfooter_get_setting( 'menucolor-'. $this->panelId.'middle-header-design' );
 
 		$css = '.headerfooter-site-header{
 					background:'.$topheaderbg.';
-					height:'.$topheaderHeight.';
 				}
 				.levelup-grid-middle{
 					flex-wrap: wrap;
 					align-items: center;
 					width:100%;
-					padding: 38px 0px;
+					height:'.$topheaderHeight.';
 				}
 				
 				.nav-menu.desktop ul li{
@@ -114,7 +114,7 @@ class header_footer_design1{
 					font-size: 14px;
 					font-weight: 600;
 					line-height: 1.8;
-					color:#333;
+					color:'.$topheadercntclr.';
 				    display: inline-block;
 				    vertical-align: middle;
 				    transform: perspective(1px) translateZ(0);
@@ -130,7 +130,7 @@ class header_footer_design1{
 				    left: 0;
 				    right: 100%;
 				    bottom: 0;
-				    background: #333;
+				    background:'.$topheadercntclr.';
 				    height: 2px;
 				    transition-property: right;
 				    transition-duration: 0.3s;
@@ -141,7 +141,7 @@ class header_footer_design1{
 				}
 				.cb-row--desktop .hd1-menu .toggle:after {
 				    content: "\f107";
-				    color:#333;
+				    color:'.$topheadercntclr.';
 				    font-family: "FontAwesome";
 				    display: inline-block;
 				    float:right;
@@ -261,6 +261,7 @@ class header_footer_design1{
 				}
 				.sr span, .overlay-close span{
 					font-size:18px;
+					color:'.$topheadercntclr.';
 				}
 				.overlay {
 					position: fixed;

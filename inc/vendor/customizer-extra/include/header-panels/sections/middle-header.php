@@ -52,16 +52,34 @@ class MiddleDesign{
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'backgroundcolor-'.$this->panel. $this->id,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "gray",
+					"default"			=> "#efefef",
+			        'sanitize_callback' => 'sanitize_text_field',
+			        'transport'			=> 'postMessage'
+			    ),
+			    //control
+			    array(
+
+			    	'api_type'			=> 'wp_control',
+			    	'id'				=> 'backgroundcolor-'.$this->panel. $this->id,
+			        'section' 			=> $this->id. $this->panel,
+			        'label'   			=> __('Header Background Color', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'type'    			=> 'text'
+			    ),
+			    //settings
+				array(
+					'api_type'			=> 'wp_settings',
+					'id'				=> 'menucolor-'.$this->panel. $this->id,
+					'capability'        => 'edit_theme_options',
+					"default"			=> "red",
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'transport'			=> 'postMessage'
 			    ),
 			    //control
 			    array(
 			    	'api_type'			=> 'wp_control',
-			    	'id'				=> 'backgroundcolor-'.$this->panel. $this->id,
+			    	'id'				=> 'menucolor-'.$this->panel. $this->id,
 			        'section' 			=> $this->id. $this->panel,
-			        'label'   			=> __('Enter Color', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> __('Header Content Color', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 
