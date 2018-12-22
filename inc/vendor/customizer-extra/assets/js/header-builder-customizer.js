@@ -88,7 +88,7 @@
 
 	                    } );
 
-	                    var sidebar = $( '#_sid_mobile-sidebar', panel );
+	                    var sidebar = $( '#_sid_mobile-sidebar-header-design', panel );
 	                    var sidebar_id = sidebar.attr( 'id' ) || false;
 
 	                    $( '.levelup-available-items .grid-stack-item', panel ).draggable({
