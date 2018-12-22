@@ -219,11 +219,8 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                                 $ob_render = $sanitizer_obj->get_amp_content();
                             }
 
-                            if($this->id=='footer'){
-                                echo $ob_render;
-                            }
                             // END render builder item
-
+                            
                             if ( ! $return_render ) {
                                 if ( $ob_render ) {
                                     $return_render = $ob_render;
