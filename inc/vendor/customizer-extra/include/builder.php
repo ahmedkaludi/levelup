@@ -265,8 +265,7 @@ Class HeaderBuild{
                 <# if ( ! _.isUndefined( data.rows.sidebar ) ) { #>
                     <div class="levelup--cp-sidebar">
                         <div class="levelup--row-bottom levelup--cb-row" data-id="{{ data.id }}_sidebar">
-                            <a class="levelup--cb-row-settings" title="{{ data.rows.sidebar.name }}" data-id="{{ data.rows.sidebar.id }}
-                               href="#"></a>
+                            <a class="levelup--cb-row-settings" title="{{ data.rows.sidebar.name }}" data-id="{{ data.rows.sidebar.id }}" href="#"></a>
                             <div class="levelup--row-inner">
                                 <div class="levelup--cb-items levelup--sidebar-items" data-id="{{ data.rows.sidebar.id }}"></div>
                             </div>
