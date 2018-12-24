@@ -123,7 +123,7 @@ class SocialiconDesign{
 		}
 		if(headerfooter_get_setting( 'twitter'. $this->panel)){
 			$items['googleplus']['url'] = headerfooter_get_setting( 'googleplus'. $this->panel );
-			$items['googleplus']['icon'] = 'googleplus';	
+			$items['googleplus']['icon'] = 'google-plus';	
 			$items['googleplus']['title'] = 'googleplus';	
 		}
 		if(headerfooter_get_setting( 'instagram'. $this->panel)){

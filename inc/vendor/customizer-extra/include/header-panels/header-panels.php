@@ -22,6 +22,14 @@ class headerPanels{
 	// 	wp_enqueue_style( 'footercss', HEADER_FOOTER_PLUGIN_DIR_URI . 'assets/css/font-awesome.css');
 	// 	//wp_enqueue_style( 'footermin', HEADER_FOOTER_PLUGIN_DIR_URI . 'assets/css/font-awesome.min.css');
 	// }
+	function isJson($string) {
+        try{
+             json_decode($string);
+         }catch(Exception $e){
+           return (json_last_error() == JSON_ERROR_NONE);  
+         }
+        return (json_last_error() == JSON_ERROR_NONE);
+    }
 	function amp_design_style_action(){
 		if(is_array($this->designCss)){
 			foreach ($this->designCss as $key => $value) {
@@ -39,6 +47,18 @@ class headerPanels{
 	function design_style_action(){
 		?><style type="text/css">
              <?php 
+             if(!is_admin()){
+             	$data = headerfooter_get_setting( 'header_panel_settings' );
+		        if($this->isJson($data)){
+		            $data = json_decode( $data, true );
+		        }else{
+		            $data = json_decode( urldecode($data), true );
+		        }
+		        $selectedDesign = str_replace("header-", '', $data['selected_design']);
+		        $selectedCss = $this->designCss[$selectedDesign];
+				$this->designCss = array();
+				$this->designCss[$selectedDesign] = $selectedCss;
+             }
              if(is_array($this->designCss)){
              	foreach ($this->designCss as $key => $value) {
              		if(is_array($value)){

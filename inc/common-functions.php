@@ -95,14 +95,14 @@ function levelup_basics_config($get){
 
 add_action('amp_post_template_head', 'fonts');
 function fonts(){
-	echo "<link rel='stylesheet' id='font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css?ver=4.6.3' type='text/css' media='all' />";
+	echo "<link rel='stylesheet' id='font-awesome-css'  href='".LEVELUP__FILE__URI . "assets/css/font-awesome/css/font-awesome.min.css' type='text/css' media='all' />";
 }
 //add_action('wp_head', 'levelup_nonamp_design_styling', 100);
 add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
 function levelup_amp_design_styling(){
-	if(!if_levelup_has_builder()){
+	/*if(!if_levelup_has_builder()){
 		return false;
-	}
+	}*/
 	$allCss = '/** Levelup CSS **/
 @media (min-width: 768px){
   .elementor-column.elementor-col-10, .elementor-column[data-col="10"] {
