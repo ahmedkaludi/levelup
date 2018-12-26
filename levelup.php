@@ -17,7 +17,7 @@ define( 'LEVELUP__FILE__PATH', plugin_dir_path(__FILE__) );
 define( 'LEVELUP__FILE__URI', plugin_dir_url(__FILE__));
 define( 'LEVELUP__DIR__PATH', __DIR__ );
 define( 'LEVELUP_TEXT_DOMAIN', 'levelup' );
-define( 'LEVELUP_ENVIRONEMT', 'development' );//production
+define( 'LEVELUP_ENVIRONEMT', 'production' );//development
 define( 'LEVELUP_VERSION', '0.0.1' );//development
 
 

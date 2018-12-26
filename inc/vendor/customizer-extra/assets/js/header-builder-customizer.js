@@ -1675,9 +1675,24 @@
 		                   $("#accordion-section-header_setting_section").hide();
 		            	}
 	                } );
+	                $(document).on( 'click', '#accordion-panel-header-design1', function(e){
+	                	if(HF_Builder.is_production){
+		                   $("#accordion-section-header_setting_config_header-design1").hide();
+		            	}
+	                } );
+	                 $(document).on( 'click', '#accordion-panel-header-design2', function(e){
+	                	if(HF_Builder.is_production){
+		                   $("#accordion-section-header_setting_config_header-design2").hide();
+		            	}
+	                } );
 	                $(document).on( 'click', '#accordion-panel-footer_panel', function(e){
 	                   if(HF_Builder.is_production){
 	                   	$("#accordion-section-footer_setting_section").hide();
+	                   }
+	                } );
+	                $(document).on( 'click', '#accordion-panel-footer-design1', function(e){
+	                   if(HF_Builder.is_production){
+	                   	$("#accordion-section-footer_setting_config_footer-design1").hide();
 	                   }
 	                } );
 
