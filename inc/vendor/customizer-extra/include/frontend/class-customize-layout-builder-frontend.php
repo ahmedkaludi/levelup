@@ -201,7 +201,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 
                             // Get item output
                             $ob_render = ob_get_clean();
-                            if( ampforwp_is_amp_endpoint() && strpos($item['id'], 'menu-icon-') === False){ 
+                            if( function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint() && strpos($item['id'], 'menu-icon-') === False){ 
                                 $sanitizer_obj = new AMPFORWP_Content( $ob_render,
                                                                     array(), 
                                                                     apply_filters( 'ampforwp_content_sanitizers', 
