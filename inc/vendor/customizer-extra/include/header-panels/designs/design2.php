@@ -85,6 +85,7 @@ class header_footer_design2{
 	function render_css(){
 		$amp_css = '';
 		$non_amp_css = '';
+		$css = '';
 
 		$allcss['global_design_css'] = $css;
 		$allcss['amp_css'] = $amp_css;

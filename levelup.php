@@ -89,7 +89,9 @@ add_action( 'activated_plugin', 'levelup_activation_redirect' );
 
 
 function levelup_modify_main_query( $query ) {
-	if (ampforwp_is_front_page() && ampforwp_is_amp_endpoint() &&  $query->is_main_query()) { 
+	if ( (function_exists('ampforwp_is_front_page') && ampforwp_is_front_page()) 
+		&& (function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint())
+		&& $query->is_main_query()) { 
 	 	$query-> set('post_type' ,'page');
 		$query->set( 'page_id', ampforwp_get_frontpage_id() );
 	}

@@ -34,7 +34,8 @@ class footer_design1{
 				'api_type'			=> 'wp_settings',
 				'id'				=> 'config-settings-'.$this->panelId,
 				'capability'        => 'edit_theme_options',
-				"default"			=> '{}',
+				"default"			=> '{"desktop":{"top-footer-design":[{"x":"0","y":"1","width":"6","height":"1","id":"social-icon-footer-design1"},{"x":"6","y":"1","width":"6","height":"1","id":"copyright-footer-design1"}]},"selected_design":"footer-design1"}',
+				"preset_default"	=> True,
 		        'sanitize_callback' => 'header_footer_santizer',
 		        'transport'			=> 'postMessage'
 		    ),

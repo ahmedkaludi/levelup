@@ -38,6 +38,7 @@ class header_footer_design1{
 				'capability'        => 'edit_theme_options',
 				"default"			=> '{"desktop":{"top":[{"x":0,"y":1,"width":12,"height":1,"id":"html-header-design1"}],"main":[{"x":1,"y":1,"width":3,"height":1,"id":"logo-header-design1"},{"x":8,"y":1,"width":4,"height":1,"id":"menu-icon-header-design1"}],"bottom":[]},"mobile":{"top":[{"x":0,"y":1,"width":12,"height":1,"id":"html-header-design1"}],"main":[{"x":6,"y":1,"width":4,"height":1,"id":"social-icon-header-design1"},{"x":0,"y":1,"width":3,"height":1,"id":"logo-header-design1"},{"x":10,"y":1,"width":2,"height":1,"id":"menu-icon-header-design1"}],"bottom":[],"sidebar":[]},"selected_design":"header-design1"}',
 		        'sanitize_callback' => 'header_footer_santizer',
+		        "preset_default"	=> True,
 		        'transport'			=> 'postMessage'
 		    ),
 		    //control

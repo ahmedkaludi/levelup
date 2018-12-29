@@ -138,7 +138,6 @@ Class LEVELUP__Admin_settings{
 	    global $pagenow;
 	    $server_version = get_option( 'levelup-library-version');
 	    $current_version = get_option( 'levelup-library-loaded-version');
-	     //echo $current_version.", ".$server_version;die;
 
 	    ?>	
 	    	<div class="levelup-sync-wrapper">

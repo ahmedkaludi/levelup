@@ -5,6 +5,7 @@ class footerCopyrightDesign{
 	public $name = 'Copyright';
 	public $nameslug = 'copyright-';
 	public $api_type = 'wp_section';
+	public $width = '4';
 	public $panel = '';
 	public $panelName = '';
 	function __construct($panel,$panelName){

@@ -119,6 +119,14 @@ class footerPanels{
 	}
 	function config_options(){
 		$this->include_files();
+		$defaultHeader = "{}";
+		if($this->configs){
+			foreach ($this->configs as $key => $value) {
+				if(isset($value['preset_default']) && $value['preset_default']==True){
+					$defaultHeader = $value['default'];
+				}
+			}
+		}
 		$footerOptions =  array(
 					array(
 						'api_type'=> 'hf_panel',
@@ -144,7 +152,7 @@ class footerPanels{
 						'api_type'			=> 'wp_settings',
 						'id'				=> 'footer_panel_settings',
 						'capability'        => 'edit_theme_options',
-						"default"			=> "",
+						"default"			=> $defaultHeader,
 				        'sanitize_callback' => 'header_footer_santizer',
 				        'transport'			=> 'postMessage',
 				        'name'				=> 'footer_panel_settings'

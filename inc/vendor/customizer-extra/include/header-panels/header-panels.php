@@ -7,7 +7,7 @@ class headerPanels{
 	public $sectionsLoader = array('top-header', 'middle-header','bottom-header', 'sidebar-design','logo-design', 'menu-icon','menu', 'html', 'social-icon', 'search');
 	public $designs = 	array(
 						'design1',
-						'design2',
+						//'design2',
 					);
 	public $designCss = array();
 	function __construct(){
@@ -133,6 +133,14 @@ class headerPanels{
 	}
 	function config_options(){
 		$this->include_files();
+		$defaultHeader = "{}";
+		if($this->configs){
+			foreach ($this->configs as $key => $value) {
+				if(isset($value['preset_default']) && $value['preset_default']==True){
+					$defaultHeader = $value['default'];
+				}
+			}
+		}
 		$headerOptions =  array(
 					array(
 						'api_type'=> 'hf_panel',
@@ -158,7 +166,7 @@ class headerPanels{
 						'api_type'			=> 'wp_settings',
 						'id'				=> 'header_panel_settings',
 						'capability'        => 'edit_theme_options',
-						"default"			=> "",
+						"default"			=> $defaultHeader,
 				        'sanitize_callback' => 'sanitize_text_field',
 				        'transport'			=> 'postMessage',
 				        'name'				=> 'header_panel_settings'
@@ -168,7 +176,7 @@ class headerPanels{
 				    	'api_type'			=> 'wp_control',
 				    	'id'				=> 'header_panel_settings',
 				        'section' 			=> 'header_setting_section',
-				        'label'   			=> __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+				        'label'   			=> __('Header Selected Settings', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 				        'type'    			=> 'js_raw',
 				        'selector'          => '#headercaller',
 				    ),

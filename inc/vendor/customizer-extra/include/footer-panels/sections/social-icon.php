@@ -5,6 +5,7 @@ class SocialiconFooterDesign{
 	public $name = 'Social Icon';
 	public $nameslug = 'social-icon-';
 	public $api_type = 'wp_section';
+	public $width = '4';
 	public $panel = '';
 	public $panelName = '';
 	function __construct($panel,$panelName){
