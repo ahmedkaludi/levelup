@@ -263,12 +263,11 @@ jQuery( function ( $ ) {
 		else {
 			previewImageContent = '<div class="levelup_modal-image-container"><img src="' + currentFilePreviewImage + '" alt="' + levelup_import.import_files[ selectedImportID ]['import_file_name'] + '"></div>'
 		}
-
 		previewImageContent = '<div class="levelup_modal-image-container">'+
 							'<div><label><input type="checkbox" name="import_design" checked id="levelup_import_design" value="1"> Design</label></div>'+
-							'<div><label><input type="checkbox" name="import_widget" checked id="levelup_import_widget" value="1"> Widgets</label></div>'+
-							'<div><label><input type="checkbox" name="import_customizer" checked id="levelup_import_customizer" value="1"> Customizer Settings</label></div>'+
-							'<div><label><input type="checkbox" name="import_contents" id="levelup_import_contents" value="1"> Dummy Contents</label></div>'+
+							(levelup_import.import_files[selectedImportID].import_widget_file_url!=''? '<div><label><input type="checkbox" name="import_widget" checked id="levelup_import_widget" value="1"> Widgets</label></div>' : '')+
+							(levelup_import.import_files[selectedImportID].import_customizer_file_url!=''? '<div><label><input type="checkbox" name="import_customizer" checked id="levelup_import_customizer" value="1"> Customizer Settings</label></div>' : '')+
+							(levelup_import.import_files[selectedImportID].import_dummy_content!=''?'<div><label><input type="checkbox" name="import_contents" id="levelup_import_contents" value="1"> Dummy Contents</label></div>' : '')
 							+'</div>';
 
 		// Prepare notice output.
@@ -279,9 +278,7 @@ jQuery( function ( $ ) {
 		// Populate the dialog content.
 		$dialogContiner.prop( 'title', levelup_import.texts.dialog_title );
 		$dialogContiner.html(
-			'<p class="levelup_modal-item-title">' + levelup_import.import_files[ selectedImportID ]['import_file_name'] + '</p>' +
-			previewImageContent +
-			"<div class='notices'>"+importNoticeContent+"</div>"
+			'<p class="levelup_modal-item-title">' + levelup_import.import_files[ selectedImportID ]['import_file_name'] + '</p>' +previewImageContent +"<div class='notices'>"+importNoticeContent+"</div>"
 		);
 
 		// Display the confirmation popup.

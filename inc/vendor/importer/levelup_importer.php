@@ -10,6 +10,7 @@ function demo_designs_import_files(){
 				'import_file_url'            => 'http://localhost/import/2018-12-15.xml',
 				'import_widget_file_url'     => '',
 				'import_customizer_file_url' => 'http://localhost/import/level-up-export.dat',
+				'import_dummy_content'		=> '',
 				'import_preview_image_url'   => 'http://artifacts.proteusthemes.com/import-preview-images/bolts-construction.jpg',
 				'preview_url'                => 'https://demo.proteusthemes.com/bolts',
 			),

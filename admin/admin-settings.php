@@ -71,7 +71,7 @@ Class LEVELUP__Admin_settings{
 					    'error' // error or notice works to make things pretty
 					);
 			}
-			settings_errors();
+			//settings_errors();
 		}
 		?>
 		<div class="wrap">
