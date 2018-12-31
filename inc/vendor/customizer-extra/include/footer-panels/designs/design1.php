@@ -34,7 +34,7 @@ class footer_design1{
 				'api_type'			=> 'wp_settings',
 				'id'				=> 'config-settings-'.$this->panelId,
 				'capability'        => 'edit_theme_options',
-				"default"			=> '{"desktop":{"top-footer-design":[{"x":"0","y":"1","width":"6","height":"1","id":"social-icon-footer-design1"},{"x":"6","y":"1","width":"6","height":"1","id":"copyright-footer-design1"}]},"selected_design":"footer-design1"}',
+				"default"			=> '%7B%22desktop%22:%7B%22top-footer-design%22:%5B%7B%22x%22:0,%22y%22:1,%22width%22:6,%22height%22:1,%22id%22:%22social-icon-footer-design1%22%7D,%7B%22x%22:6,%22y%22:1,%22width%22:6,%22height%22:1,%22id%22:%22copyright-footer-design1%22%7D%5D%7D,%22selected_design%22:%22footer-design1%22%7D',//'{"desktop":{"top-footer-design":[{"x":"0","y":"1","width":"6","height":"1","id":"social-icon-footer-design1"},{"x":"6","y":"1","width":"6","height":"1","id":"copyright-footer-design1"}]},"selected_design":"footer-design1"}',
 				"preset_default"	=> True,
 		        'sanitize_callback' => 'header_footer_santizer',
 		        'transport'			=> 'postMessage'
