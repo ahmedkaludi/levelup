@@ -22,17 +22,19 @@ function HeaderFooter_Customize_Layout_Builder() {
     return HeaderFooter_Customize_Layout_Builder::get_instance();
 }
 
-add_action('after_setup_theme', function(){
+add_action('after_setup_theme', 'levelup_load_header_footer');
+function levelup_load_header_footer(){
+ global $levelupDefaultOptions;
  add_action("levelup_head", "render_header_option_html");
  add_action("levelup_foot", "render_footer_option_html");
  add_action( 'amp_post_template_css',  'amp_global_css' );
 
-});
+};
 function amp_global_css(){
     require_once(HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'/frontend/amp_css_global.php');
 }
 function render_footer_option_html(){
-    global $levelup_foot_started;
+    global $levelup_foot_started, $levelupDefaultOptions;
     $levelup_foot_started = true;
     echo '<footer class="site-footer" id="site-footer">';
     HeaderFooter_Customize_Layout_Builder_Frontend()->set_id( 'footer' );
@@ -46,7 +48,7 @@ function render_footer_option_html(){
 }
 
  function render_header_option_html(){
-    global $levelup_head_started;
+    global $levelup_head_started, $levelupDefaultOptions;
     $levelup_head_started = true;
     /**
      * Hook before header

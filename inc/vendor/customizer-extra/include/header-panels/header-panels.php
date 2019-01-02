@@ -47,18 +47,6 @@ class headerPanels{
 	function design_style_action(){
 		?><style type="text/css">
              <?php 
-             if(!is_admin()){
-             	$data = headerfooter_get_setting( 'header_panel_settings' );
-		        if($this->isJson($data)){
-		            $data = json_decode( $data, true );
-		        }else{
-		            $data = json_decode( urldecode($data), true );
-		        }
-		        $selectedDesign = str_replace("header-", '', $data['selected_design']);
-		        $selectedCss = $this->designCss[$selectedDesign];
-				$this->designCss = array();
-				$this->designCss[$selectedDesign] = $selectedCss;
-             }
              if(is_array($this->designCss)){
              	foreach ($this->designCss as $key => $value) {
              		if(is_array($value)){

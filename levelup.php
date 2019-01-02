@@ -86,7 +86,7 @@ function levelup_fail_load() {
     $plugin_base_name = 'elementor/elementor.php';
     $plugin_slug      = 'elementor';
     $plugin_filename  = 'elementor.php';
-    $plugin_title     = __('Levelup', LEVELUP_TEXT_DOMAIN);
+    $plugin_title     = __('Elementor', LEVELUP_TEXT_DOMAIN);
 
     $links_attrs = array(
         'class'                 => array( 'button', 'button-primary', 'elementor-install-now', 'elementor-not-installed' ),

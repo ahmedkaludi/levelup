@@ -81,7 +81,7 @@ class header_footer_design1{
 	}
 
 	function render_css(){
-		$topheaderHeight  = get_theme_mod( 'height-'. $this->panelId.'middle-header-design' );
+		$topheaderHeight  = headerfooter_get_setting( 'height-'. $this->panelId.'middle-header-design' );
 		$topheaderbg      = headerfooter_get_setting( 'backgroundcolor-'. $this->panelId.'middle-header-design' );
 		$topheadercntclr      = headerfooter_get_setting( 'menucolor-'. $this->panelId.'middle-header-design' );
 

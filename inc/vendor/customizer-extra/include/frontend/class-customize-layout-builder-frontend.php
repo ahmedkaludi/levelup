@@ -58,7 +58,9 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
         if ( $this->data ) {
             return $this->data;
         }
+        global $levelupDefaultOptions;
         $data = headerfooter_get_setting( $this->control_id );
+        if(empty($data)){ $data = $levelupDefaultOptions[$this->control_id]; }
         if($this->isJson($data)){
             $data = json_decode( $data, true );
         }else{
