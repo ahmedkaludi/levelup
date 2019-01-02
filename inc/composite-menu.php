@@ -46,7 +46,7 @@ Class levelup_menuConnector{
 			case 'dashboard':
 				echo '
                 <div class="levelup_dashboard">
-                    <div class="levelup_dashboard_left">
+                    <div class="levelup_dashboard_left" style="display:none;">
                         <h2>Learn</h2>
                         <iframe width="400" height="225" src="https://www.youtube.com/embed/fnlzOHECEDo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <h4>Learn deeper:</h4>
@@ -57,7 +57,7 @@ Class levelup_menuConnector{
                            </ul>
                         </div>
                     </div>
-                    <div class="levelup_dashboard_right">
+                    <div class="levelup_dashboard_right" style="float:left; width:100%;">
                         <h2>Start with a Template</h2>
                         <p>Save time by choosing among beautiful templates designed for different sectors and purposes.</p>
                         <a href="'.esc_url(admin_url( $path = 'admin.php?page=levelup&type=template' )).'" class="button button-primary">Import a Template</a>

@@ -76,7 +76,7 @@ class LogoDesign{
                     'api_type'          => 'wp_settings',
                     'id'                => 'show_desc'. $this->panel,
                     'capability'        => 'edit_theme_options',
-                    "default"           => "yes",
+                    "default"           => "",
                     'sanitize_callback' => 'sanitize_text_field',
                     'transport'         => 'postMessage'
                 ),

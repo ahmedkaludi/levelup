@@ -17,8 +17,8 @@ define( 'LEVELUP__FILE__PATH', plugin_dir_path(__FILE__) );
 define( 'LEVELUP__FILE__URI', plugin_dir_url(__FILE__));
 define( 'LEVELUP__DIR__PATH', __DIR__ );
 define( 'LEVELUP_TEXT_DOMAIN', 'levelup' );
-define( 'LEVELUP_ENVIRONEMT', 'development' );//production
-define( 'LEVELUP_VERSION', '0.0.1' );//development
+define( 'LEVELUP_ENVIRONEMT', 'production' );//development
+define( 'LEVELUP_VERSION', '0.0.1' );
 
 
 /**
@@ -89,7 +89,7 @@ function levelup_fail_load() {
     $plugin_title     = __('Elementor', LEVELUP_TEXT_DOMAIN);
 
     $links_attrs = array(
-        'class'                 => array( 'button', 'button-primary', 'elementor-install-now', 'elementor-not-installed' ),
+        'class'                 => array( 'button', 'button-primary', 'elementor-install-now', 'elementor-not-installed', 'levelup-recommended-plugin' ),
         'data-plugin-slug'      => $plugin_slug,
 
         'data-activating-label' => __('Activating ..', LEVELUP_TEXT_DOMAIN),
@@ -107,19 +107,60 @@ function levelup_fail_load() {
     if( ! isset( $installed_plugins[ $plugin_base_name ] ) ){
         $links_attrs['data-action'] = 'install';
         $links_attrs['href'] = $links_attrs['data-install-url'];
-        $button_label = sprintf( esc_html__( 'Install %s', LEVELUP_TEXT_DOMAIN ), $plugin_title );
+        $button_label = sprintf( esc_html__( 'Install', LEVELUP_TEXT_DOMAIN ), $plugin_title );
     } elseif( ! levelup_is_plugin_active( $plugin_base_name ) ) {
         $links_attrs['data-action'] = 'activate';
         $links_attrs['href'] = $links_attrs['data-activate-url'];
-        $button_label = sprintf( esc_html__( 'Activate %s Plugin', LEVELUP_TEXT_DOMAIN), $plugin_title );
+        $button_label = sprintf( esc_html__( 'Activate', LEVELUP_TEXT_DOMAIN), $plugin_title );
     } else {
         return;
     }
 
-
+    wp_enqueue_script('updates');
 	echo '<div class="notice notice-error">
-	        <p>!'.esc_html__('Ohh, This plugin requires ',LEVELUP_TEXT_DOMAIN).' <br/><strong>'.esc_html__('Elementor',LEVELUP_TEXT_DOMAIN).'</strong> '.(', please Inatall & Acvtivate Elementor plugin ').' <a '. levelup_dependencies_make_html_attributes( $links_attrs ) .' class="button button-primary">'.esc_html__($button_label,LEVELUP_TEXT_DOMAIN).'</a></p>
-	        </div>';
+	        <p>'.esc_html__('This plugin recommends ',LEVELUP_TEXT_DOMAIN).' <strong>'.esc_html__('Elementor plugin',LEVELUP_TEXT_DOMAIN).'</strong> <a '. levelup_dependencies_make_html_attributes( $links_attrs ) .' class="button button-primary">'.esc_html__($button_label,LEVELUP_TEXT_DOMAIN).'</a></p>
+	        </div>
+            <script>
+            jQuery(document).ready(function(){
+
+               $(".levelup-recommended-plugin").click(function(e){
+                    e.preventDefault();
+                    var url =$(this).attr("href");
+                    var redirect_url =$(this).attr("data-redirect-url");
+                    var slug ="'.$plugin_slug.'";
+                    $(this).text("Please wait Downloading...");
+                    var self = $(this); 
+                    wp.updates.installPlugin(
+                        {
+                            slug: slug,
+                            success: function(pluginresponse){
+                                //wp.updates.installPluginSuccess(pluginresponse);
+                                //wpActivateModulesUpgrage(, self, response, nonce)
+                                self.text("Activating...")
+                                console.log(pluginresponse);
+                                var url = pluginresponse.activateUrl;
+                                jQuery.ajax({
+                                    async: true,
+                                    type: \'GET\',
+                                    url: url,
+                                    success: function () {
+                                        self.removeClass(\'updating-message\');
+                                        self.text(\'Activated Successfully..\');
+                                        window.location.href = redirect_url;
+                                    }
+                                });
+                            }
+                        }
+                    );
+
+                    
+                    
+                    return false;
+                })
+            });
+
+            </script>
+            ';
 }
 function levelup_dependencies_get_plugin_install_link( $plugin_slug ){
 
