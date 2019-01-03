@@ -55,7 +55,7 @@ Class HeaderBuild{
     }
 
     function add_theme_scripts() {
-      wp_enqueue_style( 'header-style-fonts-awesome', esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/css/font-awesome.css') );
+      wp_enqueue_style( 'header-style-fonts-awesome', esc_url(LEVELUP__FILE__URI.'assets/css/font-awesome/css/font-awesome.min.css') );
       wp_enqueue_style( 'header-style', esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/css/header_style.css') );
       wp_enqueue_script( 'levelup-hf-js',  esc_url(HEADER_FOOTER_PLUGIN_DIR_URI.'assets/js/levelup-frontend.js'), array( 'jquery' ), LEVELUP_VERSION, true );
     }

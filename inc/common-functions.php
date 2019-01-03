@@ -93,10 +93,10 @@ function levelup_basics_config($get){
 	return (isset($config[$get]) ? $config[$get]: '');
 }
 
-add_action('amp_post_template_head', 'fonts');
-function fonts(){
-	echo "<link rel='stylesheet' id='font-awesome-css'  href='".esc_url(LEVELUP__FILE__URI . "assets/css/font-awesome/css/font-awesome.min.css")."' type='text/css' media='all' />";
-	echo "<link rel='stylesheet' id='font-awesome-css'  href='".esc_url(LEVELUP__FILE__URI . "assets/css/frontend/amp.css")."' type='text/css' media='all' />";
+add_action('amp_post_template_head', 'levelup_amp_fonts',99);
+function levelup_amp_fonts(){
+	echo "<link rel='stylesheet' id='font-awesome-css'  href='".esc_url(LEVELUP__FILE__URI . "assets/css/font-awesome/css/font-awesome.min.css")."' type='text/css' media='all' />\n";
+	echo "<link rel='stylesheet' id='amp-css'  href='".esc_url(LEVELUP__FILE__URI . "assets/css/frontend/amp.css")."' type='text/css' media='all' />";
 }
 //add_action('wp_head', 'levelup_nonamp_design_styling', 100);
 add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
