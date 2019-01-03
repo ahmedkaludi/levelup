@@ -93,12 +93,22 @@ function levelup_basics_config($get){
 	return (isset($config[$get]) ? $config[$get]: '');
 }
 
-add_action('amp_post_template_head', 'levelup_amp_fonts',99);
+add_action('ampforwp_before_head', 'levelup_amp_fonts',0);
 function levelup_amp_fonts(){
-	echo "<link rel='stylesheet' id='font-awesome-css'  href='".esc_url(LEVELUP__FILE__URI . "assets/css/font-awesome/css/font-awesome.min.css")."' type='text/css' media='all' />\n";
-	echo "<link rel='stylesheet' id='amp-css'  href='".esc_url(LEVELUP__FILE__URI . "assets/css/frontend/amp.css")."' type='text/css' media='all' />";
+	echo "<link rel='stylesheet' id='font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' media='all' />\n";
 }
 //add_action('wp_head', 'levelup_nonamp_design_styling', 100);
+add_action( 'amp_post_template_css', 'levelup_amp_column_design',1 );
+function levelup_amp_column_design(){
+	if(function_exists('wp_upload_dir')){
+		$headerGlobalCssPath = LEVELUP__FILE__PATH."/assets/css/frontend/amp.css";
+		if(file_exists($headerGlobalCssPath)){
+			echo file_get_contents($headerGlobalCssPath);
+			
+		}
+	}
+
+}
 add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
 function levelup_amp_design_styling(){
 	/*if(!if_levelup_has_builder()){
