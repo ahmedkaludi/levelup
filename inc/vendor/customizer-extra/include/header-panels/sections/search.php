@@ -53,20 +53,34 @@ class SearchDesign{
         
     }
     function render(){
-
+    	global $redux_builder_amp;
+    	$action_url = '';
+    	$amp_query_variable = '';
+		$amp_query_variable_val = '';
+    	$action_url = esc_url( get_bloginfo('url') );
+		$action_url = preg_replace('#^http?:#', '', $action_url);
+		$label = ampforwp_translation(isset($redux_builder_amp['ampforwp-search-label']) && $redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
+		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
+		if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] ) {
+			$amp_query_variable = 'amp';
+			$amp_query_variable_val = '1';
+		}
         ?>
+        <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
         <div class="sr">
-          <button id="trigger-overlay" type="button">
+          <button id="trigger-overlay" type="button" on="tap:AMP.setState({visible: !visible})">
               <span class="fa fa-search"></span>
           </button>
         </div>
-        <div class="overlay overlay-slidedown" id="search-overlay">
+        <div [class]="visible ? 'overlay overlay-slidedown open' : 'overlay overlay-slidedown close'"  class="overlay overlay-slidedown" id="search-overlay">
           <div class="ov-form">
-            <form action="http://themenectar.com/demo/salient-blog-magazine/" method="GET">
-                <input type="text" name="s" value="" placeholder="Search">
-                <span class="sr-txt">Hit Enter to Search</span> 
+            <form role="search" target="_top" id="searchform" class="searchform" action="<?php echo $action_url;?>" method="GET">
+                <input type="text" name="<?php echo $amp_query_variable;?>" value="<?php echo $amp_query_variable_val;?>" placeholder="AMP" class="hide" id="ampforwp_search_query_item">
+                <input type="text" placeholder="Search" value="<?php echo get_search_query();?>" name="s" id="s" />
+                <input type="submit" id="searchsubmit" />
+                <span class="sr-txt"><?php echo $label;?></span> 
             </form>
-            <button class="overlay-close">
+            <button class="overlay-close" on="tap:AMP.setState({visible: !visible})">
               <span class="fa fa-close"></span>
             </button>
           </div>
