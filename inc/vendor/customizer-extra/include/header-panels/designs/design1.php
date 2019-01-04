@@ -234,10 +234,14 @@ class header_footer_design1{
 				    text-align: right;
 				}
 				.scl-icns ul{
-					display: flex;
+					display: inline-block;
+					vertical-align: middle;
 				    line-height: 0;
 				    align-items: center;
 				    margin:0;
+				    padding:0;
+				    text-align: right;
+    				width: 100%;
 				}
 				.scl-icns li a{
 					line-height: 0;
@@ -248,10 +252,7 @@ class header_footer_design1{
 					margin-right: 25px;
 				}
 				.nav-menu.desktop ul{margin:0;}
-				.nav-menu.desktop, .scl-icns{
-					display: inline-block;
-				    vertical-align: middle;
-				}
+				
 				.sr{
 					order:1;
 					line-height: 0;
@@ -391,18 +392,14 @@ class header_footer_design1{
 				}
 				/** Footer CSS **/
 				#site-footer{
-					display: inline-flex;
-				    flex-wrap: wrap;
+					display: inline-block;
 				    width: 100%;
-				    align-items: center;
-				    justify-content: center;
 				    border-top: 1px solid #ccc;
     				padding: 30px 0px;
 				}
 				.cp-right {
 					font-size: 16px;
 				    color: #333;
-				    margin-right: 30px;
 				    font-weight: 500;
 				}
 
@@ -535,12 +532,12 @@ class header_footer_design1{
 		margin:0;
 	}
 }
-@media(max-width:500px){
-	#site-footer {
+@media(max-width:600px){
+	#site-footer, .scl-icns ul{
     	display: inline-block;
     	text-align: center;
     }
-    .cp-right{margin:0px 0px 20px 0px;}
+    #site-footer{padding:30px 0px 0px;}
 }
 				';
 
