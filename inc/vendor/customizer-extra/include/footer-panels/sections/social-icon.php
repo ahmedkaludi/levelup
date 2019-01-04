@@ -102,8 +102,8 @@ class SocialiconFooterDesign{
 		}
 		if(headerfooter_get_setting( 'twitter'. $this->panel)){
 			$items['googleplus']['url'] = headerfooter_get_setting( 'googleplus'. $this->panel );
-			$items['googleplus']['icon'] = 'googleplus';	
-			$items['googleplus']['title'] = 'googleplus';	
+			$items['googleplus']['icon'] = 'google-plus';	
+			$items['googleplus']['title'] = 'google-plus';	
 		}
 		if(headerfooter_get_setting( 'instagram'. $this->panel)){
 			$items['googleplus']['url'] = headerfooter_get_setting( 'instagram'. $this->panel );
