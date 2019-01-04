@@ -94,7 +94,14 @@ class header_footer_design1{
 					width:100%;
 					height:'.$topheaderHeight.';
 				}
-				
+				.site-title{
+					font-size:20px;
+					line-height:1.4;
+					font-weight:600;
+				}
+				.site-title a{
+					color:#222;
+				}
 				.nav-menu.desktop ul li{
 					list-style-type: none;
 					display: inline-block;
@@ -209,6 +216,7 @@ class header_footer_design1{
 				    visibility: hidden;
 				    text-align:left;
 				    box-shadow:1px 1px 10px 1px #c7c7c7;
+				    padding:0;
 				}
 				.nav-menu.desktop .menu li.menu-item-has-children .sub-menu {
 				    display: block;	    

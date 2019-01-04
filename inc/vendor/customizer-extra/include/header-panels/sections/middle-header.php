@@ -70,7 +70,7 @@ class MiddleDesign{
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'menucolor-'.$this->panel. $this->id,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "red",
+					"default"			=> "#333",
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'transport'			=> 'postMessage'
 			    ),
