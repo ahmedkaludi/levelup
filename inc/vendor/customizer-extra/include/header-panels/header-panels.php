@@ -34,14 +34,14 @@ class headerPanels{
 		if(is_array($this->designCss)){
 			foreach ($this->designCss as $key => $value) {
 				if(is_array($value)){
-					echo $value['global_design_css'];
-					echo $value['amp_css'];
+					echo \levelup_minify_css($value['global_design_css']);
+					echo \levelup_minify_css($value['amp_css']);
 				}else{
-					echo $value;
+					echo \levelup_minify_css($value);
 				}
 			}
 		}else{
-			echo $this->designCss;
+			echo \levelup_minify_css($this->designCss);
 		}
 	}
 	function design_style_action(){

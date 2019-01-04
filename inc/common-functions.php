@@ -95,7 +95,7 @@ function levelup_basics_config($get){
 
 add_action('ampforwp_before_head', 'levelup_amp_fonts',0);
 function levelup_amp_fonts(){
-	echo "<link rel='stylesheet' id='font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' media='all' />\n";
+	echo "<link rel='stylesheet' id='font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' media='all' />";
 }
 //add_action('wp_head', 'levelup_nonamp_design_styling', 100);
 add_action( 'amp_post_template_css', 'levelup_amp_column_design',1 );
@@ -103,7 +103,7 @@ function levelup_amp_column_design(){
 	if(function_exists('wp_upload_dir')){
 		$headerGlobalCssPath = LEVELUP__FILE__PATH."/assets/css/frontend/amp.css";
 		if(file_exists($headerGlobalCssPath)){
-			echo file_get_contents($headerGlobalCssPath);
+			echo levelup_minify_css(file_get_contents($headerGlobalCssPath));
 			
 		}
 	}
@@ -111,9 +111,10 @@ function levelup_amp_column_design(){
 }
 add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
 function levelup_amp_design_styling(){
-	/*if(!if_levelup_has_builder()){
+	global $post;
+	if( is_single($post->ID) || is_singular($post->ID)  || !(\Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID)) ) {
 		return false;
-	}*/
+	}
 	$allCss = '/** Levelup CSS **/
 @media (min-width: 768px){
   .elementor-column.elementor-col-10, .elementor-column[data-col="10"] {

@@ -31,7 +31,12 @@ function levelup_load_header_footer(){
 
 };
 function amp_global_css(){
+    ob_start();
     require_once(HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'/frontend/amp_css_global.php');
+    $css = ob_get_contents();
+    ob_clean();
+    echo levelup_minify_css($css);
+
 }
 function render_footer_option_html(){
     global $levelup_foot_started, $levelupDefaultOptions;
