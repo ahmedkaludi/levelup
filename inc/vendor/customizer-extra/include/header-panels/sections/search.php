@@ -65,8 +65,8 @@ class SearchDesign{
 			$amp_query_variable = 'amp';
 			$amp_query_variable_val = '1';
 		}
-        ?>
-        
+
+if ( (function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint()) ||  (function_exists( 'is_wp_amp' ) && is_wp_amp()) || (function_exists( 'is_amp_endpoint' ) && is_amp_endpoint()) ) { ?>
         <div class="sr">
           <button id="trigger-overlay" type="button" on="tap:AMP.setState({visible: !visible})">
               <span class="fa fa-search"></span>
@@ -86,5 +86,28 @@ class SearchDesign{
           </div>
         </div>
         <?php
+    	}else{
+    		?>
+    		<div class="sr">
+          <button id="trigger-overlay" type="button" on="tap:AMP.setState({visible: !visible})">
+              <span class="fa fa-search"></span>
+          </button>
+        </div>
+        <div [class]="visible ? 'overlay overlay-slidedown open' : 'overlay overlay-slidedown close'"  class="overlay overlay-slidedown" id="search-overlay">
+          <div class="ov-form">
+           <form role="search" method="get" class="levelup-fullscreen-searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+		          <input type="search" class="search-field"
+		              placeholder="<?php echo esc_attr_x( 'Search', 'label', 'level-up' ) ?>"
+		              value="<?php echo esc_attr( get_search_query() ); ?>" name="s"
+		              title="<?php echo esc_attr_x( 'Search for:', 'label', 'level-up' ) ?>" id="levelup-fullscreen-search-input"/>
+			      <span class="sr-txt">Hit Enter to Search</span> 
+			</form>
+            <button class="overlay-close" on="tap:AMP.setState({visible: !visible})">
+              <span class="fa fa-close"></span>
+            </button>
+          </div>
+        </div>
+    		<?php
+    	}
     }
 }
