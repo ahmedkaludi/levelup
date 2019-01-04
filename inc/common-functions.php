@@ -376,3 +376,12 @@ if(!function_exists('if_levelup_has_builder'))  {
 		return false; 
 	}
 }
+add_filter( 'amp_post_template_data', 'ampforwp_levelup_scripts' );
+function ampforwp_levelup_scripts( $data ) {
+	global $redux_builder_amp;
+	if ( empty( $data['amp_component_scripts']['amp-bind'] ) ) {
+		$data['amp_component_scripts']['amp-bind'] = 'https://cdn.ampproject.org/v0/amp-bind-0.1.js';
+	}
+
+	return $data;
+}

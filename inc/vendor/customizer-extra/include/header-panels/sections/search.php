@@ -66,7 +66,7 @@ class SearchDesign{
 			$amp_query_variable_val = '1';
 		}
         ?>
-        <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+        
         <div class="sr">
           <button id="trigger-overlay" type="button" on="tap:AMP.setState({visible: !visible})">
               <span class="fa fa-search"></span>
@@ -77,8 +77,8 @@ class SearchDesign{
             <form role="search" target="_top" id="searchform" class="searchform" action="<?php echo $action_url;?>" method="GET">
                 <input type="text" name="<?php echo $amp_query_variable;?>" value="<?php echo $amp_query_variable_val;?>" placeholder="AMP" class="hide" id="ampforwp_search_query_item">
                 <input type="text" placeholder="Search" value="<?php echo get_search_query();?>" name="s" id="s" />
-                <input type="submit" id="searchsubmit" />
-                <span class="sr-txt"><?php echo $label;?></span> 
+                <button type="submit" class="btn-sbt"></button>
+                <span class="sr-txt">Hit Enter to Search</span> 
             </form>
             <button class="overlay-close" on="tap:AMP.setState({visible: !visible})">
               <span class="fa fa-close"></span>

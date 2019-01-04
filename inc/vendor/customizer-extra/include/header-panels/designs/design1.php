@@ -289,6 +289,7 @@ class header_footer_design1{
 				    border-radius: 50px;
 				    line-height: 0;
 				}
+				.hide, .btn-sbt{display:none;}
 				/*.overlay .overlay-close:hover{
 
 				}*/
@@ -318,6 +319,9 @@ class header_footer_design1{
 				    font-weight: 500;
 				    margin-top: 20px;
 				    display: inline-block;
+				    width:100%;
+				    text-align:left;
+				    color:#333;
 				}
 
 				/** Hamberger Menu CSS **/
