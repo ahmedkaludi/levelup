@@ -182,11 +182,31 @@ function levelup_amp_column_design(){
 }
 add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
 function levelup_amp_design_styling(){
-	global $post;
+	global $post, $redux_builder_amp;
 	if( is_single($post->ID) || is_singular($post->ID)  || !(\Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID)) ) {
 		return false;
 	}
-	$allCss = '/** Levelup CSS **/
+	$allCss = '';
+	// Back to Top CSS // "\e316"
+	if( '1' == $redux_builder_amp['ampforwp-footer-top'] ) { 
+		$allCss .= '.btt{
+					position: fixed;
+				    bottom: 50px;
+				    right: 10px;
+				    padding: 10px;
+				    background: '.$redux_builder_amp['swift-color-scheme']['color'].';
+				    color: #fff;
+				    border-radius: 5px;
+				}
+				.btt:before{
+					content: "\f062";
+			    	font-family: \'FontAwesome\';
+					display:block;
+					font-size: 20px;
+			    	font-weight: 600;
+				}';
+	} 
+	$allCss .= '/** Levelup CSS **/
 @media (min-width: 768px){
   .elementor-column.elementor-col-10, .elementor-column[data-col="10"] {
     width: 10%; }

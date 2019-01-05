@@ -41,6 +41,11 @@ function amp_global_css(){
 function render_footer_option_html(){
     global $levelup_foot_started, $levelupDefaultOptions;
     $levelup_foot_started = true;
+    if(ampforwp_is_amp_endpoint()){
+        amp_back_to_top_link();
+        do_action( 'amp_before_footer', $thisTemplate );
+        do_action( 'amp_post_template_above_footer', $thisTemplate );
+    }
     echo '<footer class="site-footer" id="site-footer">';
     HeaderFooter_Customize_Layout_Builder_Frontend()->set_id( 'footer' );
     HeaderFooter_Customize_Layout_Builder_Frontend()->set_control_id( 'footer_panel_settings' );
