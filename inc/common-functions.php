@@ -95,8 +95,14 @@ function levelup_basics_config($get){
 
 add_action('ampforwp_before_head', 'levelup_amp_fonts');
 function levelup_amp_fonts_elementor(){
+	global $post;
 	$fontsList = get_option( '_elementor_global_css');
-	$fonts =$fontsList['fonts'];
+	$postFontsList = get_post_meta($post->ID, '_elementor_css');
+	$listPostFonts = array();
+	foreach ($postFontsList as $key => $postFonts) {
+		$listPostFonts = array_merge( $listPostFonts, $postFonts['fonts']);
+	}
+	$fonts = array_merge($fontsList['fonts'], $listPostFonts);
 	$google_fonts = array();
 	foreach ($fonts as $key => $font) {
 		$font_type = \Elementor\Fonts::get_font_type( $font );
