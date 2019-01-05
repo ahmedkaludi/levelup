@@ -93,9 +93,74 @@ function levelup_basics_config($get){
 	return (isset($config[$get]) ? $config[$get]: '');
 }
 
-add_action('ampforwp_before_head', 'levelup_amp_fonts',0);
+add_action('ampforwp_before_head', 'levelup_amp_fonts');
+function levelup_amp_fonts_elementor(){
+	$fontsList = get_option( '_elementor_global_css');
+	$fonts =$fontsList['fonts'];
+	$google_fonts = array();
+	foreach ($fonts as $key => $font) {
+		$font_type = \Elementor\Fonts::get_font_type( $font );
+			switch ( $font_type ) {
+				case \Elementor\Fonts::GOOGLE:
+					$google_fonts['google'][] = $font;
+					break;
+
+				case \Elementor\Fonts::EARLYACCESS:
+					$google_fonts['early'][] = $font;
+					break;
+				}
+	}
+	$google_fonts_index = 1;
+	if ( ! empty( $google_fonts['google'] ) ) {
+			$google_fonts_index++;
+
+
+			foreach ( $google_fonts['google'] as &$font ) {
+				$font = str_replace( ' ', '+', $font ) . ':100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic';
+			}
+
+			$fonts_url = sprintf( 'https://fonts.googleapis.com/css?family=%s', implode( rawurlencode( '|' ), $google_fonts['google'] ) );
+
+			$subsets = [
+				'ru_RU' => 'cyrillic',
+				'bg_BG' => 'cyrillic',
+				'he_IL' => 'hebrew',
+				'el' => 'greek',
+				'vi' => 'vietnamese',
+				'uk' => 'cyrillic',
+				'cs_CZ' => 'latin-ext',
+				'ro_RO' => 'latin-ext',
+				'pl_PL' => 'latin-ext',
+			];
+			$locale = get_locale();
+
+			if ( isset( $subsets[ $locale ] ) ) {
+				$fonts_url .= '&subset=' . $subsets[ $locale ];
+			}
+
+			echo "<link rel='stylesheet' id='google-fonts'  href='$fonts_url' type='text/css' media='all' />";
+		}
+
+		if ( ! empty( $google_fonts['early'] ) ) {
+			foreach ( $google_fonts['early'] as $current_font ) {
+				$google_fonts_index++;
+
+				//printf( '<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/%s.css">', strtolower( str_replace( ' ', '', $current_font ) ) );
+
+				$font_url = sprintf( 'https://fonts.googleapis.com/earlyaccess/%s.css', strtolower( str_replace( ' ', '', $current_font ) ) );
+
+				//wp_enqueue_style( 'google-earlyaccess-' . $google_fonts_index, $font_url ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
+				echo "<link rel='stylesheet' id='google-fonts'  href='$fonts_url' type='text/css' media='all' />";
+			}
+		}
+	
+}
 function levelup_amp_fonts(){
 	echo "<link rel='stylesheet' id='font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' media='all' />";
+	levelup_amp_fonts_elementor();
+	/*$post_id = $post->ID;
+	$dynamicCss = new \Elementor\Core\DynamicTags\Dynamic_CSS($post_id, $post_id);
+	$dynamicCss->get_meta();*/
 }
 //add_action('wp_head', 'levelup_nonamp_design_styling', 100);
 add_action( 'amp_post_template_css', 'levelup_amp_column_design',1 );
