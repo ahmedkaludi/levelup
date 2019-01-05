@@ -1073,6 +1073,84 @@ class PresentationWidgets extends Widget_Base {
 
 
 		$this->end_controls_section();
+		/******
+		** Style
+		** tab contents
+		**/
+		$this->start_controls_section(
+			'section_title_style',
+			[
+				'label' => __( 'Title', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'title_color',
+			[
+				'label' => __( 'Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} h2' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} h2',
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'text_shadow',
+				'selector' => '{{WRAPPER}} h2',
+			]
+		);
+
+		$this->add_control(
+			'blend_mode',
+			[
+				'label' => __( 'Blend Mode', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'' => __( 'Normal', 'elementor' ),
+					'multiply' => 'Multiply',
+					'screen' => 'Screen',
+					'overlay' => 'Overlay',
+					'darken' => 'Darken',
+					'lighten' => 'Lighten',
+					'color-dodge' => 'Color Dodge',
+					'saturation' => 'Saturation',
+					'color' => 'Color',
+					'difference' => 'Difference',
+					'exclusion' => 'Exclusion',
+					'hue' => 'Hue',
+					'luminosity' => 'Luminosity',
+				],
+				'selectors' => [
+					'{{WRAPPER}} h2' => 'mix-blend-mode: {{VALUE}}',
+				],
+				'separator' => 'none',
+			]
+		);
+
+		$this->end_controls_section();
+
+
+
+
+
 
 	}//Control settings are closed
 	/**
