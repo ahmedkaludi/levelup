@@ -1074,19 +1074,27 @@ class PresentationWidgets extends Widget_Base {
 
 		$this->end_controls_section();
 		/******
-		** Style
-		** tab contents
+		** Style Design 5 
+		** tab Title
 		**/
 		$this->start_controls_section(
-			'section_title_style',
+			'cp5_title_style',
 			[
 				'label' => __( 'Title', 'elementor' ),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
 			]
 		);
 
 		$this->add_control(
-			'title_color',
+			'cp5_title_color',
 			[
 				'label' => __( 'Text Color', 'elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
@@ -1094,63 +1102,883 @@ class PresentationWidgets extends Widget_Base {
 					'type' => \Elementor\Scheme_Color::get_type(),
 					'value' => \Elementor\Scheme_Color::COLOR_1,
 				],
+				'default' => '#000',
 				'selectors' => [
 					// Stronger selector to avoid section style from overwriting
-					'{{WRAPPER}} h2' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .cp-5 h2' => 'color: {{VALUE}};',
 				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
 			]
 		);
 
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
-				'name' => 'typography',
+				'name' => 'cp5_typography',
 				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} h2',
+				'selector' => '{{WRAPPER}} .cp5-a h2',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
 			]
 		);
 
-		$this->add_group_control(
-			\Elementor\Group_Control_Text_Shadow::get_type(),
+		// $this->add_group_control(
+		// 	\Elementor\Group_Control_Text_Shadow::get_type(),
+		// 	[
+		// 		'name' => 'text_shadow',
+		// 		'selector' => '{{WRAPPER}} h2',
+		// 	]
+		// );
+
+		// $this->add_control(
+		// 	'blend_mode',
+		// 	[
+		// 		'label' => __( 'Blend Mode', 'elementor' ),
+		// 		'type' => \Elementor\Controls_Manager::SELECT,
+		// 		'options' => [
+		// 			'' => __( 'Normal', 'elementor' ),
+		// 			'multiply' => 'Multiply',
+		// 			'screen' => 'Screen',
+		// 			'overlay' => 'Overlay',
+		// 			'darken' => 'Darken',
+		// 			'lighten' => 'Lighten',
+		// 			'color-dodge' => 'Color Dodge',
+		// 			'saturation' => 'Saturation',
+		// 			'color' => 'Color',
+		// 			'difference' => 'Difference',
+		// 			'exclusion' => 'Exclusion',
+		// 			'hue' => 'Hue',
+		// 			'luminosity' => 'Luminosity',
+		// 		],
+		// 		'selectors' => [
+		// 			'{{WRAPPER}} h2' => 'mix-blend-mode: {{VALUE}}',
+		// 		],
+		// 		'separator' => 'none',
+		// 	]
+		// );
+
+		$this->end_controls_section();
+
+		/****** Design 5 tab description **/
+
+		$this->start_controls_section(
+			'cp5_description_style',
 			[
-				'name' => 'text_shadow',
-				'selector' => '{{WRAPPER}} h2',
+				'label' => __( 'Description', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
 			]
 		);
 
 		$this->add_control(
-			'blend_mode',
+			'cp5_description_color',
 			[
-				'label' => __( 'Blend Mode', 'elementor' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => [
-					'' => __( 'Normal', 'elementor' ),
-					'multiply' => 'Multiply',
-					'screen' => 'Screen',
-					'overlay' => 'Overlay',
-					'darken' => 'Darken',
-					'lighten' => 'Lighten',
-					'color-dodge' => 'Color Dodge',
-					'saturation' => 'Saturation',
-					'color' => 'Color',
-					'difference' => 'Difference',
-					'exclusion' => 'Exclusion',
-					'hue' => 'Hue',
-					'luminosity' => 'Luminosity',
+				'label' => __( 'Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
 				],
+				'default' => '#555',
 				'selectors' => [
-					'{{WRAPPER}} h2' => 'mix-blend-mode: {{VALUE}}',
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp5-a p' => 'color: {{VALUE}};',
 				],
-				'separator' => 'none',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp5_desc_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp5-a p',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		/****** Design 5 tab Button **/
+
+		$this->start_controls_section(
+			'cp5_button_style',
+			[
+				'label' => __( 'Button', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp5_button_color',
+			[
+				'label' => __( 'Button Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#333',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp5-b a' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp5_button_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp5-b a',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		/******
+		** Style Design 6 
+		** tab Title
+		**/
+		$this->start_controls_section(
+			'cp6_title_style',
+			[
+				'label' => __( 'Title', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp6_title_color',
+			[
+				'label' => __( 'Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#111',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp-6 h2' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp6_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp-6 h2',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		/****** Design 6 tab description **/
+
+		$this->start_controls_section(
+			'cp6_description_style',
+			[
+				'label' => __( 'Description', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp6_description_color',
+			[
+				'label' => __( 'Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#333',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp-6 p' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp6_desc_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp-6 p',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		/****** Design 6 tab Button1 **/
+		
+		$this->start_controls_section(
+			'cp6_button1_style',
+			[
+				'label' => __( 'Button1', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp6_button1_color',
+			[
+				'label' => __( 'Button Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp-6-1 a' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp6_button1_bgcolor',
+			[
+				'label' => __( 'Button Background Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#267DF4',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp-6-1 a' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp6_button1_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp-6-1 a',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+
+		);
+
+		$this->end_controls_section();
+
+		/****** Design 6 tab Button2 **/
+		
+		$this->start_controls_section(
+			'cp6_button2_style',
+			[
+				'label' => __( 'Button2', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp6_button2_color',
+			[
+				'label' => __( 'Button Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#000',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp-6-2 a' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp6_button2_bgcolor',
+			[
+				'label' => __( 'Button Background Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp-6-2 a' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp6_button2_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp-6-2 a',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		/******
+		** Style Design 8 
+		** tab Title
+		**/
+		$this->start_controls_section(
+			'cp8a_title_style',
+			[
+				'label' => __( 'Top Title', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp8a_title_color',
+			[
+				'label' => __( 'Title Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#111',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp8-a h2' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp8a_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp8-a h2',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		/****** Design 8a tab text **/
+
+		$this->start_controls_section(
+			'cp8a_text_style',
+			[
+				'label' => __( 'Top Text', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp8a_text_color',
+			[
+				'label' => __( 'Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#666',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp8-a span' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp8a_text_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp8-a span',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		/****** Design 8c tab description **/
+
+		$this->start_controls_section(
+			'cp8c_text_style',
+			[
+				'label' => __( 'Bottom Text', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp8c_text_color',
+			[
+				'label' => __( 'Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#666',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp8-c span.np' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp8c_text_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp8-c span.np',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		/****** Design 8c Title description **/
+
+		$this->start_controls_section(
+			'cp8c_title_style',
+			[
+				'label' => __( 'Bottom Title', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp8c_title_color',
+			[
+				'label' => __( 'Title Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#111',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp8-c h2' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp8c_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp8-a h2',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
 			]
 		);
 
 		$this->end_controls_section();
 
 
+		/****** Design 8c Button **/
+		
+		$this->start_controls_section(
+			'cp8_button_style',
+			[
+				'label' => __( 'Buttons', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'cp8c_button1_color',
+			[
+				'label' => __( 'Button1 Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp8c-btns a' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp8c_button1_bgcolor',
+			[
+				'label' => __( 'Button1 Background Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#131315',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp8c-btns a' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp8c_button2_color',
+			[
+				'label' => __( 'Button2 Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp8c-btns au' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp8c_button2_bgcolor',
+			[
+				'label' => __( 'Button2 Background Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#131315',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp8c-btns au' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'cp8c_buttons_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .cp8c-btns',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
 
 
-
+		
 
 	}//Control settings are closed
 	/**
