@@ -7,9 +7,9 @@ function demo_designs_import_files(){
 	return array(
 			array(
 				'import_file_name'           => 'Bolts Construction',
-				'import_file_url'            => 'http://localhost/import/2018-12-15.xml',
+				'import_file_url'            => 'http://levelup.magazine3.company/levelup/ampforwp.20190109075119.xml',
 				'import_widget_file_url'     => '',
-				'import_customizer_file_url' => 'http://localhost/import/level-up-export.dat',
+				'import_customizer_file_url' => 'http://levelup.magazine3.company/levelup/level-up-export.dat',
 				'import_dummy_content'		=> '',
 				'import_preview_image_url'   => 'http://artifacts.proteusthemes.com/import-preview-images/bolts-construction.jpg',
 				'preview_url'                => 'https://demo.proteusthemes.com/bolts',
