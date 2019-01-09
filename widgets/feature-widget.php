@@ -731,6 +731,167 @@ class FeatureWidgets extends Widget_Base {
 		
 		$this->end_controls_section();
 
+
+		/****** Design 6 tab description **/
+
+		$this->start_controls_section(
+			'ft6_design_style',
+			[
+				'label' => __( 'Section', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'feature-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'ft6_bg_color',
+			[
+				'label' => __( 'Section Background Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#f5f5f8',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .ft6-wrap' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'feature-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'ft6_bdr_color',
+			[
+				'label' => __( 'Section Bottom Border Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#ececec',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .ft6-wrap' => 'border-color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'feature-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'ft6_block_style',
+			[
+				'label' => __( 'Content Block', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'feature-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'ft6_icon_color',
+			[
+				'label' => __( 'Icon Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#267DF4',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .ft6-lk' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'feature-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'ft6_tlt_color',
+			[
+				'label' => __( 'Title Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#111',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .ft6-a h3' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'feature-design-6',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'ft6_desc_color',
+			[
+				'label' => __( 'Description Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#666',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .ft6-a p' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'feature-design-6',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
 	}//Control settings are closed
 	/**
 	 * Render the widget output on the frontend.

@@ -1251,7 +1251,30 @@ class PresentationWidgets extends Widget_Base {
 				)
 			]
 		);
-
+		$this->add_control(
+			'cp5_button_bg_color',
+			[
+				'label' => __( 'Button Background Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .cp5-b a' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
+						)
+					)
+				)
+			]
+		);
 		$this->add_control(
 			'cp5_button_color',
 			[
@@ -1861,11 +1884,34 @@ class PresentationWidgets extends Widget_Base {
 				)
 			]
 		);
-
 		$this->add_control(
-			'cp8c_button1_color',
+			'cp8c_button-toptext_color',
 			[
-				'label' => __( 'Button1 Text Color', 'elementor' ),
+				'label' => __( 'Button Top Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#a0a0a0',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .dwf' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-8',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'cp8c_button_color',
+			[
+				'label' => __( 'Buttons Text Color', 'elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'scheme' => [
 					'type' => \Elementor\Scheme_Color::get_type(),
@@ -1887,9 +1933,9 @@ class PresentationWidgets extends Widget_Base {
 			]
 		);
 		$this->add_control(
-			'cp8c_button1_bgcolor',
+			'cp8c_button_bgcolor',
 			[
-				'label' => __( 'Button1 Background Color', 'elementor' ),
+				'label' => __( 'Buttons Background Color', 'elementor' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'scheme' => [
 					'type' => \Elementor\Scheme_Color::get_type(),
@@ -1899,54 +1945,6 @@ class PresentationWidgets extends Widget_Base {
 				'selectors' => [
 					// Stronger selector to avoid section style from overwriting
 					'{{WRAPPER}} .cp8c-btns a' => 'background: {{VALUE}};',
-				],
-				'conditions'=> array(
-					'terms'	=> array(
-						array(
-							'name' => 'layoutDesignSelected',
-							'value' => 'content-presentation-design-8',
-						)
-					)
-				)
-			]
-		);
-		$this->add_control(
-			'cp8c_button2_color',
-			[
-				'label' => __( 'Button2 Text Color', 'elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => \Elementor\Scheme_Color::get_type(),
-					'value' => \Elementor\Scheme_Color::COLOR_1,
-				],
-				'default' => '#fff',
-				'selectors' => [
-					// Stronger selector to avoid section style from overwriting
-					'{{WRAPPER}} .cp8c-btns au' => 'color: {{VALUE}};',
-				],
-				'conditions'=> array(
-					'terms'	=> array(
-						array(
-							'name' => 'layoutDesignSelected',
-							'value' => 'content-presentation-design-8',
-						)
-					)
-				)
-			]
-		);
-		$this->add_control(
-			'cp8c_button2_bgcolor',
-			[
-				'label' => __( 'Button2 Background Color', 'elementor' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'scheme' => [
-					'type' => \Elementor\Scheme_Color::get_type(),
-					'value' => \Elementor\Scheme_Color::COLOR_1,
-				],
-				'default' => '#131315',
-				'selectors' => [
-					// Stronger selector to avoid section style from overwriting
-					'{{WRAPPER}} .cp8c-btns au' => 'background: {{VALUE}};',
 				],
 				'conditions'=> array(
 					'terms'	=> array(

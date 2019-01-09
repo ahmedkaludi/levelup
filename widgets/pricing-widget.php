@@ -879,7 +879,7 @@ class PricingWidgets extends Widget_Base {
 				'default' => '#c6d6ef',
 				'selectors' => [
 					// Stronger selector to avoid section style from overwriting
-					'{{WRAPPER}} .pri4-a span a.pricing4-ln-txt' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .pri4-a span a' => 'color: {{VALUE}};',
 				],
 				'conditions'=> array(
 					'terms'	=> array(
@@ -902,6 +902,380 @@ class PricingWidgets extends Widget_Base {
 						array(
 							'name' => 'layoutDesignSelected',
 							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+
+		/****** Design 4 tab Pricing blocks **/
+
+		$this->start_controls_section(
+			'pri4-b_pricing-block_style',
+			[
+				'label' => __( 'Pricing Block', 'elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+
+		$this->add_control(
+			'pri4-b_pb1_active_color',
+			[
+				'label' => __( 'Price Active Background Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-b .pri4-tabl:nth-child(1)' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pb1_nac_color',
+			[
+				'label' => __( 'Price Background Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#EBEBED',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-b .pri4-tabl' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_title_color',
+			[
+				'label' => __( 'Price Title Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#111',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-cnt h3' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-lbl_bg',
+			[
+				'label' => __( 'Price Label Background', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-cnt .fr' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-btn_color',
+			[
+				'label' => __( 'Price Label Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#000',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-cnt .fr' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-txt_color',
+			[
+				'label' => __( 'Price Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#666',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-cnt h4' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-pkg_color',
+			[
+				'label' => __( 'Price List Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#000',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-cnt ul li' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-ic_color',
+			[
+				'label' => __( 'Price List Icon Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#27b74e',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .tik' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri4-btn1_color',
+			[
+				'label' => __( 'Price Active Button Background', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#005be2',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-b .pri4-tabl:nth-child(1) .started a' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-btn1-txt_color',
+			[
+				'label' => __( 'Price Active Button Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-b .pri4-tabl:nth-child(1) .started a' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-btn1-brdr_color',
+			[
+				'label' => __( 'Price Active Button Border Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#005be2',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .pri4-b .pri4-tabl:nth-child(1) .started a' => 'border-color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri4-btn2_color',
+			[
+				'label' => __( 'Price Button Background', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#fff',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .started a' => 'background: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-btn2-txt_color',
+			[
+				'label' => __( 'Price Button Text Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#005be2',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .started a' => 'color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_control(
+			'pri4-b_pri-btn2-brdr_color',
+			[
+				'label' => __( 'Price Button Border Color', 'elementor' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'scheme' => [
+					'type' => \Elementor\Scheme_Color::get_type(),
+					'value' => \Elementor\Scheme_Color::COLOR_1,
+				],
+				'default' => '#005be2',
+				'selectors' => [
+					// Stronger selector to avoid section style from overwriting
+					'{{WRAPPER}} .started a' => 'border-color: {{VALUE}};',
+				],
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'pricing-design-4',
+						)
+					)
+				)
+			]
+		);
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'pri4-b_typography',
+				'scheme' => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .pri4-b',
+				'conditions'=> array(
+					'terms'	=> array(
+						array(
+							'name' => 'layoutDesignSelected',
+							'value' => 'content-presentation-design-5',
 						)
 					)
 				)
