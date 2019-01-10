@@ -73,7 +73,7 @@ class LevelupPlugin {
 			//,'elementor-editor' 
 			wp_localize_script( 'levelup-widget-options', 'levelup_object',
 	            array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
-	            	'elementor_theme_settings'=>esc_url('admin.php?page=levelup_settings'),
+	            	'elementor_theme_settings'=>esc_url('admin.php?page=levelup&type=tools'),
 	            	'widget_design'=>array("designs"=> $designList )
 	            ) );
 			
