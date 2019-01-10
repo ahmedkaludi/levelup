@@ -162,7 +162,7 @@ function levelup_default_designs($responseData){
                 update_post_meta( $post_id, 'design_feature_image_url', (isset($valDesigntype['designImage'])? $valDesigntype['designImage']: '') );
                 
                 update_post_meta( $post_id, 'design_settings', (isset($valDesigntype['design_settings'])? $valDesigntype['design_settings']: '') );
-                update_post_meta( $post_id, 'design_options', (isset($valDesigntype['design_options'])? $valDesigntype['design_options']: '') );
+                /*update_post_meta( $post_id, 'design_options', (isset($valDesigntype['design_options'])? $valDesigntype['design_options']: '') );*/
 
                 $upload = wp_upload_dir();
                 $upload_dir = $upload['basedir'];
