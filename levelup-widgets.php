@@ -16,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  *
  */
 class LevelupPlugin {
+	public $allfields = array();
 	/**
 	 * Constructor
 	 *
@@ -32,6 +33,7 @@ class LevelupPlugin {
 	 * @access private
 	 */
 	private function add_actions() {
+		$this->grabFields();
 		add_action('elementor/elements/categories_registered', array( $this,'add_levelup_widget_categories') );
 		add_action( 'elementor/widgets/widgets_registered', array( $this, 'on_widgets_registered' ) );
 
@@ -147,6 +149,16 @@ class LevelupPlugin {
 
 	public function levelup_new_template_dialog(){
 		require_once LEVELUP__FILE__PATH.'/inc/modal-templates.php';
+	}
+
+	private function grabFields(){
+		if(function_exists('wp_upload_dir')){
+			$files = wp_upload_dir()['basedir'].'/levelup/index-levelup.php';
+			if(file_exists($files))
+			require_once $files;
+			
+		}
+		
 	}
 }
 new \LevelupWidgets\LevelupPlugin();

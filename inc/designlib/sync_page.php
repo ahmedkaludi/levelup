@@ -7,6 +7,7 @@ define( 'LEVELUP_SERVER_URL', 'http://levelup.magazine3.company' );
 define( 'LEVELUP_API_url', LEVELUP_SERVER_URL.'/wp-json/' );
 define( 'LEVELUP_SYNC_VERSION_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-version' );
 define( 'LEVELUP_SYNC_DESIGN_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-designs' );
+define( 'LEVELUP_SYNC_DESIGN_MARKUP_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-designs-markup' );
 define( 'LEVELUP_API_VALIDATE', LEVELUP_API_url.'elementor_design_layout/v1/api_key' );
 
 
@@ -31,6 +32,12 @@ function levelup_sync_script($hook){
 
 add_action( 'wp_ajax_levelup_update_design_library',  'levelup_update_design_library' );
 function levelup_update_design_library($is_first_install=false){
+     if(! current_user_can('manage_options') ) { 
+    // stuff here for user roles that can edit pages: editors and administrators
+        echo json_encode(array("status"=>403, "message"=>'User not autorized for this action'));
+        wp_die();
+     }
+
     $settings = get_option('levelup_library_settings');
     $response = wp_remote_post( LEVELUP_SYNC_DESIGN_URL,array(
                                     'timeout'=> 120,
@@ -74,6 +81,41 @@ function levelup_update_design_library($is_first_install=false){
         }
 }
 
+function levelup_import_design_markup($design_name, $post_id){
+     $settings = get_option('levelup_library_settings');
+    $response = wp_remote_post( LEVELUP_SYNC_DESIGN_MARKUP_URL,array(
+                                    'timeout'=> 120,
+                                    'body'=>array(
+                                        'api_key'   =>  $settings['api_key'],
+                                        'design_markup_name'=>$design_name
+                                    )
+                                )
+                            );
+    if ( !is_array( $response ) ) {
+        if($is_first_install){ return true; }
+        echo json_encode(array("status"=>400, "message"=>'cannot connect to server'));
+        wp_die();
+    }
+  
+    $status = $responseData = $metaData = '';
+    $responseData = json_decode($response['body'],true);
+    if($responseData['status']!='200'){
+        if($is_first_install){ return true; }
+        echo json_encode(array("status"=>400, "message"=>'Server response not accurate Try again'));
+        wp_die();
+    }
+    $valDesigntype = $responseData['designs'][0];
+     $amp_html_markup = array('amp_html'=>$valDesigntype['amp_template_html'],
+                                        'amp_css'=>$valDesigntype['amp_template_css']
+                                    );
+    $non_amp_html_markup = array('non_amp_html'=>$valDesigntype['non_amp_template_html'],
+                            'non_amp_css'=>$valDesigntype['non_amp_template_css']
+                        );
+    update_post_meta( $post_id, 'amp_html_markup', $amp_html_markup );
+    update_post_meta( $post_id, 'non_amp_html_markup', $non_amp_html_markup );
+    return array('amp'=>$amp_html_markup, 'non_amp'=>$non_amp_html_markup);
+}
+
 function levelup_default_designs($responseData){
     $post_type = levelup_basics_config('post_type');
     $taxonomy = levelup_basics_config('taxonomy');
@@ -90,6 +132,7 @@ function levelup_default_designs($responseData){
             ) 
     );
     $wpdb->prepare( "DELETE FROM {$wpdb->term_taxonomy} WHERE taxonomy = %s", array($taxonomy) );
+    $allFieldFiles = array();
     foreach( $responseData['designs'] as $widgetType => $valCategory ){
             foreach( $valCategory['layouts'] as $key => $valDesigntype ){
                 $designType = $key;
@@ -105,28 +148,71 @@ function levelup_default_designs($responseData){
                                                     ), $taxonomy );
                 $metaData = array();
                 // Check folder permission and define file location
-                $amp_html_markup = array('amp_html'=>$valDesigntype['amp_template_html'],
+               /* $amp_html_markup = array('amp_html'=>$valDesigntype['amp_template_html'],
                                         'amp_css'=>$valDesigntype['amp_template_css']
                                     );
                 $non_amp_html_markup = array('non_amp_html'=>$valDesigntype[
                     'non_amp_template_html'],
                                         'non_amp_css'=>$valDesigntype['non_amp_template_css']
-                                    );
-                update_post_meta( $post_id, 'amp_html_markup', $amp_html_markup );
-                update_post_meta( $post_id, 'non_amp_html_markup', $non_amp_html_markup );
+                                    );*/
+                //update_post_meta( $post_id, 'amp_html_markup', $amp_html_markup );
+                //update_post_meta( $post_id, 'non_amp_html_markup', $non_amp_html_markup );
                 update_post_meta( $post_id, 'design_unique_name', $valDesigntype['design_unique_name'] );
                 update_post_meta( $post_id, 'design_preview_url', (isset($valDesigntype['design_preview_url'])? $valDesigntype['design_preview_url']: '') );
                 update_post_meta( $post_id, 'design_feature_image_url', (isset($valDesigntype['designImage'])? $valDesigntype['designImage']: '') );
                 
                 update_post_meta( $post_id, 'design_settings', (isset($valDesigntype['design_settings'])? $valDesigntype['design_settings']: '') );
-                update_post_meta( $post_id, 'design_option', (isset($valDesigntype['design_option'])? $valDesigntype['design_option']: '') );
+                update_post_meta( $post_id, 'design_options', (isset($valDesigntype['design_options'])? $valDesigntype['design_options']: '') );
+
+                $upload = wp_upload_dir();
+                $upload_dir = $upload['basedir'];
+                $upload_dir = $upload_dir . '/levelup';
+                if (! is_dir($upload_dir)) {
+                   mkdir( $upload_dir, 0755 );
+                }
+                $fileName = $valCategory['slug']."_".$valDesigntype['design_unique_name']."_levelupele.php";
+                $allFieldFiles[] = "require_once wp_upload_dir()['basedir'].'/levelup/".$fileName."';";
+                $fh = fopen($upload_dir . "/".$fileName, "w");
+                if($fh){
+                    $funName = str_replace("-", "_", $valDesigntype['design_unique_name']);
+                    $contentWrite = '<?php 
+                    if ( ! defined( "ABSPATH" ) ) exit; // Exit if accessed directly
+                    add_action("levelup/widgets/fields/html", "levelup_cta_'.$funName.'_load_htmlfield",10,3);
+                    function levelup_cta_'.$funName.'_load_htmlfield($obj, $design, $type){
+                    if($type!="htmlFields"){ return ; }';
+                    $contentWrite .= str_replace(array('$this->','ElementorControls_Manager::'), array('$obj->','\Elementor\Controls_Manager::'), $valDesigntype['design_options']);
+                    $contentWrite .= '}';
+
+
+                    $contentWrite .= "\n".'
+                    add_action("levelup/widgets/fields/sections", "levelup_cta_'.$funName.'_load_sectionfield",10,3);
+                    function levelup_cta_'.$funName.'_load_sectionfield($obj, $design, $type){
+                    if($type!="htmlFields"){ return ; }';
+                    $contentWrite .= str_replace(array('$this->','ElementorControls_Manager::'), array('$obj->','\Elementor\Controls_Manager::'), $valDesigntype['design_options_styles']);
+                    $contentWrite .= '}';
+
+
+
+                    fputs ($fh, $contentWrite);
+                    fclose ($fh);
+                }
+                
 
 
                 
 
             }
         }//Foreach closed
-        return true;
+        $fh = fopen($upload_dir . "/index-levelup.php", "w");
+        if($fh){
+            $funName = str_replace("-", "_", $valDesigntype['design_unique_name']);
+            $contentWrite = implode("\n", $allFieldFiles);
+            $contentWrite = "<?php \n if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly\n ".$contentWrite;
+            fputs ($fh, $contentWrite);
+            fclose ($fh);
+         }
+
+    return true;
 }
 
 add_action( 'admin_init',  'levelup_on_activation_call' );
@@ -142,8 +228,8 @@ function levelup_on_activation_call(){
         }
         $responseData = json_decode($responseData,true);
         levelup_default_designs($responseData);
-        update_option('levelup-library-version', '0.1');
-        update_option('levelup-library-loaded-version', '0.1');
+        update_option('levelup-library-version', '0');
+        update_option('levelup-library-loaded-version', '0');
         //Set flag for first time
         update_option('levelup_default_designs_load','true'); 
     }

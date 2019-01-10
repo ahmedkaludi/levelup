@@ -31,4 +31,45 @@ function levelup_import_set_frontPage($post_id, $original_id, $postdata, $data){
 		$redux_builder_amp['amp-frontpage-select-option-pages'] = $post_id;
 		update_option( 'redux_builder_amp', $redux_builder_amp );
 	}
+
+
+	 $settings = get_option('levelup_library_settings');
+    $response = wp_remote_post( LEVELUP_SYNC_DESIGN_URL,array(
+                                    'timeout'=> 120,
+                                    'body'=>array(
+                                        'api_key'   =>  $settings['api_key']
+                                    )
+                                )
+                            );
+    if ( is_array( $response ) ) {
+    	$responseData = json_decode($response['body'],true);
+    	foreach( $responseData['designs'] as $widgetType => $valCategory ){
+            foreach( $valCategory['layouts'] as $key => $valDesigntype ){
+            	$query = get_posts( array(
+							        'posts_per_page' => -1,
+							        'post_type' => $post_type,
+							        'meta_query' => array(
+											array(
+							                'key' => 'design_unique_name',
+							                'value' => $valDesigntype['design_markup_name'],
+							                'compare' => '=',
+											)
+							            )
+							        
+							    ));
+            	$post_id = $query[0]->ID;
+            	$amp_html_markup = array('amp_html'=>$valDesigntype['amp_template_html'],
+                                        'amp_css'=>$valDesigntype['amp_template_css']
+                                    );
+                $non_amp_html_markup = array('non_amp_html'=>$valDesigntype[
+                    'non_amp_template_html'],
+                                        'non_amp_css'=>$valDesigntype['non_amp_template_css']
+                                    );
+                update_post_meta( $post_id, 'amp_html_markup', $amp_html_markup );
+                update_post_meta( $post_id, 'non_amp_html_markup', $non_amp_html_markup );
+            }
+        }
+    
+    }
+
 }

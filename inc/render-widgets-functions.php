@@ -34,9 +34,19 @@ function render($settings, $returnWithSettings = false){
 		global $levelup_layoutSettings;
 		$settings = $levelup_layoutSettings;
 	}
+	//Fallback get markup from server if not present
+	$designsData = array();
+	if(get_post_meta($my_posts[0]->ID, 'amp_html_markup',true)=='' || get_post_meta($my_posts[0]->ID, 'non_amp_html_markup',true)==''){
+		$designsData = levelup_import_design_markup($selected_design, $my_posts[0]->ID);
+	}
+
 	$markup = '';
 	if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
-		$ampMarkup = get_post_meta($my_posts[0]->ID, 'amp_html_markup',true);
+		if(isset($designsData['amp'])){
+			$ampMarkup = $designsData['amp'];
+		}else{
+			$ampMarkup = get_post_meta($my_posts[0]->ID, 'amp_html_markup',true);
+		}
 		if(!empty($ampMarkup)){
 			if(!is_array($ampMarkup)){
 				$ampMarkup = json_decode($ampMarkup,true);
@@ -52,7 +62,11 @@ function render($settings, $returnWithSettings = false){
 			}
 		}
 	}else{
-		$nonAmpMarkup = get_post_meta($my_posts[0]->ID, 'non_amp_html_markup',true);
+		if(isset($designsData['non_amp'])){
+			$nonAmpMarkup = $designsData['non_amp'];
+		}else{
+			$nonAmpMarkup = get_post_meta($my_posts[0]->ID, 'non_amp_html_markup',true);
+		}
 		if(!empty($nonAmpMarkup)){
 			if(!is_array($nonAmpMarkup)){
 				$nonAmpMarkup = json_decode($nonAmpMarkup,true);

@@ -76,6 +76,8 @@ class CategoryWidgets extends Widget_Base {
 	 * @access protected
 	 */
 	protected function _register_controls() {
+		
+
 		$this->start_controls_section(
 			'section_content',
 			array(
@@ -113,34 +115,11 @@ class CategoryWidgets extends Widget_Base {
 				'default'=>'no',
 			)
 		);
-
-		 $categories = get_categories( array(		
-                   'orderby' => 'name',		
-                   'order'   => 'ASC'		
-               ) );		
-		 $categoriesArray = array('recent_option'=>esc_html__( 'Recent Posts', LEVELUP_TEXT_DOMAIN ));		
-		 foreach($categories as $category){		
-		  $categoryName = htmlspecialchars($category->name, ENT_QUOTES);
-		 	$categoriesArray[$category->term_id] = $categoryName;			
-		 }		
-		$this->add_control(
-			'selected_category',
-			array(
-				'label' => esc_html__( 'Select Category', LEVELUP_TEXT_DOMAIN ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'default'=>'recent_option',
-				'options'=>$categoriesArray
-			)
-		);
-		$this->add_control(
-			'listShowNumbers',
-			array(
-				'label' => esc_html__( 'No of Post to show', LEVELUP_TEXT_DOMAIN ),
-				'type' => 'number',
-				'default'=>get_option( 'posts_per_page' ),
-			)
-		);
+		
+		do_action( 'levelup/widgets/fields/html', $this, 'category', 'htmlFields' );
 		$this->end_controls_section();
+		do_action( 'levelup/widgets/fields/sections', $this, 'category', 'styleFields' );
+
 
 	}//Control settings are closed
 	/**
