@@ -32,7 +32,11 @@ function levelup_import_set_frontPage($post_id, $original_id, $postdata, $data){
 		update_option( 'redux_builder_amp', $redux_builder_amp );
 	}
 
-
+	if(!defined('LEVELUP_SYNC_DESIGN_URL')){
+		define( 'LEVELUP_SERVER_URL', 'http://levelup.magazine3.company' );
+		define( 'LEVELUP_API_url', LEVELUP_SERVER_URL.'/wp-json/' );
+		define( 'LEVELUP_SYNC_DESIGN_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-designs' );
+	}
 	 $settings = get_option('levelup_library_settings');
     $response = wp_remote_post( LEVELUP_SYNC_DESIGN_URL,array(
                                     'timeout'=> 120,

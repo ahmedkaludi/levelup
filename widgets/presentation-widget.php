@@ -104,6 +104,14 @@ class PresentationWidgets extends Widget_Base {
 				)
 			)
 		);
+		$this->add_control(
+			'layoutDesignSelectionpoup',
+			array(
+				'label' => esc_html__( 'Is first drop', LEVELUP_TEXT_DOMAIN ),
+				'type' => \Elementor\Controls_Manager::HIDDEN,
+				'default'=>'no',
+			)
+		);
 
 		// Content Presentation Design 1 Fields //
 		$this->add_control(
