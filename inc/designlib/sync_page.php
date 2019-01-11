@@ -180,7 +180,7 @@ function levelup_default_designs($responseData){
                     add_action("levelup/widgets/fields/html", "levelup_cta_'.$funName.'_load_htmlfield",10,3);
                     function levelup_cta_'.$funName.'_load_htmlfield($obj, $design, $type){
                     if($type!="htmlFields"){ return ; }';
-                    $contentWrite .= str_replace(array('$this->','ElementorControls_Manager::'), array('$obj->','\Elementor\Controls_Manager::'), $valDesigntype['design_options']);
+                    $contentWrite .= str_replace(array('$this->','ElementorControls_Manager::', 'ElementorRepeater'), array('$obj->','\Elementor\Controls_Manager::', '\Elementor\Repeater'), $valDesigntype['design_options']);
                     $contentWrite .= '}';
 
 
@@ -188,7 +188,7 @@ function levelup_default_designs($responseData){
                     add_action("levelup/widgets/fields/sections", "levelup_cta_'.$funName.'_load_sectionfield",10,3);
                     function levelup_cta_'.$funName.'_load_sectionfield($obj, $design, $type){
                     if($type!="htmlFields"){ return ; }';
-                    $contentWrite .= str_replace(array('$this->','ElementorControls_Manager::'), array('$obj->','\Elementor\Controls_Manager::'), $valDesigntype['design_options_styles']);
+                    $contentWrite .= str_replace(array('$this->','ElementorControls_Manager::', 'ElementorRepeater'), array('$obj->','\Elementor\Controls_Manager::', '\Elementor\Repeater'), $valDesigntype['design_options_styles']);
                     $contentWrite .= '}';
 
 
