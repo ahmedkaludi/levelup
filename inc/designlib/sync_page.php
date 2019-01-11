@@ -228,8 +228,8 @@ function levelup_on_activation_call(){
         }
         $responseData = json_decode($responseData,true);
         levelup_default_designs($responseData);
-        update_option('levelup-library-version', '0.1');
-        update_option('levelup-library-loaded-version', '0.1');
+        update_option('levelup-library-version', '0');
+        update_option('levelup-library-loaded-version', '0');
         //Set flag for first time
         update_option('levelup_default_designs_load','true'); 
     }
