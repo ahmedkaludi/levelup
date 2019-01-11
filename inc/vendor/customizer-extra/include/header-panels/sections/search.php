@@ -59,8 +59,16 @@ class SearchDesign{
 		$amp_query_variable_val = '';
     	$action_url = esc_url( get_bloginfo('url') );
 		$action_url = preg_replace('#^http?:#', '', $action_url);
-		$label = ampforwp_translation(isset($redux_builder_amp['ampforwp-search-label']) && $redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
-		$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
+		if(function_exists('ampforwp_translation')){
+			$label = ampforwp_translation(isset($redux_builder_amp['ampforwp-search-label']) && $redux_builder_amp['ampforwp-search-label'], 'Type your search query and hit enter');
+		}else{
+			$label =  esc_html__('Type your search query and hit enter',LEVELUP_TEXT_DOMAIN);
+		}
+		if(function_exists('ampforwp_translation')){
+			$placeholder = ampforwp_translation($redux_builder_amp['ampforwp-search-placeholder'], 'Type Here' );
+		}else{
+			$placeholder = esc_html__('Type Here', LEVELUP_TEXT_DOMAIN);
+		}
 		if ( isset($redux_builder_amp['ampforwp-amp-takeover']) && !$redux_builder_amp['ampforwp-amp-takeover'] ) {
 			$amp_query_variable = 'amp';
 			$amp_query_variable_val = '1';

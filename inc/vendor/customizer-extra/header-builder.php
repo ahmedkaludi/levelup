@@ -41,7 +41,7 @@ function amp_global_css(){
 function render_footer_option_html(){
     global $levelup_foot_started, $levelupDefaultOptions;
     $levelup_foot_started = true;
-    if(ampforwp_is_amp_endpoint()){
+    if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
         amp_back_to_top_link();
         do_action( 'amp_before_footer', $thisTemplate );
         do_action( 'amp_post_template_above_footer', $thisTemplate );
