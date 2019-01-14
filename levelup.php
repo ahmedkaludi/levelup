@@ -123,13 +123,13 @@ function levelup_fail_load() {
             <script>
             jQuery(document).ready(function(){
 
-               $(".levelup-recommended-plugin").click(function(e){
+               jQuery(".levelup-recommended-plugin").click(function(e){
                     e.preventDefault();
-                    var url =$(this).attr("href");
-                    var redirect_url =$(this).attr("data-redirect-url");
+                    var url = jQuery(this).attr("href");
+                    var redirect_url = jQuery(this).attr("data-redirect-url");
                     var slug ="'.$plugin_slug.'";
-                    $(this).text("Please wait Downloading...");
-                    var self = $(this); 
+                    jQuery(this).text("Please wait Downloading...");
+                    var self = jQuery(this); 
                     wp.updates.installPlugin(
                         {
                             slug: slug,
@@ -149,6 +149,22 @@ function levelup_fail_load() {
                                         window.location.href = redirect_url;
                                     }
                                 });
+                            },
+                            error : function(response){
+                                console.log(response);
+                                if(response.errorCode=="folder_exists"){
+                                     self.text("Activating...");
+                                     jQuery.ajax({
+                                        async: true,
+                                        type: \'GET\',
+                                        url: url,
+                                        success: function () {
+                                            self.removeClass(\'updating-message\');
+                                            self.text(\'Activated Successfully..\');
+                                            window.location.href = redirect_url;
+                                        }
+                                    });
+                                }
                             }
                         }
                     );
