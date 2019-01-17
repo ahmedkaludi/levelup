@@ -246,3 +246,88 @@ jQuery(document).ready(function($) {
 	    }
 
 });
+
+
+jQuery(document).ready(function(){
+
+   jQuery(".level-up-recommended-plugin").click(function(e){
+        e.preventDefault();
+        var url = jQuery(this).attr("href");
+        var redirect_url = jQuery(this).attr("data-redirect-url");
+        var slug = jQuery(this).attr("data-plugin-slug");
+        jQuery(this).text("Please wait Downloading...");
+        var self = jQuery(this); 
+        self.addClass('updating-message');
+        wp.updates.installPlugin(
+            {
+                slug: slug,
+                success: function(pluginresponse){
+                    self.text("Activating...")
+                    var url = pluginresponse.activateUrl;
+                    jQuery.ajax({
+                        async: true,
+                        type: 'GET',
+                        url: url,
+                        success: function () {
+                            self.removeClass('updating-message').addClass('updated-message');
+                            self.text('Activated Successfully..');
+                            window.location.href = redirect_url;
+                        }
+                    });
+                },
+                error : function(response){
+                    if(response.errorCode=="folder_exists"){
+                         self.text("Activating...");
+                         jQuery.ajax({
+                            async: true,
+                            type: 'GET',
+                            url: url,
+                            success: function () {
+                                self.removeClass('updating-message').addClass('updated-message');
+                                self.text('Activated Successfully..');
+                                window.location.href = redirect_url;
+                            }
+                        });
+                    }
+                }
+            }
+        );
+
+        
+        
+        return false;
+    });
+   jQuery('.connect-to-design').click(function(e){
+   		e.preventDefault();
+   		var self = jQuery(this);
+        var enteredkey = jQuery(this).parents('span').find('#levelup-connect-to-design-template').val();
+        var redirect_url = jQuery(this).attr("data-redirect-url");
+        var btnText = jQuery(this).text();
+        jQuery(this).text('Verifing...');
+        self.addClass('updating-message');
+   		 jQuery.ajax({
+                    async: true,
+                    type: 'GET',
+                    url: levelup_sync_object.ajax_url,
+                    dataType:'json',
+                    data: {action: 'levelup_connect_design_library_activate', verify_nonce: levelup_sync_object.securty_nonce, key: enteredkey},
+                    success: function(response) {
+                        	jQuery('.print_message').text(response.message);
+                        	self.removeClass('updating-message');
+                       if(response.status=='200'){
+                    		self.addClass('updated-message');
+                       		jQuery('.print_message').css("color",'green');
+                       		jQuery(this).parents('span').find('#levelup-connect-to-design-template').attr('disabled', true);
+                            self.text('Verified');
+                            window.location.href = redirect_url;
+                        }else{
+                        	jQuery('.print_message').css("color",'red');
+                        	self.text(btnText);
+                        	setTimeout(function(){
+                        		jQuery('.print_message').text('');
+                        	},5000);
+                        }
+                    }
+                });
+   });
+});

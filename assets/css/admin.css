@@ -70,3 +70,36 @@
 .levelup-sync-wrapper h3{
     font-size: 15px;
 }
+.setup-wrapper .container ul{
+    border-right: 1px solid #cdcdcd;
+    border-left: 1px solid #cdcdcd;
+    border-bottom: 1px solid #cdcdcd;
+    font-size: 14px;
+    list-style-type: upper-alpha;
+}
+.setup-wrapper .container li{
+    display: flex;
+    border-top:1px solid #cdcdcd;
+    padding:5px 20px 5px 19px;
+    position: relative;
+}
+.setup-wrapper .container li:Last{
+    border-bottom:1px solid #cdcdcd;
+}
+.setup-wrapper .container li .setup-option{
+    width: 75%;
+}
+.setup-wrapper .container li .setup-status{
+    width: 25%;
+}
+.setup-wrapper .green-color{
+    color: #46b450;
+}
+.setup-wrapper .red-color{
+    color: red;
+}
+.setup-wrapper .why-help{
+    position:absolute;
+    right:0px;
+    top:2%;
+}
