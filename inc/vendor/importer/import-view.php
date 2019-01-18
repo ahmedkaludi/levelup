@@ -14,7 +14,14 @@ if ( ! empty( $importerObj->import_files ) && isset( $_GET['import-mode'] ) && '
 <div class="levelup levelup_import_screen">
 	<h2 class="levelup_import_title"><?php esc_html_e( 'Design Templates', LEVELUP_TEXT_DOMAIN ); ?></h2>
  	<p class="levelup_import_desc"><?php esc_html_e( 'You can import the pre-built demos with just one click. To get started, Browse the gallery below and click Import.', LEVELUP_TEXT_DOMAIN ); ?></p>
-	
+ 	
+ 	<?php if(count($setupStatus) != 1){ ?>
+		<div class="notice notice-error">
+			<p>	Template Setup is not completed, please complete the setup for better user experience. <a href="<?php echo esc_url( admin_url( 'admin.php?page=levelup&type=dashboard', 'admin' )); ?>">Click here</a> 
+			</p>
+		</div>
+	<?php } ?>
+
 	<?php if ( empty( $importerObj->import_files ) ) : ?>
 		<div class="notice  notice-info  is-dismissible">
 			<p><?php esc_html_e( 'There are no predefined import files available in this theme. Please upload the import files manually!', LEVELUP_TEXT_DOMAIN ); ?></p>

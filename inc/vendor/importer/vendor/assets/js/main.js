@@ -229,6 +229,9 @@ jQuery( function ( $ ) {
 		var previewImageContent     = '';
 		var importNotice            = levelup_import.import_files[ selectedImportID ]['import_notice'] || '';
 		var importNoticeContent     = '';
+		if(levelupSetupCompleted){
+			importNoticeContent = "!!! Setup is not completed please complete setup for better experience for AMP and None-AMP";
+		}
 		var dialogOptions           = $.extend(
 			{
 				'dialogClass': 'wp-dialog',
@@ -250,8 +253,13 @@ jQuery( function ( $ ) {
 						text: levelup_import.texts.dialog_yes,
 						class: 'button  button-primary',
 						click: function() {
-							$(this).dialog('close');
-							gridLayoutImport( selectedImportID, $itemContainer );
+							if(levelupSetupCompleted==0){
+								$(this).dialog('close');
+								gridLayoutImport( selectedImportID, $itemContainer );
+							}else{
+								alert("Before Import template, Please \"Complete the setup process\".");
+							}
+
 						}
 					}
 				]

@@ -77,91 +77,92 @@ Class levelup_menuConnector{
 	function LevelupSettings(){
 		$type = isset($_GET['type']) ? $_GET['type'] : '';
 		if(empty($type)){ $type = 'dashboard'; }
+		//Dashboard require/optional plugins
+		$requirePlugins = array(
+							array(
+								'type'=> 'plugin',
+								'plugin_name'=>'Elementor',
+								'plugin_label'=>'Install Elementor plugin',
+								'plugin_base_name'=>'elementor/elementor.php',
+								'plugin_slug'=>'elementor',
+								'plugin_filename'=>'elementor.php',
+								'plugin_current_status'=>'Install',
+								'why'=>'Require',
+								),
+							array(
+								'type'=> 'connect',
+								'plugin_name'=>'Design library',
+								'plugin_label'=>'Connect to Design library',
+								'action_link'=>'',
+								'plugin_current_status'=>'Install',
+								'why'=>'Required',
+								),
+							array(
+								'type'=> 'plugin',
+								'plugin_name'=>'Accelerated Mobile Pages',
+								'plugin_label'=>'Enable Amp Support',
+								'plugin_base_name'=>'accelerated-mobile-pages/accelerated-moblie-pages.php',
+								'plugin_slug'=>'accelerated-mobile-pages',
+								'plugin_filename'=>'accelerated-moblie-pages.php',
+								'plugin_current_status'=>'Install',
+								'why'=>'Optional',
+								),
+						);
+		$setup = '';$setupStatus = array();
+		foreach ($requirePlugins as $key => $required) {
+			$button_label = $action = $plugin_title = '';
+			$plugin_title = $required['plugin_name'];
+			$setupStatus[$required['plugin_name']] = 0;
+			if($required['type'] == 'plugin'){
+				$action = $required['plugin_current_status'];
+				$required['class'] = array( 'button','level-up-recommended-plugin' );
+				$required['data-plugin-slug']      = $required['plugin_slug'];
+				$required['data-activate-url']     = $this->levelup_get_plugin_activation_link( $required['plugin_base_name'], $required['plugin_slug'], $required['plugin_filename'] );
+				$required['data-install-url']      = $this->levelup_get_plugin_install_link( $required['plugin_slug'] );
+				$required['data-redirect-url']     = self_admin_url( 'admin.php?page=levelup' );
+
+				$installed_plugins  = get_plugins();
+				if( ! isset( $installed_plugins[ $required['plugin_base_name'] ] ) ){
+			        $required['data-action'] = 'install';
+			        $required['href'] = $required['data-install-url'];
+			        $button_label = sprintf( esc_html__( 'Install ', 'level-up' ), $plugin_title );
+
+			    } elseif( ! $this->levelup_is_plugin_active( $required['plugin_base_name'] ) ) {
+			        $required['data-action'] = 'activate';
+			        $required['href'] = $required['data-activate-url'];
+			        $button_label = sprintf( esc_html__( 'Activate', 'level-up' ), $plugin_title );
+			    }
+			    if(!empty($button_label)){
+			    	unset($required['type'], $required['plugin_name'], $required['plugin_label'] );
+				    $action = '<a '.$this->levelup_make_html_attributes( $required ).' >'. $button_label.'</a>';
+				}else{
+					$setupStatus[$required['plugin_name']] = 1;
+					$action = '<span class="dashicons dashicons-yes green-color"></span> Done';
+				}
+			}elseif($required['type'] == 'connect'){
+				$settings = get_option('levelup_library_settings');
+				if(isset($settings['api_status']) && $settings['api_status']=='valid'){
+					$setupStatus[$required['plugin_name']] = 1;
+					$action = '<span class="dashicons dashicons-yes green-color"></span> Connected Successfully';
+				}else{
+					$action = '<span><input type="text" id="levelup-connect-to-design-template"><button class="button connect-to-design" data-redirect-url="'.$required['data-redirect-url'] .'">Activate</button></span>';
+				}
+			}
+			$setup .= '<li>
+				<div class="setup-option">
+					'.($setupStatus[$plugin_title]!=1? $plugin_title : "<strike>".$plugin_title."</strike>").' 
+				</div>
+				<div class="setup-status">
+					'.$action.' <em class="why-help" title="'.$required['why'].'">(Why)</em>
+				</div>
+			</li>';
+		}//foreach closed
+		$setupStatus = array_unique( array_values($setupStatus) );
 		ob_start();
 		switch($type){
 			case 'dashboard':
-				//Dashboard require/optional plugins
-				$requirePlugins = array(
-									array(
-										'type'=> 'plugin',
-										'plugin_name'=>'Elementor',
-										'plugin_label'=>'Install Elementor plugin',
-										'plugin_base_name'=>'elementor/elementor.php',
-										'plugin_slug'=>'elementor',
-										'plugin_filename'=>'elementor.php',
-										'plugin_current_status'=>'Install',
-										'why'=>'Require',
-										),
-									array(
-										'type'=> 'connect',
-										'plugin_name'=>'Design library',
-										'plugin_label'=>'Connect to Design library',
-										'action_link'=>'',
-										'plugin_current_status'=>'Install',
-										'why'=>'Required',
-										),
-									array(
-										'type'=> 'plugin',
-										'plugin_name'=>'Accelerated Mobile Pages',
-										'plugin_label'=>'Enable Amp Support',
-										'plugin_base_name'=>'accelerated-mobile-pages/accelerated-moblie-pages.php',
-										'plugin_slug'=>'accelerated-mobile-pages',
-										'plugin_filename'=>'accelerated-moblie-pages.php',
-										'plugin_current_status'=>'Install',
-										'why'=>'Optional',
-										),
-								);
-				$setup = '';$setupStatus = array();
-				foreach ($requirePlugins as $key => $required) {
-					$button_label = $action = $plugin_title = '';
-					$plugin_title = $required['plugin_name'];
-					$setupStatus[$required['plugin_name']] = 0;
-					if($required['type'] == 'plugin'){
-						$action = $required['plugin_current_status'];
-						$required['class'] = array( 'button','level-up-recommended-plugin' );
-        				$required['data-plugin-slug']      = $required['plugin_slug'];
-        				$required['data-activate-url']     = $this->levelup_get_plugin_activation_link( $required['plugin_base_name'], $required['plugin_slug'], $required['plugin_filename'] );
-        				$required['data-install-url']      = $this->levelup_get_plugin_install_link( $required['plugin_slug'] );
-        				$required['data-redirect-url']     = self_admin_url( 'admin.php?page=levelup' );
-
-						$installed_plugins  = get_plugins();
-						if( ! isset( $installed_plugins[ $required['plugin_base_name'] ] ) ){
-					        $required['data-action'] = 'install';
-					        $required['href'] = $required['data-install-url'];
-					        $button_label = sprintf( esc_html__( 'Install ', 'level-up' ), $plugin_title );
-
-					    } elseif( ! $this->levelup_is_plugin_active( $required['plugin_base_name'] ) ) {
-					        $required['data-action'] = 'activate';
-					        $required['href'] = $required['data-activate-url'];
-					        $button_label = sprintf( esc_html__( 'Activate', 'level-up' ), $plugin_title );
-					    }
-					    if(!empty($button_label)){
-					    	unset($required['type'], $required['plugin_name'], $required['plugin_label'] );
-						    $action = '<a '.$this->levelup_make_html_attributes( $required ).' >'. $button_label.'</a>';
-						}else{
-							$setupStatus[$required['plugin_name']] = 1;
-							$action = '<span class="dashicons dashicons-yes green-color"></span> Done';
-						}
-					}elseif($required['type'] == 'connect'){
-						$settings = get_option('levelup_library_settings');
-						if(isset($settings['api_status']) && $settings['api_status']=='valid'){
-							$setupStatus[$required['plugin_name']] = 1;
-							$action = '<span class="dashicons dashicons-yes green-color"></span> Connected Successfully';
-						}else{
-							$action = '<span><input type="text" id="levelup-connect-to-design-template"><button class="button connect-to-design" data-redirect-url="'.$required['data-redirect-url'] .'">Activate</button></span>';
-						}
-					}
-					$setup .= '<li>
-						<div class="setup-option">
-							'.($setupStatus[$plugin_title]!=1? $plugin_title : "<strike>".$plugin_title."</strike>").' 
-						</div>
-						<div class="setup-status">
-							'.$action.' <em class="why-help" title="'.$required['why'].'">(Why)</em>
-						</div>
-					</li>';
-				}//foreach closed
-					$setupMessage = '<span class="red-color">Finish the above setup to continue LevelUP</span>';
-				$setupStatus = array_unique(array_values($setupStatus) );
+				$setupMessage = '<span class="red-color">Finish the above setup to continue LevelUP</span>';
+				
 				if(count($setupStatus) == 1){
 				$setupMessage = '<span class="green-color">You are all set to start Import the Template</span>';
 				}
@@ -178,6 +179,7 @@ Class levelup_menuConnector{
             		</div>
             		<p class="center justify"> '.$setupMessage.'</p>
             	</div>
+
                 <div class="levelup_dashboard">
                 	
 					
@@ -246,6 +248,7 @@ Class levelup_menuConnector{
 				';
 			break;
 			case 'template':
+				echo "<script>var levelupSetupCompleted = ".(count($setupStatus) == 1? 1: 0)."</script>";
 				require_once LEVELUP__FILE__PATH . '/inc/vendor/importer/import-view.php';
 			break;
 			case 'tools':
