@@ -212,6 +212,13 @@ Class levelup_menuConnector{
                 <?php
 			break;			
 			case 'options':
+				 global $levelupDefaultOptions;
+		        $data = headerfooter_get_setting('header_panel_settings');
+		        if(empty($data) && !empty($levelupDefaultOptions)){ $data = $levelupDefaultOptions[$this->control_id]; }
+		        if($data){
+					$data = json_decode(urldecode_deep( $data ), true) ;
+					$dataSelectedDesigns = $data['selected_design'];
+				}
 				echo '
 
 				<div class="levelup_options postbox">
@@ -220,27 +227,34 @@ Class levelup_menuConnector{
 				        <ul>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="#">Upload Logo</a>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=logo-' . $dataSelectedDesigns)).'">Upload Logo</a>
 				            </li>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="#">Header Builder</a>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=header_panel' )).'">Header Builder</a>
 				            </li>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="#">Footer Builder</a>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=menu-' . $dataSelectedDesigns )).'">Setup menu</a>
 				            </li>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="#">Upload Logo</a>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=top-header-design' . $dataSelectedDesigns )).'">Header Top Row Settings</a>
 				            </li>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="#">Upload Logo</a>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=middle-header-design' . $dataSelectedDesigns )).'">Header Middle Row Settings</a>
 				            </li>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="#">Upload Logo</a>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=bottom-header-design' . $dataSelectedDesigns )).'">Header Bottom Row Settings</a>
+				            </li>
+				            <li>
+				            	<span class="spaerater"></span>
+				            </li>
+				            <li>
+				                <span class="dashicons dashicons-format-image"></span>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=footer_panel' )).'">Footer Builder</a>
 				            </li>
 				        </ul>
 				    </div>
