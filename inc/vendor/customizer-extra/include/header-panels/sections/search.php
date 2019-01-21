@@ -22,27 +22,11 @@ class SearchDesign{
 			        'panel_name'    	=> $this->panelName,
                     'width'             => '1',
 					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Section description which does show up', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+			        'description' 		=> __('Currently no options created', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
 				
 				//settings
-				array(
-					'api_type'			=> 'wp_settings',
-					'id'				=> 'setting'. $this->panel,
-					'capability'        => 'edit_theme_options',
-					"default"			=> "Enter Item",
-			        'sanitize_callback' => 'sanitize_text_field',
-			        'transport'			=> 'postMessage'
-			    ),
-			    //control
-			    array(
-			    	'api_type'			=> 'wp_control',
-			    	'id'				=> 'setting'. $this->panel,
-			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Placeholder', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'type'    			=> 'text'
-			    ),
 
 			);
 	}
