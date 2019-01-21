@@ -148,6 +148,14 @@ Class HeaderBuild{
                         }
                     
                     break;
+                case 'move_settings':
+                        $wp_customize->get_control($args['option'])->section = $args['section'];
+                    
+                    break;
+                case 'move_panel':
+                        $wp_customize->get_section($args['option'])->panel = $args['section'];
+                    
+                    break;
 				default:
 					# code...
 					break;

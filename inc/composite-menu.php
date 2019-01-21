@@ -231,30 +231,19 @@ Class levelup_menuConnector{
 				            </li>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=header_panel' )).'">Header Builder</a>
-				            </li>
-				            <li>
-				                <span class="dashicons dashicons-format-image"></span>
 				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=menu-' . $dataSelectedDesigns )).'">Setup menu</a>
 				            </li>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=top-header-design' . $dataSelectedDesigns )).'">Header Top Row Settings</a>
-				            </li>
-				            <li>
-				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=middle-header-design' . $dataSelectedDesigns )).'">Header Middle Row Settings</a>
-				            </li>
-				            <li>
-				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=bottom-header-design' . $dataSelectedDesigns )).'">Header Bottom Row Settings</a>
-				            </li>
-				            <li>
-				            	<span class="spaerater"></span>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=header_panel' )).'">Header Builder</a>
 				            </li>
 				            <li>
 				                <span class="dashicons dashicons-format-image"></span>
 				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=footer_panel' )).'">Footer Builder</a>
+				            </li>
+				            <li>
+				                <span class="dashicons dashicons-format-image"></span>
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=theme_field_settings' )).'">Typography</a>
 				            </li>
 				        </ul>
 				    </div>
