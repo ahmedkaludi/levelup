@@ -36,31 +36,26 @@ class LogoDesign{
 
                 array(
                     'api_type'          => 'move_settings',
-                    'id'                => 'site_name'. $this->panel,
                     'option'           => 'custom_logo',
                     'section'           => $this->nameslug. $this->panel,
                 ),
                 array(
                     'api_type'          => 'move_settings',
-                    'id'                => 'site_name'. $this->panel,
                     'option'           => 'blogname',
                     'section'           => $this->nameslug. $this->panel,
                 ),
                 array(
                     'api_type'          => 'move_settings',
-                    'id'                => 'site_name'. $this->panel,
                     'option'           => 'blogdescription',
                     'section'           => $this->nameslug. $this->panel,
                 ),
                  array(
                     'api_type'          => 'move_settings',
-                    'id'                => 'site_name'. $this->panel,
                     'option'           => 'display_header_text',
                     'section'           => $this->nameslug. $this->panel,
                 ),
                 array(
                     'api_type'          => 'move_settings',
-                    'id'                => 'site_name'. $this->panel,
                     'option'           => 'site_icon',
                     'section'           => $this->nameslug. $this->panel,
                 ),

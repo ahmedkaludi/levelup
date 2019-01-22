@@ -229,7 +229,7 @@ jQuery( function ( $ ) {
 		var previewImageContent     = '';
 		var importNotice            = levelup_import.import_files[ selectedImportID ]['import_notice'] || '';
 		var importNoticeContent     = '';
-		if(levelupSetupCompleted){
+		if(levelupSetupCompleted==0){
 			importNoticeContent = "!!! Setup is not completed please complete setup for better experience for AMP and None-AMP";
 		}
 		var dialogOptions           = $.extend(
@@ -253,7 +253,7 @@ jQuery( function ( $ ) {
 						text: levelup_import.texts.dialog_yes,
 						class: 'button  button-primary',
 						click: function() {
-							if(levelupSetupCompleted==0){
+							if(levelupSetupCompleted==1){
 								$(this).dialog('close');
 								gridLayoutImport( selectedImportID, $itemContainer );
 							}else{
