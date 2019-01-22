@@ -150,11 +150,9 @@ Class HeaderBuild{
                     break;
                 case 'move_settings':
                         $wp_customize->get_control($args['option'])->section = $args['section'];
-                    
                     break;
                 case 'move_panel':
                         $wp_customize->get_section($args['option'])->panel = $args['section'];
-                    
                     break;
 				default:
 					# code...
@@ -210,8 +208,8 @@ Class HeaderBuild{
                         <div class="levelup--cb-actions">
                             <?php do_action('levelup/hfbuilder/actionsbtn'); ?>
                             <a class="btn"></a>
-                            <a data-id="{{ data.id }}_templates" class="set-default-design focus-section button button-secondary"
-                               href="#"><?php echo esc_html__( 'Set as Default', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></a>
+                            <?php /*<a data-id="{{ data.id }}_templates" class="set-default-design focus-section button button-secondary"
+                               href="#"><?php echo esc_html__( 'Set as Default', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></a> */ ?>
                         </div>
                     </div>
                     <div class="levelup--cb-body"></div>

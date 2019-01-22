@@ -508,7 +508,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 
     }
 
-    function render( $row_ids = array( 'top-header-design', 'middle-header-design', 'bottom-header-design', 'sidebar-header-design', 'top-footer-design' ) ) {
+    function render( $row_ids = array( 'top-header-design', 'middle-header-design', 'bottom-header-design', 'sidebar-header-design', 'top-footer-design','bottom-footer-design','middle-footer-design' ) ) {
         $setting = $this->get_settings();
         $items   = $this->render_items();
 

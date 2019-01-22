@@ -1,7 +1,7 @@
 <?php
 namespace HeaderBuilder\footerPanels\sections;
 class TopFooterDesign{
-	public $name = 'Footer row settings';
+	public $name = 'Footer top row settings';
 	public $api_type = 'wp_section';
 	public $panel = '';
 	public $id = 'top-footer-design';
@@ -27,7 +27,7 @@ class TopFooterDesign{
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'height-'.$this->panel. $this->id,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "Black",
+					"default"			=> "85px",
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'transport'			=> 'postMessage'
 			    ),
@@ -40,7 +40,7 @@ class TopFooterDesign{
 			        'type'    			=> 'text'
 			    ),
 			    //settings
-				array(
+				/*array(
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'color-'.$this->panel. $this->id,
 					'capability'        => 'edit_theme_options',
@@ -55,7 +55,7 @@ class TopFooterDesign{
 			        'section' 			=> $this->id. $this->panel,
 			        'label'   			=> __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
-			    ),
+			    ),*/
 
 			);
 	}

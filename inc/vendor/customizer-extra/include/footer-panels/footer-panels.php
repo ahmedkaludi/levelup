@@ -4,7 +4,7 @@ namespace HeaderBuilder\footerPanels;
 class footerPanels{
 	public $configs = array();
 	public $configs_builder = array();
-	public $sectionsLoader = array('top-footer','bottom-footer', 'footer-sidebar1','footer-sidebar2', 'footer-sidebar3', 'footer-sidebar4', 'footer-sidebar5', 'footer-copyright', 'social-icon');
+	public $sectionsLoader = array('top-footer', 'middle-footer', 'bottom-footer', 'footer-sidebar1','footer-sidebar2', 'footer-sidebar3', 'footer-sidebar4', 'footer-sidebar5', 'footer-copyright', 'social-icon');
 	public $designs = 	array(
 						'design1',
 						/*'design2',*/
@@ -196,10 +196,11 @@ class footerPanels{
 										"title"		=> $panel_name,
 											);
 					$returnData[$panel]['devices'] = array("desktop"=>"Footer Layout",
-													//"mobile"=>"Mobile/Tablet"
+													"mobile"=>"Mobile/Tablet"
 													);
-					$returnData[$panel]['rows'] = array(//"bottom"=>array('name'=>"Bottom Bottom", "id"=>'top-footer-design'),
-													"top"=>array('name'=>"Footer Top", "id"=>'top-footer-design')
+					$returnData[$panel]['rows'] = array("bottom"=>array('name'=>"Bottom Bottom", "id"=>'bottom-footer-design'),
+												"main"=>array('name'=>"Footer Main", "id"=>'middle-footer-design'),
+												"top"=>array('name'=>"Footer Top", "id"=>'top-footer-design')
 													//"sidebar"=>"Menu Sidebar",
 													);
 					$returnData[$panel]['settings'] = 'footer_panel_settings';

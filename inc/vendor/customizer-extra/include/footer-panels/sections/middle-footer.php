@@ -1,10 +1,10 @@
 <?php
 namespace HeaderBuilder\footerPanels\sections;
-class BottomFooterDesign{
-	public $name = 'Footer bottom row settings';
+class MiddleFooterDesign{
+	public $name = 'Footer middle row settings';
 	public $api_type = 'wp_section';
 	public $panel = '';
-	public $id = 'bottom-footer-design';
+	public $id = 'middle-footer-design';
 	public $panelName = '';
 	function __construct($panel,$panelName){
 		$this->panel = $panel; 
@@ -18,7 +18,7 @@ class BottomFooterDesign{
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
 					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __($this->name.' description get footer options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+			        'description' 		=> __('Middle footer descriptions', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
 				
@@ -27,7 +27,7 @@ class BottomFooterDesign{
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'height-'.$this->panel. $this->id,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "85px",
+					"default"			=> "85",
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'transport'			=> 'postMessage'
 			    ),
@@ -39,13 +39,27 @@ class BottomFooterDesign{
 			        'label'   			=> __('Height', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
+			    //settings
+				/*array(
+					'api_type'			=> 'wp_settings',
+					'id'				=> 'color-'.$this->panel. $this->id,
+					'capability'        => 'edit_theme_options',
+					"default"			=> "Black",
+			        'sanitize_callback' => 'sanitize_text_field',
+			        'transport'			=> 'postMessage'
+			    ),
+			    //control
+			    array(
+			    	'api_type'			=> 'wp_control',
+			    	'id'				=> 'color-'.$this->panel. $this->id,
+			        'section' 			=> $this->id. $this->panel,
+			        'label'   			=> __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'type'    			=> 'text'
+			    ),*/
 
 			);
 	}
 
-	function options(){
-
-	}
 	function render_css(){
 		$height = headerfooter_get_setting('height-'.$this->panel. $this->id);
 		return '.header-top {
