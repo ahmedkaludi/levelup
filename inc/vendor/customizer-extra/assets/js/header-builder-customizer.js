@@ -1544,6 +1544,7 @@
 	                console.log(that.controlId);
 
 	                wpcustomize.control( "config-settings-"+that.controlId ).setting.set( that.encodeValue( data ) );
+	                wpcustomize.control( that.settingsId ).setting.set( that.encodeValue( data ) );
 	                console.log('Panel Data: ', data );
 	            },
 	            showPanel: function(){
