@@ -85,7 +85,7 @@ function levelup_fail_load() {
 	}
 	echo '<div class="notice notice-error">
 	        <p>'.esc_html__('This plugin recommends ',LEVELUP_TEXT_DOMAIN).' <strong>'.esc_html__('Elementor plugin',LEVELUP_TEXT_DOMAIN).'</strong> 
-            <a href="'.admin_url('admin.php?page=levelup').'" class="button button-primary">'.esc_html__('Click here to complete Setup',LEVELUP_TEXT_DOMAIN).'</a></p>
+            <a href="'.admin_url('admin.php?page=levelup').'" class="button button-primary">'.esc_html__('Click here to complete setup',LEVELUP_TEXT_DOMAIN).'</a></p>
 	        </div>';
 }
 
