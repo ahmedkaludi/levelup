@@ -164,7 +164,7 @@ Class levelup_menuConnector{
 				$setupMessage = '<span class="red-color">Finish the above setup to continue LevelUP</span>';
 				
 				if(count($setupStatus) == 1){
-				$setupMessage = '<span class="green-color">You are all set to start Import the Template</span>';
+				$setupMessage = '<span class="green-color" style="font-size:17px">You are all set to start Import the Template</span><hr/>';
 				}
 
 
@@ -174,7 +174,7 @@ Class levelup_menuConnector{
             		<div class="print_message"></div>
             		<div class="container">
             			<ul>
-            				'.$setup.'
+            				'.(count($setupStatus) == 1? '': $setup).'
             			</ul>
             		</div>
             		<p class="center justify"> '.$setupMessage.'</p>

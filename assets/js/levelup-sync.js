@@ -255,7 +255,7 @@ jQuery(document).ready(function(){
         var url = jQuery(this).attr("href");
         var redirect_url = jQuery(this).attr("data-redirect-url");
         var slug = jQuery(this).attr("data-plugin-slug");
-        jQuery(this).text("Please wait Downloading...");
+        jQuery(this).text("Please wait...");
         var self = jQuery(this); 
         self.addClass('updating-message');
         wp.updates.installPlugin(
