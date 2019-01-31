@@ -207,6 +207,10 @@ function levelup_amp_design_styling(){
 				}';
 	} 
 	$allCss .= '/** Levelup CSS **/
+	.elementor-section.elementor-section-boxed>.elementor-container {
+	    max-width: 1140px;
+	    margin:0 auto;
+	}
 @media (min-width: 768px){
   .elementor-column.elementor-col-10, .elementor-column[data-col="10"] {
     width: 10%; }
