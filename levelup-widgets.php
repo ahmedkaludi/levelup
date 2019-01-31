@@ -48,7 +48,7 @@ class LevelupPlugin {
 
 	}
 	function widget_style(){
-		wp_register_style( 'levelup-testimonial-widget', plugins_url( '/assets/css/frontend/lightslider.css', LEVELUP__FILE__ ));
+		wp_register_style( 'levelup-testimonial-widget-style', plugins_url( '/assets/css/frontend/lightslider.css', LEVELUP__FILE__ ));
 	}
 	function category_widget_scripts() {
 			wp_register_script( 'levelup-category-widget', plugins_url( '/assets/js/category-widget.js', LEVELUP__FILE__ ), array( 'jquery' ), false, true );
