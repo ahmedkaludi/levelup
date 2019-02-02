@@ -40,7 +40,7 @@ class footerCopyrightDesign{
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'html'. $this->panel,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "ADD CUSTOM TEXT HERE OR REMOVE IT",
+					"default"			=> "Copyright @ 2019",
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'transport'			=> 'postMessage'
 			    ),
