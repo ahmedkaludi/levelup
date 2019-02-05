@@ -132,7 +132,7 @@ class OneClickDemoImport {
 	 */
 	public function admin_enqueue_scripts( $hook ) {
 		// Enqueue the scripts only on the plugin page.
-		if ( 'toplevel_page_levelup' === $hook && $_GET['type']=='template' ) {
+		if ( 'toplevel_page_levelup' === $hook && (isset($_GET['type']) && $_GET['type']=='template') ) {
 			wp_enqueue_script( 'jquery-ui-dialog' );
 			wp_enqueue_style( 'wp-jquery-ui-dialog' );
 

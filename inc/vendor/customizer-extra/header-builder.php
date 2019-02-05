@@ -43,6 +43,11 @@ function render_footer_option_html(){
     $levelup_foot_started = true;
     if(function_exists('ampforwp_is_amp_endpoint') && ampforwp_is_amp_endpoint()){
         amp_back_to_top_link();
+        $post_id = get_queried_object_id();
+        if ( ampforwp_polylang_front_page() ) {
+            $post_id = pll_get_post(get_option('page_on_front'));
+        }
+        $thisTemplate = new AMP_Post_Template($post_id);
         do_action( 'amp_before_footer', $thisTemplate );
         do_action( 'amp_post_template_above_footer', $thisTemplate );
     }
