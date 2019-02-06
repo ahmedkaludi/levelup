@@ -194,12 +194,7 @@ Class levelup_menuConnector{
                            </ul>
                         </div>
                     </div>
-                    <div class="levelup_dashboard_right" style="float:left; width:100%;">
-                        <h2>Start with a Template</h2>
-                        <p>Save time by choosing among beautiful templates designed for different sectors and purposes.</p>
-                        <a href="'.esc_url(admin_url( $path = 'admin.php?page=levelup&type=template' )).'" class="button button-primary">Import a Template</a>
-                    </div>
-                    <div class="cb"></div>
+                   	<div class="cb"></div>
                 </div>
 
 
@@ -249,10 +244,6 @@ Class levelup_menuConnector{
 				    </div>
 				</div>
 				';
-			break;
-			case 'template':
-				echo "<script>var levelupSetupCompleted = ".(count($setupStatus) == 1? 1: 0)."</script>";
-				require_once LEVELUP__FILE__PATH . '/inc/vendor/importer/import-view.php';
 			break;
 			case 'tools':
 				$levelupAPISettings = new \LevelUPElementorThemeSettings\LEVELUP__Admin_settings();
