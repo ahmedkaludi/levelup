@@ -76,15 +76,15 @@ function levelup_fail_load() {
 		return;
 	}
 	$screen = get_current_screen();
-	if($screen->id=='plugin-install'){ return ; }
+	if($screen->id=='plugin-install' || ($screen->id=='toplevel_page_levelup' && isset($_GET['type']) && $_GET['type']=='dashboard' )){ return ; }
 
 	if(!current_user_can('install_plugins')){
 		return false;
 	}
-	echo '<div class="notice notice-error">
+	/*	echo '<div class="notice notice-error">
 	        <p>'.esc_html__('This plugin recommends ',LEVELUP_TEXT_DOMAIN).' <strong>'.esc_html__('Elementor plugin',LEVELUP_TEXT_DOMAIN).'</strong> 
             <a href="'.admin_url('admin.php?page=levelup').'" class="button button-primary">'.esc_html__('Click here to complete setup',LEVELUP_TEXT_DOMAIN).'</a></p>
-	        </div>';
+	        </div>';*/
 }
 
 function levelup_activation_redirect( $plugin ) {

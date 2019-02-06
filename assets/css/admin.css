@@ -90,7 +90,7 @@
     width: 75%;
 }
 .setup-wrapper .container li .setup-status{
-    width: 25%;
+    width: 30%;
 }
 .setup-wrapper .green-color{
     color: #46b450;
@@ -102,4 +102,60 @@
     position:absolute;
     right:0px;
     top:2%;
+}
+
+/**************Tool tip***********/
+.levelup-tooltip {
+    display:inline-block;
+    position:relative;
+    border-bottom:1px dotted #666;
+    text-align:left;
+}
+
+.levelup-tooltip h3 {margin:12px 0;}
+
+.levelup-tooltip .left {
+    min-width:200px;
+    max-width:400px;
+    top:50%;
+    right:100%;
+    margin-right:20px;
+    transform:translate(0, -50%);
+    padding:20px;
+    color:#666666;
+    background-color:#FFFFE0;
+    font-weight:normal;
+    font-size:13px;
+    border-radius:8px;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    display:none;
+    border:1px solid #DCA;
+}
+
+.levelup-tooltip:hover .left {
+    display:block;
+}
+
+.levelup-tooltip .left i {
+    position:absolute;
+    top:50%;
+    left:100%;
+    margin-top:-12px;
+    width:12px;
+    height:24px;
+    overflow:hidden;
+}
+
+.levelup-tooltip .left i::after {
+    content:'';
+    position:absolute;
+    width:12px;
+    height:12px;
+    left:0;
+    top:50%;
+    transform:translate(-50%,-50%) rotate(-45deg);
+    background-color:#FFFFE0;
+    border:1px solid #DCA;
 }

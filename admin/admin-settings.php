@@ -181,7 +181,11 @@ Class LEVELUP__Admin_settings{
 	    $current_version = get_option( 'levelup-library-loaded-version',0);
 	    $settings = get_option( 'levelup_library_settings',0);
 
-	    if((($current_version==0 && $server_version==0) || $settings['api_key']=='') && ( ('admin.php' != $pagenow ) && (!isset($_GET['page']) || 'levelup_settings' != $_GET['page'] ) )  ){
+	    if(
+	    	( (($current_version==0 && $server_version==0) || $settings['api_key']=='') 
+	    	|| !is_plugin_active( 'elementor/elementor.php' )  || !is_plugin_active( 'accelerated-mobile-pages/accelerated-moblie-pages.php' ) ) && 
+	    	( ('admin.php' != $pagenow ) && !isset($_GET['page']) || 'levelup' != $_GET['page'] ) 
+		){
 	    	echo '<div class="notice notice-warning" id="sync-status-notice" >
 	        <p>'.esc_html__('Congratulations',LEVELUP_TEXT_DOMAIN).' <br/><strong>'.esc_html__('LevelUP',LEVELUP_TEXT_DOMAIN).'</strong> '.(' is  installed but not yet configured,  you need to configure here ').' <a href="'. esc_url('admin.php?page=levelup&type=tools',LEVELUP_TEXT_DOMAIN) .'" class="button button-primary">'.esc_html__('Finish Setup',LEVELUP_TEXT_DOMAIN).'</a></p>
 	        </div>';

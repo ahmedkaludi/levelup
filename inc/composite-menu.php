@@ -145,7 +145,7 @@ Class levelup_menuConnector{
 					$setupStatus[$required['plugin_name']] = 1;
 					$action = '<span class="dashicons dashicons-yes green-color"></span> Connected Successfully';
 				}else{
-					$action = '<span><input type="text" id="levelup-connect-to-design-template"><button class="button connect-to-design" data-redirect-url="'.$required['data-redirect-url'] .'">Activate</button></span>';
+					$action = '<span><input type="text" id="levelup-connect-to-design-template"><button class="button connect-to-design" data-redirect-url="'.$required['data-redirect-url'] .'">Activate</button> <a target="_blank" href="'.esc_url(LEVELUP_SERVER_URL.'/register/').'" style="text-decoration:none;">'.esc_html__( 'Get key', LEVELUP_TEXT_DOMAIN ).'</a></span>';
 				}
 			}
 			$setup .= '<li>
@@ -153,7 +153,7 @@ Class levelup_menuConnector{
 					'.($setupStatus[$plugin_title]!=1? $plugin_title : "<strike>".$plugin_title."</strike>").' 
 				</div>
 				<div class="setup-status">
-					'.$action.' <em class="why-help" title="'.$required['why'].'">(Why)</em>
+					'.$action.' <em class="why-help levelup-tooltip" title="">(Why) <div class="left">'.$required['why'].'<i></i></div></em>
 				</div>
 			</li>';
 		}//foreach closed
