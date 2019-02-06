@@ -157,13 +157,18 @@ Class levelup_menuConnector{
 				</div>
 			</li>';
 		}//foreach closed
-		$setupStatus = array_unique( array_values($setupStatus) );
+		$checkIsSetupDone = true;
+		foreach( $setupStatus as $key => $setups){
+			if($setups==0){
+				$checkIsSetupDone = false;
+			}
+		}
 		ob_start();
 		switch($type){
 			case 'dashboard':
 				$setupMessage = '<span class="red-color">Finish the above setup to continue LevelUP</span>';
 				
-				if(count($setupStatus) == 1){
+				if($checkIsSetupDone){
 				$setupMessage = '<span class="green-color" style="font-size:17px">You are all set to start Import the Template</span><hr/>';
 				}
 
@@ -174,7 +179,7 @@ Class levelup_menuConnector{
             		<div class="print_message"></div>
             		<div class="container">
             			<ul>
-            				'.(count($setupStatus) == 1? '': $setup).'
+            				'.($checkIsSetupDone? '': $setup).'
             			</ul>
             		</div>
             		<p class="center justify"> '.$setupMessage.'</p>
