@@ -96,6 +96,12 @@ function levelup_activation_redirect( $plugin ) {
 }
 add_action( 'activated_plugin', 'levelup_activation_redirect' );
 
+register_activation_hook( __FILE__, 'levelup_activation_hook'); 
+function levelup_activation_hook(){
+	// Disable Elementor default settings
+	update_option( 'elementor_disable_color_schemes', 'yes' );
+	update_option( 'elementor_disable_typography_schemes', 'yes' );
+}
 
 function levelup_modify_main_query( $query ) {
 	if ( (function_exists('ampforwp_is_front_page') && ampforwp_is_front_page()) 
