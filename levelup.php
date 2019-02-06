@@ -34,8 +34,6 @@ require_once( LEVELUP__DIR__PATH . '/inc/designlib/sync_page.php' );
 function levelup_load() {
 	//Header Footer builder
 	require_once( LEVELUP__DIR__PATH . '/inc/vendor/customizer-extra/header-builder.php' );
-	//importer
-	require_once( LEVELUP__DIR__PATH . '/inc/vendor/importer/levelup_importer.php' );
 
 	if(is_admin()){
 		require_once LEVELUP__FILE__PATH.'inc/composite-menu.php';

@@ -192,7 +192,7 @@ Class LEVELUP__Admin_settings{
 		    <div class="notice notice-info is-dismissible" id="sync-status-notice" >
 		    	<p>
 		        	<?php echo esc_html__('New Design Elements available',LEVELUP_TEXT_DOMAIN); ?> <?php echo esc_html($server_version); ?> <?php echo esc_html__('is available',LEVELUP_TEXT_DOMAIN); ?>
-		        	<a href="<?php echo esc_url('admin.php?page=levelup_settings'); ?>" class=""><?php echo esc_html__('Click to get the new designs',LEVELUP_TEXT_DOMAIN); ?></a> .<span class="levelup-response-status"></span>
+		        	<a href="<?php echo esc_url('admin.php?page=levelup&type=tools'); ?>" class=""><?php echo esc_html__('Click to get the new designs',LEVELUP_TEXT_DOMAIN); ?></a> .<span class="levelup-response-status"></span>
 		        </p>
 		    </div>
 	    <?php

@@ -274,7 +274,6 @@ Class levelup_menuConnector{
 				<h2 class="levelup-nav nav-tab-wrapper"> 
 		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=dashboard')).'" class="nav-tab '.($type=='dashboard'? 'nav-tab-active': '').'">'.esc_html__('Dashboard',LEVELUP_TEXT_DOMAIN).'</a>
 		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=options')).'" class="nav-tab '.($type=='options'? 'nav-tab-active': '').'">'.esc_html__('Options', LEVELUP_TEXT_DOMAIN).'</a>
-		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=template')).'" class="nav-tab '.($type=='template'? 'nav-tab-active': '').'">'.esc_html__('Templates', LEVELUP_TEXT_DOMAIN).'</a>
 		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=amp_support')).'" class="nav-tab '.($type=='amp_support'? 'nav-tab-active': '').'">'.esc_html__('AMP', LEVELUP_TEXT_DOMAIN).'</a>
 		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=tools')).'" class="nav-tab '.($type=='tools'? 'nav-tab-active': '').'">'.esc_html__('Tools', LEVELUP_TEXT_DOMAIN).' '.$steprequired.'</a>
 		            <a href="'.esc_url(admin_url('admin.php?page=levelup&type=support')).'" class="nav-tab '.($type=='support'? 'nav-tab-active': '').'">'.esc_html__('Support', LEVELUP_TEXT_DOMAIN).'</a>
