@@ -58,14 +58,26 @@
     margin: 0px 0 0 0;
 }
 .levelup_options_container li{
-    padding: 6px 22px;
+    padding: 6px 13px 6px 13px;
     width: 220px;
     display: inline-flex;
 }
 .levelup_options_container li a{
     text-decoration: none;
-    line-height: 19px;
-    padding-left: 4px;
+    line-height: 34px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.levelup_options_container li a:hover span{
+    color: #000
+}
+.levelup_options_container li span {
+    color: #0000008a;
+    background: #eef1f1f1;
+    padding: 8px;
+    border-radius: 30px;
+    font-size: 20px;
+    margin-right: 8px;
 }
 .levelup-sync-wrapper h3{
     font-size: 15px;
@@ -77,33 +89,92 @@
     font-size: 14px;
     list-style-type: upper-alpha;
 }
-.setup-wrapper .container li{
-    display: flex;
-    border-top:1px solid #cdcdcd;
-    padding:5px 20px 5px 19px;
-    position: relative;
-}
+
 .setup-wrapper .container li:Last{
     border-bottom:1px solid #cdcdcd;
 }
-.setup-wrapper .container li .setup-option{
-    width: 75%;
-}
-.setup-wrapper .container li .setup-status{
-    width: 30%;
-}
-.setup-wrapper .green-color{
+
+.levelup_setup .green-color{
     color: #46b450;
+    width: 16px;
 }
-.setup-wrapper .red-color{
+.levelup_setup .red-color{
     color: red;
 }
-.setup-wrapper .why-help{
-    position:absolute;
-    right:0px;
-    top:2%;
+.levelup_setup .why-help{
+    position: absolute;
+    right: 40px;
+    top:20px;
+    font-size: 11px;
+    color: #666;
 }
-
+.levelup_setup ul{
+    padding: 0;
+    margin: 0;}
+.levelup_setup ul li{
+    display: inline-block;
+    width: 95%;
+    position: relative;
+    padding: 12px 5% 12px 20px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0;
+    vertical-align: middle;
+    position: relative;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+}
+.levelup_setup .setup-option{
+    float: left;
+    POSITION: RELATIVE;
+    TOP: 7PX;
+    left: 30px;
+    color: #000;
+}
+.levelup_setup .setup-status{
+    float: right;
+    padding-right: 60px;
+    width: 60%;
+    height: 28px;
+         text-align: right;
+}
+.levelup_center{
+    text-align: center;
+}
+.lvl_get_key{
+    padding-left: 8px;
+}
+.levelup_setup_done{
+position: relative;
+    top: 5px;
+    color: #388E3C;
+    font-size: 16px;
+}
+.levelup_setup_number {
+    position: absolute;
+    left: 13px;
+    border: 1px solid #ccc;
+    border-radius: 60px;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    line-height: 20px;
+    top: 16px;
+    color: #666;
+}
+.levelup_setup_done{
+    text-align: center;
+    color: #388E3C;
+    font-size: 12px;
+}
+.leveup_howto{
+    font-size: 34px;
+    text-align: center;
+    font-weight: 600;
+    line-height: 88px;       
+}
+.leveup_howto_video{
+    text-align: center;
+}
 /**************Tool tip***********/
 .levelup-tooltip {
     display:inline-block;
@@ -115,23 +186,24 @@
 .levelup-tooltip h3 {margin:12px 0;}
 
 .levelup-tooltip .left {
-    min-width:200px;
-    max-width:400px;
-    top:50%;
-    right:100%;
-    margin-right:20px;
-    transform:translate(0, -50%);
-    padding:20px;
-    color:#666666;
-    background-color:#FFFFE0;
-    font-weight:normal;
-    font-size:13px;
-    border-radius:8px;
-    position:absolute;
-    z-index:99999999;
-    box-sizing:border-box;
-    display:none;
-    border:1px solid #DCA;
+    min-width: 280px;
+    max-width: 400px;
+    top: 50%;
+    right: 100%;
+    margin-right: 20px;
+    transform: translate(0, -50%);
+    padding: 10px 15px 10px 15px;
+    color: #333;
+    background-color: #FFFFE0;
+    font-weight: normal;
+    font-size: 13px;
+    border-radius: 15px;
+    position: absolute;
+    z-index: 99999999;
+    box-sizing: border-box;
+    display: none;
+    border: 1px solid #DCA;
+    line-height: 19px;
 }
 
 .levelup-tooltip:hover .left {

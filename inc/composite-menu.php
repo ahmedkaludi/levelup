@@ -24,7 +24,7 @@ Class levelup_menuConnector{
 		if(isset($settings['api_status']) && $settings['api_status']=='valid' && $this->check_update_available()){
 			$availableUpdateHtml = '<span class="update-plugins count-1"><span class="update-count" title="">'.esc_html__( '1', LEVELUP_TEXT_DOMAIN ).'</span></span>';
 		}
-		$menu_label = sprintf( esc_html__( 'LevelUp ', LEVELUP_TEXT_DOMAIN)." %s",  $availableUpdateHtml);
+		$menu_label = sprintf( esc_html__( 'LevelUP', LEVELUP_TEXT_DOMAIN)." %s",  $availableUpdateHtml);
 		global $submenu;
 	    add_menu_page(
 	    		'Level Settings',
@@ -87,7 +87,8 @@ Class levelup_menuConnector{
 								'plugin_slug'=>'elementor',
 								'plugin_filename'=>'elementor.php',
 								'plugin_current_status'=>'Install',
-								'why'=>'Require',
+								'why'=>'LevelUP provides ready to use designs on top of Elementor, so Elementor is required.',
+								'setup_position'=>'1',
 								),
 							array(
 								'type'=> 'connect',
@@ -95,7 +96,8 @@ Class levelup_menuConnector{
 								'plugin_label'=>'Connect to Design library',
 								'action_link'=>'',
 								'plugin_current_status'=>'Install',
-								'why'=>'Required',
+								'why'=>'Design Library is a free service which connects you to our design server where our frontend designers bake the fresh designs consistently.',
+								'setup_position'=>'2',
 								),
 							array(
 								'type'=> 'plugin',
@@ -105,7 +107,8 @@ Class levelup_menuConnector{
 								'plugin_slug'=>'accelerated-mobile-pages',
 								'plugin_filename'=>'accelerated-moblie-pages.php',
 								'plugin_current_status'=>'Install',
-								'why'=>'Optional',
+								'why'=>'AMPforWP plugin is used as the core framework to give you the hassle free AMP experience.',
+								'setup_position'=>'3',
 								),
 						);
 		$setup = '';$setupStatus = array();
@@ -137,23 +140,23 @@ Class levelup_menuConnector{
 				    $action = '<a '.$this->levelup_make_html_attributes( $required ).' >'. $button_label.'</a>';
 				}else{
 					$setupStatus[$required['plugin_name']] = 1;
-					$action = '<span class="dashicons dashicons-yes green-color"></span> Done';
+					$action = '<div class="levelup_setup_done"><span class="dashicons dashicons-yes green-color"></span> Done</div>';
 				}
 			}elseif($required['type'] == 'connect'){
 				$settings = get_option('levelup_library_settings');
 				if(isset($settings['api_status']) && $settings['api_status']=='valid'){
 					$setupStatus[$required['plugin_name']] = 1;
-					$action = '<span class="dashicons dashicons-yes green-color"></span> Connected Successfully';
+					$action = '<div class="levelup_setup_done"><span class="dashicons dashicons-yes green-color"></span> API Connected</div>';
 				}else{
-					$action = '<span><input type="text" id="levelup-connect-to-design-template"><button class="button connect-to-design" data-redirect-url="'.$required['data-redirect-url'] .'">Activate</button> <a target="_blank" href="'.esc_url(LEVELUP_SERVER_URL.'/register/').'" style="text-decoration:none;">'.esc_html__( 'Get key', LEVELUP_TEXT_DOMAIN ).'</a></span>';
+					$action = '<span><input type="text" id="levelup-connect-to-design-template" placeholder="Enter the API key"><button class="button connect-to-design" data-redirect-url="'.$required['data-redirect-url'] .'">Activate</button> <a class="lvl_get_key" target="_blank" href="'.esc_url(LEVELUP_SERVER_URL.'/register/').'" style="text-decoration:none;">'.esc_html__( 'Get API key', LEVELUP_TEXT_DOMAIN ).'</a></span>';
 				}
 			}
-			$setup .= '<li>
+			$setup .= '<li><span class="levelup_setup_number">'.$required['setup_position'].'</span>
 				<div class="setup-option">
 					'.($setupStatus[$plugin_title]!=1? $plugin_title : "<strike>".$plugin_title."</strike>").' 
 				</div>
 				<div class="setup-status">
-					'.$action.' <em class="why-help levelup-tooltip" title="">(Why) <div class="left">'.$required['why'].'<i></i></div></em>
+					'.$action.' <em class="why-help levelup-tooltip" title="">Why? <div class="left">'.$required['why'].'<i></i></div></em>
 				</div>
 			</li>';
 		}//foreach closed
@@ -166,36 +169,41 @@ Class levelup_menuConnector{
 		ob_start();
 		switch($type){
 			case 'dashboard':
-				$setupMessage = '<span class="red-color">Finish the above setup to continue LevelUP</span>';
+				$setupMessage = '<span class="red-color">Finish the above steps to complete the setup</span>';
 				
 				if($checkIsSetupDone){
-				$setupMessage = '<span class="green-color" style="font-size:17px">You are all set to start Import the Template</span><hr/>';
+				$setupMessage = '<div class="levelup_setup_done">LevelUP is fully activated.</div>
+				<div class="leveup_howto">Are you New to LevelUP? <span style="
+    font-weight: 400;
+    color: #333;
+">Let\'s learn in 2 mins!</span></div>
+<div class="leveup_howto_video"><iframe width="700" height="400" src="https://www.youtube.com/embed/Em1nsE_KaKw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+				';
 				}
 
 
 				echo '
-				<div class="setup-wrapper">
-            		<h3>Setup</h3>
+				<div class="levelup_options postbox levelup_setup">
+            		<h2 class="hndle">Setup</h2>
             		<div class="print_message"></div>
             		<div class="container">
             			<ul>
             				'.($checkIsSetupDone? '': $setup).'
             			</ul>
             		</div>
-            		<p class="center justify"> '.$setupMessage.'</p>
+            		<p class="levelup_center justify"> '.$setupMessage.'</p>
             	</div>
 
                 <div class="levelup_dashboard">
                 	
 					
-					<div class="levelup_dashboard_left" style="display:none;">
-                        <h2>Learn</h2>
-                        <iframe width="400" height="225" src="https://www.youtube.com/embed/fnlzOHECEDo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<div class="levelup_dashboard_left">
                         <h4>Learn deeper:</h4>
                         <div class="levelup_dashboard_left_sub">
                            <ul>
                            <li><a href="#">Watch Videos</a></li>
                            <li><a href="#">Read Documentation</a></li>
+                           <li><a href="#">Ask for Technical Support!</a></li>
                            </ul>
                         </div>
                     </div>
@@ -226,24 +234,33 @@ Class levelup_menuConnector{
 				    <div class="levelup_options_container">
 				        <ul>
 				            <li>
+				                
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=logo-' . $dataSelectedDesigns)).'">
 				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=logo-' . $dataSelectedDesigns)).'">Upload Logo</a>
+				                Upload Logo</a>
 				            </li>
 				            <li>
-				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=menu-' . $dataSelectedDesigns )).'">Setup menu</a>
+				                
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=header_panel' )).'">
+				                <span class="dashicons dashicons-align-center"></span>
+				                Header Builder</a>
 				            </li>
 				            <li>
-				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=header_panel' )).'">Header Builder</a>
+				                
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=footer_panel' )).'">
+				                <span class="dashicons dashicons-align-center"></span>
+				                Footer Builder</a>
 				            </li>
 				            <li>
-				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[panel]=footer_panel' )).'">Footer Builder</a>
+				                
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=menu-' . $dataSelectedDesigns )).'">
+				                <span class="dashicons dashicons-welcome-widgets-menus"></span>
+				                Nav Menu</a>
 				            </li>
 				            <li>
-				                <span class="dashicons dashicons-format-image"></span>
-				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=theme_field_settings' )).'">Typography</a>
+				                
+				                <a href="'.esc_url(admin_url('customize.php?autofocus[section]=theme_field_settings' )).'">
+				                <span class="dashicons dashicons-editor-textcolor"></span>Typography</a>
 				            </li>
 				        </ul>
 				    </div>
