@@ -12,9 +12,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 == Description ==
 LevelUP is a Design Library for Elementor that offers unlimited pre-built designs for FREE. We will be creating and releasing new design elements every week which will be deliveried directly to your elementor. Our designs are optimized for performance and compatible with AMP. 
 
-LevelUP's core feature is the design library, it's fully plug and play. If you want to get new designs on daily basis, you need to [connect to our server through an API key](http://levelup.magazine3.company/register/) which is totally FREE (and will be free forever).
+LevelUP's core feature is the design library, it's fully plug and play. If you want to get new designs on daily basis, you need to [connect to our server through an API key](http://wplevelup.com/register/) which is totally FREE (and will be free forever).
 
-We do not track any of your data, we just deliver the design elements through API. If you don't wish to connect then you can still use the plugin but it will only give you access to the pre-built 10 designs. If you have doubts about the data or privacy then you can check our [terms](http://levelup.magazine3.company/terms/) or directly contact us on [team@magazine3.com](mailto:team@magazine3.com).
+We do not track any of your data, we just deliver the design elements through API. If you don't wish to connect then you can still use the plugin but it will only give you access to the pre-built 10 designs. If you have doubts about the data or privacy then you can check our [terms](http://wplevelup.com/terms/) or directly contact us on [team@magazine3.com](mailto:team@magazine3.com).
 
 == Credits ==
 * Font Awesome 4.7.0 ( http://fontawesome.io/license/ Font: SIL OFL 1.1, CSS: MIT License )

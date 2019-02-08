@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 //Sync Designs
 
 //Sync Constants
-define( 'LEVELUP_SERVER_URL', 'http://levelup.magazine3.company' );
+define( 'LEVELUP_SERVER_URL', 'http://wplevelup.com' );
 define( 'LEVELUP_API_url', LEVELUP_SERVER_URL.'/wp-json/' );
 define( 'LEVELUP_SYNC_VERSION_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-version' );
 define( 'LEVELUP_SYNC_DESIGN_URL', LEVELUP_API_url.'elementor_design_layout/v1/get-elementor-designs' );
