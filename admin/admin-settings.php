@@ -188,7 +188,7 @@ Class LEVELUP__Admin_settings{
 	    	( ('admin.php' != $pagenow ) && !isset($_GET['page']) || 'levelup' != $_GET['page'] ) 
 		){
 	    	echo '<div class="notice notice-warning" id="sync-status-notice" >
-	        <p>'.esc_html__('Congratulations',LEVELUP_TEXT_DOMAIN).' <br/><strong>'.esc_html__('LevelUP',LEVELUP_TEXT_DOMAIN).'</strong> '.(' is  installed but not yet configured,  you need to configure here ').' <a href="'. esc_url('admin.php?page=levelup&type=tools',LEVELUP_TEXT_DOMAIN) .'" class="button button-primary">'.esc_html__('Finish Setup',LEVELUP_TEXT_DOMAIN).'</a></p>
+	        <p>'.esc_html__('Congratulations',LEVELUP_TEXT_DOMAIN).' <br/><strong>'.esc_html__('LevelUP',LEVELUP_TEXT_DOMAIN).'</strong> '.(' is  installed but not yet configured,  you need to configure here ').' <a href="'. esc_url('admin.php?page=levelup',LEVELUP_TEXT_DOMAIN) .'" class="button button-primary">'.esc_html__('Finish Setup',LEVELUP_TEXT_DOMAIN).'</a></p>
 	        </div>';
 	    }
 
