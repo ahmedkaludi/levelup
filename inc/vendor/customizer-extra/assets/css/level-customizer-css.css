@@ -6,8 +6,8 @@
 }
 #customize-controls img{
   display: block;
-  width:300px;
-  height: 70px;
+  width: 328px;
+  height: auto;
 }
 i.selecteddesign {
     position: absolute;

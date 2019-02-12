@@ -2,14 +2,15 @@
 class footer_design1{
 	public $config = array();
 	public $panelId = 'footer-design1';
-	public $previewImg = "http://localhost/magzine/wp/wp-content/uploads/2018/11/cropped-coffee-432-300x202.jpg";
+	public $previewImg = "/assets/img/footer-1.png";
 	function config_deisgn(){
+		$this->previewImg  = HEADER_FOOTER_PLUGIN_DIR_URI. $this->previewImg;
 		$this->config = array(
 			array(
 				'api_type'		=> 'hf_panel',
 				'id' 			=> $this->panelId,//change unique
 				'panel'    		=> 'footer_panel',
-				'title'         => __('1st Footer Design', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+				'title'         => __('Footer 1', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 		        'description'   => "<img src='".$this->previewImg."'>".__("This is the description which doesn't want to show up", HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 		        'previewImg'	=> $this->previewImg,
 		        'capability'    => 'edit_theme_options',
