@@ -1552,7 +1552,7 @@
 	                this.container.removeClass('levelup--builder--hide').addClass( 'levelup--builder-show' );
 	                setTimeout( function(){
 	                    var h = that.container.height();
-	                    $( '#customize-preview' ).addClass( 'cb--preview-panel-show' ).css( { 'bottom': h-1, 'margin-top' : '0px' } );
+	                    $( '#customize-preview' ).addClass( 'cb--preview-panel-show' ).css( { 'height': window.innerHeight - (h-1), 'margin-top' : '0px' } );
 	                }, 100 );
 	            },
 	            hidePanel: function(){
