@@ -71,7 +71,8 @@ class MenuDesign{
 			        'section' 			=> $this->nameslug. $this->panel,
 			        'label'   			=> __('Select Menu', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'select',
-                    'choices'            => $nav_menu_array//wp_get_nav_menus()
+                    'choices'           => $nav_menu_array,
+                    'description'       => '<a href="'.esc_url(admin_url('customize.php?autofocus[panel]=nav_menus')).'">Manage Menu</a>'
 			    ),
 
 			);

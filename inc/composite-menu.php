@@ -203,7 +203,7 @@ Class levelup_menuConnector{
                            <ul>
                            <li><a href="#">Watch Videos</a></li>
                            <li><a href="#">Read Documentation</a></li>
-                           <li><a href="#">Ask for Technical Support!</a></li>
+                           <li><a href="'.esc_url(admin_url('admin.php?page=levelup&type=support')).'">Ask for Technical Support!</a></li>
                            </ul>
                         </div>
                     </div>
