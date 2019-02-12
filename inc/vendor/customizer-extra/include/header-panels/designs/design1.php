@@ -2,7 +2,7 @@
 class header_footer_design1{
 	public $config = array();
 	public $panelId = 'header-design1';
-	public $previewImg = "/assets/img/d1.jpg";
+	public $previewImg = "/assets/img/header-1.png";
 	function config_deisgn(){
 		$this->previewImg  = HEADER_FOOTER_PLUGIN_DIR_URI. $this->previewImg;
 		$this->config = array(
@@ -10,7 +10,7 @@ class header_footer_design1{
 				'api_type'		=> 'hf_panel',
 				'id' 			=> $this->panelId,//change unique
 				'panel'    		=> 'header_panel',
-				'title'         => __('First Design', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+				'title'         => __('Header 1', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 		        'description'   => "<img src='".$this->previewImg."'>".__("This is the description which doesn't want to show up", HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 		        'previewImg'	=> $this->previewImg,
 		        'capability'    => 'edit_theme_options',
