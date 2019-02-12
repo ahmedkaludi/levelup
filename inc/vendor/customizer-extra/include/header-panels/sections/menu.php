@@ -25,6 +25,18 @@ class MenuDesign{
     }
 
 	function getFields(){
+        $args  =array();
+        $nav_menu_array = array();
+        $defaults = array( 'hide_empty' => false, 'orderby' => 'name' );
+        $args = wp_parse_args( $args, $defaults );
+        $nav_menu = get_terms( 'nav_menu',  $args);
+        $defaultMenu = '';
+        foreach($nav_menu as $nav){
+            if(empty($defaultMenu)){
+                $defaultMenu = $nav->slug;
+            }
+            $nav_menu_array[$nav->slug] = $nav->name;
+        }
 		return array(
 				array(
 					'api_type'			=> 'wp_section',
@@ -33,8 +45,14 @@ class MenuDesign{
 			        'panel_name'    	=> $this->panelName,
                     'width'             => $this->width,
 					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+			        'description' 		=> __('Select Menu to show in header panel', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
+                
+                array(
+                    'api_type'          => 'move_panel',
+                    'option'           => 'menu_locations',
+                    'section'           => $this->nameslug. $this->panel,
+                ),
 
 				
 				//settings
@@ -42,7 +60,7 @@ class MenuDesign{
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'menu'. $this->panel,
 					'capability'        => 'edit_theme_options',
-					"default"			=> "Black",
+					"default"			=> $defaultMenu,
 			        'sanitize_callback' => 'sanitize_text_field',
 			        'transport'			=> 'postMessage'
 			    ),
@@ -51,8 +69,9 @@ class MenuDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'menu'. $this->panel,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'type'    			=> 'text'
+			        'label'   			=> __('Select Menu', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'type'    			=> 'select',
+                    'choices'            => $nav_menu_array//wp_get_nav_menus()
 			    ),
 
 			);
@@ -60,6 +79,7 @@ class MenuDesign{
 
 	function render()
     {
+        $selected_menu = headerfooter_get_setting( 'menu'. $this->panel );
         $style = '';
         $container_classes = $this->id . ' ' . $this->id . '-__id__ nav-menu-__device__ ' . $this->id . '-__device__' . ($style ? ' ' . $style : '');
         echo '<nav  id="site-navigation-__id__-__device__" class="site-navigation  nav-menu  __device__ ' . $container_classes . '" class="nav-menu">';
@@ -67,7 +87,8 @@ class MenuDesign{
         $menu_html_content = wp_nav_menu( array(
 	            //'theme_location' => 'amp-menu',
 	            'container'=>'aside',
-	            'menu'=>'ul',
+	            'menu'=>$selected_menu,
+                'menu_id' => 'nav',
 	            'menu_class'=>'hd1-menu',
 	            'echo' => false,
 				'walker' => new Ampforwp_Walker_Nav_Menu()
