@@ -1508,7 +1508,7 @@
 	            },
 	            decodeValue: function( value ){
 	            	var expr =  /%/;
-	            	if(!expr.test(value)){
+	            	if(expr.test(value)){
 	            		return JSON.parse(decodeURIComponent( value ));
 	            	}else{
 	                	return value;
