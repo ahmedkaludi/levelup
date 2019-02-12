@@ -20,6 +20,7 @@ Class LEVELUP__Admin_settings{
 			WP Settings API
 		*/
 		add_action('admin_init', array( $this, 'levelup_tabs_settings_init'));
+		add_action( 'admin_notices', array($this, 'levelup_plugin_notice_for_theme') );
 	}
 	function levelup_plugin_action_links( $links ) {
 		$links[] = '<a href="' . esc_url( admin_url( 'admin.php?page=levelup' ) ) . '">' . esc_html__( 'Settings', LEVELUP_TEXT_DOMAIN ) . '</a>';
@@ -213,6 +214,22 @@ Class LEVELUP__Admin_settings{
 	    	return $server_version;
 	    }
 		return false;
+	}
+
+	function levelup_plugin_notice_for_theme(){
+		$theme = wp_get_theme();
+		if($theme->name!='Level UP'){
+			?>
+			<div class="updated levelup-message levelup-notice-wrapper levelup-notice-install-now" style="position:relative;">
+		        <h3 class=""><?php printf( esc_html__( 'Thanks for choosing %s', LEVELUP_TEXT_DOMAIN ), 'Levelup' ); ?></h3>
+		        <p class="levelup-notice-description"><?php printf( __( 'To take full advantages of Levelup Plugin, please install %s Theme.', 'level-up' ), '<strong>Level-UP</strong>' ); ?></p>
+		        <p class="submit">
+		            <a target="_blank" href="<?php echo admin_url( "theme-install.php?search=level-up" )?>" ><?php echo esc_html__('Get Theme', LEVELUP_TEXT_DOMAIN)?></a>
+		            <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'levelup-hide-core-theme-notice', 'install' ), 'levelup_hide_notices_nonce', '_notice_nonce' ) ); ?>" class="notice-dismiss levelup-close-notice"><span class="screen-reader-text"><?php _e( 'Skip', 'level-up' ); ?></span></a>
+		        </p>
+		    </div>
+			<?php
+		}
 	}
 }
 
