@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: LevelUP 
- * Description: LevelUP takes your Elementor to the next level.
- * Plugin URI: http://wplevelup.com/
- * Version: 1.0.1
- * Author: mohammed_kaludi, ahmedkaludi, ampforwp
- * Author URI: http://magazine3.company/
+ * Plugin Name: AMP Designs for Elementor by LevelUP  
+ * Description: Pre-Built Designs for Elementor & Gutenberg with full AMP Compatiblity
+ * Plugin URI: http://wplevelup.com
+ * Version: 1.1
+ * Author: Ahmed Kaludi, Mohammed Kaludi
+ * Author URI: http://wplevelup.com
  * Text Domain: levelup
  * Domain Path: /languages/
  */
@@ -18,7 +18,7 @@ define( 'LEVELUP__FILE__URI', plugin_dir_url(__FILE__));
 define( 'LEVELUP__DIR__PATH', __DIR__ );
 define( 'LEVELUP_TEXT_DOMAIN', 'levelup' );
 define( 'LEVELUP_ENVIRONEMT', 'production' );//development
-define( 'LEVELUP_VERSION', '0.0.1' );
+define( 'LEVELUP_VERSION', '1.1' );
 
 
 /**
@@ -113,5 +113,3 @@ function levelup_after_elementor_init(){
 	add_action( 'pre_get_posts', 'levelup_modify_main_query');
 }
 add_action( 'elementor/init',  'levelup_after_elementor_init');
-
- 
