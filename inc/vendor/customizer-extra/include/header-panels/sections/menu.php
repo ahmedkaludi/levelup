@@ -48,14 +48,7 @@ class MenuDesign{
 			        'description' 		=> __('Select Menu to show in header panel', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
                 
-                array(
-                    'api_type'          => 'move_panel',
-                    'option'           => 'menu_locations',
-                    'section'           => $this->nameslug. $this->panel,
-                ),
-
-				
-				//settings
+               //settings
 				array(
 					'api_type'			=> 'wp_settings',
 					'id'				=> 'menu'. $this->panel,
