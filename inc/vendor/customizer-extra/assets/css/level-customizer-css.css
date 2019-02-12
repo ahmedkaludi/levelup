@@ -11,13 +11,17 @@
 }
 i.selecteddesign {
     position: absolute;
-    font-size: 26px;
+    font-size: 16px;
     border-radius: 50%;
-    padding: 1px;
-    background-color: #00ff00;
-    top: 9px;
-    padding-right: 5px;
-    color:#fff;
+    padding: 0px;
+    background-color: #4CAF50;
+    top: 18px;
+    right: 5px;
+    padding-right: 0px;
+    color: #fff;
+    width: 20px;
+    line-height: 20px;
+    top: 5px;
 }
 /*ul#sub-accordion-panel-header_panel li.control-panel {
     width: 126px;
