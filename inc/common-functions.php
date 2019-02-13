@@ -449,8 +449,8 @@ function levelup_child_designing_custom_template($file, $type, $post){
 /**
  * @return true if levelup theme activated
  */
-if(!function_exists('if_is_levelup')){
-	function if_is_levelup(){
+if(!function_exists('levelup_theme_is_active')){
+	function levelup_theme_is_active(){
 		$theme = wp_get_theme();
 		if ( 'Level UP' == $theme->name) {
 			 return true;
@@ -461,9 +461,9 @@ if(!function_exists('if_is_levelup')){
 /**
  * @return true if ELEMENTOR Builder Enabled
  */
-if(!function_exists('if_levelup_has_builder'))  {
+if(!function_exists('levelup_has_enable_elementor_builder'))  {
 	
-	function if_levelup_has_builder(){
+	function levelup_has_enable_elementor_builder(){
 		global $post;
 		if(is_object($post) && get_post_meta( $post->ID, '_elementor_edit_mode', false ) ){
 			return true;
