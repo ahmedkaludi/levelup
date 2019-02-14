@@ -183,7 +183,7 @@ function levelup_amp_column_design(){
 add_action( 'amp_post_template_css', 'levelup_amp_design_styling' );
 function levelup_amp_design_styling(){
 	global $post, $redux_builder_amp;
-	if( is_single($post->ID) || is_singular($post->ID)  || !(\Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID)) ) {
+	if(  !levelup_has_enable_elementor_builder() ) {
 		return false;
 	}
 	$allCss = '';
