@@ -222,7 +222,7 @@ Class LEVELUP__Admin_settings{
 			?>
 			<div class="updated levelup-message levelup-notice-wrapper levelup-notice-install-now" style="position:relative;">
 		        <h3 class=""><?php printf( esc_html__( 'Thanks for choosing %s', LEVELUP_TEXT_DOMAIN ), 'Levelup' ); ?></h3>
-		        <p class="levelup-notice-description"><?php printf( __( 'To take full advantages of Levelup Plugin, please install %s Theme.', 'level-up' ), '<strong>Level-UP</strong>' ); ?></p>
+		        <p class="levelup-notice-description"><?php printf( esc_html__( 'To take full advantages of Levelup Plugin, please install %s Theme.', 'level-up' ), '<strong>Level-UP</strong>' ); ?></p>
 		        <p class="submit">
 		            <a target="_blank" href="<?php echo admin_url( "theme-install.php?search=level-up" )?>" ><?php echo esc_html__('Get Theme', LEVELUP_TEXT_DOMAIN)?></a>
 		            <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'levelup-hide-core-theme-notice', 'install' ), 'levelup_hide_notices_nonce', '_notice_nonce' ) ); ?>" class="notice-dismiss levelup-close-notice"><span class="screen-reader-text"><?php _e( 'Skip', 'level-up' ); ?></span></a>
