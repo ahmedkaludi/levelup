@@ -21,8 +21,8 @@ class SearchDesign{
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
                     'width'             => '1',
-					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Currently no options created', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+					'title'    			=> esc_html__($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'description' 		=> esc_html__('Currently no options created', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
 				
@@ -66,7 +66,7 @@ if ( (function_exists( 'ampforwp_is_amp_endpoint' ) && ampforwp_is_amp_endpoint(
         </div>
         <div [class]="visible ? 'overlay overlay-slidedown open' : 'overlay overlay-slidedown close'"  class="overlay overlay-slidedown" id="search-overlay">
           <div class="ov-form">
-            <form role="search" target="_top" id="searchform" class="searchform" action="<?php echo $action_url;?>" method="GET">
+            <form role="search" target="_top" id="searchform" class="searchform" action="<?php echo esc_url($action_url);?>" method="GET">
                 <input type="text" name="<?php echo $amp_query_variable;?>" value="<?php echo $amp_query_variable_val;?>" placeholder="AMP" class="hide" id="ampforwp_search_query_item">
                 <input type="text" placeholder="Search" value="<?php echo get_search_query();?>" name="s" id="s" />
                 <button type="submit" class="btn-sbt"></button>

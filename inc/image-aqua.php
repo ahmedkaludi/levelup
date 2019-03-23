@@ -165,9 +165,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 return $image;
             }
             catch (Levelup_Aq_Exception $ex) {
-                // Throwing errors for the images stored on CDN #2285
-                /*error_log('Aq_Resize.process() error: ' . $ex->getMessage());
-*/
+
                 if ($this->throwOnError) {
                     // Bubble up exception.
                     throw $ex;

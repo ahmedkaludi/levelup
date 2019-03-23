@@ -44,8 +44,8 @@ class MenuDesign{
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
                     'width'             => $this->width,
-					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Select Menu to show in header panel', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+					'title'    			=> esc_html__($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'description' 		=> esc_html__('Select Menu to show in header panel', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
                 
                //settings
@@ -62,7 +62,7 @@ class MenuDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'menu'. $this->panel,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Select Menu', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Select Menu', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'select',
                     'choices'           => $nav_menu_array,
                     'description'       => '<a href="'.esc_url(admin_url('customize.php?autofocus[panel]=nav_menus')).'">Manage Menu</a>'
@@ -77,9 +77,7 @@ class MenuDesign{
         $style = '';
         $container_classes = $this->id . ' ' . $this->id . '-__id__ nav-menu-__device__ ' . $this->id . '-__device__' . ($style ? ' ' . $style : '');
         echo '<nav  id="site-navigation-__id__-__device__" class="site-navigation  nav-menu  __device__ ' . $container_classes . '" class="nav-menu">';
-        //wp_nav_menu();
         $menu_html_content = wp_nav_menu( array(
-	            //'theme_location' => 'amp-menu',
 	            'container'=>'aside',
 	            'menu'=>$selected_menu,
                 'menu_id' => 'nav',
@@ -88,8 +86,6 @@ class MenuDesign{
 				'walker' => new Ampforwp_Walker_Nav_Menu()
 	        ) );
         $menu_html_content = apply_filters('ampforwp_menu_content', $menu_html_content);
-     //    $sanitizer_obj = new \AMPFORWP_Content( $menu_html_content, array(), apply_filters( 'ampforwp_content_sanitizers', array( 'AMP_Img_Sanitizer' => array(), 'AMP_Style_Sanitizer' => array(), ) ) );
-	    // $sanitized_menu =  $sanitizer_obj->get_amp_content();
     	echo $menu_html_content;
         echo '</nav>';
 
@@ -103,7 +99,6 @@ class MenuDesign{
   function start_lvl(&$output, $depth=0, $args = array(), $has_children = 0) {
   static $column = 1;
     $indent = str_repeat("\t", $depth);
-      //$output .= "\n$indent<ul class=\"sub-menu\">\n";
 
       // Change sub-menu to dropdown menu
   if ($depth > 0 && $has_children > 0 )
@@ -165,10 +160,6 @@ class MenuDesign{
     $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
     $item_output .= '</a>';
   
-  // Add the caret if menu level is 0
-    if ( $has_children > 0  ) {
-        //$item_output .= '<label for="drop-"'.$depth.' class="toggle">+</label>';
-    }
     $item_output .= $args->after;
 
     $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
@@ -176,62 +167,3 @@ class MenuDesign{
 
 }
 /*Sidebar Nav menu Walker end*/
-
-
-
-
-/**
- * Change menu item ID
- *
- * @see Walker_Nav_Menu::start_el();
- *
- * @param $string_id
- * @param $item
- * @param $args An object of wp_nav_menu() arguments.
- * @return mixed
- */
-/*function headerfooter_builder_change_nav_menu_item_id( $string_id , $item, $args ){
-    if ( $args->theme_location == 'menu-1' || $args->theme_location == 'menu-2' ) {
-        $string_id = 'menu-item--__id__-__device__-'.$item->ID;
-    }
-
-    return $string_id;
-}
-add_filter( 'nav_menu_item_id', 'headerfooter_builder_change_nav_menu_item_id', 55, 3 );
-*/
-
-/**
- * Add Nav icon to menu
- *
- * @param $title
- * @param $item
- * @param $args
- * @param $depth
- * @return string
- */
-/*function headerfooter_builder_add_icon_to_menu($title, $item, $args, $depth)
-{
-    if (in_array('menu-item-has-children', $item->classes)) {
-
-        $title .= '<span class="nav-icon-angle">&nbsp;</span>';
-
-    }
-    return $title;
-}
-add_filter('nav_menu_item_title', 'headerfooter_builder_add_icon_to_menu', 25, 4);
-*/
-/**
- * Add more sub menu classes
- * @since 0.1.1
- * @see Walker_Nav_Menu::start_lvl
- *
- * @param $classes
- * @param $args
- * @param $depth
- * @return array
- */
-/*function headerfooter_builder_add_sub_menu_classes( $classes, $args, $depth ){
-    $classes[] ='sub-lv-'.$depth;
-    return $classes;
-}
-add_filter( 'nav_menu_submenu_css_class', 'headerfooter_builder_add_sub_menu_classes', 35, 3 );*/

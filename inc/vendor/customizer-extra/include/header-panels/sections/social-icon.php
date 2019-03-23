@@ -32,8 +32,8 @@ class SocialiconDesign{
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
                     'width'             => $this->width,
-					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+					'title'    			=> esc_html__($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'description' 		=> esc_html__('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
 				
@@ -51,7 +51,7 @@ class SocialiconDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'facebook'. $this->panel,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Facebook', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Facebook', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 			    //settings
@@ -68,7 +68,7 @@ class SocialiconDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'twitter'. $this->panel,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Twitter', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Twitter', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 			    //settings
@@ -85,7 +85,7 @@ class SocialiconDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'googleplus'. $this->panel,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Google +', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Google +', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 			    //settings
@@ -102,7 +102,7 @@ class SocialiconDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'instagram'. $this->panel,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Instagram', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Instagram', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 

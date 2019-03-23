@@ -188,12 +188,6 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                                 }
                             }
 
-                            if ( ! $has_cb ) {
-                                if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-                                    //printf( __( 'Callback function <strong>%s</strong> do not exists.', 'levelup' ), $fn );
-                                }
-                            }
-
                             /**
                              * Hook after builder item
                              *
@@ -208,7 +202,6 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                                                                     array(), 
                                                                     apply_filters( 'ampforwp_content_sanitizers', 
                                                                         array( 'AMP_Img_Sanitizer' => array(), 
-                                                                            //'AMP_Blacklist_Sanitizer' => array(),
                                                                             'AMP_Style_Sanitizer' => array(), 
                                                                             'AMP_Video_Sanitizer' => array(),
                                                                             'AMP_Audio_Sanitizer' => array(),
@@ -483,12 +476,8 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                     }
 
                     $item_classes = join(' ', $item_classes); // levelup-grid-middle
-                    //$row_items_html .= '<div class="' . esc_attr($item_classes) . '" data-section="' . $item_config['section'] . '" data-item-id="' . esc_attr($item_id) . '" >';
+
                     $row_items_html .= $this->setup_item_content($content, $id, $device);
-                    /*if (is_customize_preview()) {
-                        $row_items_html .= '<span class="item--preview-name">' . esc_html($item_config['name']) . '</span>';
-                    }*/
-                   // $row_items_html .= '</div>';
                 }
             }
             if ( $row_items_html ) {
@@ -513,13 +502,12 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
         $items   = $this->render_items();
 
         foreach ( $row_ids as $row_id ) {
-            $show = true;//levelup_is_builder_row_display( $this->id, $row_id );
+            $show = true;
             if ( $show && isset( $this->rows[ $row_id ] ) ) {
                 $show_on_devices = $this->rows[ $row_id ];
                 if ( ! empty( $show_on_devices ) ) {
                     $classes = array();
                     $_id     = sprintf( '%1$s-%2$s', $this->id, $row_id );
-                   //$_id = str_replace(array('-header-design', '-footer-design'), array('', ''), $this->$_id);
                     $classes[]     = $_id;
                     $classes[]     = $this->id;
                     $classes[]     = $this->id . '--row';
@@ -646,10 +634,9 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
 
             echo '
             <input type="checkbox" id="offcanvas-menu" class="toggle tgl hide-on-desktop" />
-            <div id="header-menu-sidebar" class="menu-overlay hide-on-desktop">';// ' . esc_attr( join( ' ', $classes ) ) . '
-            echo '<aside class="menu-container">
-                
-            ';
+            <div id="header-menu-sidebar" class="menu-overlay hide-on-desktop">';
+
+            echo '<aside class="menu-container">';
             echo $this->close_icon();
            
 
@@ -678,9 +665,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
                 echo '<div class="' . esc_attr( $classes ) . '">';
                 echo '<div class="' . esc_attr( $inner_classes ) . '" data-item-id="' . esc_attr( $item_id ) . '" data-section="' . $item_config['section'] . '">';
                 echo $content;
-                /*if ( is_customize_preview() ) {
-                    echo '<span class="item--preview-name">' . esc_html( $item_config['name'] ) . '</span>';
-                }*/
+
                 echo '</div>';
                 echo '</div>';
             }
@@ -690,10 +675,6 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
             echo '</div>';
             echo '</div>';
             echo '</div>';
-
-
-
-
 
         }
     }
@@ -705,15 +686,7 @@ class HeaderFooter_Customize_Layout_Builder_Frontend {
      * @return string
      */
     function close_icon( $class = '' ) {
-        $menu_sidebar_skin = '';//headerfooter_get_setting('header_sidebar_text_mode');
-       /* $close = '<a class="close is-size-medium '. $menu_sidebar_skin . esc_attr( $class ) . '" href="#">
-        <span class="hamburger hamburger--squeeze is-active">
-            <span class="hamburger-box">
-              <span class="hamburger-inner"><span class="screen-reader-text">' . __( 'Menu', 'levelup' ) . '</span></span>
-            </span>
-        </span>
-        <span class="screen-reader-text">' . __( 'Close', 'levelup' ) . '</span>
-        </a>';*/
+        $menu_sidebar_skin = '';
        $close = ' <div class="menu-heading clearfix">
                                <label for="offcanvas-menu" class="close-btn">
                                    <i class="fa fa-times"></i>

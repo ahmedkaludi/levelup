@@ -10,8 +10,8 @@ class header_footer_design2{
 				'api_type'		=> 'hf_panel',
 				'id' 			=> $this->panelId,//change unique
 				'panel'    		=> 'header_panel',
-				'title'         => __('Second Design', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-		        'description'   => "<img src='".$this->previewImg."'>".__("This is the description which doesn't want to show up", HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+				'title'         => esc_html__('Second Design', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+		        'description'   => "<img src='".esc_url($this->previewImg)."'>".esc_html__("This is the description which doesn't want to show up", HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 		         'previewImg'	=> $this->previewImg,
 		        'capability'    => 'edit_theme_options',
 		        'priority'      => 2

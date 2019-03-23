@@ -7,15 +7,12 @@ class footerPanels{
 	public $sectionsLoader = array('top-footer', 'middle-footer', 'bottom-footer', 'footer-sidebar1','footer-sidebar2', 'footer-sidebar3', 'footer-sidebar4', 'footer-sidebar5', 'footer-copyright', 'social-icon');
 	public $designs = 	array(
 						'design1',
-						/*'design2',*/
 					);
 	public $designCss = array();
 	function __construct(){
 		$this->include_files();
-		//if(is_admin()){
-			add_action( 'wp_head', array($this, 'design_style_action') );
-			add_action( 'amp_post_template_css', array($this, 'amp_design_style_action') );
-		//}
+		add_action( 'wp_head', array($this, 'design_style_action') );
+		add_action( 'amp_post_template_css', array($this, 'amp_design_style_action') );
 	}
 
 	function amp_design_style_action(){
@@ -69,30 +66,6 @@ class footerPanels{
 
 				$modules['copyrightObj'] = new \HeaderBuilder\footerPanels\sections\footerCopyrightDesign($designObject->panelId, $designPanel[0]['title']);
 				
-
-				/*$footerSidebar1Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar1Design($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $footerSidebar1Obj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar1Obj );
-
-				$footerSidebar2Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar2Design($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $footerSidebar2Obj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar2Obj );
-
-				$footerSidebar3Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar3Design($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $footerSidebar3Obj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar3Obj );
-
-				$footerSidebar4Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar4Design($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $footerSidebar4Obj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar4Obj );
-
-				$footerSidebar5Obj = new \HeaderBuilder\footerPanels\sections\footerSidebar5Design($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $footerSidebar5Obj->getFields());
-				HeaderFooter_Customize_Layout_Builder()->register_item('footer', $footerSidebar5Obj );*/
-
-
-
-
 				//Top settings
 				$modules['topDesignObj'] = new \HeaderBuilder\footerPanels\sections\TopFooterDesign($designObject->panelId, $designPanel[0]['title']);
 
@@ -107,10 +80,6 @@ class footerPanels{
 						$this->designCss[$key] = $value->render_css();
 					}
 				}
-				
-				//Bottom settings
-				/*$bottomDesignObj = new \HeaderBuilder\footerPanels\sections\BottomFooterDesign($designObject->panelId, $designPanel[0]['title']);
-				$this->configs = array_merge($this->configs, $bottomDesignObj->getFields());*/
 
 				$this->configs = array_merge($this->configs, $designPanel);
 			}
@@ -162,14 +131,13 @@ class footerPanels{
 				    	'api_type'			=> 'wp_control',
 				    	'id'				=> 'footer_panel_settings',
 				        'section' 			=> 'footer_setting_section',
-				        'label'   			=> __('Footer Selected Settings', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+				        'label'   			=> esc_html__('Footer Selected Settings', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 				        'type'    			=> 'js_raw',
 				        'selector'          => '#footercaller',
 				    ),
 					
 					
 				);
-		//print_r($footerOptions);die;
 		$return = array_merge($footerOptions, $this->configs);
 		return $return;
 	}
@@ -201,7 +169,6 @@ class footerPanels{
 					$returnData[$panel]['rows'] = array("bottom"=>array('name'=>"Bottom Bottom", "id"=>'bottom-footer-design'),
 												"main"=>array('name'=>"Footer Main", "id"=>'middle-footer-design'),
 												"top"=>array('name'=>"Footer Top", "id"=>'top-footer-design')
-													//"sidebar"=>"Menu Sidebar",
 													);
 					$returnData[$panel]['settings'] = 'footer_panel_settings';
 				}

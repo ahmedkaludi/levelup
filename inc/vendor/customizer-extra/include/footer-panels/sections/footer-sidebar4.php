@@ -21,8 +21,8 @@ class footerSidebar4Design{
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
                     'width'             => '4',
-					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+					'title'    			=> esc_html__($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'description' 		=> esc_html__('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 				array(
 					'api_type'			=> 'wp_widget',
@@ -42,27 +42,9 @@ class footerSidebar4Design{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'widgets-f-'. $this->id,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Add Widget', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Add Widget', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    )
-
-			   /* //settings
-				array(
-					'api_type'			=> 'wp_settings',
-					'id'				=> 'facebook'. $this->panel,
-					'capability'        => 'edit_theme_options',
-					"default"			=> "https://www.facebook.com/wordpress",
-			        'sanitize_callback' => 'sanitize_textarea_field',
-			        'transport'			=> 'postMessage'
-			    ),
-			    //control
-			    array(
-			    	'api_type'			=> 'wp_control',
-			    	'id'				=> 'facebook'. $this->panel,
-			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Facebook', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'type'    			=> 'text'
-			    ),*/
 			   
 			);
 	}
@@ -91,9 +73,8 @@ class footerSidebar4Design{
 	                    2: Customize URL
 	                    3: Footer ID
 	                */
-	                    __('<p>Replace this widget content by going to <a href="%1$s"><strong>Appearance &rarr; Customize &rarr; Footer &rarr; Footer %2$s</strong></a> and adding widgets into this widget area.</p>', 'levelup'),
-	                    esc_url(admin_url('customize.php?autofocus[section]=sidebar-widgets-footer-' . $id)),
-	                    $id
+	                    '<p>%s <a href="%s"><strong>%s %s</strong></a> %s</p>', esc_html__('Replace this widget content by going to', 'levelup'),
+	                    esc_url(admin_url('customize.php?autofocus[section]=sidebar-widgets-footer-' . $id)),esc_html__('Appearance &rarr; Customize &rarr; Footer &rarr; Footer', 'levelup'),$id, esc_html__('and adding widgets into this widget area.', 'levelup')
 	                ),
 	                'filter' => true,
 	                'visual' => true,

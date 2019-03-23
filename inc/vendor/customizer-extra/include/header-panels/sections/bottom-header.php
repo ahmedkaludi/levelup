@@ -17,8 +17,8 @@ class BottomDesign{
 					'id' 				=> $this->id. $this->panel,
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
-					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __($this->name.' description which does show up', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+					'title'    			=> esc_html__($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'description' 		=> esc_html__($this->name.' description which does show up', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
 				
@@ -36,7 +36,7 @@ class BottomDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'color-'.$this->panel. $this->id,
 			        'section' 			=> $this->id. $this->panel,
-			        'label'   			=> __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 

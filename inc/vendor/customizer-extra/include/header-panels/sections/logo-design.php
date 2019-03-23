@@ -30,8 +30,8 @@ class LogoDesign{
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
                     'width'             => '3',
-					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Section description which does show up', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+					'title'    			=> esc_html__($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'description' 		=> esc_html__('Section description which does show up', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
                 array(
@@ -76,7 +76,7 @@ class LogoDesign{
                     'id'                => 'show_name'. $this->panel,
                     'render_callback'   => array($this, 'render'),
                     'section'           => $this->nameslug. $this->panel,
-                    'label'             => __('Enter Site name', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+                    'label'             => esc_html__('Enter Site name', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
                     'type'              => 'checkbox'
                 ),
 
@@ -95,7 +95,7 @@ class LogoDesign{
                     'id'                => 'show_desc'. $this->panel,
                     'render_callback'   => array($this, 'render'),
                     'section'           => $this->nameslug. $this->panel,
-                    'label'             => __('Enter Site Description', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+                    'label'             => esc_html__('Enter Site Description', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
                     'type'              => 'checkbox'
                 ),
 
@@ -109,7 +109,6 @@ class LogoDesign{
                 $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
                 $logo_image = $logo[0];
             }
-        //$logo_image = headerfooter_get_media( $custom_logo_id, 'full' );
         $logo_retina = '';//headerfooter_get_setting( 'header_logo_retina' );
         $logo_retina_image = '';//headerfooter_get_media( $logo_retina );
         if ( $logo_image ) {

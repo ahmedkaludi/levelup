@@ -12,16 +12,11 @@ class headerPanels{
 	public $designCss = array();
 	function __construct(){
 		$this->include_files();
-		//if(is_admin()){
-			add_action( 'wp_head', array($this, 'design_style_action') );
-			add_action( 'amp_post_template_css', array($this, 'amp_design_style_action') );
-			//add_action( 'wp_enqueue_scripts', array($this, 'font_awesome_css'));
-		//}
+		add_action( 'wp_head', array($this, 'design_style_action') );
+		add_action( 'amp_post_template_css', array($this, 'amp_design_style_action') );
+
 	}
-	// function font_awesome_css(){
-	// 	wp_enqueue_style( 'footercss', HEADER_FOOTER_PLUGIN_DIR_URI . 'assets/css/font-awesome.css');
-	// 	//wp_enqueue_style( 'footermin', HEADER_FOOTER_PLUGIN_DIR_URI . 'assets/css/font-awesome.min.css');
-	// }
+
 	function isJson($string) {
         try{
              json_decode($string);
@@ -164,7 +159,7 @@ class headerPanels{
 				    	'api_type'			=> 'wp_control',
 				    	'id'				=> 'header_panel_settings',
 				        'section' 			=> 'header_setting_section',
-				        'label'   			=> __('Header Selected Settings', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+				        'label'   			=> esc_html__('Header Selected Settings', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 				        'type'    			=> 'js_raw',
 				        'selector'          => '#headercaller',
 				    ),

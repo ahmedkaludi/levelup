@@ -32,8 +32,8 @@ class MenuIconDesign{
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
                     'width'             => '2',
-					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Section description which does show up', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+					'title'    			=> esc_html__($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'description' 		=> esc_html__('Section description which does show up', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
 				
@@ -51,7 +51,7 @@ class MenuIconDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'setting'. $this->panel,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Enter COlor', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'text'
 			    ),
 
@@ -60,7 +60,7 @@ class MenuIconDesign{
 
 	function render(){
         $label = sanitize_text_field( headerfooter_get_setting( 'nav_icon_text' ) );
-        $show_label = array("desktop"=>'Menu', 'tablet'=>'', 'mobile'=> '');//headerfooter_get_setting('nav_icon_show_text', 'all' );
+        $show_label = array("desktop"=>'Menu', 'tablet'=>'', 'mobile'=> '');
         $style = sanitize_text_field( headerfooter_get_setting('nav_icon_style' ) );
         $sizes = array('desktop'=>'medium', 'tablet'=>'medium', 'mobile'=>'medium');
 
@@ -106,17 +106,7 @@ class MenuIconDesign{
             if ( $show_label ) {
                 echo '<span class="'.esc_attr( join( ' ', $label_classes ) ).'">'.$label.'</span>';
             }
-       /* <a class="<?php echo esc_attr( join(' ', $classes ) ); ?>">
-            <span class="hamburger hamburger--squeeze">
-                <span class="hamburger-box">
-                  <span class="hamburger-inner"></span>
-                </span>
-              </span>
-            <?php
-            if ( $show_label ) {
-                echo '<span class="'.esc_attr( join( ' ', $label_classes ) ).'">'.$label.'</span>';
-            }
-            ?></a>*/
+            
         ?>
         
 

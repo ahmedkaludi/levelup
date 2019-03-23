@@ -148,21 +148,13 @@ function levelup_default_designs($responseData){
                                                     ), $taxonomy );
                 $metaData = array();
                 // Check folder permission and define file location
-               /* $amp_html_markup = array('amp_html'=>$valDesigntype['amp_template_html'],
-                                        'amp_css'=>$valDesigntype['amp_template_css']
-                                    );
-                $non_amp_html_markup = array('non_amp_html'=>$valDesigntype[
-                    'non_amp_template_html'],
-                                        'non_amp_css'=>$valDesigntype['non_amp_template_css']
-                                    );*/
-                //update_post_meta( $post_id, 'amp_html_markup', $amp_html_markup );
-                //update_post_meta( $post_id, 'non_amp_html_markup', $non_amp_html_markup );
+
                 update_post_meta( $post_id, 'design_unique_name', $valDesigntype['design_unique_name'] );
                 update_post_meta( $post_id, 'design_preview_url', (isset($valDesigntype['design_preview_url'])? $valDesigntype['design_preview_url']: '') );
                 update_post_meta( $post_id, 'design_feature_image_url', (isset($valDesigntype['designImage'])? $valDesigntype['designImage']: '') );
                 
                 update_post_meta( $post_id, 'design_settings', (isset($valDesigntype['design_settings'])? $valDesigntype['design_settings']: '') );
-                /*update_post_meta( $post_id, 'design_options', (isset($valDesigntype['design_options'])? $valDesigntype['design_options']: '') );*/
+
 
                 $upload = wp_upload_dir();
                 $upload_dir = $upload['basedir'];
@@ -315,7 +307,6 @@ function levelup_call_api_registerd(){
         return false;
     }
 }
-
 
 add_action( 'wp_ajax_levelup_remove_key',  'levelup_remove_key' );
 function levelup_remove_key(){

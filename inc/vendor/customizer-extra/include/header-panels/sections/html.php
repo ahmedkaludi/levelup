@@ -32,8 +32,8 @@ class HtmlDesign{
 			        'panel'    			=> $this->panel,
 			        'panel_name'    	=> $this->panelName,
                     'width'             => $this->width,
-					'title'    			=> __($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
-			        'description' 		=> __('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
+					'title'    			=> esc_html__($this->name, HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'description' 		=> esc_html__('Menu options', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN)
 				),
 
 				
@@ -51,7 +51,7 @@ class HtmlDesign{
 			    	'api_type'			=> 'wp_control',
 			    	'id'				=> 'html'. $this->panel,
 			        'section' 			=> $this->nameslug. $this->panel,
-			        'label'   			=> __('Enter Custom text', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+			        'label'   			=> esc_html__('Enter Custom text', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
 			        'type'    			=> 'textarea'
 			    ),
 
