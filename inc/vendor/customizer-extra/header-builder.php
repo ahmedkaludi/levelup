@@ -7,9 +7,6 @@ define('HEADER_FOOTER_PLUGIN_TEXT_DOMAIN', 'levelup');
 $levelup_head_started = $levelup_foot_started = false;
 $levelupDefaultOptions = array();
 
-
-
-
 require_once(HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'/frontend/class-customize-layout-builder-frontend.php');
 require_once(HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'/frontend/class-customize-layout-builder.php');
 require_once(HEADER_FOOTER_PLUGIN_PATH_INCLUDE.'/builder.php');

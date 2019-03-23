@@ -68,7 +68,7 @@ function levelup_fail_load_out_of_date() {
 	$file_path = 'elementor/elementor.php';
 	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
 	$message = '<p>' . esc_html__( 'LevelUp is not working because you are using an old version of Elementor.', LEVELUP_TEXT_DOMAIN ) . '</p>';
-	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, __( 'Update Elementor Now', LEVELUP_TEXT_DOMAIN ) ) . '</p>';
+	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', LEVELUP_TEXT_DOMAIN ) ) . '</p>';
 	echo '<div class="error">' . wp_kses_post($message) . '</div>';
 }
 function levelup_fail_load() {
@@ -81,10 +81,7 @@ function levelup_fail_load() {
 	if(!current_user_can('install_plugins')){
 		return false;
 	}
-	/*	echo '<div class="notice notice-error">
-	        <p>'.esc_html__('This plugin recommends ',LEVELUP_TEXT_DOMAIN).' <strong>'.esc_html__('Elementor plugin',LEVELUP_TEXT_DOMAIN).'</strong> 
-            <a href="'.admin_url('admin.php?page=levelup').'" class="button button-primary">'.esc_html__('Click here to complete setup',LEVELUP_TEXT_DOMAIN).'</a></p>
-	        </div>';*/
+	
 }
 
 function levelup_activation_redirect( $plugin ) {

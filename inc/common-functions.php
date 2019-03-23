@@ -144,19 +144,16 @@ function levelup_amp_fonts_elementor(){
 				$fonts_url .= '&subset=' . $subsets[ $locale ];
 			}
 
-			echo "<link rel='stylesheet' id='google-fonts'  href='$fonts_url' type='text/css' media='all' />";
+			echo "<link rel='stylesheet' id='google-fonts'  href='".esc_url($fonts_url)."' type='text/css' media='all' />";
 		}
 
 		if ( ! empty( $google_fonts['early'] ) ) {
 			foreach ( $google_fonts['early'] as $current_font ) {
 				$google_fonts_index++;
 
-				//printf( '<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/earlyaccess/%s.css">', strtolower( str_replace( ' ', '', $current_font ) ) );
-
 				$font_url = sprintf( 'https://fonts.googleapis.com/earlyaccess/%s.css', strtolower( str_replace( ' ', '', $current_font ) ) );
 
-				//wp_enqueue_style( 'google-earlyaccess-' . $google_fonts_index, $font_url ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-				echo "<link rel='stylesheet' id='google-fonts'  href='$fonts_url' type='text/css' media='all' />";
+				echo "<link rel='stylesheet' id='google-fonts'  href='".esc_url($fonts_url)."' type='text/css' media='all' />";
 			}
 		}
 	
@@ -164,11 +161,8 @@ function levelup_amp_fonts_elementor(){
 function levelup_amp_fonts(){
 	echo "<link rel='stylesheet' id='font-awesome-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' type='text/css' media='all' />";
 	levelup_amp_fonts_elementor();
-	/*$post_id = $post->ID;
-	$dynamicCss = new \Elementor\Core\DynamicTags\Dynamic_CSS($post_id, $post_id);
-	$dynamicCss->get_meta();*/
+
 }
-//add_action('wp_head', 'levelup_nonamp_design_styling', 100);
 add_action( 'amp_post_template_css', 'levelup_amp_column_design',1 );
 function levelup_amp_column_design(){
 	if(function_exists('wp_upload_dir')){
@@ -419,7 +413,6 @@ function levelup_child_designing_custom_template($file, $type, $post){
 			case 'elementor_canvas':
 				if ( is_single() || is_page()  ) {
 					if( 'single' === $type && ! ('product' === $post->post_type) ) {
-						//$file = LEVELUP__FILE__PATH.'inc/templates/canvas.php';
 						$file = LEVELUP__FILE__PATH.'inc/templates/header-footer.php';
 				 	}
 				}

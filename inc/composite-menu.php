@@ -12,7 +12,6 @@ Class levelup_menuConnector{
 	private function check_update_available(){
 		$server_version = get_option( 'levelup-library-version');
 	    $current_version = get_option( 'levelup-library-loaded-version');
-	    // echo $current_version.", ".$server_version;die;
 	    if(version_compare($current_version, $server_version, '<') ){
 	    	return $server_version;
 	    }

@@ -103,7 +103,7 @@ Class HeaderBuild{
         $options = array_merge(array(array(
                 'api_type'      => 'hf_panel',
                 'id'            => 'levelup_panel_main',
-                'title'         => __('LevelUP', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
+                'title'         => esc_html__('LevelUP', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN),
                 'capability'    => 'edit_theme_options',
                 'priority'      => 2
             )), $options);
@@ -208,8 +208,6 @@ Class HeaderBuild{
                         <div class="levelup--cb-actions">
                             <?php do_action('levelup/hfbuilder/actionsbtn'); ?>
                             <a class="btn"></a>
-                            <?php /*<a data-id="{{ data.id }}_templates" class="set-default-design focus-section button button-secondary"
-                               href="#"><?php echo esc_html__( 'Set as Default', HEADER_FOOTER_PLUGIN_TEXT_DOMAIN ); ?></a> */ ?>
                         </div>
                     </div>
                     <div class="levelup--cb-body"></div>

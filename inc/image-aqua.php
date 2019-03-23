@@ -132,8 +132,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                         1 => $width,
                                         2 => $height
                                     );
-                           /* throw new Levelup_Aq_Exception('Unable to get WP_Image_Editor: ' . 
-                                                   $editor->get_error_message() . ' (is GD or ImageMagick installed?)');*/
                         }
 
                         $resized_file = $editor->save();
@@ -239,7 +237,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                         1 => $width,
                         2 => $height
                     );
-            //print_r(jetpack_photon_url( $url, $args ));die;
             return $image;
         } else {
             $aq_resize = Levelup_Aq_Resize::getInstance();

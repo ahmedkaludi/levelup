@@ -135,7 +135,6 @@ class HeaderFooter_Customize_Layout_Builder {
             if ( method_exists( $obj, 'customize' ) ) {
                 $item = $obj->customize( $wp_customize );
                 if ( is_array( $item ) ) {
-                    //$items = array_merge( $items, $item );
                     foreach( $item as $it ) {
                         $items[] = $it;
                     }

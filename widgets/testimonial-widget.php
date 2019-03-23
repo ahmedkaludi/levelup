@@ -67,19 +67,13 @@ class TestimonialWidgets extends Widget_Base {
 	 */
 	public function get_script_depends() {
 		$scriptArray = array();
-		/*$settings = $this->get_settings();
-		if(isset($settings['layoutDesignSelected']) && $settings['layoutDesignSelected']=='testimonial-design-1'){
-		}*/
-			$scriptArray = array('levelup-testimonial-widget', 'levelup-testimonial-widget-slider');
+		$scriptArray = array('levelup-testimonial-widget', 'levelup-testimonial-widget-slider');
 		return $scriptArray;
 	}
 
 	public function get_style_depends() {
 		$styleArray = array();
-		/*$settings = $this->get_settings();
-		if(isset($settings['layoutDesignSelected']) && $settings['layoutDesignSelected']=='testimonial-design-1'){
-		}*/
-			$styleArray = array('levelup-testimonial-widget-style');
+		$styleArray = array('levelup-testimonial-widget-style');
 		return ['levelup-testimonial-widget-style'];
 	}
 	/**
@@ -158,12 +152,6 @@ class TestimonialWidgets extends Widget_Base {
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
 	 */
-	/*protected function _content_template() {
-		?>
-		<div class="title">
-			{{{ settings.title }}}
-		</div>
-		<?php
-	}*/
+
 
 }//Class Closed

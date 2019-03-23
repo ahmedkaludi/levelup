@@ -114,9 +114,9 @@ function wp_call_register_sidebars(){
      for( $i = 1; $i <= 5; $i++ ) {
             register_sidebar( array(
                 /* translators: 1: Widget number. */
-                'name'          => sprintf( __( 'Footer Sidebar %d', 'levelup' ), $i ),
+                'name'          => sprintf( esc_html__( 'Footer Sidebar %d', 'levelup' ), $i ),
                 'id'            => 'footer-widget-'.$i,
-                'description'       => __( 'Add widgets here.', 'levelup' ),
+                'description'       => esc_html__( 'Add widgets here.', 'levelup' ),
                 'before_widget' => '<section id="%1$s" class="widget %2$s">',
                 'after_widget'  => '</section>',
                 'before_title'  => '<h4 class="widget-title">',

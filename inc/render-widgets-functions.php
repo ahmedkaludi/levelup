@@ -5,7 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 function render($settings, $returnWithSettings = false){
 	$selected_design = $settings['layoutDesignSelected'];
 	$args = array(
-	  	//'post__in'        => array($the_slug),
 		'meta_query' => array(
 						      array(
 						         'key'     => 'design_unique_name',
@@ -155,7 +154,6 @@ class levelupRenderClass{
 				}
 
 			}
-			//if(strpos($rawhtml,'{{loop_html_start}}')!==false)
 
 		}else{
 			//Normal single loop markup 
@@ -164,7 +162,7 @@ class levelupRenderClass{
 		}
 		if(isset($settings['selected_category'])){
 			$args = array(
-					'cat' => $settings['selected_category'],//$fieldValues['category_selection'],
+					'cat' => $settings['selected_category'],
 					'has_password' => false,
 					'post_status'=> 'publish'
 				);
@@ -173,7 +171,6 @@ class levelupRenderClass{
 			}else{
 				$args['posts_per_page'] = ( $settings['listShowNumbers']? $settings['listShowNumbers'] : get_option( 'posts_per_page' ) );
 			}
-			//print_r($args);die;
 			$loopReplacedHtmls = '';
 			$loopPositionReplacedMarkup = array();
 			//The Query
@@ -249,7 +246,6 @@ class levelupRenderClass{
 				}
 
 			}
-			//if(strpos($rawhtml,'{{loop_html_start}}')!==false)
 
 		}
 

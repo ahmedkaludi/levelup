@@ -141,13 +141,6 @@ class PresentationWidgets extends Widget_Base {
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
 	 */
-	/*protected function _content_template() {
-		?>
-		<div class="title">
-			{{{ settings.title }}}
-		</div>
-		<?php
-	}*/
 	
 
 }//Class Closed

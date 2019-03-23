@@ -360,8 +360,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 }
 
 	            $content = $this->setup_item_content( $content, $id, 'mobile' );
-                //$content = str_replace( '__id__', $id, $content );
-                //$content = str_replace( '__device__', 'mobile', $content );
 
                 echo '<div class="' . esc_attr( $classes ) . '">';
                 echo '<div class="' . esc_attr( $inner_classes ) . '" data-item-id="' . esc_attr( $item_id ) . '" data-section="' . $item_config['section'] . '">';
