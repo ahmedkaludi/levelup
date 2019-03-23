@@ -102,19 +102,23 @@ function levelup_amp_fonts_elementor(){
 	foreach ($postFontsList as $key => $postFonts) {
 		$listPostFonts = array_merge( $listPostFonts, $postFonts['fonts']);
 	}
-	$fonts = array_merge($fontsList['fonts'], $listPostFonts);
+	if ( $fontsList['fonts'] ) {
+		$fonts = array_merge($fontsList['fonts'], $listPostFonts);
+	}
 	$google_fonts = array();
-	foreach ($fonts as $key => $font) {
-		$font_type = \Elementor\Fonts::get_font_type( $font );
-			switch ( $font_type ) {
-				case \Elementor\Fonts::GOOGLE:
-					$google_fonts['google'][] = $font;
-					break;
+	if ( $fonts ) {
+		foreach ($fonts as $key => $font) {
+			$font_type = \Elementor\Fonts::get_font_type( $font );
+				switch ( $font_type ) {
+					case \Elementor\Fonts::GOOGLE:
+						$google_fonts['google'][] = $font;
+						break;
 
-				case \Elementor\Fonts::EARLYACCESS:
-					$google_fonts['early'][] = $font;
-					break;
-				}
+					case \Elementor\Fonts::EARLYACCESS:
+						$google_fonts['early'][] = $font;
+						break;
+					}
+		}
 	}
 	$google_fonts_index = 1;
 	if ( ! empty( $google_fonts['google'] ) ) {

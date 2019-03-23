@@ -86,7 +86,7 @@ function levelup_fail_load() {
 
 function levelup_activation_redirect( $plugin ) {
     if( $plugin == plugin_basename( __FILE__ ) ) {
-        exit( wp_redirect( admin_url( 'admin.php?page=levelup&type=dashboard' ) ) );
+        exit( wp_safe_redirect ( admin_url( 'admin.php?page=levelup&type=dashboard' ) ) );
     }
 }
 add_action( 'activated_plugin', 'levelup_activation_redirect' );
