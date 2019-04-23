@@ -22,7 +22,7 @@ function HeaderFooter_Customize_Layout_Builder() {
     return HeaderFooter_Customize_Layout_Builder::get_instance();
 }
 
-add_action('after_setup_theme', 'levelup_load_header_footer');
+//add_action('after_setup_theme', 'levelup_load_header_footer');
 function levelup_load_header_footer(){
  global $levelupDefaultOptions;
  add_action("levelup_head", "render_header_option_html");
